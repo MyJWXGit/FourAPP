@@ -17,6 +17,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                includeCompileClasspath = true
             }
         }
     }
@@ -45,8 +46,9 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-    annotationProcessor rootProject.ext.dependencies["dagger2-apt-compiler"]
+    //annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    //annotationProcessor rootProject.ext.dependencies["dagger2-apt-compiler"]
     provided rootProject.ext.dependencies["javax.annotation"]
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     implementation project(':common')
 }

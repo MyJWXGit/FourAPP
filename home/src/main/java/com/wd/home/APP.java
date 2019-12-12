@@ -1,18 +1,17 @@
-package com.wd.health;
+package com.wd.home;
 
 import com.wd.common.BaseAPPlication;
-import com.wd.common.app.App;
 
 /**
  * @name Health
- * @class name：com.wd.health
+ * @class name：com.wd.home
  * @class describe
  * @anthor 24673
- * @time 2019/12/12 13:50
+ * @time 2019/12/12 17:43
  * @change
  * @chang time
  * @class describe
  */
-public class APP extends App {
+public class APP extends BaseAPPlication {
 
 }
