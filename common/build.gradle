@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //阿里巴巴路由    放入MVP依赖
+    api rootProject.ext.dependencies["arouter-api"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    //butterknife
+    implementation rootProject.ext.dependencies["butterknife"]
+    implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofit-converter-gson"]
+    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava"]
+    implementation rootProject.ext.dependencies["converter-scalars"]
+    implementation rootProject.ext.dependencies["butterknife-apt"]
+    implementation rootProject.ext.dependencies["fresco"]
+}

@@ -1,0 +1,2 @@
+include ':app', ':doctor', ':video', ':home', ':my_message', ':main', ':common'
+rootProject.name='Health'

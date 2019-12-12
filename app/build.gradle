@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+        applicationId "com.wd.health"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //Arouter路由配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+                includeCompileClasspath = true
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile rootProject.ext.dependencies["junit"]
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["constraint-layout"]
+    implementation rootProject.ext.dependencies["recyclerview-v7"]
+    implementation rootProject.ext.dependencies["autolayout"]
+    implementation rootProject.ext.dependencies["butterknife"]
+
+    implementation rootProject.ext.dependencies["annotations"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger2-apt-compiler"]
+    provided rootProject.ext.dependencies["javax.annotation"]
+    implementation project(':common')
+}
