@@ -1,24 +1,28 @@
 package com.wd.home;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.Logger;
 import com.wd.home.contract.Contract;
 import com.wd.home.presenter.HomePresenter;
 import com.wd.home.utils.RsaCoder;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends BaseActivity<HomePresenter> implements Contract.IView {
-    private Button button;
-    private EditText email_edit, pwd_edit;
+    @BindView(R.id.email)
+    EditText email;
+    @BindView(R.id.pwd)
+    EditText pwd;
+    @BindView(R.id.button)
+    Button button;
     private static final String TAG = "MainActivity";
 
     //返回你的P层  直接使用mPresenter可以进行请求
@@ -31,28 +35,14 @@ public class MainActivity extends BaseActivity<HomePresenter> implements Contrac
     @Override
     protected void initView() {
         button = findViewById(R.id.button);
-        email_edit = findViewById(R.id.email);
-        pwd_edit = findViewById(R.id.pwd);
+        email = findViewById(R.id.email);
+        pwd = findViewById(R.id.pwd);
     }
 
     //业务逻辑   进行请求
     @Override
     protected void initData() {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String pwd1 = pwd_edit.getText().toString();
-                String email = email_edit.getText().toString();
-                //对密码加密
-                try {
-                    String pwd = RsaCoder.encryptByPublicKey(pwd1);
-                    //直接调用  mPresenter可以进行请求
-                    mPresenter.onLogin(email, pwd);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+
     }
 
     //返回XML文件
@@ -77,5 +67,26 @@ public class MainActivity extends BaseActivity<HomePresenter> implements Contrac
     @Override
     public void onError(Throwable e) {
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.button)
+    public void onViewClicked() {
+        String pwd1 = pwd.getText().toString();
+        String email1 = email.getText().toString();
+        //对密码加密
+        try {
+            String pwd = RsaCoder.encryptByPublicKey(pwd1);
+            //直接调用  mPresenter可以进行请求
+            mPresenter.onLogin(email1, pwd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
