@@ -28,7 +28,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-//ButterKnife需要   model中的andorid选项中   兼容java8
+    //ButterKnife需要   model中的andorid选项中   兼容java8
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

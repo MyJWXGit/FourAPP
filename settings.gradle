@@ -1,2 +1,2 @@
-include ':app', ':doctor', ':video', ':home', ':my_message', ':main', ':common'
+include ':app', ':doctor', ':video', ':home', ':my_message', ':main', ':common', ':circle'
 rootProject.name='Health'

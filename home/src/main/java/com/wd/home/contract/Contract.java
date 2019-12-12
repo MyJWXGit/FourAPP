@@ -1,4 +1,4 @@
-package com.wd.common.contract;
+package com.wd.home.contract;
 
 
 import com.wd.common.base.IBaseView;
@@ -13,11 +13,21 @@ public interface Contract {
 
     //Activity  P层方法
     interface IPresenter {
+        //注册
+        void onRegister(String email, String code, String pwd1, String pwd2, String invitationCode);
 
+        //登录
+        void onLogin(String email, String pwd);
     }
 
     //Activity  M层
     interface IModer {
+        //注册
+        void onRegister(String email, String code, String pwd1, String pwd2, String invitationCode, IBallBask iBallBask);
+
+        //登录
+        void onLogin(String email, String pwd, IBallBask iBallBask);
+
         interface IBallBask {
             void onHttpOK(Object obj);
 
