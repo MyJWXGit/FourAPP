@@ -1,13 +1,14 @@
-package com.wd.home;
+package com.wd.home.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.wd.common.base.BaseActivity;
-import com.wd.common.utils.Logger;
+import com.wd.home.R;
+import com.wd.home.bean.LoginBean;
 import com.wd.home.contract.Contract;
 import com.wd.home.presenter.HomePresenter;
 import com.wd.home.utils.RsaCoder;
@@ -16,57 +17,51 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity<HomePresenter> implements Contract.IView {
+public class LoginActivity extends BaseActivity<HomePresenter> implements Contract.IView {
+
     @BindView(R.id.email)
     EditText email;
     @BindView(R.id.pwd)
     EditText pwd;
     @BindView(R.id.button)
     Button button;
-    private static final String TAG = "MainActivity";
 
-    //返回你的P层  直接使用mPresenter可以进行请求
     @Override
     protected HomePresenter providePresenter() {
         return new HomePresenter();
     }
 
-    //初始化控件
     @Override
     protected void initView() {
-        button = findViewById(R.id.button);
-        email = findViewById(R.id.email);
-        pwd = findViewById(R.id.pwd);
+
     }
 
-    //业务逻辑   进行请求
     @Override
     protected void initData() {
 
     }
 
-    //返回XML文件
     @Override
     protected int initLayout() {
-        return R.layout.activity_main;
+        return R.layout.activity_login;
     }
 
-    //用不到
-    @Override
-    public Context context() {
-        return null;
-    }
-
-    //请求成功的方法
     @Override
     public void onSuccess(Object obj) {
-        Logger.d(TAG, obj.toString() + "");
+        LoginBean bean = (LoginBean) obj;
+        if (bean.getStatus().equals("0000")) {
+            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+        }
     }
 
-    //请求失败的方法
     @Override
     public void onError(Throwable e) {
 
+    }
+
+    @Override
+    public Context context() {
+        return null;
     }
 
     @Override

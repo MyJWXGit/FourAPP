@@ -48,6 +48,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
             @Override
             public void onHttpNO(Throwable e) {//失败的方法
+
                 if (isViewAttached()) {
                     Logger.d(TAG, e.getMessage() + "");
                 }

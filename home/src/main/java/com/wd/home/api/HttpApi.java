@@ -1,12 +1,14 @@
 package com.wd.home.api;
 
+import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.LoginBean;
 import com.wd.home.bean.RegisterBean;
 
+import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
-import rx.Observable;
 
 /**
  * @name Health
@@ -35,4 +37,9 @@ public interface HttpApi {
     Observable<LoginBean> onLogin(
             @Field("email") String email,
             @Field("pwd") String pwd);
+
+    //首页banner板块数据展示
+    @GET(API.BANNER)
+    Observable<BannerBean> onBanner();
+
 }
