@@ -1,5 +1,6 @@
 package com.wd.doctor.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -9,17 +10,27 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.wd.common.base.BaseActivity;
+import com.wd.common.utils.Logger;
+import com.wd.common.utils.ToastUtils;
+import com.wd.doctor.App;
 import com.wd.doctor.R;
+import com.wd.doctor.bean.LoginBean;
+import com.wd.doctor.contract.Contract;
+import com.wd.doctor.encrypt.RsaCoder;
+import com.wd.doctor.model.RegexUtil;
+import com.wd.doctor.present.LoginPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends AppCompatActivity {
-
+public class LoginActivity extends BaseActivity<LoginPresenter> implements Contract.IView {
+    private static final String TAG = "MainActivity";
     @BindView(R.id.login_edity)
     EditText loginEdity;
     @BindView(R.id.suo)
@@ -37,11 +48,32 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.login_deng)
     Button loginDeng;
     boolean flag = false;
+    private String s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+    }
+
+    @Override
+    protected LoginPresenter providePresenter() {
+        return new LoginPresenter();
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected int initLayout() {
+        return R.layout.activity_login;
     }
 
     @OnClick({R.id.suo, R.id.hit, R.id.show, R.id.login_wangji, R.id.long_register, R.id.login_deng})
@@ -70,7 +102,50 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.login_deng:
+
+
+
+                String empty = loginEdity.getText().toString().trim();
+                String trim = loginPwd.getText().toString().trim();
+                try {
+                    s = RsaCoder.encryptByPublicKey(trim);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                boolean email = RegexUtil.checkEmail(empty);
+                if (email){
+
+                }else {
+                    Toast.makeText(LoginActivity.this, "请输入正确邮箱", Toast.LENGTH_SHORT).show();
+                }
+                mPresenter.onLogin(empty,s);
+
                 break;
         }
+    }
+
+    @Override
+    public void onSuccess(Object obj) {
+        Logger.d(TAG, obj.toString() + "");
+        LoginBean bean= (LoginBean) obj;
+        if (bean!=null){
+            Toast.makeText(this,bean.getMessage(), Toast.LENGTH_SHORT).show();
+            if ("0000".equals(bean.getStatus())){
+
+                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+
+            }
+        }
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public Context context() {
+        return null;
     }
 }
