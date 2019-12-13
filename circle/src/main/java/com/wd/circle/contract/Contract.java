@@ -1,4 +1,4 @@
-package com.wd.common.contract;
+package com.wd.circle.contract;
 
 
 import com.wd.common.base.IBaseView;
@@ -13,11 +13,17 @@ public interface Contract {
 
     //Activity  P层方法
     interface IPresenter extends IBaseView {
-        void getDate(String trim, String s);
+        void onLogin(String email, String pwd);
+        void onHome();
+        void onHomes(int departmentId,int page,int count);
     }
+
 
     //Activity  M层
     interface IModer {
+        void onLogin(String email, String pwd, IBallBask iBallBask);
+        void onhome(IBallBask iBallBask);
+        void onhomes(int departmentId,int page,int count,IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 
@@ -28,7 +34,7 @@ public interface Contract {
 
     //Fragment  P层方法
     interface FPresenter extends IBaseView {
-
+        void onLogin(String ms);
     }
 
     //Fragment  M层
