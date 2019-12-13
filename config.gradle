@@ -37,6 +37,8 @@ ext {
             "fresco"                 : "com.facebook.fresco:fresco:2.0.0",
             //TabLayout导航
             "tablayout"              : "com.android.support:design:28.0.0",
+            //videoplay
+            "videoplay"              : "com.lmxjw3.media:videoplay:1.0.0",
             //test
             "junit"                  : "junit:junit:4.12",
             "androidJUnitRunner"     : "android.support.test.runner.AndroidJUnitRunner",
