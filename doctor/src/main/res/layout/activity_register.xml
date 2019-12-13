@@ -12,7 +12,7 @@
         android:textSize="@dimen/sp_16"
         android:textColor="#3087ea"
         android:text="完善信息"
-        android:layout_marginTop="@dimen/dp_74"
+        android:layout_marginTop="@dimen/dp_64"
         android:layout_marginLeft="@dimen/dp_30"/>
     <TextView
         android:layout_width="wrap_content"
@@ -43,12 +43,8 @@
             android:layout_gravity="center"
             android:background="@drawable/edit"
             android:paddingLeft="@dimen/dp_20"
-            android:hint="请输入密码"
             android:lines="1"
-            android:maxLength="17"
-            android:inputType="textPassword"
-            android:textColorHint="#fff"
-            android:textColor="#fff" />
+            android:maxLength="17" />
         <Button
             android:id="@+id/register_forget"
             android:background="@drawable/shape4"
@@ -71,7 +67,6 @@
         style="@style/edtext1"
         android:textColorHint="#fff"
         android:lines="1"
-        android:textColor="#fff"
         android:maxLength="17"
         />
     <TextView
@@ -88,10 +83,8 @@
         <EditText
             android:id="@+id/register_mi"
             style="@style/edtext1"
-            android:textColorHint="#fff"
             android:lines="1"
             android:inputType="textPassword"
-            android:textColor="#fff"
             android:maxLength="17"
             />
 
@@ -128,10 +121,8 @@
         <EditText
             android:id="@+id/register_ermi"
             style="@style/edtext1"
-            android:textColorHint="#fff"
             android:lines="1"
             android:inputType="textPassword"
-            android:textColor="#fff"
             android:maxLength="17"
             />
         <ImageView
