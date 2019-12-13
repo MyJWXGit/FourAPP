@@ -35,6 +35,11 @@ public interface Contract {
         }
     }
 
+    //Fragment  P层方法
+    interface FPresenter {
+
+    }
+
     //Fragment  M层
     interface FModer {
 

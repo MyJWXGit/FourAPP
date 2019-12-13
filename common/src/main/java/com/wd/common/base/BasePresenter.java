@@ -2,7 +2,6 @@ package com.wd.common.base;
 
 import android.content.Context;
 
-
 import com.wd.common.app.App;
 
 import java.lang.ref.WeakReference;

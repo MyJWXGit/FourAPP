@@ -16,7 +16,7 @@ android {
         //Arouter路由配置
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
                 includeCompileClasspath = true
             }
         }
@@ -45,12 +45,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["recyclerview-v7"]
     implementation rootProject.ext.dependencies["retrofit"]
     implementation rootProject.ext.dependencies["retrofit-converter-gson"]
     implementation rootProject.ext.dependencies["retrofit-adapter-rxjava"]
     implementation rootProject.ext.dependencies["converter-scalars"]
-    implementation rootProject.ext.dependencies["rxjava"]
-    implementation rootProject.ext.dependencies["rxandroid"]
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]

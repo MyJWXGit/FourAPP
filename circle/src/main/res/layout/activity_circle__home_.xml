@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wd.circle.view.Circle_Home_Activity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:id="@+id/rela">
+        
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:roundAsCircle="true"
+            android:id="@+id/circle_touxiang"
+            android:layout_centerVertical="true"
+            app:failureImage="@drawable/ic_launcher_background"
+            app:placeholderImage="@drawable/ic_launcher_background"
+            android:layout_marginLeft="15dp"/>
+        
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/circle_message"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:failureImage="@drawable/ic_launcher_background"
+            app:placeholderImage="@drawable/ic_launcher_background"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/common_nav_message_black_s"/>
+        
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/circle_recy1"></androidx.recyclerview.widget.RecyclerView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/circle_recy2"></androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

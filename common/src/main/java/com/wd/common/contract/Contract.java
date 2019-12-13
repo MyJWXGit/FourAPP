@@ -12,8 +12,8 @@ public interface Contract {
     }
 
     //Activity  P层方法
-    interface IPresenter {
-
+    interface IPresenter extends IBaseView {
+        void getDate(String trim, String s);
     }
 
     //Activity  M层
@@ -23,6 +23,12 @@ public interface Contract {
 
             void onHttpNO(Throwable e);
         }
+    }
+
+
+    //Fragment  P层方法
+    interface FPresenter extends IBaseView {
+
     }
 
     //Fragment  M层
