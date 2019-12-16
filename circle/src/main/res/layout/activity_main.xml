@@ -10,11 +10,13 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit1"/>
+        android:id="@+id/edit1"
+        android:text="904858766@qq.com"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit2"/>
+        android:id="@+id/edit2"
+        android:text="123"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

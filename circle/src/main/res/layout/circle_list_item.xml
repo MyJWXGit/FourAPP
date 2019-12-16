@@ -3,6 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,7 +15,7 @@
         android:textColor="@drawable/text_select"
         android:textIsSelectable="true"
         android:paddingLeft="30dp"
-        android:layout_gravity="center_vertical"
+        android:layout_centerVertical="true"
         android:id="@+id/circle_tv1"/>
-
+    </RelativeLayout>
 </LinearLayout>
