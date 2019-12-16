@@ -7,6 +7,7 @@ import com.wd.circle.bean.Circle_Post_Bean;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.bean.CommentBean;
+import com.wd.circle.bean.DoTaskBean;
 import com.wd.circle.bean.LoginBean;
 import com.wd.circle.bean.My_CirclePost_Bean;
 import com.wd.circle.bean.Post_Image_Bean;
@@ -133,5 +134,12 @@ public interface HttpApi {
             @Header("sessionId") String sessionId,
             @Field("sickCircleId") int sickCircleId,
             @Part MultipartBody.Part map
+    );
+    //做任务
+    @POST(Api.DO_TASK_URL)
+    Observable<DoTaskBean> onDoTaskBean(
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
+            @Query("taskId") int taskId
     );
 }

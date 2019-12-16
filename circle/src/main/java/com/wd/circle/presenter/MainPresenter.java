@@ -8,6 +8,7 @@ import com.wd.circle.bean.Circle_Details_Bean;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.bean.CommentBean;
+import com.wd.circle.bean.DoTaskBean;
 import com.wd.circle.bean.LoginBean;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.contract.Contract;
@@ -186,6 +187,28 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
                     Circle_Comment_Bean circle_comment_bean= (Circle_Comment_Bean) obj;
                     if (circle_comment_bean!=null){
                         getView().onSuccess(circle_comment_bean);
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDoTask(String userId, String sessionId, int taskId) {
+        mainModel.onDoTask(userId, sessionId, taskId, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                if (isViewAttached()){
+                    DoTaskBean doTaskBean= (DoTaskBean) obj;
+                    if (doTaskBean!=null){
+                        getView().onSuccess(doTaskBean);
                     }
                 }
             }

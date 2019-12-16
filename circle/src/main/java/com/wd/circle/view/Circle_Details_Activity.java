@@ -2,6 +2,7 @@ package com.wd.circle.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +22,7 @@ import com.wd.circle.api.Constant;
 import com.wd.circle.bean.Circle_Comment_Bean;
 import com.wd.circle.bean.Circle_Details_Bean;
 import com.wd.circle.bean.CommentBean;
+import com.wd.circle.bean.DoTaskBean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.presenter.MainPresenter;
 import com.wd.circle.utils.DateUtils;
@@ -75,6 +78,8 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
     ImageView patientActivityIvIntentReleaseSickCircle;
     @BindView(R.id.patient_activity_relative_release_sickCircle)
     RelativeLayout patientActivityRelativeReleaseSickCircle;
+    private int userId;
+    private String sessionId;
 
     @Override
     protected MainPresenter providePresenter() {
@@ -89,17 +94,17 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
     @Override
     protected void initData() {
         String o = (String) SpUtils.get(this, Constant.Sp_touxiang, "");
-        int userId = (int) SpUtils.get(this, Constant.Sp_userId, 0);
-        String sessionId = (String) SpUtils.get(this, Constant.Sp_sessionId, "");
+        userId = (int) SpUtils.get(this, Constant.Sp_userId, 0);
+        sessionId = (String) SpUtils.get(this, Constant.Sp_sessionId, "");
         patientIvUserHeadPic.setImageURI(o);
         Intent intent = getIntent();
         int sickCircleId = intent.getIntExtra("sickCircleId", 0);
-        mPresenter.onDetails(sickCircleId,userId+"",sessionId);
+        mPresenter.onDetails(sickCircleId, userId +"", sessionId);
 
         patientActivityIvContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.onCircleComment(sickCircleId,userId+"",sessionId,15,1);
+                mPresenter.onCircleComment(sickCircleId, userId +"", sessionId,15,1);
                 patientActivityRelativeContent.setVisibility(View.VISIBLE);
                 patientActivityRelativeReleaseSickCircle.setVisibility(View.GONE);
             }
@@ -112,6 +117,19 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
                 InputMethodManager imm =(InputMethodManager)getSystemService(
                         Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(patientActivityEtContent.getWindowToken(), 0);
+            }
+        });
+        //评论
+        patientActivityIvSendContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String et_content = patientActivityEtContent.getText().toString().trim();
+                if (TextUtils.isEmpty(et_content)) {
+                    Toast.makeText(Circle_Details_Activity.this, "输入的内容不能为空!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Log.i("TAG", "onClick: " + "sickCircleId:" + sickCircleId);
+                mPresenter.onComment(sickCircleId, userId +"", sessionId, et_content);
             }
         });
     }
@@ -158,6 +176,19 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
                 RecycleView_Comment_Adapter recycleView_comment_adapter=new RecycleView_Comment_Adapter(circle_comment_bean.getResult(),this);
                 recyclerSickCircleCommentList.setAdapter(recycleView_comment_adapter);
             }
+        }else if (obj instanceof CommentBean){
+            CommentBean commentBean= (CommentBean) obj;
+            if (commentBean.getStatus().equals("0000")) {
+                Toast.makeText(this, commentBean.getMessage(), Toast.LENGTH_SHORT).show();
+                patientActivityEtContent.setText("");
+                patientActivityEtContent.setHint("在此留下高见吧!!!");
+                mPresenter.onDoTask(userId+"",sessionId,1002);
+            } else {
+                Toast.makeText(this, commentBean.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }else if (obj instanceof DoTaskBean){
+            DoTaskBean doTaskBean= (DoTaskBean) obj;
+            Toast.makeText(this, ""+doTaskBean.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

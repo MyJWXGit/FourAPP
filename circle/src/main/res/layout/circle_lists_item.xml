@@ -3,33 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="16sp"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        android:id="@+id/circle_tv2"-->
-<!--        android:textColor="#333333"-->
-<!--        android:layout_marginTop="20dp"/>-->
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="12sp"-->
-<!--        android:textColor="#333333"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        android:paddingBottom="20dp"-->
-<!--        android:id="@+id/circle_common"/>-->
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:textSize="10sp"-->
-<!--        android:textColor="#333333"-->
-<!--        android:id="@+id/circle_time"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        android:layout_marginTop="10dp"/>-->
     <LinearLayout
         android:background="#ffffff"
         android:id="@+id/item_linear"
@@ -48,6 +21,8 @@
             <TextView
                 android:id="@+id/circle_tv2"
                 android:textSize="16sp"
+                android:textColor="#333333"
+                android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
