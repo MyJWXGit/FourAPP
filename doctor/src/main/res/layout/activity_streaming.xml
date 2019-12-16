@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wd.doctor.view.activity.myview.StreamingActivity">
+
+    <com.wd.doctor.view.activity.myview.MyEditView
+        android:id="@+id/edit_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hint_color="#00f"
+        app:icon="@mipmap/common_icon_back_black_n"
+        app:text_color="#333333"
+        app:text_size="@dimen/dp_10"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/stdr_recy"
+        ></androidx.recyclerview.widget.RecyclerView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_14"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:textColor="#3087ea"
+        android:text="搜索历史"
+        />
+  <com.wd.doctor.view.activity.myview.MyStreaming_View
+      android:id="@+id/myStreaming"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"></com.wd.doctor.view.activity.myview.MyStreaming_View>
+</LinearLayout>

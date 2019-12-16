@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wd.doctor.view.activity.InquiryActivity">
+    <RelativeLayout
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_height="26dp">
+
+        <ImageView
+            android:id="@+id/details_back"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@mipmap/common_icon_back_black_n" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/common_nav_message_black_n"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_5"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_38"
+        android:orientation="horizontal"
+        >
+
+        <com.google.android.material.tabs.TabLayout
+            app:tabSelectedTextColor="#F7D6D6"
+            app:tabMode="scrollable"
+            android:id="@+id/tab_lay"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="@dimen/dp_38"></com.google.android.material.tabs.TabLayout>
+      <RelativeLayout
+          android:layout_width="@dimen/dp_0"
+          android:layout_height="@dimen/dp_38"
+          android:layout_weight="2"
+          android:orientation="horizontal">
+          <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@mipmap/common_icon_search_n"
+              android:id="@+id/sou"
+              android:layout_centerVertical="true"
+              android:layout_centerHorizontal="true"
+              />
+      </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/view_pager"></androidx.viewpager.widget.ViewPager>
+</LinearLayout>
