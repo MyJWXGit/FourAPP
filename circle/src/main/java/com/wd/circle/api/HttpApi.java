@@ -44,23 +44,28 @@ public interface HttpApi {
     Observable<LoginBean> onLogin(
             @Field("email") String email,
             @Field("pwd") String pwd);
+
     @GET(Api.LIST_URL)
     Observable<Circle_list_Bean> onListBean();
+
     @GET(Api.LISTS_URL)
     Observable<Circle_lists_Bean> onListsBean(
             @Query("departmentId") int departmentId,
             @Query("page") int page,
-            @Query("count")int count);
+            @Query("count") int count);
+
     @GET(Api.SEARCH_URL)
     Observable<SearchCircleBean> onSearchBean(
             @Query("keyWord") String keyWord
     );
+
     @GET(Api.DETAILS_URL)
     Observable<Circle_Details_Bean> onDetailsBean(
-        @Query("sickCircleId") int sickCircleId,
-         @Header("userId") String userId,
-         @Header("sessionId") String sessionId
-        );
+            @Query("sickCircleId") int sickCircleId,
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId
+    );
+
     //病友圈发表评论
     @POST(Api.COMMENT_URL)
     Observable<CommentBean> onCommentBean(
@@ -68,7 +73,8 @@ public interface HttpApi {
             @Header("sessionId") String sessionId,
             @Query("sickCircleId") int sickCircleId,
             @Query("content") String content
-            );
+    );
+
     //病友圈评论列表
     @GET(Api.DETAILS_COMMENT_URL)
     Observable<Circle_Comment_Bean> onCircleCommentBean(
@@ -78,6 +84,7 @@ public interface HttpApi {
             @Query("count") int count,
             @Query("page") int page
     );
+
     //采纳病友圈优秀的评论
     @PUT(Api.ADOPTION_COMMENT_URL)
     Observable<Adoption_Comment_Bean> onAdoptionCommentBean(
@@ -86,6 +93,7 @@ public interface HttpApi {
             @Query("sickCircleId") int sickCircleId,
             @Query("commentId") int commentId
     );
+
     //发表观点
     @PUT(Api.PUT_VIEWPOINT_URL)
     Observable<Put_Viewpoint_Bean> onPutViewpointBean(
@@ -94,6 +102,7 @@ public interface HttpApi {
             @Query("opinion") int opinion,
             @Query("commentId") int commentId
     );
+
     //查看病友的病友圈发帖列表
     @GET(Api.CIRCLE_POST_URL)
     Observable<Circle_Post_Bean> onCirclePostBean(
@@ -101,6 +110,7 @@ public interface HttpApi {
             @Query("count") int count,
             @Query("page") int page
     );
+
     //查看我的病友圈发帖列表
     @GET(Api.MY_POST_URL)
     Observable<My_CirclePost_Bean> myCirclePostBean(
@@ -109,6 +119,7 @@ public interface HttpApi {
             @Query("count") int count,
             @Query("page") int page
     );
+
     //查看我的病友圈帖子的评论列表
     @GET(Api.QUERY_MYCIRCLE_POST_URL)
     Observable<Query_MyCircle_Post_Bean> onQueryMyCirclePostBean(
@@ -118,6 +129,7 @@ public interface HttpApi {
             @Query("count") int count,
             @Query("page") int page
     );
+
     //发布病友圈
     @POST(Api.PUT_CIRCLE_URL)
     Observable<Put_Circle_Bean> onPutCircleBean(
@@ -125,6 +137,7 @@ public interface HttpApi {
             @Header("sessionId") String sessionId
 
     );
+
     //上传头像
     @Multipart
     @FormUrlEncoded
@@ -135,6 +148,7 @@ public interface HttpApi {
             @Field("sickCircleId") int sickCircleId,
             @Part MultipartBody.Part map
     );
+
     //做任务
     @POST(Api.DO_TASK_URL)
     Observable<DoTaskBean> onDoTaskBean(

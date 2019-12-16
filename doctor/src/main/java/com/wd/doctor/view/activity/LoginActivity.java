@@ -131,8 +131,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Contr
         if (bean!=null){
             Toast.makeText(this,bean.getMessage(), Toast.LENGTH_SHORT).show();
             if ("0000".equals(bean.getStatus())){
-
                 Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                intent.putExtra("doctorId",bean.getResult().getId());
+                intent.putExtra("sessionId",bean.getResult().getSessionId());
                 startActivity(intent);
 
             }

@@ -28,6 +28,16 @@ public interface Contract {
         void Verif(String email, String code);
         //登录
         void onLogin(String email, String pwd);
+        //个人信息
+        void Mian(int doctorId,String sessionId);
+        //骨科
+        void Inquer();
+        //病友圈
+        void Patients(int departmentId,int page,int count);
+        //根据关键词查询病友圈
+        void Streanm(String keyWord);
+        //查询病友圈详情
+        void Details(int doctorId, String sessionId, int sickCircleId);
     }
 
     //Activity  M层
@@ -40,7 +50,15 @@ public interface Contract {
         void Verif(String email,String code,IBallBask iBallBask);
         //登录
         void onLogin(String email, String pwd, IBallBask iBallBask);
-
+        //个人信息
+        void Mian(int doctorId,String sessionId,IBallBask iBallBask);
+        //根据关键词查询病友圈
+        void Streanm(String keyWord,IBallBask iBallBask);
+        //发表评论
+       // void Publish(int doctorId,String sessionId,int sickCircleId,String content,IBallBask iBallBask);
+       //查询病友圈详情
+        void Details(int doctorId, String sessionId, int sickCircleId, IModer.IBallBask iBallBask);
+        void Inquer(IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 
@@ -50,7 +68,10 @@ public interface Contract {
 
     //Fragment  M层
     interface FModer {
-
+        //病友圈
+        void Patients(int departmentId, int page, int count, IModer.IBallBask iBallBask);
+        //查询病友圈详情
+        void Details(int doctorId, String sessionId, int sickCircleId, IModer.IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 

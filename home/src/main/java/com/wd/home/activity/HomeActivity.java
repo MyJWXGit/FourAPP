@@ -36,9 +36,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-;
-
 public class HomeActivity extends BaseActivity<HomePresenter> implements Contract.IView {
     @BindView(R.id.edit_query)
     EditText editQuery;

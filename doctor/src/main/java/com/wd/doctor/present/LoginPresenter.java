@@ -4,11 +4,17 @@ package com.wd.doctor.present;
 
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.Logger;
+import com.wd.doctor.bean.DetailsBean;
+import com.wd.doctor.bean.InquiryBean;
 import com.wd.doctor.bean.LoginBean;
+import com.wd.doctor.bean.MianBean;
+import com.wd.doctor.bean.PatientsBean;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
+import com.wd.doctor.bean.StreamBean;
 import com.wd.doctor.bean.VerifyBean;
 import com.wd.doctor.contract.Contract;
+import com.wd.doctor.model.FragmentModel;
 import com.wd.doctor.model.LoginModel;
 
 
@@ -21,9 +27,12 @@ public class LoginPresenter extends BasePresenter<Contract.IView> implements Con
 
     private LoginModel model;
     private static final String TAG = "HomePresenter";
+    private FragmentModel fModel;
+
     @Override
     protected void initModel() {
         model = new LoginModel();
+        fModel = new FragmentModel();
     }
    //注册
     @Override
@@ -133,6 +142,141 @@ public class LoginPresenter extends BasePresenter<Contract.IView> implements Con
                   }
               }
           });
+    }
+    //个人信息
+    @Override
+    public void Mian(int doctorId, String sessionId) {
+        model.Mian(doctorId, sessionId, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    MianBean bean = (MianBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+   //骨科....
+    @Override
+    public void Inquer() {
+         model.Inquer(new Contract.IModer.IBallBask() {
+             @Override
+             public void onHttpOK(Object obj) {
+                 //软引用
+                 if (isViewAttached()) {
+                     //Bean包强转  拿到Status进行判断
+                     InquiryBean bean = (InquiryBean) obj;
+                     if (bean != null && bean.getStatus().equals("0000")) {
+                         //getView是BasePresenter方法  使用getView进行调用P层
+                         getView().onSuccess(bean);
+                     } else {
+                         getView().onError(new Exception("请求失败"));
+                     }
+                 }
+             }
+
+             @Override
+             public void onHttpNO(Throwable e) {
+                 if (isViewAttached()) {
+                     Logger.d(TAG, e.getMessage() + "");
+                 }
+             }
+         });
+    }
+    //病友圈
+    @Override
+    public void Patients(int departmentId, int page, int count) {
+         fModel.Patients(departmentId, page, count, new Contract.IModer.IBallBask() {
+             @Override
+             public void onHttpOK(Object obj) {
+                 //软引用
+                 if (isViewAttached()) {
+                     //Bean包强转  拿到Status进行判断
+                     PatientsBean bean = (PatientsBean) obj;
+                     if (bean != null && bean.getStatus().equals("0000")) {
+                         //getView是BasePresenter方法  使用getView进行调用P层
+                         getView().onSuccess(bean);
+                     } else {
+                         getView().onError(new Exception("请求失败"));
+                     }
+                 }
+             }
+
+             @Override
+             public void onHttpNO(Throwable e) {
+                 if (isViewAttached()) {
+                     Logger.d(TAG, e.getMessage() + "");
+                 }
+             }
+         });
+    }
+   //根据关键词查询病友圈
+    @Override
+    public void Streanm(String keyWord) {
+         model.Streanm(keyWord, new Contract.IModer.IBallBask() {
+             @Override
+             public void onHttpOK(Object obj) {
+                 //软引用
+                 if (isViewAttached()) {
+                     //Bean包强转  拿到Status进行判断
+                     StreamBean bean = (StreamBean) obj;
+                     if (bean != null && bean.getStatus().equals("0000")) {
+                         //getView是BasePresenter方法  使用getView进行调用P层
+                         getView().onSuccess(bean);
+                     } else {
+                         getView().onError(new Exception("请求失败"));
+                     }
+                 }
+             }
+
+             @Override
+             public void onHttpNO(Throwable e) {
+                 if (isViewAttached()) {
+                     Logger.d(TAG, e.getMessage() + "");
+                 }
+             }
+         });
+    }
+    //查询病友圈详情
+    @Override
+    public void Details(int doctorId, String sessionId, int sickCircleId) {
+            fModel.Details(doctorId, sessionId, sickCircleId, new Contract.IModer.IBallBask() {
+                @Override
+                public void onHttpOK(Object obj) {
+                    //软引用
+                    if (isViewAttached()) {
+                        //Bean包强转  拿到Status进行判断
+                        DetailsBean bean = (DetailsBean) obj;
+                        if (bean != null && bean.getStatus().equals("0000")) {
+                            //getView是BasePresenter方法  使用getView进行调用P层
+                            getView().onSuccess(bean);
+                        } else {
+                            getView().onError(new Exception("请求失败"));
+                        }
+                    }
+                }
+
+                @Override
+                public void onHttpNO(Throwable e) {
+                    if (isViewAttached()) {
+                        Logger.d(TAG, e.getMessage() + "");
+                    }
+                }
+            });
     }
 }
 
