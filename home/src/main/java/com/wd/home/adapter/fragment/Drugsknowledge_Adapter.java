@@ -5,17 +5,19 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.home.R;
 import com.wd.home.activity.DiseaseKnowledgeActivity;
 import com.wd.home.activity.DrugActivity;
 import com.wd.home.api.Constant;
-import com.wd.home.bean.CategoryBean;
-import com.wd.home.bean.DepartmentBean;
+import com.wd.home.bean.CategoryListBean;
+import com.wd.home.bean.DrugsKnowledgeListBean;
 
 import java.util.List;
 
@@ -29,11 +31,11 @@ import java.util.List;
  * @chang time
  * @class describe
  */
-public class Category_Adapter extends RecyclerView.Adapter {
-    List<CategoryBean.ResultBean> list;
+public class Drugsknowledge_Adapter extends RecyclerView.Adapter {
+    List<DrugsKnowledgeListBean.ResultBean> list;
     Context context;
 
-    public Category_Adapter(List<CategoryBean.ResultBean> result, Context context) {
+    public Drugsknowledge_Adapter(List<DrugsKnowledgeListBean.ResultBean> result, Context context) {
         this.list = result;
         this.context = context;
     }
@@ -41,19 +43,20 @@ public class Category_Adapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_dyug, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.drugsknowledge_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         MyViewHolder holder = (MyViewHolder) viewHolder;
-        holder.title_name.setText(list.get(position).getName());
-        holder.title_name.setOnClickListener(new View.OnClickListener() {
+        holder.text_name.setText(list.get(position).getName());
+        holder.simple.setImageURI(list.get(position).getPicture());
+        holder.line1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DiseaseKnowledgeActivity.class);
-                intent.putExtra(Constant.Condition_id, list.get(position).getId());
+                Intent intent = new Intent(context, DrugActivity.class);
+                intent.putExtra(Constant.drug_id, list.get(position).getId());
                 intent.putExtra("name", list.get(position).getName());
                 context.startActivity(intent);
             }
@@ -66,11 +69,15 @@ public class Category_Adapter extends RecyclerView.Adapter {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView title_name;
+        private TextView text_name;
+        private SimpleDraweeView simple;
+        private LinearLayout line1;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            title_name = itemView.findViewById(R.id.title_name);
+            simple = itemView.findViewById(R.id.simple);
+            text_name = itemView.findViewById(R.id.text_name);
+            line1 = itemView.findViewById(R.id.line1);
         }
     }
 }

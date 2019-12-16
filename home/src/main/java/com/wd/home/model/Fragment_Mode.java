@@ -89,11 +89,11 @@ public class Fragment_Mode implements Contract.FModer {
     }
 
     @Override
-    public void onDyug(int id, IBallBask iBallBask) {
+    public void onDiseaseKnowledge(int id, IBallBask iBallBask) {
 //HttpUtil是网络封装类                        HttpApi是写注解的接口
         HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
                 //你要跑的接口方法
-                .onDyug(id)
+                .onDiseaseKnowledge(id)
                 //切换线程
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

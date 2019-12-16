@@ -88,7 +88,7 @@ public interface HttpApi {
 
     //查询常见病症详情
     @GET(API.DiseaseKnowledge)
-    Observable<DyugBean> onDyug(@Query("id") int id);
+    Observable<DyugBean> onDiseaseKnowledge(@Query("id") int id);
 
     //查询常见药品详情
     @GET(API.DrugsKnowledge)

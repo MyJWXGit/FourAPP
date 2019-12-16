@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import com.wd.common.base.BaseActivity;
 import com.wd.home.R;
@@ -14,10 +15,20 @@ import com.wd.home.bean.FindInfoBean;
 import com.wd.home.contract.Contract;
 import com.wd.home.presenter.HomePresenter;
 
+import java.text.SimpleDateFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FindInfoActivity extends BaseActivity<HomePresenter> implements Contract.IView {
+    @BindView(R.id.text_name)
+    TextView textName;
+    @BindView(R.id.text_Author)
+    TextView textAuthor;
+    @BindView(R.id.text_date)
+    TextView textDate;
+    @BindView(R.id.text_time)
+    TextView textTime;
     private WebView webView;
 
     @Override
@@ -51,6 +62,17 @@ public class FindInfoActivity extends BaseActivity<HomePresenter> implements Con
     public void onSuccess(Object obj) {
         FindInfoBean bean = (FindInfoBean) obj;
         FindInfoBean.ResultBean result = bean.getResult();
+        textName.setText(result.getTitle());
+        textAuthor.setText(result.getSource());
+
+        long releaseTime = result.getReleaseTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
+        textDate.setText(simpleDateFormat.format(releaseTime));
+
+
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("HH:mm:ss");
+        textTime.setText(simpleDateFormat1.format(releaseTime));
+
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         webView.loadDataWithBaseURL(null, result.getContent(), "html/text", "utf-8", null);

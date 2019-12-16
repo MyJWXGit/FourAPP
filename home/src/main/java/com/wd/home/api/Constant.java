@@ -14,4 +14,6 @@ public interface Constant {
     String INFOID = "infoId";
     String USERID = "userId";
     String SESSIONID = "sessionId";
+    String Condition_id = "Condition_id";
+    String drug_id = "drug_id";
 }

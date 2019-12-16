@@ -16,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activity.CommonActivity"></activity>
+        <activity android:name=".activity.DrugActivity"></activity>
+        <activity android:name=".activity.DiseaseKnowledgeActivity" />
+        <activity android:name=".activity.CommonActivity" />
         <activity android:name=".activity.FindInfoActivity" /> <!-- 屏幕适配 -->
         <receiver
             android:name=".activity.MainActivity$MyBroadcastReceiver"
@@ -37,7 +39,7 @@
             android:name="android.webkit.WebView.EnableSafeBrowsing"
             android:value="true" />
 
-        <activity android:name=".activity.HomeActivity"></activity>
+        <activity android:name=".activity.HomeActivity" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

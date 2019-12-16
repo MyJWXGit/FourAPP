@@ -33,7 +33,7 @@ public interface API {
     String CategoryList = "health/share/knowledgeBase/v1/findDrugsCategoryList";
     //根据药品类目查询常见药品
     String DrugsKnowledgeList = "health/share/knowledgeBase/v1/findDrugsKnowledgeList";
-    //查询常见病症详情
+    //查询常见病症 详情
     String DiseaseKnowledge = "health/share/knowledgeBase/v1/findDiseaseKnowledge";
     //查询常见药品详情
     String DrugsKnowledge = "health/share/knowledgeBase/v1/findDrugsKnowledge";

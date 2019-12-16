@@ -3,6 +3,7 @@ package com.wd.home.fragment.common_fragment;
 import android.content.Context;
 import android.view.View;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -79,7 +80,7 @@ public class dyug_Fragment extends BaseFragment<Fragment_Presenter> implements C
         } else if (obj instanceof CategoryBean) {
             CategoryBean bean = (CategoryBean) obj;
             List<CategoryBean.ResultBean> result = bean.getResult();
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+            GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(),2);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             infoRecycler.setLayoutManager(linearLayoutManager);
             Category_Adapter category_adapter = new Category_Adapter(result, getActivity());

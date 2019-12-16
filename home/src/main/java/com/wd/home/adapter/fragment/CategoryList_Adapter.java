@@ -1,7 +1,6 @@
 package com.wd.home.adapter.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.home.R;
-import com.wd.home.activity.DiseaseKnowledgeActivity;
-import com.wd.home.activity.DrugActivity;
-import com.wd.home.api.Constant;
 import com.wd.home.bean.CategoryBean;
-import com.wd.home.bean.DepartmentBean;
+import com.wd.home.bean.CategoryListBean;
 
 import java.util.List;
 
@@ -29,11 +25,11 @@ import java.util.List;
  * @chang time
  * @class describe
  */
-public class Category_Adapter extends RecyclerView.Adapter {
-    List<CategoryBean.ResultBean> list;
+public class CategoryList_Adapter extends RecyclerView.Adapter {
+    List<CategoryListBean.ResultBean> list;
     Context context;
 
-    public Category_Adapter(List<CategoryBean.ResultBean> result, Context context) {
+    public CategoryList_Adapter(List<CategoryListBean.ResultBean> result, Context context) {
         this.list = result;
         this.context = context;
     }
@@ -41,7 +37,7 @@ public class Category_Adapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.fragment_dyug, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.fragment_department, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -52,10 +48,7 @@ public class Category_Adapter extends RecyclerView.Adapter {
         holder.title_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DiseaseKnowledgeActivity.class);
-                intent.putExtra(Constant.Condition_id, list.get(position).getId());
-                intent.putExtra("name", list.get(position).getName());
-                context.startActivity(intent);
+                onId.onId(list.get(position).getId());
             }
         });
     }
@@ -72,5 +65,15 @@ public class Category_Adapter extends RecyclerView.Adapter {
             super(itemView);
             title_name = itemView.findViewById(R.id.title_name);
         }
+    }
+
+    public onId onId;
+
+    public interface onId {
+        void onId(int id);
+    }
+
+    public void setOnId(onId onId) {
+        this.onId = onId;
     }
 }

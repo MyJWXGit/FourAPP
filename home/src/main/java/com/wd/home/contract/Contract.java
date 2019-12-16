@@ -74,7 +74,7 @@ public interface Contract {
         void onCategory(int departmentId);
 
         //查询常见病症详情
-        void onDyug(int id);
+        void onDiseaseKnowledge(int id);
 
         //药品科目分类列表查询
         void onCategoryList();
@@ -95,7 +95,7 @@ public interface Contract {
         void onCategory(int departmentId, IBallBask iBallBask);
 
         //查询常见病症详情
-        void onDyug(int id, IBallBask iBallBask);
+        void onDiseaseKnowledge(int id, IBallBask iBallBask);
 
         //药品科目分类列表查询
         void onCategoryList(IBallBask iBallBask);

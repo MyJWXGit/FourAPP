@@ -87,8 +87,8 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
     }
 
     @Override
-    public void onDyug(int id) {
-        home_dode.onDyug(id, new Contract.FModer.IBallBask() {
+    public void onDiseaseKnowledge(int id) {
+        home_dode.onDiseaseKnowledge(id, new Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
