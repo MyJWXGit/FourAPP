@@ -135,6 +135,7 @@
                     android:layout_below="@+id/xinfgg"
                     android:layout_marginTop="@dimen/dp_10"
                     android:id="@+id/design_picture"
+                    android:layout_marginRight="@dimen/dp_20"
                     ></com.facebook.drawee.view.SimpleDraweeView>
                 <TextView
                     android:layout_width="wrap_content"
@@ -144,8 +145,18 @@
                     android:textSize="@dimen/sp_16"
                     android:textColor="#4fcb9f"
                     android:id="@+id/jieda"
+                    android:visibility="gone"
                     />
-
+               <EditText
+                   android:layout_width="match_parent"
+                   android:layout_height="@dimen/dp_80"
+                   android:background="@drawable/edit"
+                   android:layout_below="@+id/jieda"
+                   android:id="@+id/wdejida"
+                   android:visibility="gone"
+                   android:layout_marginTop="@dimen/dp_10"
+                   android:layout_marginRight="@dimen/dp_20"
+                   />
             </RelativeLayout>
 
         </LinearLayout>
@@ -153,11 +164,27 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5">
+        android:layout_weight="0.8">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:id="@+id/butd"
+            android:visibility="gone"
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="发表"
+                android:id="@+id/publish"
+                 android:background="#fff"/>
+        </LinearLayout>
         <LinearLayout
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/but"
+            >
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="40dp"

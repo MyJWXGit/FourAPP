@@ -20,13 +20,8 @@ ext {
             "retrofit"               : "com.squareup.retrofit2:retrofit:2.0.0",
             "retrofit-converter-gson": "com.squareup.retrofit2:converter-gson:2.0.0",
             "retrofit-adapter-rxjava": "com.squareup.retrofit2:adapter-rxjava:2.0.0",
-            "retrofit"               : "com.squareup.retrofit2:retrofit:+",
-            "rxandroid"              : "io.reactivex.rxjava2:rxandroid:+",
-            "retrofit-converter-gson": "com.squareup.retrofit2:converter-gson:+",
-            "retrofit-adapter-rxjava": "com.squareup.retrofit2:adapter-rxjava:+",
             "converter-scalars"      : "com.squareup.retrofit2:converter-scalars:2.0.0",
             "okhttp3"                : "com.squareup.okhttp3:okhttp:3.2.0",
-            "okhttp3"                : "com.squareup.okhttp3:logging-interceptor:3.12.0",
             "gson"                   : "com.google.code.gson:gson:2.6.2",
 
             //dagger2
@@ -37,14 +32,14 @@ ext {
             "autolayout"             : "com.zhy:autolayout:1.4.5",
 
             "rxpermissions"          : "com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar",
-             "fresco"                 : "com.facebook.fresco:fresco:2.0.0",
+            //图片处理框架
+            "glide"                  : "com.github.bumptech.glide:glide:3.7.0",
+            "fresco"                 : "com.facebook.fresco:fresco:2.0.0",
             //TabLayout导航
-           "tablayout"              : "com.android.support:design:28.0.0",
-           //xrecyclerview
-             "xrecyclerview"          : "com.jcodecraeer:xrecyclerview:1.5.9",
-              //test
+            "tablayout"              : "com.android.support:design:28.0.0",
+            //test
             "junit"                  : "junit:junit:4.12",
-             "androidJUnitRunner"     : "android.support.test.runner.AndroidJUnitRunner",
+            "androidJUnitRunner"     : "android.support.test.runner.AndroidJUnitRunner",
             "timber"                 : "com.jakewharton.timber:timber:4.1.2",
             "canary-debug"           : "com.squareup.leakcanary:leakcanary-android:1.4-beta2",
             "canary-release"         : "com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2",
@@ -69,12 +64,15 @@ ext {
             "umengcommon"            : 'com.umeng.sdk:common:latest.integration',//友盟统计sdk
             "umenganalytics"         : 'com.umeng.sdk:analytics:latest.integration',//友盟统计sdk
             "multidex"               : 'com.android.support:multidex:1.0.1',//解决兼容性问题
-
+            "autosize"               : 'me.jessyan:autosize:+',
             "arouter-api"            : 'com.alibaba:arouter-api:+',//ARouter api
             "arouter-compiler"       : 'com.alibaba:arouter-compiler:+',//ARouter
 
             "constraint-layout"      : 'com.android.support.constraint:constraint-layout:1.1.0',//约束性布局
             "test:runner"            : 'com.android.support.test:runner:1.0.2',//测试依赖，新建项目时会默认添加，一般不建议添加
             "espresso-core"          : 'com.android.support.test.espresso:espresso-core:3.0.2',//测试依赖，新建项目时会默认添加，一般不建议添加
+
+            "espresso-cored"          : 'com.github.bumptech.glide:glide:4.9.0',//测试依赖，新建项目时会默认添加，一般不建议添加
+            "espresso-cores"          : 'com.github.bumptech.glide:compiler:4.9.0',//测试依赖，新建项目时会默认添加，一般不建议添加
     ]
 }

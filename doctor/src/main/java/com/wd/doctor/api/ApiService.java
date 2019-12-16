@@ -5,6 +5,7 @@ import com.wd.doctor.bean.InquiryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.MianBean;
 import com.wd.doctor.bean.PatientsBean;
+import com.wd.doctor.bean.PublishBean;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
 import com.wd.doctor.bean.StreamBean;
@@ -68,4 +69,8 @@ public interface ApiService {
     //查询病友圈详情
     @GET("health/doctor/sickCircle/v1/findSickCircleInfo")
     Observable<DetailsBean> Detals(@Header("doctorId") int doctorId,@Header("sessionId") String sessionId,@Query("sickCircleId") int sickCircleId);
+   //发表评论
+    @FormUrlEncoded
+    @POST("health/doctor/sickCircle/verify/v1/publishComment")
+    Observable<PublishBean> Publish(@Header("doctorId") int doctorId,@Header("sessionId") String sessionId,@Query("sickCircleId") int sickCircleId,@Field("content") String content);
 }

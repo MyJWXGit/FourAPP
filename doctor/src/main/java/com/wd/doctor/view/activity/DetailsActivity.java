@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -46,6 +48,18 @@ public class DetailsActivity extends BaseActivity<LoginPresenter> implements Con
     Button xiepingl;
     @BindView(R.id.xuanz)
     Button xuanz;
+    @BindView(R.id.wdejida)
+    EditText wdejida;
+    @BindView(R.id.xinfgg)
+    TextView xinfgg;
+    @BindView(R.id.jieda)
+    TextView jieda;
+    @BindView(R.id.publish)
+    Button publish;
+    @BindView(R.id.butd)
+    LinearLayout butd;
+    @BindView(R.id.but)
+    LinearLayout but;
     private int doctorId;
     private String sessionId;
     private int sickCircleId;
@@ -108,7 +122,30 @@ public class DetailsActivity extends BaseActivity<LoginPresenter> implements Con
         return null;
     }
 
-    @OnClick({R.id.details_backfh, R.id.xiepingl, R.id.xuanz})
+    @OnClick({R.id.details_backfh, R.id.publish, R.id.xiepingl, R.id.xuanz})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.details_backfh:
+                finish();
+                break;
+            case R.id.publish:
+                jieda.setVisibility(View.INVISIBLE);
+                wdejida.setVisibility(View.INVISIBLE);
+                but.setVisibility(View.VISIBLE);
+                butd.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.xiepingl:
+                break;
+            case R.id.xuanz:
+                jieda.setVisibility(View.VISIBLE);
+                wdejida.setVisibility(View.VISIBLE);
+                but.setVisibility(View.INVISIBLE);
+                butd.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+/*    @OnClick({R.id.details_backfh, R.id.xiepingl, R.id.xuanz})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.details_backfh:
@@ -117,9 +154,11 @@ public class DetailsActivity extends BaseActivity<LoginPresenter> implements Con
             case R.id.xiepingl:
                 break;
             case R.id.xuanz:
+                 jieda.setVisibility(View.VISIBLE);
+                 wdejida.setVisibility(View.VISIBLE);
                 break;
         }
-    }
+    }*/
 
     /*@OnClick(R.id.details_backfh)
     public void onViewClicked() {

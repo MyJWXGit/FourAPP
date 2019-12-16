@@ -6,12 +6,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lmx.library.media.VideoPlayAdapter;
 
 /*
  *author:郭昊坤
  *date:2019/12/13
- *function:*/public class Video_QueryAdapter extends VideoPlayAdapter<Video_QueryAdapter.ViewHolder> {
+ *function:*/public class Video_QueryAdapter extends RecyclerView.Adapter<Video_QueryAdapter.ViewHolder> {
     @NonNull
     @Override
     public Video_QueryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -28,10 +27,6 @@ import com.lmx.library.media.VideoPlayAdapter;
         return 0;
     }
 
-    @Override
-    public void onPageSelected(int itemPosition, View itemView) {
-
-    }
     class ViewHolder extends RecyclerView.ViewHolder{
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

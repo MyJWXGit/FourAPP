@@ -54,7 +54,9 @@ public interface Contract {
         void Mian(int doctorId,String sessionId,IBallBask iBallBask);
         //根据关键词查询病友圈
         void Streanm(String keyWord,IBallBask iBallBask);
-        //查询病友圈详情
+        //发表评论
+       // void Publish(int doctorId,String sessionId,int sickCircleId,String content,IBallBask iBallBask);
+       //查询病友圈详情
         void Details(int doctorId, String sessionId, int sickCircleId, IModer.IBallBask iBallBask);
         void Inquer(IBallBask iBallBask);
         interface IBallBask {

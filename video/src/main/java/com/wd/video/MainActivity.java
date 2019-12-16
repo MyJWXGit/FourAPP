@@ -10,7 +10,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.tabs.TabLayout;
-import com.lmx.library.media.VideoPlayRecyclerView;
 import com.wd.common.base.BaseActivity;
 import com.wd.video.adapter.VideoAdapter;
 import com.wd.video.bean.Video_EntryBean;
