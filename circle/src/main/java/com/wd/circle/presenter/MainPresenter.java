@@ -3,9 +3,14 @@ package com.wd.circle.presenter;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.wd.circle.bean.Circle_Comment_Bean;
+import com.wd.circle.bean.Circle_Details_Bean;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.Circle_lists_Bean;
+import com.wd.circle.bean.CommentBean;
+import com.wd.circle.bean.DoTaskBean;
 import com.wd.circle.bean.LoginBean;
+import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.model.MainModel;
 import com.wd.common.base.BasePresenter;
@@ -94,6 +99,116 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
                     Circle_lists_Bean circle_lists_bean= (Circle_lists_Bean) obj;
                     if (circle_lists_bean!=null){
                         getView().onSuccess(circle_lists_bean);
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onSearch(String keyWord) {
+        mainModel.onSearch(keyWord, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                if (isViewAttached()){
+                    SearchCircleBean searchCircleBean= (SearchCircleBean) obj;
+                    if (searchCircleBean!=null){
+                        getView().onSuccess(searchCircleBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDetails(int sickCircleId, String userId, String sessionId) {
+        mainModel.onDetails(sickCircleId, userId, sessionId, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                if (isViewAttached()){
+                    Circle_Details_Bean circle_details_bean= (Circle_Details_Bean) obj;
+                    if (circle_details_bean!=null){
+                        getView().onSuccess(circle_details_bean);
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onComment(int sickCircleId, String userId, String sessionId, String content) {
+        mainModel.onComment(sickCircleId, userId, sessionId, content, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                if (isViewAttached()){
+                    CommentBean commentBean= (CommentBean) obj;
+                    if (commentBean!=null){
+                        getView().onSuccess(commentBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onCircleComment(int sickCircleId, String userId, String sessionId, int count, int page) {
+        mainModel.onCircleComment(sickCircleId, userId, sessionId, count, page, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                if (isViewAttached()){
+                    Circle_Comment_Bean circle_comment_bean= (Circle_Comment_Bean) obj;
+                    if (circle_comment_bean!=null){
+                        getView().onSuccess(circle_comment_bean);
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDoTask(String userId, String sessionId, int taskId) {
+        mainModel.onDoTask(userId, sessionId, taskId, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                if (isViewAttached()){
+                    DoTaskBean doTaskBean= (DoTaskBean) obj;
+                    if (doTaskBean!=null){
+                        getView().onSuccess(doTaskBean);
                     }
                 }
             }

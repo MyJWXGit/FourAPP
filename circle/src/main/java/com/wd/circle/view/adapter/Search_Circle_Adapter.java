@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.circle.R;
-import com.wd.circle.bean.Circle_lists_Bean;
+import com.wd.circle.bean.SearchCircleBean;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -21,16 +21,16 @@ import java.util.List;
  * @class name：${妙国青}
  * @class describe
  * @anthor dell
- * @time 2019/12/13 16:58
+ * @time 2019/12/15 18:45
  * @change
  * @chang time
  * @class describe
  */
-public class Circle_Lists_Adapter extends RecyclerView.Adapter<Circle_Lists_Adapter.Holder> {
-    private List<Circle_lists_Bean.ResultBean> list;
+public class Search_Circle_Adapter extends RecyclerView.Adapter<Search_Circle_Adapter.Holder> {
+    private List<SearchCircleBean.ResultBean> list;
     private Context context;
 
-    public Circle_Lists_Adapter(List<Circle_lists_Bean.ResultBean> list, Context context) {
+    public Search_Circle_Adapter(List<SearchCircleBean.ResultBean> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -38,7 +38,7 @@ public class Circle_Lists_Adapter extends RecyclerView.Adapter<Circle_Lists_Adap
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.circle_lists_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.circle_search_item, null);
         return new Holder(inflate);
     }
 
@@ -65,19 +65,16 @@ public class Circle_Lists_Adapter extends RecyclerView.Adapter<Circle_Lists_Adap
     }
 
     class Holder extends RecyclerView.ViewHolder {
-
         private final TextView common,item_shoucang;
         private final TextView tv,item_jianyi;
         private final TextView time;
-
         public Holder(@NonNull View itemView) {
             super(itemView);
-            tv = itemView.findViewById(R.id.circle_tv2);
-            common = itemView.findViewById(R.id.circle_common);
-            time = itemView.findViewById(R.id.circle_time);
-            item_jianyi = itemView.findViewById(R.id.item_jianyi);
-            item_shoucang = itemView.findViewById(R.id.item_shoucang);
-
+            tv = itemView.findViewById(R.id.circle_tv3);
+            common = itemView.findViewById(R.id.circle_common3);
+            time = itemView.findViewById(R.id.circle_time3);
+            item_jianyi = itemView.findViewById(R.id.item_jianyi3);
+            item_shoucang = itemView.findViewById(R.id.item_shoucang3);
         }
     }
     public static class DateFormatUtil{
