@@ -38,6 +38,7 @@ public class GuideActivity extends AppCompatActivity {
                     }else{
                         Intent intent = new Intent(GuideActivity.this, LoginActivity.class);
                         startActivity(intent);
+                        finish();
                     }
             }
         }

@@ -2,6 +2,7 @@ package com.wd.doctor;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wd.common.utils.ToastUtils;
 
 /**
@@ -16,7 +17,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         sContext=this;
-
+        Fresco.initialize(this);
 
     }
 
