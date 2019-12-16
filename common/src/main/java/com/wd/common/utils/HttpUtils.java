@@ -3,12 +3,11 @@ package com.wd.common.utils;
 
 import com.wd.common.app.MyApi;
 
-import java.net.HttpURLConnection;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpUtils {
@@ -25,7 +24,7 @@ public class HttpUtils {
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyApi.PATH)
                 .client(client)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

@@ -18,6 +18,21 @@ public interface Contract {
 
         //登录
         void onLogin(String email, String pwd);
+
+        //首页banner板块数据展示
+        void onBanner();
+
+        //查询科室列表
+        void onDepartment();
+
+        //健康资讯分类类目查询
+        void onPlateList();
+
+        //健康资讯分类类目查询
+        void onInformationList(int plateId, int page, int count);
+
+        //资讯详情
+        void onFindInfo(int infoId);
     }
 
     //Activity  M层
@@ -28,6 +43,21 @@ public interface Contract {
         //登录
         void onLogin(String email, String pwd, IBallBask iBallBask);
 
+        //首页banner板块数据展示
+        void onBanner(IBallBask iBallBask);
+
+        //查询科室列表
+        void onDepartment(IBallBask iBallBask);
+
+        //健康资讯分类类目查询
+        void onPlateList(IBallBask iBallBask);
+
+        //健康资讯分类类目查询
+        void onInformationList(int plateId, int page, int count, IBallBask iBallBask);
+
+        //资讯详情
+        void onFindInfo(int userId, String sessionId, int infoId, IBallBask iBallBask);
+
         interface IBallBask {
             void onHttpOK(Object obj);
 
@@ -37,11 +67,44 @@ public interface Contract {
 
     //Fragment  P层方法
     interface FPresenter {
+        //查询科室列表
+        void onDepartment();
 
+        //根据科室查询对应病症
+        void onCategory(int departmentId);
+
+        //查询常见病症详情
+        void onDyug(int id);
+
+        //药品科目分类列表查询
+        void onCategoryList();
+
+        //根据药品类目查询常见药品
+        void onDrugsKnowledgeList(int drugsCategoryId, int page, int count);
+
+        //查询常见药品详情
+        void onIllness(int id);
     }
 
     //Fragment  M层
     interface FModer {
+        //查询科室列表
+        void onDepartment_F(IBallBask iBallBask);
+
+        //根据科室查询对应病症
+        void onCategory(int departmentId, IBallBask iBallBask);
+
+        //查询常见病症详情
+        void onDyug(int id, IBallBask iBallBask);
+
+        //药品科目分类列表查询
+        void onCategoryList(IBallBask iBallBask);
+
+        //根据药品类目查询常见药品
+        void onDrugsKnowledgeList(int drugsCategoryId, int page, int count, IBallBask iBallBask);
+
+        //查询常见药品详情
+        void onIllness(int id, IBallBask iBallBask);
 
         interface IBallBask {
             void onHttpOK(Object obj);

@@ -1,5 +1,8 @@
 package com.wd.home;
 
+import android.content.Context;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wd.common.BaseAPPlication;
 
 /**
@@ -13,5 +16,12 @@ import com.wd.common.BaseAPPlication;
  * @class describe
  */
 public class APP extends BaseAPPlication {
+    public static Context context;
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        context = this;
+        Fresco.initialize(this);
+    }
 }

@@ -23,4 +23,18 @@ public interface API {
     String FIND_INFORMATION_PLATE_LIST = "health/share/information/v1/findInformationPlateList";
     //根据资讯板块查询资讯列表
     String FIND_INFORMATION_LIST = "health/share/information/v1/findInformationList";
+    //资讯详情
+    String FIND_INFO = "health/share/information/v1/findInformation";
+    //查询科室列表
+    String FIND_DEPARTMENT_F = "health/share/knowledgeBase/v1/findDepartment";
+    //根据科室查询对应病症
+    String Category = "health/share/knowledgeBase/v1/findDiseaseCategory";
+    //根据科室查询对应病症
+    String CategoryList = "health/share/knowledgeBase/v1/findDrugsCategoryList";
+    //根据药品类目查询常见药品
+    String DrugsKnowledgeList = "health/share/knowledgeBase/v1/findDrugsKnowledgeList";
+    //查询常见病症详情
+    String DiseaseKnowledge = "health/share/knowledgeBase/v1/findDiseaseKnowledge";
+    //查询常见药品详情
+    String DrugsKnowledge = "health/share/knowledgeBase/v1/findDrugsKnowledge";
 }

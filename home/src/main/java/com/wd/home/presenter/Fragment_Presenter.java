@@ -2,125 +2,39 @@ package com.wd.home.presenter;
 
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.Logger;
-import com.wd.common.utils.SpUtils;
-import com.wd.home.APP;
-import com.wd.home.api.Constant;
-import com.wd.home.bean.BannerBean;
+import com.wd.home.bean.CategoryBean;
+import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.DepartmentBean;
-import com.wd.home.bean.FindInfoBean;
+import com.wd.home.bean.DrugsKnowledgeListBean;
+import com.wd.home.bean.DyugBean;
+import com.wd.home.bean.IllnessBean;
 import com.wd.home.bean.Information_ListBean;
-import com.wd.home.bean.LoginBean;
-import com.wd.home.bean.Plate_ListBean;
-import com.wd.home.bean.RegisterBean;
 import com.wd.home.contract.Contract;
-import com.wd.home.model.Home_Dode;
+import com.wd.home.model.Fragment_Mode;
 
 /**
  * @name Health
  * @class name：com.wd.home.presenter
  * @class describe
  * @anthor 24673
- * @time 2019/12/12 19:07
+ * @time 2019/12/16 10:02
  * @change
  * @chang time
  * @class describe
  */
-public class HomePresenter extends BasePresenter<Contract.IView> implements Contract.IPresenter {
+public class Fragment_Presenter extends BasePresenter<Contract.IView> implements Contract.FPresenter {
 
-    private Home_Dode home_dode;
-    private static final String TAG = "HomePresenter";
+    private Fragment_Mode home_dode;
+    private static final String TAG = "Fragment_Presenter";
 
-    //创建你的Mode层  进行全局变量，使用全局变量进行调用Mode层方法
     @Override
     protected void initModel() {
-        home_dode = new Home_Dode();
-    }
-
-    @Override
-    public void onRegister(String email, String code, String pwd1, String pwd2, String invitationCode) {
-        home_dode.onRegister(email, code, pwd1, pwd2, invitationCode, new Contract.IModer.IBallBask() {
-            @Override
-            public void onHttpOK(Object obj) {//成功的方法
-                //软引用
-                if (isViewAttached()) {
-                    //Bean包强转  拿到Status进行判断
-                    RegisterBean bean = (RegisterBean) obj;
-                    if (bean != null && bean.getStatus().equals("0000")) {
-                        //getView是BasePresenter方法  使用getView进行调用P层
-                        getView().onSuccess(bean);
-                    } else {
-                        getView().onError(new Exception("请求失败"));
-                    }
-                }
-            }
-
-            @Override
-            public void onHttpNO(Throwable e) {//失败的方法
-
-                if (isViewAttached()) {
-                    Logger.d(TAG, e.getMessage() + "");
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onLogin(String email, String pwd) {
-        home_dode.onLogin(email, pwd, new Contract.IModer.IBallBask() {
-            @Override
-            public void onHttpOK(Object obj) {//成功的方法
-                //软引用
-                if (isViewAttached()) {
-                    //Bean包强转  拿到Status进行判断
-                    LoginBean bean = (LoginBean) obj;
-                    if (bean != null && bean.getStatus().equals("0000")) {
-                        //getView是BasePresenter方法  使用getView进行调用P层
-                        getView().onSuccess(bean);
-                    } else {
-                        getView().onError(new Exception("请求失败"));
-                    }
-                }
-            }
-
-            @Override
-            public void onHttpNO(Throwable e) {//失败的方法
-                if (isViewAttached()) {
-                    Logger.d(TAG, e.getMessage() + "");
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onBanner() {
-        home_dode.onBanner(new Contract.IModer.IBallBask() {
-            @Override
-            public void onHttpOK(Object obj) {//成功的方法
-                //软引用
-                if (isViewAttached()) {
-                    //Bean包强转  拿到Status进行判断
-                    BannerBean bean = (BannerBean) obj;
-                    if (bean != null && bean.getStatus().equals("0000")) {
-                        //getView是BasePresenter方法  使用getView进行调用P层
-                        getView().onSuccess(bean);
-                    } else {
-                        getView().onError(new Exception("请求失败"));
-                    }
-                }
-            }
-
-            @Override
-            public void onHttpNO(Throwable e) {//失败的方法
-                if (isViewAttached()) {
-                    Logger.d(TAG, e.getMessage() + "");
-                }
-            }
-        });
+        home_dode = new Fragment_Mode();
     }
 
     @Override
     public void onDepartment() {
-        home_dode.onDepartment(new Contract.IModer.IBallBask() {
+        home_dode.onDepartment_F(new Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -146,14 +60,14 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
     }
 
     @Override
-    public void onPlateList() {
-        home_dode.onPlateList(new Contract.IModer.IBallBask() {
+    public void onCategory(int departmentId) {
+        home_dode.onCategory(departmentId, new Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
                 if (isViewAttached()) {
                     //Bean包强转  拿到Status进行判断
-                    Plate_ListBean bean = (Plate_ListBean) obj;
+                    CategoryBean bean = (CategoryBean) obj;
                     if (bean != null && bean.getStatus().equals("0000")) {
                         //getView是BasePresenter方法  使用getView进行调用P层
                         getView().onSuccess(bean);
@@ -173,14 +87,14 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
     }
 
     @Override
-    public void onInformationList(int plateId, int page, int count) {
-        home_dode.onInformationList(plateId, page, count, new Contract.IModer.IBallBask() {
+    public void onDyug(int id) {
+        home_dode.onDyug(id, new Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
                 if (isViewAttached()) {
                     //Bean包强转  拿到Status进行判断
-                    Information_ListBean bean = (Information_ListBean) obj;
+                    DyugBean bean = (DyugBean) obj;
                     if (bean != null && bean.getStatus().equals("0000")) {
                         //getView是BasePresenter方法  使用getView进行调用P层
                         getView().onSuccess(bean);
@@ -200,16 +114,14 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
     }
 
     @Override
-    public void onFindInfo(int infoId) {
-        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
-        String sessionid = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
-        home_dode.onFindInfo(userId, sessionid, infoId, new Contract.IModer.IBallBask() {
+    public void onCategoryList() {
+        home_dode.onCategoryList(new Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
                 if (isViewAttached()) {
                     //Bean包强转  拿到Status进行判断
-                    FindInfoBean bean = (FindInfoBean) obj;
+                    CategoryListBean bean = (CategoryListBean) obj;
                     if (bean != null && bean.getStatus().equals("0000")) {
                         //getView是BasePresenter方法  使用getView进行调用P层
                         getView().onSuccess(bean);
@@ -228,5 +140,57 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
         });
     }
 
+    @Override
+    public void onDrugsKnowledgeList(int drugsCategoryId, int page, int count) {
+        home_dode.onDrugsKnowledgeList(drugsCategoryId, page, count, new Contract.FModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {//成功的方法
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    DrugsKnowledgeListBean bean = (DrugsKnowledgeListBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
 
+            @Override
+            public void onHttpNO(Throwable e) {//失败的方法
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onIllness(int id) {
+        home_dode.onIllness(id, new Contract.FModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {//成功的方法
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    IllnessBean bean = (IllnessBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {//失败的方法
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
 }

@@ -7,7 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.wd.common.base.BaseActivity;
+import com.wd.common.utils.SpUtils;
 import com.wd.home.R;
+import com.wd.home.api.Constant;
 import com.wd.home.bean.LoginBean;
 import com.wd.home.contract.Contract;
 import com.wd.home.presenter.HomePresenter;
@@ -50,7 +52,9 @@ public class LoginActivity extends BaseActivity<HomePresenter> implements Contra
     public void onSuccess(Object obj) {
         LoginBean bean = (LoginBean) obj;
         if (bean.getStatus().equals("0000")) {
-            startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+            SpUtils.put(this, Constant.USERID, bean.getResult().getId());
+            SpUtils.put(this, Constant.SESSIONID, bean.getResult().getSessionId());
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         }
     }
 
