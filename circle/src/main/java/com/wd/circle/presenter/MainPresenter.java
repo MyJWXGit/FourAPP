@@ -11,12 +11,18 @@ import com.wd.circle.bean.CommentBean;
 import com.wd.circle.bean.DiseaseBean;
 import com.wd.circle.bean.DoTaskBean;
 import com.wd.circle.bean.LoginBean;
+import com.wd.circle.bean.PictureBean;
+import com.wd.circle.bean.RepleaseCircleBean;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.bean.UserTaskListBean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.model.MainModel;
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.ToastUtils;
+
+import java.util.Map;
+
+import okhttp3.MultipartBody;
 
 
 /**
@@ -255,6 +261,50 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
                     DiseaseBean diseaseBean= (DiseaseBean) obj;
                     if (diseaseBean!=null){
                         getView().onSuccess(diseaseBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onReplease(String userId, String sessionId, Map<String, Object> map) {
+        mainModel.onReplease(userId, sessionId, map, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                if (isViewAttached()){
+                    RepleaseCircleBean repleaseCircleBean= (RepleaseCircleBean) obj;
+                    if (repleaseCircleBean!=null){
+                        getView().onSuccess(repleaseCircleBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onPicture(String userId, String sessionId, int sickCircleId, MultipartBody.Part part) {
+        mainModel.onPicture(userId, sessionId, sickCircleId, part, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                if (isViewAttached()){
+                    PictureBean pictureBean= (PictureBean) obj;
+                    if (pictureBean!=null){
+                        getView().onSuccess(pictureBean);
                     }
                 }
             }

@@ -3,6 +3,10 @@ package com.wd.circle.contract;
 
 import com.wd.common.base.IBaseView;
 
+import java.util.Map;
+
+import okhttp3.MultipartBody;
+
 public interface Contract {
     //接口回调  IBaseView
     interface IView extends IBaseView {
@@ -23,6 +27,8 @@ public interface Contract {
         void onDoTask(String userId,String sessionId,int taskId);
         void onUserTaskList(String userId,String sessionId);
         void onDisease(int departmentId);
+        void onReplease(String userId, String sessionId, Map<String, Object> map);
+        void onPicture(String userId, String sessionId, int sickCircleId, MultipartBody.Part part);
     }
 
 
@@ -38,6 +44,8 @@ public interface Contract {
         void onDoTask(String userId,String sessionId,int taskId,IBallBask iBallBask);
         void onUserTaskList(String userId,String sessionId,IBallBask iBallBask);
         void onDisease(int departmentId,IBallBask iBallBask);
+        void onReplease(String userId, String sessionId, Map<String, Object> map,IBallBask iBallBask);
+        void onPicture(String userId, String sessionId, int sickCircleId, MultipartBody.Part part,IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 

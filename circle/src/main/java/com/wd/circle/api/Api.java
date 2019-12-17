@@ -29,4 +29,5 @@ public interface Api {
     String USER_TASK_LIST_URL="health/user/verify/v1/findUserTaskList";
     String REPLEASE_CIRCLE_URL="health/user/sickCircle/verify/v1/publishSickCircle";
     String DISEASE_URL="health/share/knowledgeBase/v1/findDiseaseCategory";
+    String PICTURE_URL="health/user/sickCircle/verify/v1/uploadSickCirclePicture";
 }
