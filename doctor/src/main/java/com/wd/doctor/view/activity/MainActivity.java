@@ -11,9 +11,11 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
 import com.wd.doctor.R;
+import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.MianBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.present.LoginPresenter;
+import com.wd.doctor.view.activity.message.MessageActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,6 +74,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements Contra
         doctorId = intent.getIntExtra("doctorId", 0);
         sessionId = intent.getStringExtra("sessionId");
         mPresenter.Mian(doctorId, sessionId);
+        mPresenter.Imagep();
     }
 
     @Override
@@ -86,11 +89,21 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements Contra
 
     @Override
     public void onSuccess(Object obj) {
-        MianBean bean = (MianBean) obj;
-        mainName.setText(bean.getResult().getDepartmentName());
-        mainAddress.setText(bean.getResult().getInauguralHospital());
-        mainDoctor.setText(bean.getResult().getJobTitle());
-        mainSubjects.setText(bean.getResult().getGoodField());
+        if (obj instanceof MianBean){
+            MianBean bean = (MianBean) obj;
+            mainName.setText(bean.getResult().getDepartmentName());
+            mainAddress.setText(bean.getResult().getInauguralHospital());
+            mainDoctor.setText(bean.getResult().getJobTitle());
+            mainSubjects.setText(bean.getResult().getGoodField());
+            mainHeadportrait.setImageURI(bean.getResult().getImagePic());
+        }/*else if (obj instanceof ImagePicBean){
+            ImagePicBean bean1= (ImagePicBean) obj;
+            mainHeadportrait.setImageURI(bean1.getResult().get(0).getImagePic());
+        }*/
+
+
+
+
     }
 
     @Override
@@ -119,6 +132,10 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements Contra
 
                 break;
             case R.id.main_my:
+                Intent intent1 =new Intent(MainActivity.this, MessageActivity.class);
+                intent1.putExtra("doctorId",doctorId);
+                intent1.putExtra("sessionId",sessionId);
+                startActivity(intent1);
                 break;
             case R.id.main_headportrait:
                 break;

@@ -3,17 +3,21 @@ package com.wd.doctor.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
+import com.wd.common.utils.ToastUtils;
 import com.wd.doctor.R;
 import com.wd.doctor.bean.DetailsBean;
+import com.wd.doctor.bean.PublishBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.present.LoginPresenter;
 
@@ -98,18 +102,36 @@ public class DetailsActivity extends BaseActivity<LoginPresenter> implements Con
 
     @Override
     public void onSuccess(Object obj) {
-        DetailsBean bean = (DetailsBean) obj;
-        detailsBack.setText(bean.getResult().getTitle());
-        detailsName.setText(bean.getResult().getAuthorName());
-        detailsDisease.setText(bean.getResult().getDisease());
-        detailsDepartmentName.setText(bean.getResult().getDepartmentName());
-        detailsDetail.setText(bean.getResult().getDetail());
-        designTreatmentHospital.setText(bean.getResult().getTreatmentHospital());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String format = sdf.format(bean.getResult().getTreatmentStartTime());
-        designTreatmentStartTime.setText(format);
-        designTreatmentProcess.setText(bean.getResult().getTreatmentProcess());
-        designPicture.setImageURI(bean.getResult().getPicture());
+        if (obj instanceof  DetailsBean){
+            //详情
+            DetailsBean bean = (DetailsBean) obj;
+            detailsBack.setText(bean.getResult().getTitle());
+            detailsName.setText(bean.getResult().getAuthorName());
+            detailsDisease.setText(bean.getResult().getDisease());
+            detailsDepartmentName.setText(bean.getResult().getDepartmentName());
+            detailsDetail.setText(bean.getResult().getDetail());
+            designTreatmentHospital.setText(bean.getResult().getTreatmentHospital());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            String format = sdf.format(bean.getResult().getTreatmentStartTime());
+            designTreatmentStartTime.setText(format);
+            designTreatmentProcess.setText(bean.getResult().getTreatmentProcess());
+            designPicture.setImageURI(bean.getResult().getPicture());
+        }else if (obj instanceof  PublishBean){
+            //评论
+            PublishBean bean1= (PublishBean) obj;
+            String status = bean1.getStatus();
+            if (bean1!=null){
+                Toast.makeText(this,bean1.getMessage(), Toast.LENGTH_SHORT).show();
+                if ("0000".equals(bean1.getStatus())){
+
+
+             /*   Intent intent=new Intent(WriteCommActivity.this, MainActivity.class);
+            startActivity(intent);*/
+                }
+            }
+        }
+
+
     }
 
     @Override
@@ -129,12 +151,23 @@ public class DetailsActivity extends BaseActivity<LoginPresenter> implements Con
                 finish();
                 break;
             case R.id.publish:
-                jieda.setVisibility(View.INVISIBLE);
-                wdejida.setVisibility(View.INVISIBLE);
-                but.setVisibility(View.VISIBLE);
-                butd.setVisibility(View.INVISIBLE);
+                String trim = wdejida.getText().toString().trim();
+                if (TextUtils.isEmpty(trim)){
+                    ToastUtils.showLong(this,"不能为空");
+                }else {
+                    jieda.setVisibility(View.INVISIBLE);
+                    wdejida.setVisibility(View.INVISIBLE);
+                    but.setVisibility(View.VISIBLE);
+                    butd.setVisibility(View.INVISIBLE);
+
+
+                    mPresenter.Publish(doctorId,sessionId,sickCircleId,trim);
+                }
+
                 break;
             case R.id.xiepingl:
+
+
                 break;
             case R.id.xuanz:
                 jieda.setVisibility(View.VISIBLE);

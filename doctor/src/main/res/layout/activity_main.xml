@@ -139,7 +139,7 @@
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             app:failureImageScaleType="centerInside"
-            app:placeholderImage="@mipmap/aga"
+
             app:roundedCornerRadius="@dimen/dp_8"
             />
 

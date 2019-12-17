@@ -5,10 +5,12 @@ package com.wd.doctor.model;
 import com.wd.common.utils.HttpUtils;
 import com.wd.doctor.api.ApiService;
 import com.wd.doctor.bean.DetailsBean;
+import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.InquiryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.MianBean;
 import com.wd.doctor.bean.PatientsBean;
+import com.wd.doctor.bean.PublishBean;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
 import com.wd.doctor.bean.StreamBean;
@@ -208,7 +210,37 @@ public class LoginModel implements Contract.IModer {
                     }
                 });
     }
-     //查询病友圈详情
+      //发表评论
+    @Override
+    public void Publish(int doctorId, String sessionId, int sickCircleId, String content, IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
+                .Publish(doctorId, sessionId, sickCircleId, content)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<PublishBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(PublishBean publishBean) {
+                        //成功的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(publishBean);
+                        }
+                    }
+                });
+    }
+
+    //查询病友圈详情
     @Override
     public void Details(int doctorId, String sessionId, int sickCircleId, IBallBask iBallBask) {
         HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
@@ -263,6 +295,35 @@ public class LoginModel implements Contract.IModer {
                         //成功的方法
                         if (iBallBask != null) {
                             iBallBask.onHttpOK(inquiryBean);
+                        }
+                    }
+                });
+    }
+   //系统形象照
+    @Override
+    public void Imagep(IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
+                .Imagep()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<ImagePicBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ImagePicBean imagePicBean) {
+                        //成功的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(imagePicBean);
                         }
                     }
                 });

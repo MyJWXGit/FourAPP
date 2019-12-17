@@ -11,9 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".view.activity.DetailsActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".view.activity.message.PersonageActivity"></activity>
+        <activity android:name=".view.activity.message.MessageActivity" />
+        <activity android:name=".view.activity.DetailsActivity" />
         <activity android:name=".view.activity.myview.StreamingActivity" />
         <activity android:name=".view.activity.InquiryActivity" />
         <activity android:name=".view.activity.SucceedActivity" />

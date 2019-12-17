@@ -38,6 +38,10 @@ public interface Contract {
         void Streanm(String keyWord);
         //查询病友圈详情
         void Details(int doctorId, String sessionId, int sickCircleId);
+        //发表评论
+        void Publish(int doctorId, String sessionId, int sickCircleId, String content);
+        //系统形象照
+        void Imagep();
     }
 
     //Activity  M层
@@ -55,10 +59,12 @@ public interface Contract {
         //根据关键词查询病友圈
         void Streanm(String keyWord,IBallBask iBallBask);
         //发表评论
-       // void Publish(int doctorId,String sessionId,int sickCircleId,String content,IBallBask iBallBask);
+        void Publish(int doctorId,String sessionId,int sickCircleId,String content,IBallBask iBallBask);
        //查询病友圈详情
         void Details(int doctorId, String sessionId, int sickCircleId, IModer.IBallBask iBallBask);
         void Inquer(IBallBask iBallBask);
+        //系统形象照
+        void Imagep(IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 

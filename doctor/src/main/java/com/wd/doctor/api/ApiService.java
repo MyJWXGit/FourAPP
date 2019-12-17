@@ -1,6 +1,7 @@
 package com.wd.doctor.api;
 
 import com.wd.doctor.bean.DetailsBean;
+import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.InquiryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.MianBean;
@@ -73,4 +74,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("health/doctor/sickCircle/verify/v1/publishComment")
     Observable<PublishBean> Publish(@Header("doctorId") int doctorId,@Header("sessionId") String sessionId,@Query("sickCircleId") int sickCircleId,@Field("content") String content);
+   //系统照片
+    @GET("health/doctor/v1/findSystemImagePic")
+   Observable<ImagePicBean> Imagep();
 }
