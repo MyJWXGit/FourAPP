@@ -122,6 +122,14 @@ public class MessageActivity extends BaseActivity<LoginPresenter> implements Con
         View inflate = getLayoutInflater().inflate(R.layout.popwdenf, null);
         PopupWindow popupWindow=new PopupWindow(inflate, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
         popupWindow.setFocusable(true);
-        popupWindow.showAsDropDown(messageSuggest,0,20);
+        popupWindow.showAsDropDown(messageSuggest,0,-80);
+        View genghuan = inflate.findViewById(R.id.genghuan);
+        View quxiao = inflate.findViewById(R.id.quxiao);
+        quxiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inflate.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 }

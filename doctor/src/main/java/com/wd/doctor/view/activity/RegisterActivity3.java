@@ -9,12 +9,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.ToastUtils;
 import com.wd.doctor.R;
+import com.wd.doctor.bean.AppnBean;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.present.LoginPresenter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,6 +79,20 @@ public class RegisterActivity3 extends BaseActivity<LoginPresenter> implements C
 
     @OnClick(R.id.register_xia)
     public void onViewClicked() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("email","xcx485131108@163.com");
+        params.put("code","057221");
+        params.put("name","呆志3");
+        params.put("inauguralHospital","清华大学附属医院");
+        params.put("departmentName","小儿科");
+        params.put("jobTitle","主任");
+        params.put("personalProfile","在世华佗");
+        params.put("goodField","小儿科soeasy");
+        Gson gson = new Gson();
+        String s = gson.toJson(params);//map转json字符串
+        System.out.println(s);//{"a":"11111","b":"22222"}
+
+
         String name = regiserName.getText().toString().trim();
         String yiyuan = regiserHospital.getText().toString().trim();
         String keshi = regiserAdministrative.getText().toString().trim();

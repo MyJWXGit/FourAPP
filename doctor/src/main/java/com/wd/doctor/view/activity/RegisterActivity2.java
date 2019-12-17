@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.wd.doctor.R;
 
+import java.io.Serializable;
+import java.util.HashMap;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -29,6 +32,7 @@ public class RegisterActivity2 extends AppCompatActivity {
     private String jianyan;
     private String pwd;
     private String pwd2;
+    private HashMap<String, Object> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class RegisterActivity2 extends AppCompatActivity {
         jianyan = intent.getStringExtra("jianyan");
         pwd = intent.getStringExtra("pwd");
         pwd2 = intent.getStringExtra("pwd2");
+      //  map = intent.getStringExtra("map");
 
     }
 
@@ -51,8 +56,11 @@ public class RegisterActivity2 extends AppCompatActivity {
                 finish();
                 break;
             case R.id.register_ru:
+                HashMap<String,Object> map1=new HashMap<>();
                 String jianli = resginterJian.getText().toString().trim();
                 String lingyu = resginterEdd.getText().toString().trim();
+                map1.put("jianli",jianli);
+                map1.put("lingyu",lingyu);
                 Intent intent=new Intent(RegisterActivity2.this,RegisterActivity3.class);
                 intent.putExtra("youxiang",youxiang);
                 intent.putExtra("jianyan",jianyan);
@@ -60,6 +68,8 @@ public class RegisterActivity2 extends AppCompatActivity {
                 intent.putExtra("pwd2",pwd2);
                 intent.putExtra("jianli",jianli);
                 intent.putExtra("lingyu",lingyu);
+                intent.putExtra("map",(Serializable)map);
+                intent.putExtra("map1",(Serializable)map1);
                 startActivity(intent);
                 break;
         }

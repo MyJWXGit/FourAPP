@@ -23,6 +23,9 @@ import com.wd.doctor.contract.Contract;
 import com.wd.doctor.encrypt.RsaCoder;
 import com.wd.doctor.present.LoginPresenter;
 
+import java.io.Serializable;
+import java.util.HashMap;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -128,12 +131,18 @@ public class RegisterActivity extends BaseActivity<LoginPresenter> implements Co
                    } catch (Exception e) {
                        e.printStackTrace();
                    }
+                   HashMap<String,Object> map=new HashMap<>();
+                   map.put("youxiang", youxiang);
+                   map.put("jianyan",jianyan);
+                   map.put("pwd",pwd);
+                   map.put("pwd2",pwd2);
                    mPresenter.Verif(youxiang,jianyan);
                    Intent intent=new Intent(RegisterActivity.this,RegisterActivity2.class);
                    intent.putExtra("youxiang", youxiang);
                    intent.putExtra("jianyan",jianyan);
                    intent.putExtra("pwd",pwd);
                    intent.putExtra("pwd2",pwd2);
+                   intent.putExtra("map",map);
                    startActivity(intent);
                }else {
                    ToastUtils.showLong(this,"密码不一致,请重新输入");

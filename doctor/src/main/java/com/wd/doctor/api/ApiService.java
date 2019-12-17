@@ -1,5 +1,6 @@
 package com.wd.doctor.api;
 
+import com.wd.doctor.bean.AppnBean;
 import com.wd.doctor.bean.DetailsBean;
 import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.InquiryBean;
@@ -13,6 +14,9 @@ import com.wd.doctor.bean.StreamBean;
 import com.wd.doctor.bean.VerifyBean;
 
 
+import java.util.Map;
+
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -33,9 +37,9 @@ public interface ApiService {
     @POST("health/doctor/v1/login")
     Observable<LoginBean> login(@Field("email") String email, @Field("pwd") String pwd);
     //申请入驻
-   //@Headers({"Content-Type : application/json;charset=UTF-8"})
-    @FormUrlEncoded
-    @POST("health/doctor/v1/applyJoin")
+    @Headers({"Content-Type : application/json;charset=UTF-8"})
+    //@FormUrlEncoded
+   /* @POST("health/doctor/v1/applyJoin")
     Observable<RegisterBean> Register(@Field("email") String email,
                                       @Field("code") String code,
                                       @Field("pwd1") String pwd1,
@@ -46,7 +50,9 @@ public interface ApiService {
                                       @Field("jobTitle") String jobTitle,
                                       @Field("personalProfile") String personalProfile,
                                       @Field("goodField") String goodField
-                                      );
+                                      );*/
+    @POST("health/doctor/v1/applyJoin")
+    Observable<RegisterBean> onZhuce(@Body Map<String,Object> body);
     //发送邮箱
     @FormUrlEncoded
     @POST("health/doctor/v1/sendEmailCode")

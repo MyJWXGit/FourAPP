@@ -17,6 +17,8 @@ import com.wd.doctor.bean.StreamBean;
 import com.wd.doctor.bean.VerifyBean;
 import com.wd.doctor.contract.Contract;
 
+import java.util.Map;
+
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -30,7 +32,7 @@ import rx.schedulers.Schedulers;
 public class LoginModel implements Contract.IModer {
 
 
-//注册
+ /* //注册
     @Override
     public void onRegister(String email, String code, String pwd1, String pwd2, String name, String inauguralHospital, String departmentName, String jobTitle, String personalProfile, String goodField, IBallBask iBallBask) {
         HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
@@ -59,6 +61,41 @@ public class LoginModel implements Contract.IModer {
                         }
                     }
                 });
+    }*/
+
+    @Override
+    public void onZhucec(Map<String, Object> paramsMap, IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
+                .onZhuce(paramsMap)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<RegisterBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //失败的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(RegisterBean registerBean) {
+                        //成功的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(registerBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onRegister(String email, String code, String pwd1, String pwd2, String name, String inauguralHospital, String departmentName, String jobTitle, String personalProfile, String goodField, IBallBask iBallBask) {
+
     }
 
     @Override
