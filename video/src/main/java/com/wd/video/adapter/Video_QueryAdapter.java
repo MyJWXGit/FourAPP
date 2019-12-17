@@ -39,7 +39,7 @@ import java.util.List;
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ViewHolder){
-            Glide.with(context).load(path)
+            Glide.with(context).load(R.mipmap.black)
                     .placeholder(android.R.color.white)
                     .into(((ViewHolder) holder).mTikTokView);
         }

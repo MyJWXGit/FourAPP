@@ -15,7 +15,6 @@ import com.wd.common.base.IBaseView;
         interface IModel{
             //查询视频类目
             void onVideo_Entry(IModelCallBack iModelCallBack);
-            void onVideo_Query(String userId,String sessionId,String categoryId,String page,String count,IModelCallBack iModelCallBack);
             interface IModelCallBack{
                 void onSuccess(Object data);
                 void onError(Throwable e);
@@ -24,10 +23,10 @@ import com.wd.common.base.IBaseView;
         interface IPresenter{
             //查询视频类目
             void onVideo_Entry();
-            void onVideo_Query(String categoryId,String page,String count);
         }
         //Fragment   M
     interface FModel{
+            void onVideo_Query(String userId,String sessionId,String categoryId,String page,String count,FModelCallBack fModelCallBack);
             interface FModelCallBack{
                 void onSuccess(Object data);
                 void onError(Throwable e);
@@ -35,6 +34,6 @@ import com.wd.common.base.IBaseView;
         }
         //Fragment P
     interface FPresenter{
-
+            void onVideo_Query(String categoryId,String page,String count);
         }
 }

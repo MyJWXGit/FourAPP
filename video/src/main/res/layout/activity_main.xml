@@ -7,15 +7,26 @@
     android:orientation="vertical"
     tools:context=".VideoActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/video_up"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/video_tab"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="#D6D9D1" />
+        android:layout_height="@dimen/permission_dp_40"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/video_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+   <!-- <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/video_down"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:padding="@dimen/permission_dp_15"
+            android:layout_marginRight="@dimen/permission_dp_20"
+            android:id="@+id/video_img"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/drop_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>-->
 
 </LinearLayout>

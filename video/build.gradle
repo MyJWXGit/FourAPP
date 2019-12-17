@@ -77,7 +77,7 @@ dependencies {
     implementation rootProject.ext.dependencies["jiecao"]
     implementation rootProject.ext.dependencies["tablayout"]
     implementation rootProject.ext.dependencies["glide"]
-  /*  implementation rootProject.ext.dependencies["dkplayer-java"]
+    /*  implementation rootProject.ext.dependencies["dkplayer-java"]
     implementation rootProject.ext.dependencies["dkplayer-armv7a"]
     implementation rootProject.ext.dependencies["dkplayer-armv5"]
     implementation rootProject.ext.dependencies["dkplayer-arm64"]
