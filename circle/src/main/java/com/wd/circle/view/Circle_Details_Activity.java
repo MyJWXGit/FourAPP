@@ -133,6 +133,14 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
                 mPresenter.onComment(sickCircleId, userId +"", sessionId, et_content);
             }
         });
+        //跳转发布病友圈
+        patientActivityIvIntentReleaseSickCircle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(Circle_Details_Activity.this, ReleaseCirclesActivity.class);
+                startActivity(intent1);
+            }
+        });
     }
 
     @Override

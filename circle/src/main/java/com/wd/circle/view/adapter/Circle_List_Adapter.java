@@ -28,7 +28,7 @@ import java.util.List;
 public class Circle_List_Adapter extends RecyclerView.Adapter<Circle_List_Adapter.Holder> {
     private List<Circle_list_Bean.ResultBean> list;
     private Context context;
-
+    int Oneon;
     public Circle_List_Adapter(List<Circle_list_Bean.ResultBean> list, Context context) {
         this.list = list;
         this.context = context;
@@ -44,9 +44,16 @@ public class Circle_List_Adapter extends RecyclerView.Adapter<Circle_List_Adapte
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.tv1.setText(list.get(position).getDepartmentName()+"");
+        if (Oneon == position) {
+            holder.tv1.setTextColor(Color.BLUE);
+        } else {
+            holder.tv1.setTextColor(Color.GRAY);
+        }
         holder.tv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Oneon = position;
+                notifyDataSetChanged();
                 setOnItemClick.setOnItem(position);
             }
         });

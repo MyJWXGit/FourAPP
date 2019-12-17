@@ -3,8 +3,9 @@
     package="com.wd.circle">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".utils.App"
         android:allowBackup="true"
@@ -13,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.Circle_Details_Activity"></activity>
+        <activity android:name=".view.ReleaseCirclesActivity"></activity>
+        <activity android:name=".view.Circle_Details_Activity" />
         <activity android:name=".view.Circle_Home_Activity" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
@@ -21,8 +23,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!-- 屏幕适配 -->
+        </activity> <!-- 屏幕适配 -->
         <receiver
             android:name=".view.MainActivity$MyBroadcastReceiver"
             android:enabled="true"

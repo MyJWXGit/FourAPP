@@ -26,4 +26,7 @@ public interface Api {
     String PUT_CIRCLE_URL="health/user/sickCircle/verify/v1/publishSickCircle";
     String POST_IMAGE_URL="health/user/sickCircle/verify/v1/uploadSickCirclePicture";
     String DO_TASK_URL="health/user/verify/v1/doTask";
+    String USER_TASK_LIST_URL="health/user/verify/v1/findUserTaskList";
+    String REPLEASE_CIRCLE_URL="health/user/sickCircle/verify/v1/publishSickCircle";
+    String DISEASE_URL="health/share/knowledgeBase/v1/findDiseaseCategory";
 }

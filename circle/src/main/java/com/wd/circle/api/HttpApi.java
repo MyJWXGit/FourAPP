@@ -7,6 +7,7 @@ import com.wd.circle.bean.Circle_Post_Bean;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.bean.CommentBean;
+import com.wd.circle.bean.DiseaseBean;
 import com.wd.circle.bean.DoTaskBean;
 import com.wd.circle.bean.LoginBean;
 import com.wd.circle.bean.My_CirclePost_Bean;
@@ -14,9 +15,14 @@ import com.wd.circle.bean.Post_Image_Bean;
 import com.wd.circle.bean.Put_Circle_Bean;
 import com.wd.circle.bean.Put_Viewpoint_Bean;
 import com.wd.circle.bean.Query_MyCircle_Post_Bean;
+import com.wd.circle.bean.RepleaseCircleBean;
 import com.wd.circle.bean.SearchCircleBean;
+import com.wd.circle.bean.UserTaskListBean;
+
+import java.util.Map;
 
 import okhttp3.MultipartBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -156,4 +162,24 @@ public interface HttpApi {
             @Header("sessionId") String sessionId,
             @Query("taskId") int taskId
     );
+    //查询用户任务列表
+    @GET(Api.USER_TASK_LIST_URL)
+    Observable<UserTaskListBean> onUserTaskListBean(
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId
+    );
+    //发布病友圈
+    @POST(Api.REPLEASE_CIRCLE_URL)
+    Observable<RepleaseCircleBean> onRepleaseCircleBean(
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
+            @Body Map<String, Object> map
+    );
+    //对应病症
+    @GET(Api.DISEASE_URL)
+    Observable<DiseaseBean> onDiseaseBean(
+            @Query("departmentId") int departmentId
+    );
+    //
+
 }

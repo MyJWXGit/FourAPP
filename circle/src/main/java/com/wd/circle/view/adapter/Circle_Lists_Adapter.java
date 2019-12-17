@@ -49,6 +49,7 @@ public class Circle_Lists_Adapter extends RecyclerView.Adapter<Circle_Lists_Adap
         String format = DateFormatUtil.format(s);
         holder.time.setText(format);
         holder.common.setText(list.get(position).getDetail());
+        holder.sick_circle_amount.setText(list.get(position).getAmount()+"");
         holder.item_shoucang.setText(list.get(position).getCollectionNum()+"");
         holder.item_jianyi.setText(list.get(position).getCommentNum()+"");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +67,7 @@ public class Circle_Lists_Adapter extends RecyclerView.Adapter<Circle_Lists_Adap
 
     class Holder extends RecyclerView.ViewHolder {
 
-        private final TextView common,item_shoucang;
+        private final TextView common,item_shoucang,sick_circle_amount;
         private final TextView tv,item_jianyi;
         private final TextView time;
 
@@ -74,6 +75,7 @@ public class Circle_Lists_Adapter extends RecyclerView.Adapter<Circle_Lists_Adap
             super(itemView);
             tv = itemView.findViewById(R.id.circle_tv2);
             common = itemView.findViewById(R.id.circle_common);
+            sick_circle_amount = itemView.findViewById(R.id.sick_circle_amount);
             time = itemView.findViewById(R.id.circle_time);
             item_jianyi = itemView.findViewById(R.id.item_jianyi);
             item_shoucang = itemView.findViewById(R.id.item_shoucang);
