@@ -21,6 +21,8 @@ public interface Contract {
         void onComment(int sickCircleId,String userId,String sessionId, String content);
         void onCircleComment(int sickCircleId,String userId,String sessionId,int count,int page);
         void onDoTask(String userId,String sessionId,int taskId);
+        void onUserTaskList(String userId,String sessionId);
+        void onDisease(int departmentId);
     }
 
 
@@ -34,6 +36,8 @@ public interface Contract {
         void onComment(int sickCircleId,String userId,String sessionId, String content,IBallBask iBallBask);
         void onCircleComment(int sickCircleId,String userId,String sessionId,int count,int page,IBallBask iBallBask);
         void onDoTask(String userId,String sessionId,int taskId,IBallBask iBallBask);
+        void onUserTaskList(String userId,String sessionId,IBallBask iBallBask);
+        void onDisease(int departmentId,IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 

@@ -8,9 +8,11 @@ import com.wd.circle.bean.Circle_Details_Bean;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.bean.CommentBean;
+import com.wd.circle.bean.DiseaseBean;
 import com.wd.circle.bean.DoTaskBean;
 import com.wd.circle.bean.LoginBean;
 import com.wd.circle.bean.SearchCircleBean;
+import com.wd.circle.bean.UserTaskListBean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.model.MainModel;
 import com.wd.common.base.BasePresenter;
@@ -221,4 +223,49 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
             }
         });
     }
+
+    @Override
+    public void onUserTaskList(String userId, String sessionId) {
+        mainModel.onUserTaskList(userId, sessionId, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                if (isViewAttached()){
+                    UserTaskListBean userTaskListBean= (UserTaskListBean) obj;
+                    if (userTaskListBean!=null){
+                        getView().onSuccess(userTaskListBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDisease(int departmentId) {
+        mainModel.onDisease(departmentId, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                if (isViewAttached()){
+                    DiseaseBean diseaseBean= (DiseaseBean) obj;
+                    if (diseaseBean!=null){
+                        getView().onSuccess(diseaseBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
 }

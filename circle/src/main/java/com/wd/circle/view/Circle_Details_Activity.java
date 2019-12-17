@@ -2,12 +2,14 @@ package com.wd.circle.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +25,17 @@ import com.wd.circle.bean.Circle_Comment_Bean;
 import com.wd.circle.bean.Circle_Details_Bean;
 import com.wd.circle.bean.CommentBean;
 import com.wd.circle.bean.DoTaskBean;
+import com.wd.circle.bean.UserTaskListBean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.presenter.MainPresenter;
 import com.wd.circle.utils.DateUtils;
 import com.wd.circle.view.adapter.RecycleView_Comment_Adapter;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.SpUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,8 +85,19 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
     ImageView patientActivityIvIntentReleaseSickCircle;
     @BindView(R.id.patient_activity_relative_release_sickCircle)
     RelativeLayout patientActivityRelativeReleaseSickCircle;
+    @BindView(R.id.img_HeadPic)
+    SimpleDraweeView imgHeadPic;
+    @BindView(R.id.name_NickName)
+    TextView nameNickName;
+    @BindView(R.id.time_adoptTime)
+    TextView timeAdoptTime;
+    @BindView(R.id.text_adoptComment)
+    TextView textAdoptComment;
+    @BindView(R.id.adoptFlag)
+    LinearLayout adoptFlag;
     private int userId;
     private String sessionId;
+    private int sickCircleId;
 
     @Override
     protected MainPresenter providePresenter() {
@@ -98,13 +116,13 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
         sessionId = (String) SpUtils.get(this, Constant.Sp_sessionId, "");
         patientIvUserHeadPic.setImageURI(o);
         Intent intent = getIntent();
-        int sickCircleId = intent.getIntExtra("sickCircleId", 0);
-        mPresenter.onDetails(sickCircleId, userId +"", sessionId);
-
+        sickCircleId = intent.getIntExtra("sickCircleId", 0);
+        mPresenter.onDetails(sickCircleId, userId + "", sessionId);
+        mPresenter.onUserTaskList(userId + "", sessionId);
         patientActivityIvContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.onCircleComment(sickCircleId, userId +"", sessionId,15,1);
+                mPresenter.onCircleComment(sickCircleId, userId + "", sessionId, 15, 1);
                 patientActivityRelativeContent.setVisibility(View.VISIBLE);
                 patientActivityRelativeReleaseSickCircle.setVisibility(View.GONE);
             }
@@ -114,7 +132,7 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
             public void onClick(View view) {
                 patientActivityRelativeContent.setVisibility(View.GONE);
                 patientActivityRelativeReleaseSickCircle.setVisibility(View.VISIBLE);
-                InputMethodManager imm =(InputMethodManager)getSystemService(
+                InputMethodManager imm = (InputMethodManager) getSystemService(
                         Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(patientActivityEtContent.getWindowToken(), 0);
             }
@@ -129,7 +147,15 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
                     return;
                 }
                 Log.i("TAG", "onClick: " + "sickCircleId:" + sickCircleId);
-                mPresenter.onComment(sickCircleId, userId +"", sessionId, et_content);
+                mPresenter.onComment(sickCircleId, userId + "", sessionId, et_content);
+            }
+        });
+        //跳转发布病友圈
+        patientActivityIvIntentReleaseSickCircle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(Circle_Details_Activity.this, ReleaseCirclesActivity.class);
+                startActivity(intent1);
             }
         });
     }
@@ -167,28 +193,43 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
                     .into(patientActivityIvPicture);
             patientActivityTvCommentNum.setText(result.getCommentNum() + "");
             patientActivityTvCollectionNum.setText(result.getCollectionNum() + "");
-        }else if (obj instanceof Circle_Comment_Bean){
-            Circle_Comment_Bean circle_comment_bean= (Circle_Comment_Bean) obj;
-            if (circle_comment_bean.getStatus().equals("0000")){
+            imgHeadPic.setImageURI(result.getAdoptHeadPic());
+            nameNickName.setText(result.getAdoptNickName()+"");
+            textAdoptComment.setText(result.getAdoptComment()+"");
+            Date date1 = new Date(result.getAdoptTime());
+            SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+            timeAdoptTime.setText(simpleDateFormat1.format(date1));
+        } else if (obj instanceof Circle_Comment_Bean) {
+            Circle_Comment_Bean circle_comment_bean = (Circle_Comment_Bean) obj;
+            if (circle_comment_bean.getStatus().equals("0000")) {
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 recyclerSickCircleCommentList.setLayoutManager(linearLayoutManager);
-                RecycleView_Comment_Adapter recycleView_comment_adapter=new RecycleView_Comment_Adapter(circle_comment_bean.getResult(),this);
+                RecycleView_Comment_Adapter recycleView_comment_adapter = new RecycleView_Comment_Adapter(circle_comment_bean.getResult(), this);
                 recyclerSickCircleCommentList.setAdapter(recycleView_comment_adapter);
             }
-        }else if (obj instanceof CommentBean){
-            CommentBean commentBean= (CommentBean) obj;
+        } else if (obj instanceof CommentBean) {
+            CommentBean commentBean = (CommentBean) obj;
             if (commentBean.getStatus().equals("0000")) {
                 Toast.makeText(this, commentBean.getMessage(), Toast.LENGTH_SHORT).show();
                 patientActivityEtContent.setText("");
                 patientActivityEtContent.setHint("在此留下高见吧!!!");
-                mPresenter.onDoTask(userId+"",sessionId,1002);
+                mPresenter.onDoTask(userId + "", sessionId, 1002);
             } else {
                 Toast.makeText(this, commentBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }else if (obj instanceof DoTaskBean){
-            DoTaskBean doTaskBean= (DoTaskBean) obj;
-            Toast.makeText(this, ""+doTaskBean.getMessage(), Toast.LENGTH_SHORT).show();
+        } else if (obj instanceof DoTaskBean) {
+            DoTaskBean doTaskBean = (DoTaskBean) obj;
+            if (doTaskBean.getStatus().equals("0000")) {
+                Toast.makeText(this, "每日首评完成,快去领取奖励吧", Toast.LENGTH_SHORT).show();
+                mPresenter.onCircleComment(sickCircleId, userId + "", sessionId, 1, 15);
+            } else {
+                mPresenter.onCircleComment(sickCircleId, userId + "", sessionId, 1, 15);
+            }
+        } else if (obj instanceof UserTaskListBean) {
+            UserTaskListBean userTaskListBean = (UserTaskListBean) obj;
+            List<UserTaskListBean.ResultBean> result = userTaskListBean.getResult();
+
         }
     }
 
@@ -197,4 +238,10 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
 
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

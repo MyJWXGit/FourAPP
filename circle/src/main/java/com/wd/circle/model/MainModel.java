@@ -9,9 +9,11 @@ import com.wd.circle.bean.Circle_Details_Bean;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.bean.CommentBean;
+import com.wd.circle.bean.DiseaseBean;
 import com.wd.circle.bean.DoTaskBean;
 import com.wd.circle.bean.LoginBean;
 import com.wd.circle.bean.SearchCircleBean;
+import com.wd.circle.bean.UserTaskListBean;
 import com.wd.circle.contract.Contract;
 import com.wd.common.utils.HttpUtils;
 
@@ -238,4 +240,58 @@ public class MainModel implements Contract.IModer {
                     }
                 });
     }
+
+    @Override
+    public void onUserTaskList(String userId, String sessionId, IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .onUserTaskListBean(userId, sessionId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UserTaskListBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(UserTaskListBean userTaskListBean) {
+                        if (userTaskListBean!=null){
+                            iBallBask.onHttpOK(userTaskListBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onDisease(int departmentId, IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .onDiseaseBean(departmentId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<DiseaseBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(DiseaseBean diseaseBean) {
+                        if (diseaseBean!=null){
+                            iBallBask.onHttpOK(diseaseBean);
+                        }
+                    }
+                });
+    }
+
+
 }
