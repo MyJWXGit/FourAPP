@@ -26,7 +26,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    packagingOptions {
+        exclude 'lib/armeabi-v7a/libijkplayer.so'
+        pickFirst 'lib/armeabi-v7a/libnms.so'
+        pickFirst 'lib/x86/libijksdl.so'
+        pickFirst 'lib/x86/libijkplayer.so'
+        pickFirst 'lib/x86_64/libijksdl.so'
+        pickFirst 'lib/x86_64/libijkplayer.so'
+        //c c++ 软解硬解  解码
+        pickFirst 'lib/x86/libijkffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libijkplayer.so'
+        pickFirst 'lib/arm64-v8a/libijkffmpeg.so'
+        pickFirst 'lib/armeabi-v7a/libijkffmpeg.so'
+        pickFirst 'lib/x86_64/libijkffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libijksdl.so'
+        pickFirst 'lib/armeabi-v7a/libijksdl.so'
+    }
 }
 
 dependencies {
@@ -45,6 +60,7 @@ dependencies {
     implementation rootProject.ext.dependencies["retrofit-adapter-rxjava"]
     implementation rootProject.ext.dependencies["converter-scalars"]
     implementation 'com.jakewharton:butterknife:10.2.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     //阿里巴巴路由    放入MVP依赖
     //路由器
     api 'com.alibaba:arouter-api:+'

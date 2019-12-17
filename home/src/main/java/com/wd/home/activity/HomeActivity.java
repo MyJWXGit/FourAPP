@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -38,6 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+@Route(path = "/home/activity")
 public class HomeActivity extends BaseActivity<HomePresenter> implements Contract.IView {
     @BindView(R2.id.edit_query)
     EditText editQuery;
@@ -53,6 +57,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements Contrac
     LinearLayout commonIllness;
     @BindView(R2.id.common_drug)
     LinearLayout commonDrug;
+    private Button bt;
 
     @Override
     protected HomePresenter providePresenter() {
@@ -62,10 +67,17 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements Contrac
     @Override
     protected void initView() {
         ButterKnife.bind(this);
+        bt = findViewById(R.id.bt);
     }
 
     @Override
     protected void initData() {
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build("/video/activity").navigation();
+            }
+        });
         mPresenter.onBanner();
         mPresenter.onDepartment();
         mPresenter.onPlateList();
