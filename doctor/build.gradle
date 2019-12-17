@@ -44,7 +44,7 @@ android {
     sourceSets {
         main {
             if (isModule.toBoolean()) {
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+                manifest.srcFile 'src/main/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/library/AndroidManifest.xml'
                 java { exclude 'module/**' }
