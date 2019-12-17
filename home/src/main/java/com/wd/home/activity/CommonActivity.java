@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.base.BasePresenter;
 import com.wd.home.R;
+import com.wd.home.R2;
 import com.wd.home.adapter.utils_adapter.MyFragment_Adapter;
 import com.wd.home.fragment.common_fragment.Illness_Fragment;
 import com.wd.home.fragment.common_fragment.dyug_Fragment;
@@ -22,9 +23,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CommonActivity extends BaseActivity {
-    @BindView(R.id.tab)
+    @BindView(R2.id.tab)
     TabLayout tab;
-    @BindView(R.id.view_pager)
+    @BindView(R2.id.view_pager)
     ViewPager viewPager;
     private List<Fragment> fragments = new ArrayList<>();
     private List<String> tabs = new ArrayList<>();

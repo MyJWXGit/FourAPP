@@ -19,6 +19,7 @@ import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.entity.SimpleBannerInfo;
 import com.wd.common.base.BaseActivity;
 import com.wd.home.R;
+import com.wd.home.R2;
 import com.wd.home.adapter.Department_Adapter;
 import com.wd.home.adapter.Information_Adapter;
 import com.wd.home.adapter.Plate_List_Adapter;
@@ -36,20 +37,21 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 public class HomeActivity extends BaseActivity<HomePresenter> implements Contract.IView {
-    @BindView(R.id.edit_query)
+    @BindView(R2.id.edit_query)
     EditText editQuery;
-    @BindView(R.id.xBanner)
+    @BindView(R2.id.xBanner)
     XBanner xBanner;
-    @BindView(R.id.recycler)
+    @BindView(R2.id.recycler)
     RecyclerView recycler;
-    @BindView(R.id.title_recycler)
+    @BindView(R2.id.title_recycler)
     RecyclerView titleRecycler;
-    @BindView(R.id.advisory_recycler)
+    @BindView(R2.id.advisory_recycler)
     RecyclerView advisoryRecycler;
-    @BindView(R.id.common_Illness)
+    @BindView(R2.id.common_Illness)
     LinearLayout commonIllness;
-    @BindView(R.id.common_drug)
+    @BindView(R2.id.common_drug)
     LinearLayout commonDrug;
 
     @Override
@@ -165,17 +167,15 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements Contrac
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.common_Illness, R.id.common_drug})
+    @OnClick({R2.id.common_Illness, R2.id.common_drug})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.common_Illness:
-                Intent intent = new Intent(HomeActivity.this, CommonActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.common_drug:
-                Intent intent1 = new Intent(HomeActivity.this, CommonActivity.class);
-                startActivity(intent1);
-                break;
+        int id = view.getId();
+        if (id == R.id.common_Illness) {
+            Intent intent = new Intent(HomeActivity.this, CommonActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.common_drug) {
+            Intent intent1 = new Intent(HomeActivity.this, CommonActivity.class);
+            startActivity(intent1);
         }
     }
 }

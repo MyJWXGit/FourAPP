@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.SpUtils;
 import com.wd.home.R;
+import com.wd.home.R2;
 import com.wd.home.api.Constant;
 import com.wd.home.bean.LoginBean;
 import com.wd.home.contract.Contract;
@@ -19,13 +21,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+@Route(path = "/home/activity")
 public class LoginActivity extends BaseActivity<HomePresenter> implements Contract.IView {
 
-    @BindView(R.id.email)
+
+    @BindView(R2.id.email)
     EditText email;
-    @BindView(R.id.pwd)
+    @BindView(R2.id.pwd)
     EditText pwd;
-    @BindView(R.id.button)
+    @BindView(R2.id.button)
     Button button;
 
     @Override
@@ -75,7 +79,7 @@ public class LoginActivity extends BaseActivity<HomePresenter> implements Contra
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.button)
+    @OnClick(R2.id.button)
     public void onViewClicked() {
         String pwd1 = pwd.getText().toString();
         String email1 = email.getText().toString();

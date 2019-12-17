@@ -24,9 +24,9 @@ import butterknife.ButterKnife;
 @Route(path = "video/MainActivity")
 public class MainActivity extends BaseActivity<Video_EntryPresenter> implements Contract.IView {
 
-    @BindView(R.id.tab)
+    @BindView(R2.id.tab)
     TabLayout tab;
-    @BindView(R.id.vp)
+    @BindView(R2.id.vp)
     ViewPager vp;
     private String id;
 

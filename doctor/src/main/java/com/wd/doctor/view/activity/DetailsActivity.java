@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.DetailsBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.present.LoginPresenter;
@@ -24,41 +25,41 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DetailsActivity extends BaseActivity<LoginPresenter> implements Contract.IView {
-    @BindView(R.id.details_backfh)
+    @BindView(R2.id.details_backfh)
     ImageView detailsBackfh;
-    @BindView(R.id.details_back)
+    @BindView(R2.id.details_back)
     TextView detailsBack;
-    @BindView(R.id.details_name)
+    @BindView(R2.id.details_name)
     TextView detailsName;
-    @BindView(R.id.details_disease)
+    @BindView(R2.id.details_disease)
     TextView detailsDisease;
-    @BindView(R.id.details_departmentName)
+    @BindView(R2.id.details_departmentName)
     TextView detailsDepartmentName;
-    @BindView(R.id.details_detail)
+    @BindView(R2.id.details_detail)
     TextView detailsDetail;
-    @BindView(R.id.design_treatmentHospital)
+    @BindView(R2.id.design_treatmentHospital)
     TextView designTreatmentHospital;
-    @BindView(R.id.design_treatmentStartTime)
+    @BindView(R2.id.design_treatmentStartTime)
     TextView designTreatmentStartTime;
-    @BindView(R.id.design_treatmentProcess)
+    @BindView(R2.id.design_treatmentProcess)
     TextView designTreatmentProcess;
-    @BindView(R.id.design_picture)
+    @BindView(R2.id.design_picture)
     SimpleDraweeView designPicture;
-    @BindView(R.id.xiepingl)
+    @BindView(R2.id.xiepingl)
     Button xiepingl;
-    @BindView(R.id.xuanz)
+    @BindView(R2.id.xuanz)
     Button xuanz;
-    @BindView(R.id.wdejida)
+    @BindView(R2.id.wdejida)
     EditText wdejida;
-    @BindView(R.id.xinfgg)
+    @BindView(R2.id.xinfgg)
     TextView xinfgg;
-    @BindView(R.id.jieda)
+    @BindView(R2.id.jieda)
     TextView jieda;
-    @BindView(R.id.publish)
+    @BindView(R2.id.publish)
     Button publish;
-    @BindView(R.id.butd)
+    @BindView(R2.id.butd)
     LinearLayout butd;
-    @BindView(R.id.but)
+    @BindView(R2.id.but)
     LinearLayout but;
     private int doctorId;
     private String sessionId;
@@ -122,26 +123,22 @@ public class DetailsActivity extends BaseActivity<LoginPresenter> implements Con
         return null;
     }
 
-    @OnClick({R.id.details_backfh, R.id.publish, R.id.xiepingl, R.id.xuanz})
+    @OnClick({R2.id.details_backfh, R2.id.publish, R2.id.xiepingl, R2.id.xuanz})
     public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.details_backfh:
-                finish();
-                break;
-            case R.id.publish:
-                jieda.setVisibility(View.INVISIBLE);
-                wdejida.setVisibility(View.INVISIBLE);
-                but.setVisibility(View.VISIBLE);
-                butd.setVisibility(View.INVISIBLE);
-                break;
-            case R.id.xiepingl:
-                break;
-            case R.id.xuanz:
-                jieda.setVisibility(View.VISIBLE);
-                wdejida.setVisibility(View.VISIBLE);
-                but.setVisibility(View.INVISIBLE);
-                butd.setVisibility(View.VISIBLE);
-                break;
+        int id = view.getId();
+        if (id == R.id.details_backfh) {
+            finish();
+        } else if (id == R.id.publish) {
+            jieda.setVisibility(View.INVISIBLE);
+            wdejida.setVisibility(View.INVISIBLE);
+            but.setVisibility(View.VISIBLE);
+            butd.setVisibility(View.INVISIBLE);
+        } else if (id == R.id.xiepingl) {
+        } else if (id == R.id.xuanz) {
+            jieda.setVisibility(View.VISIBLE);
+            wdejida.setVisibility(View.VISIBLE);
+            but.setVisibility(View.INVISIBLE);
+            butd.setVisibility(View.VISIBLE);
         }
     }
 

@@ -1,10 +1,13 @@
-apply plugin: 'com.android.application'
-
+if (Boolean.valueOf(rootProject.ext.isModule)) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
-        applicationId "com.wd.health"
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -12,11 +15,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+
         //Arouter路由配置
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
-                includeCompileClasspath = true
             }
         }
 
@@ -33,6 +36,23 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    //在Home下的build.gradle文件中配置AndroidManifest.xml
+    //false是release包  release包本mode是library  不可以单独运行
+    //true是debug包  debug包可以当做mode 可以单独运行
+    sourceSets {
+        main {
+            if (Boolean.valueOf(rootProject.ext.isModule)) {//apk
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/library/AndroidManifest.xml'
+                java {
+                    //library模式下，排除java/debug文件夹下的所有文件
+                    exclude '*module'
+                }
+            }
+        }
+    }
 }
 
 dependencies {
@@ -46,9 +66,7 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
-    //annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-    annotationProcessor rootProject.ext.dependencies["dagger2-apt-compiler"]
     provided rootProject.ext.dependencies["javax.annotation"]
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
 }

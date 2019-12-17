@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wd.home">
+
+    <application>
+        <activity android:name=".activity.DrugActivity"></activity>
+        <activity android:name=".activity.DiseaseKnowledgeActivity" />
+        <activity android:name=".activity.CommonActivity" />
+        <activity android:name=".activity.FindInfoActivity" /> <!-- 屏幕适配 -->
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.LoginActivity">
+        </activity>
+        <activity android:name=".activity.MainActivity" />
+    </application>
+</manifest>

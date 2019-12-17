@@ -14,7 +14,7 @@ android {
         //Arouter路由配置
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -31,6 +31,10 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy.force 'com.android.support:support-annotations:28.0.0'
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -43,16 +47,9 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
-    //annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-    //annotationProcessor rootProject.ext.dependencies["dagger2-apt-compiler"]
     provided rootProject.ext.dependencies["javax.annotation"]
-//路由器
-    implementation 'com.alibaba:arouter-api:1.4.1'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-    implementation project(path: ':common')
-
-    //implementation project(':video')
-    //implementation project(':main')
+    //路由器
+    annotationProcessor 'com.alibaba:arouter-compiler:+'
+    implementation project(':common')
+    implementation project(':home')
 }

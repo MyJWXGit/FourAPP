@@ -16,7 +16,6 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [ AROUTER_MODULE_NAME : project.getName() ]
-                includeCompileClasspath = true
             }
         }
     }
@@ -38,12 +37,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    //阿里巴巴路由    放入MVP依赖
-    /*api rootProject.ext.dependencies["arouter-api"]
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]*/
-    //路由器
-    api 'com.alibaba:arouter-api:1.4.1'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     //butterknife
     implementation rootProject.ext.dependencies["okhttp3"]
     implementation rootProject.ext.dependencies["retrofit"]
@@ -52,6 +45,9 @@ dependencies {
     implementation rootProject.ext.dependencies["retrofit-adapter-rxjava"]
     implementation rootProject.ext.dependencies["converter-scalars"]
     implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+    //阿里巴巴路由    放入MVP依赖
+    //路由器
+    api 'com.alibaba:arouter-api:+'
+    annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation rootProject.ext.dependencies["fresco"]
 }

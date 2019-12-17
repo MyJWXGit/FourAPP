@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wd.doctor">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+
+        <activity android:name=".view.activity.DetailsActivity"></activity>
+        <activity android:name=".view.activity.myview.StreamingActivity" />
+        <activity android:name=".view.activity.InquiryActivity" />
+        <activity android:name=".view.activity.SucceedActivity" />
+        <activity android:name=".view.activity.RegisterActivity3" />
+        <activity android:name=".view.activity.RegisterActivity2" />
+        <activity android:name=".view.activity.RegisterActivity" />
+        <activity android:name=".view.activity.LoginActivity" />
+        <activity android:name=".view.activity.MainActivity" />
+        <activity android:name=".view.activity.GuideActivity" />
+    </application>
+
+</manifest>
