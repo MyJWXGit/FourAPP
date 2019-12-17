@@ -5,10 +5,12 @@ package com.wd.doctor.present;
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.Logger;
 import com.wd.doctor.bean.DetailsBean;
+import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.InquiryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.MianBean;
 import com.wd.doctor.bean.PatientsBean;
+import com.wd.doctor.bean.PublishBean;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
 import com.wd.doctor.bean.StreamBean;
@@ -277,6 +279,60 @@ public class LoginPresenter extends BasePresenter<Contract.IView> implements Con
                     }
                 }
             });
+    }
+    //发表评论
+    @Override
+    public void Publish(int doctorId, String sessionId, int sickCircleId, String content) {
+       model.Publish(doctorId, sessionId, sickCircleId, content, new Contract.IModer.IBallBask() {
+           @Override
+           public void onHttpOK(Object obj) {
+               //软引用
+               if (isViewAttached()) {
+                   //Bean包强转  拿到Status进行判断
+                   PublishBean bean = (PublishBean) obj;
+                   if (bean != null && bean.getStatus().equals("0000")) {
+                       //getView是BasePresenter方法  使用getView进行调用P层
+                       getView().onSuccess(bean);
+                   } else {
+                       getView().onError(new Exception("请求失败"));
+                   }
+               }
+           }
+
+           @Override
+           public void onHttpNO(Throwable e) {
+               if (isViewAttached()) {
+                   Logger.d(TAG, e.getMessage() + "");
+               }
+           }
+       });
+    }
+    //系统形象照
+    @Override
+    public void Imagep() {
+         model.Imagep(new Contract.IModer.IBallBask() {
+             @Override
+             public void onHttpOK(Object obj) {
+                 //软引用
+                 if (isViewAttached()) {
+                     //Bean包强转  拿到Status进行判断
+                     ImagePicBean bean = (ImagePicBean) obj;
+                     if (bean != null && bean.getStatus().equals("0000")) {
+                         //getView是BasePresenter方法  使用getView进行调用P层
+                         getView().onSuccess(bean);
+                     } else {
+                         getView().onError(new Exception("请求失败"));
+                     }
+                 }
+             }
+
+             @Override
+             public void onHttpNO(Throwable e) {
+                 if (isViewAttached()) {
+                     Logger.d(TAG, e.getMessage() + "");
+                 }
+             }
+         });
     }
 }
 

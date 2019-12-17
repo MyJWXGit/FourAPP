@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.wd.common.base.BaseActivity;
 import com.wd.home.R;
+import com.wd.home.R2;
 import com.wd.home.api.Constant;
 import com.wd.home.bean.FindInfoBean;
 import com.wd.home.contract.Contract;
@@ -21,13 +22,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FindInfoActivity extends BaseActivity<HomePresenter> implements Contract.IView {
-    @BindView(R.id.text_name)
+    @BindView(R2.id.text_name)
     TextView textName;
-    @BindView(R.id.text_Author)
+    @BindView(R2.id.text_Author)
     TextView textAuthor;
-    @BindView(R.id.text_date)
+    @BindView(R2.id.text_date)
     TextView textDate;
-    @BindView(R.id.text_time)
+    @BindView(R2.id.text_time)
     TextView textTime;
     private WebView webView;
 

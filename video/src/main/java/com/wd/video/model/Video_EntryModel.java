@@ -5,6 +5,7 @@ import com.wd.common.utils.HttpUtils666;
 import com.wd.common.utils.Logger;
 import com.wd.video.api.HttpApi;
 import com.wd.video.bean.Video_EntryBean;
+import com.wd.video.bean.Video_QueryBean;
 import com.wd.video.contract.Contract;
 
 import rx.Observer;
@@ -44,5 +45,34 @@ import rx.schedulers.Schedulers;
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onVideo_Query(String userId, String sessionId, String categoryId, String page, String count, IModelCallBack iModelCallBack) {
+            HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                    .getViewo_Query(userId, sessionId, categoryId, page, count)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<Video_QueryBean>() {
+                        @Override
+                        public void onCompleted() {
+
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            if (iModelCallBack!=null) {
+                                iModelCallBack.onError(e);
+                            }
+                        }
+
+                        @Override
+                        public void onNext(Video_QueryBean video_queryBean) {
+                            if (iModelCallBack!=null) {
+                                iModelCallBack.onSuccess(video_queryBean);
+                            }
+                        }
+                    });
+
     }
 }

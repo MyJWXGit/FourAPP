@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.wd.circle.R;
+import com.wd.circle.R2;
 import com.wd.circle.api.Constant;
 import com.wd.circle.bean.LoginBean;
 import com.wd.circle.contract.Contract;
@@ -23,13 +24,13 @@ import butterknife.ButterKnife;
 public class MainActivity extends BaseActivity<MainPresenter> implements Contract.IView {
 
 
-    @BindView(R.id.edit1)
+    @BindView(R2.id.edit1)
     EditText edit1;
-    @BindView(R.id.edit2)
+    @BindView(R2.id.edit2)
     EditText edit2;
-    @BindView(R.id.login_btn)
+    @BindView(R2.id.login_btn)
     Button loginBtn;
-    @BindView(R.id.regin_btn)
+    @BindView(R2.id.regin_btn)
     Button reginBtn;
 
     @Override

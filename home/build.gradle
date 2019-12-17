@@ -1,10 +1,14 @@
-apply plugin: 'com.android.application'
-
+if (Boolean.valueOf(rootProject.ext.isModule)) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
-        applicationId "com.wd.health"
+
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -59,6 +63,45 @@ android {
             }
         }
     }
+
+    //在Home下的build.gradle文件中配置AndroidManifest.xml
+    //false是release包  release包本mode是library  不可以单独运行
+    //true是debug包  debug包可以当做mode 可以单独运行
+    sourceSets {
+        main {
+            if (Boolean.valueOf(rootProject.ext.isModule)) {//apk
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/library/AndroidManifest.xml'
+                java {
+                    //library模式下，排除java/debug文件夹下的所有文件
+                    exclude '*module'
+                }
+            }
+        }
+    }
+
+    packagingOptions {
+        exclude 'lib/armeabi-v7a/libijkplayer.so'
+        pickFirst 'lib/armeabi-v7a/libnms.so'
+        pickFirst 'lib/x86/libijksdl.so'
+        pickFirst 'lib/x86/libijkplayer.so'
+        pickFirst 'lib/x86_64/libijksdl.so'
+        pickFirst 'lib/x86_64/libijkplayer.so'
+        //c c++ 软解硬解  解码
+        pickFirst 'lib/x86/libijkffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libijkplayer.so'
+        pickFirst 'lib/arm64-v8a/libijkffmpeg.so'
+        pickFirst 'lib/armeabi-v7a/libijkffmpeg.so'
+        pickFirst 'lib/x86_64/libijkffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libijksdl.so'
+        pickFirst 'lib/armeabi-v7a/libijksdl.so'
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -83,5 +126,6 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]
+    annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
 }

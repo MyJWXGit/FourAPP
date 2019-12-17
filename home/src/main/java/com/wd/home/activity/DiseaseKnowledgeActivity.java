@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.wd.common.base.BaseActivity;
 import com.wd.home.R;
+import com.wd.home.R2;
 import com.wd.home.api.Constant;
 import com.wd.home.bean.DyugBean;
 import com.wd.home.contract.Contract;
@@ -18,17 +19,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DiseaseKnowledgeActivity extends BaseActivity<Fragment_Presenter> implements Contract.IView {
-    @BindView(R.id.text_name)
+    @BindView(R2.id.text_name)
     TextView textName;
-    @BindView(R.id.pathology)
+    @BindView(R2.id.pathology)
     TextView pathology;
-    @BindView(R.id.symptom)
+    @BindView(R2.id.symptom)
     TextView symptom;
-    @BindView(R.id.benefitTaboo)
+    @BindView(R2.id.benefitTaboo)
     TextView benefitTaboo;
-    @BindView(R.id.chineseMedicineTreatment)
+    @BindView(R2.id.chineseMedicineTreatment)
     TextView chineseMedicineTreatment;
-    @BindView(R.id.westernMedicineTreatment)
+    @BindView(R2.id.westernMedicineTreatment)
     TextView westernMedicineTreatment;
 
     @Override

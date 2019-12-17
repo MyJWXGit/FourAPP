@@ -14,7 +14,7 @@ android {
         //Arouter路由配置
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -24,11 +24,37 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'lib/armeabi-v7a/libijkplayer.so'
+        pickFirst 'lib/armeabi-v7a/libnms.so'
+        pickFirst 'lib/x86/libijksdl.so'
+        pickFirst 'lib/x86/libijkplayer.so'
+        pickFirst 'lib/x86_64/libijksdl.so'
+        pickFirst 'lib/x86_64/libijkplayer.so'
+        //c c++ 软解硬解  解码
+        pickFirst 'lib/x86/libijkffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libijkplayer.so'
+        pickFirst 'lib/arm64-v8a/libijkffmpeg.so'
+        pickFirst 'lib/armeabi-v7a/libijkffmpeg.so'
+        pickFirst 'lib/x86_64/libijkffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libijksdl.so'
+        pickFirst 'lib/armeabi-v7a/libijksdl.so'
+    }
     //ButterKnife需要   model中的andorid选项中   兼容java8
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+configurations.all {
+    resolutionStrategy.force 'com.android.support:support-annotations:28.0.0'
 }
 
 dependencies {
@@ -42,17 +68,11 @@ dependencies {
     implementation rootProject.ext.dependencies["recyclerview-v7"]
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
-
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
-    //annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-    //annotationProcessor rootProject.ext.dependencies["dagger2-apt-compiler"]
+    implementation rootProject.ext.dependencies["fresco"]
     provided rootProject.ext.dependencies["javax.annotation"]
-//路由器
-    implementation 'com.alibaba:arouter-api:1.4.1'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-    implementation project(path: ':common')
-
-    //implementation project(':video')
-    //implementation project(':main')
+    //路由器
+    annotationProcessor 'com.alibaba:arouter-compiler:+'
+    implementation project(':common')
+    implementation project(':home')
+    implementation project(':video')
 }

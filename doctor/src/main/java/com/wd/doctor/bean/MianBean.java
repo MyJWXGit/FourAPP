@@ -7,8 +7,9 @@ package com.wd.doctor.bean;
  */
 public class MianBean {
 
+
     /**
-     * result : {"departmentId":5,"departmentName":"小儿科","goodField":"儿科","id":161,"inauguralHospital":"清华大学附属医院","jobTitle":"妙手回春","name":"婉珍"}
+     * result : {"departmentId":5,"departmentName":"小儿科","goodField":"儿科","id":161,"imagePic":"http://172.17.8.100/images/health/doctor/image_pic/2019-12-16/y3zPf020191216184025.jpg","inauguralHospital":"清华大学附属医院","jobTitle":"妙手回春","name":"婉珍"}
      * message : 查询成功
      * status : 0000
      */
@@ -47,6 +48,7 @@ public class MianBean {
          * departmentName : 小儿科
          * goodField : 儿科
          * id : 161
+         * imagePic : http://172.17.8.100/images/health/doctor/image_pic/2019-12-16/y3zPf020191216184025.jpg
          * inauguralHospital : 清华大学附属医院
          * jobTitle : 妙手回春
          * name : 婉珍
@@ -56,6 +58,7 @@ public class MianBean {
         private String departmentName;
         private String goodField;
         private int id;
+        private String imagePic;
         private String inauguralHospital;
         private String jobTitle;
         private String name;
@@ -90,6 +93,14 @@ public class MianBean {
 
         public void setId(int id) {
             this.id = id;
+        }
+
+        public String getImagePic() {
+            return imagePic;
+        }
+
+        public void setImagePic(String imagePic) {
+            this.imagePic = imagePic;
         }
 
         public String getInauguralHospital() {

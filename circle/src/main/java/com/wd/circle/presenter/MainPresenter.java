@@ -44,7 +44,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onLogin(String email, String pwd) {
-        mainModel.onLogin(email, pwd, new com.wd.circle.contract.Contract.IModer.IBallBask() {
+        mainModel.onLogin(email, pwd, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()) {

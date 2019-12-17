@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.ToastUtils;
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.present.LoginPresenter;
@@ -22,15 +23,15 @@ import butterknife.OnClick;
 
 public class RegisterActivity3 extends BaseActivity<LoginPresenter> implements Contract.IView {
 
-    @BindView(R.id.regiser_name)
+    @BindView(R2.id.regiser_name)
     EditText regiserName;
-    @BindView(R.id.regiser_hospital)
+    @BindView(R2.id.regiser_hospital)
     EditText regiserHospital;
-    @BindView(R.id.regiser_administrative)
+    @BindView(R2.id.regiser_administrative)
     EditText regiserAdministrative;
-    @BindView(R.id.regiser_occupation)
+    @BindView(R2.id.regiser_occupation)
     EditText regiserOccupation;
-    @BindView(R.id.register_xia)
+    @BindView(R2.id.register_xia)
     Button registerXia;
     private String youxiang;
     private String jianyan;
@@ -72,7 +73,7 @@ public class RegisterActivity3 extends BaseActivity<LoginPresenter> implements C
         return R.layout.activity_register3;
     }
 
-    @OnClick(R.id.register_xia)
+    @OnClick(R2.id.register_xia)
     public void onViewClicked() {
         String name = regiserName.getText().toString().trim();
         String yiyuan = regiserHospital.getText().toString().trim();

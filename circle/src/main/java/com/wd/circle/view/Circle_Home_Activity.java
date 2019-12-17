@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.circle.R;
+import com.wd.circle.R2;
 import com.wd.circle.api.Constant;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.Circle_lists_Bean;
@@ -43,29 +44,29 @@ import butterknife.Unbinder;
 public class Circle_Home_Activity extends BaseActivity<MainPresenter> implements Contract.IView, ObservableScrollView.ScrollViewListener {
 
 
-    @BindView(R.id.circle_touxiang)
+    @BindView(R2.id.circle_touxiang)
     SimpleDraweeView circleTouxiang;
-    @BindView(R.id.circle_message)
+    @BindView(R2.id.circle_message)
     ImageView circleMessage;
-    @BindView(R.id.circle_recy1)
+    @BindView(R2.id.circle_recy1)
     RecyclerView circleRecy1;
-    @BindView(R.id.circle_recy2)
+    @BindView(R2.id.circle_recy2)
     RecyclerView circleRecy2;
-    @BindView(R.id.patient_relative_titlebar)
+    @BindView(R2.id.patient_relative_titlebar)
     RelativeLayout patientRelativeTitlebar;
-    @BindView(R.id.patient_tv_department_name)
+    @BindView(R2.id.patient_tv_department_name)
     TextView patientTvDepartmentName;
-    @BindView(R.id.patient_iv_user_news)
+    @BindView(R2.id.patient_iv_user_news)
     ImageView patientIvUserNews;
-    @BindView(R.id.patient_relative_serach)
+    @BindView(R2.id.patient_relative_serach)
     RelativeLayout patientRelativeSerach;
-    @BindView(R.id.patient_iv_search)
+    @BindView(R2.id.patient_iv_search)
     ImageView patientIvSearch;
-    @BindView(R.id.patient_linear_layout)
+    @BindView(R2.id.patient_linear_layout)
     LinearLayout patientLinearLayout;
-    @BindView(R.id.patient_scorll_view)
+    @BindView(R2.id.patient_scorll_view)
     ObservableScrollView patientScorllView;
-    @BindView(R.id.citcle_edit)
+    @BindView(R2.id.citcle_edit)
     EditText citcleEdit;
     private int height;
     private List<Circle_list_Bean.ResultBean> result;

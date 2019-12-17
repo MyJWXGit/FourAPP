@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.wd.common.base.BaseActivity;
 import com.wd.home.R;
+import com.wd.home.R2;
 import com.wd.home.api.Constant;
 import com.wd.home.bean.IllnessBean;
 import com.wd.home.contract.Contract;
@@ -17,29 +18,29 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DrugActivity extends BaseActivity<Fragment_Presenter> implements Contract.IView {
-    @BindView(R.id.line1)
+    @BindView(R2.id.line1)
     LinearLayout line1;
-    @BindView(R.id.text_name)
+    @BindView(R2.id.text_name)
     TextView textName;
-    @BindView(R.id.component)
+    @BindView(R2.id.component)
     TextView component;
-    @BindView(R.id.taboo)
+    @BindView(R2.id.taboo)
     TextView taboo;
-    @BindView(R.id.effect)
+    @BindView(R2.id.effect)
     TextView effect;
-    @BindView(R.id.usage)
+    @BindView(R2.id.usage)
     TextView usage;
-    @BindView(R.id.shape)
+    @BindView(R2.id.shape)
     TextView shape;
-    @BindView(R.id.packing)
+    @BindView(R2.id.packing)
     TextView packing;
-    @BindView(R.id.sideEffects)
+    @BindView(R2.id.sideEffects)
     TextView sideEffects;
-    @BindView(R.id.storage)
+    @BindView(R2.id.storage)
     TextView storage;
-    @BindView(R.id.minMatter)
+    @BindView(R2.id.minMatter)
     TextView minMatter;
-    @BindView(R.id.approvalNumber)
+    @BindView(R2.id.approvalNumber)
     TextView approvalNumber;
 
     @Override

@@ -21,7 +21,7 @@ public interface Contract {
     //Activity  P层方法
     interface IPresenter {
         //注册
-        void onRegister(String email, String code, String pwd1, String pwd2, String name,String inauguralHospital,String departmentName,String jobTitle,String personalProfile,String goodField);
+        void onRegister(String email, String code, String pwd1, String pwd2, String name, String inauguralHospital, String departmentName, String jobTitle, String personalProfile, String goodField);
        //发送邮箱
         void Send(String email);
         //检验验证码
@@ -29,36 +29,42 @@ public interface Contract {
         //登录
         void onLogin(String email, String pwd);
         //个人信息
-        void Mian(int doctorId,String sessionId);
+        void Mian(int doctorId, String sessionId);
         //骨科
         void Inquer();
         //病友圈
-        void Patients(int departmentId,int page,int count);
+        void Patients(int departmentId, int page, int count);
         //根据关键词查询病友圈
         void Streanm(String keyWord);
         //查询病友圈详情
         void Details(int doctorId, String sessionId, int sickCircleId);
+        //发表评论
+        void Publish(int doctorId, String sessionId, int sickCircleId, String content);
+        //系统形象照
+        void Imagep();
     }
 
     //Activity  M层
     interface IModer {
         //注册
-        void onRegister(String email, String code, String pwd1, String pwd2,String name,String inauguralHospital,String departmentName,String jobTitle,String personalProfile,String goodField, IBallBask iBallBask);
+        void onRegister(String email, String code, String pwd1, String pwd2, String name, String inauguralHospital, String departmentName, String jobTitle, String personalProfile, String goodField, IBallBask iBallBask);
         //发送邮箱
-        void Send(String email,IBallBask iBallBask);
+        void Send(String email, IBallBask iBallBask);
         //检验验证码
-        void Verif(String email,String code,IBallBask iBallBask);
+        void Verif(String email, String code, IBallBask iBallBask);
         //登录
         void onLogin(String email, String pwd, IBallBask iBallBask);
         //个人信息
-        void Mian(int doctorId,String sessionId,IBallBask iBallBask);
+        void Mian(int doctorId, String sessionId, IBallBask iBallBask);
         //根据关键词查询病友圈
-        void Streanm(String keyWord,IBallBask iBallBask);
+        void Streanm(String keyWord, IBallBask iBallBask);
         //发表评论
-       // void Publish(int doctorId,String sessionId,int sickCircleId,String content,IBallBask iBallBask);
+        void Publish(int doctorId, String sessionId, int sickCircleId, String content, IBallBask iBallBask);
        //查询病友圈详情
-        void Details(int doctorId, String sessionId, int sickCircleId, IModer.IBallBask iBallBask);
+        void Details(int doctorId, String sessionId, int sickCircleId, IBallBask iBallBask);
         void Inquer(IBallBask iBallBask);
+        //系统形象照
+        void Imagep(IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 

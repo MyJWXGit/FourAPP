@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.circle.R;
+import com.wd.circle.R2;
 import com.wd.circle.api.Constant;
 import com.wd.circle.bean.Circle_Comment_Bean;
 import com.wd.circle.bean.Circle_Details_Bean;
@@ -36,47 +37,47 @@ import butterknife.ButterKnife;
 public class Circle_Details_Activity extends BaseActivity<MainPresenter> implements Contract.IView {
 
 
-    @BindView(R.id.patient_iv_user_head_pic)
+    @BindView(R2.id.patient_iv_user_head_pic)
     SimpleDraweeView patientIvUserHeadPic;
-    @BindView(R.id.patient_activity_tv_title)
+    @BindView(R2.id.patient_activity_tv_title)
     TextView patientActivityTvTitle;
-    @BindView(R.id.patient_iv_user_message)
+    @BindView(R2.id.patient_iv_user_message)
     ImageView patientIvUserMessage;
-    @BindView(R.id.patient_relative_titlebar)
+    @BindView(R2.id.patient_relative_titlebar)
     RelativeLayout patientRelativeTitlebar;
-    @BindView(R.id.patient_activity_tv_adoptNickName)
+    @BindView(R2.id.patient_activity_tv_adoptNickName)
     TextView patientActivityTvAdoptNickName;
-    @BindView(R.id.patient_activity_tv_disease)
+    @BindView(R2.id.patient_activity_tv_disease)
     TextView patientActivityTvDisease;
-    @BindView(R.id.patient_activity_tv_department)
+    @BindView(R2.id.patient_activity_tv_department)
     TextView patientActivityTvDepartment;
-    @BindView(R.id.patient_activity_tv_detail)
+    @BindView(R2.id.patient_activity_tv_detail)
     TextView patientActivityTvDetail;
-    @BindView(R.id.patient_activity_tv_treatment_time)
+    @BindView(R2.id.patient_activity_tv_treatment_time)
     TextView patientActivityTvTreatmentTime;
-    @BindView(R.id.patient_activity_tv_treatmentProcess)
+    @BindView(R2.id.patient_activity_tv_treatmentProcess)
     TextView patientActivityTvTreatmentProcess;
-    @BindView(R.id.patient_activity_iv_picture)
+    @BindView(R2.id.patient_activity_iv_picture)
     ImageView patientActivityIvPicture;
-    @BindView(R.id.patient_activity_tv_commentNum)
+    @BindView(R2.id.patient_activity_tv_commentNum)
     TextView patientActivityTvCommentNum;
-    @BindView(R.id.patient_activity_iv_content)
+    @BindView(R2.id.patient_activity_iv_content)
     ImageView patientActivityIvContent;
-    @BindView(R.id.patient_activity_tv_collectionNum)
+    @BindView(R2.id.patient_activity_tv_collectionNum)
     TextView patientActivityTvCollectionNum;
-    @BindView(R.id.recycler_sick_circle_comment_list)
+    @BindView(R2.id.recycler_sick_circle_comment_list)
     RecyclerView recyclerSickCircleCommentList;
-    @BindView(R.id.patient_activity_iv_cancel)
+    @BindView(R2.id.patient_activity_iv_cancel)
     ImageView patientActivityIvCancel;
-    @BindView(R.id.patient_activity_et_content)
+    @BindView(R2.id.patient_activity_et_content)
     EditText patientActivityEtContent;
-    @BindView(R.id.patient_activity_iv_send_content)
+    @BindView(R2.id.patient_activity_iv_send_content)
     ImageView patientActivityIvSendContent;
-    @BindView(R.id.patient_activity_relative_content)
+    @BindView(R2.id.patient_activity_relative_content)
     RelativeLayout patientActivityRelativeContent;
-    @BindView(R.id.patient_activity_iv_intent_release_sickCircle)
+    @BindView(R2.id.patient_activity_iv_intent_release_sickCircle)
     ImageView patientActivityIvIntentReleaseSickCircle;
-    @BindView(R.id.patient_activity_relative_release_sickCircle)
+    @BindView(R2.id.patient_activity_relative_release_sickCircle)
     RelativeLayout patientActivityRelativeReleaseSickCircle;
     private int userId;
     private String sessionId;
@@ -99,7 +100,7 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
         patientIvUserHeadPic.setImageURI(o);
         Intent intent = getIntent();
         int sickCircleId = intent.getIntExtra("sickCircleId", 0);
-        mPresenter.onDetails(sickCircleId, userId +"", sessionId);
+        mPresenter.onDetails(sickCircleId, userId + "", sessionId);
 
         patientActivityIvContent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,17 +168,17 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
                     .into(patientActivityIvPicture);
             patientActivityTvCommentNum.setText(result.getCommentNum() + "");
             patientActivityTvCollectionNum.setText(result.getCollectionNum() + "");
-        }else if (obj instanceof Circle_Comment_Bean){
-            Circle_Comment_Bean circle_comment_bean= (Circle_Comment_Bean) obj;
-            if (circle_comment_bean.getStatus().equals("0000")){
+        } else if (obj instanceof Circle_Comment_Bean) {
+            Circle_Comment_Bean circle_comment_bean = (Circle_Comment_Bean) obj;
+            if (circle_comment_bean.getStatus().equals("0000")) {
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 recyclerSickCircleCommentList.setLayoutManager(linearLayoutManager);
-                RecycleView_Comment_Adapter recycleView_comment_adapter=new RecycleView_Comment_Adapter(circle_comment_bean.getResult(),this);
+                RecycleView_Comment_Adapter recycleView_comment_adapter = new RecycleView_Comment_Adapter(circle_comment_bean.getResult(), this);
                 recyclerSickCircleCommentList.setAdapter(recycleView_comment_adapter);
             }
-        }else if (obj instanceof CommentBean){
-            CommentBean commentBean= (CommentBean) obj;
+        } else if (obj instanceof CommentBean) {
+            CommentBean commentBean = (CommentBean) obj;
             if (commentBean.getStatus().equals("0000")) {
                 Toast.makeText(this, commentBean.getMessage(), Toast.LENGTH_SHORT).show();
                 patientActivityEtContent.setText("");

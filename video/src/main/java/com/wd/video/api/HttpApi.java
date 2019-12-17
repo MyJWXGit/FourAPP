@@ -17,5 +17,5 @@ import rx.Observable;
     Observable<Video_EntryBean> getVideo_Entry();
     //根据类目id查询视频
     @GET(API.VIDEO_QUERY)
-    Observable<Video_QueryBean> getViewo_Query(@Header("userId")String userId, @Header("sessionId")String sessionId, @Query("categoryId")String categoryId,@Query("page")String page,@Query("count")String count);
+    Observable<Video_QueryBean> getViewo_Query(@Header("userId") String userId, @Header("sessionId") String sessionId, @Query("categoryId") String categoryId, @Query("page") String page, @Query("count") String count);
 }

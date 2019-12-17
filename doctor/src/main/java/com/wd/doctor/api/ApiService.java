@@ -1,6 +1,7 @@
 package com.wd.doctor.api;
 
 import com.wd.doctor.bean.DetailsBean;
+import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.InquiryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.MianBean;
@@ -45,7 +46,7 @@ public interface ApiService {
                                       @Field("jobTitle") String jobTitle,
                                       @Field("personalProfile") String personalProfile,
                                       @Field("goodField") String goodField
-                                      );
+    );
     //发送邮箱
     @FormUrlEncoded
     @POST("health/doctor/v1/sendEmailCode")
@@ -53,24 +54,27 @@ public interface ApiService {
     //检验验证码
     @FormUrlEncoded
     @POST("health/doctor/v1/checkCode")
-    Observable<VerifyBean> Verif(@Field("email") String email,@Field("code") String code);
+    Observable<VerifyBean> Verif(@Field("email") String email, @Field("code") String code);
     //医生信息
     @GET("health/doctor/verify/v1/findDoctorById")
-    Observable<MianBean> Mian(@Header("doctorId") int doctorId,@Header("sessionId") String sessionId);
+    Observable<MianBean> Mian(@Header("doctorId") int doctorId, @Header("sessionId") String sessionId);
     //
     @GET("health/share/knowledgeBase/v1/findDepartment")
     Observable<InquiryBean> Inquiry();
     //病友圈展示
     @GET("health/doctor/sickCircle/v1/findSickCircleList")
-    Observable<PatientsBean> Patients(@Query("departmentId") int departmentId,@Query("page") int page,@Query("count") int count);
+    Observable<PatientsBean> Patients(@Query("departmentId") int departmentId, @Query("page") int page, @Query("count") int count);
     //根据关键词查询病友圈
     @GET("health/doctor/sickCircle/v1/searchSickCircle")
     Observable<StreamBean> Stram(@Query("keyWord") String keyWord);
     //查询病友圈详情
     @GET("health/doctor/sickCircle/v1/findSickCircleInfo")
-    Observable<DetailsBean> Detals(@Header("doctorId") int doctorId,@Header("sessionId") String sessionId,@Query("sickCircleId") int sickCircleId);
+    Observable<DetailsBean> Detals(@Header("doctorId") int doctorId, @Header("sessionId") String sessionId, @Query("sickCircleId") int sickCircleId);
    //发表评论
     @FormUrlEncoded
     @POST("health/doctor/sickCircle/verify/v1/publishComment")
-    Observable<PublishBean> Publish(@Header("doctorId") int doctorId,@Header("sessionId") String sessionId,@Query("sickCircleId") int sickCircleId,@Field("content") String content);
+    Observable<PublishBean> Publish(@Header("doctorId") int doctorId, @Header("sessionId") String sessionId, @Query("sickCircleId") int sickCircleId, @Field("content") String content);
+    //系统照片
+    @GET("health/doctor1/findSystemImagePic")
+    Observable<ImagePicBean> Imagep();
 }

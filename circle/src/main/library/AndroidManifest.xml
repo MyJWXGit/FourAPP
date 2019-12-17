@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wd.circle">
+
+    <application>
+        <activity android:name=".view.Circle_Details_Activity"></activity>
+        <activity android:name=".view.Circle_Home_Activity" />
+        <activity android:name=".view.MainActivity"></activity>
+    </application>
+
+</manifest>

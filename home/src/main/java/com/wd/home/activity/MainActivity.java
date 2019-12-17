@@ -11,14 +11,15 @@ import android.widget.TextView;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.base.BasePresenter;
 import com.wd.home.R;
+import com.wd.home.R2;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
-    @BindView(R.id.image_guide)
+    @BindView(R2.id.image_guide)
     ImageView imageGuide;
-    @BindView(R.id.text_time)
+    @BindView(R2.id.text_time)
     TextView textTime;
     private int i = 3;
     private Handler handler = new Handler() {

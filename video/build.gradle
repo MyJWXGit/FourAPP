@@ -1,17 +1,19 @@
-apply plugin: 'com.android.application'
-
+if (Boolean.valueOf(rootProject.ext.isModule)) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
-        applicationId "com.wd.health"
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
 
         //Arouter路由配置
         javaCompileOptions {
@@ -28,10 +30,50 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-//ButterKnife需要   model中的andorid选项中   兼容java8
+
+
+    //ButterKnife需要   model中的andorid选项中   兼容java8
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    //在Home下的build.gradle文件中配置AndroidManifest.xml
+    //false是release包  release包本mode是library  不可以单独运行
+    //true是debug包  debug包可以当做mode 可以单独运行
+    sourceSets {
+        main {
+            if (Boolean.valueOf(rootProject.ext.isModule)) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/library/AndroidManifest.xml'
+                java {
+                    //library模式下，排除java/debug文件夹下的所有文件
+                    exclude '*module'
+                }
+            }
+        }
+    }
+    packagingOptions {
+        exclude 'lib/armeabi-v7a/libijkplayer.so'
+        pickFirst 'lib/armeabi-v7a/libnms.so'
+        pickFirst 'lib/x86/libijksdl.so'
+        pickFirst 'lib/x86/libijkplayer.so'
+        pickFirst 'lib/x86_64/libijksdl.so'
+        pickFirst 'lib/x86_64/libijkplayer.so'
+        //c c++ 软解硬解  解码
+        pickFirst 'lib/x86/libijkffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libijkplayer.so'
+        pickFirst 'lib/arm64-v8a/libijkffmpeg.so'
+        pickFirst 'lib/armeabi-v7a/libijkffmpeg.so'
+        pickFirst 'lib/x86_64/libijkffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libijksdl.so'
+        pickFirst 'lib/armeabi-v7a/libijksdl.so'
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
     }
 }
 
@@ -55,7 +97,29 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]
+    implementation rootProject.ext.dependencies["jiecao"]
     implementation rootProject.ext.dependencies["tablayout"]
+    implementation rootProject.ext.dependencies["glide"]
+    /*  implementation rootProject.ext.dependencies["dkplayer-java"]
+      implementation rootProject.ext.dependencies["dkplayer-armv7a"]
+      implementation rootProject.ext.dependencies["dkplayer-armv5"]
+      implementation rootProject.ext.dependencies["dkplayer-arm64"]
+      implementation rootProject.ext.dependencies["dkplayer-x86"]
+      implementation rootProject.ext.dependencies["dkplayer-x86_64"]
+      implementation rootProject.ext.dependencies["dkplayer-ui"]*/
+    implementation 'com.yanzhenjie:permission:2.0.3'
+    //    # 必选，可兼容市面上绝大部分设备
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.5'
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-armv7a:2.5.5'
+//    # 可选，用于兼容一些其他的CPU架构
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-armv5:2.5.5'
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-arm64:2.5.5'
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-x86:2.5.5'
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-x86_64:2.5.5'
+//    # 可选，里面包含StandardVideoController的实现
+    implementation 'com.github.dueeeke.dkplayer:dkplayer-ui:2.5.5'
+
+    annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
 
 }

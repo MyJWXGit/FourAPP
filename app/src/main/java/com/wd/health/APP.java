@@ -1,5 +1,6 @@
 package com.wd.health;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wd.common.BaseAPPlication;
 import com.wd.common.app.App;
 
@@ -14,5 +15,9 @@ import com.wd.common.app.App;
  * @class describe
  */
 public class APP extends App {
-
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Fresco.initialize(this);
+    }
 }
