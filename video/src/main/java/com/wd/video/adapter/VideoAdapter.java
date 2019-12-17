@@ -1,75 +1,42 @@
 package com.wd.video.adapter;
 
-
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.wd.video.R;
-import com.wd.video.bean.Video_EntryBean;
+import com.wd.video.bean.Video_QueryBean;
+import com.wd.video.fragment.Video_QueryFragment;
 
 import java.util.List;
 
 /*
  *author:郭昊坤
- *date:2019/12/13
- *function:*/public class VideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Video_EntryBean.ResultBean> list;
-    private Context context;
+ *date:2019/12/17
+ *function:*/public class VideoAdapter extends FragmentPagerAdapter {
+     List<Video_QueryBean.ResultBean> list;
+        String entyid;
 
-    public VideoAdapter(List<Video_EntryBean.ResultBean> list, Context context) {
+    public VideoAdapter( FragmentManager fm, List<Video_QueryBean.ResultBean> list, String entyid) {
+        super(fm);
         this.list = list;
-        this.context = context;
+        this.entyid = entyid;
     }
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.video_entry_layout, parent, false);
-        return new ViewHolder(inflate);
+    public Fragment getItem(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString("yingyuanid",entyid);
+        Video_QueryFragment video_queryFragment = new Video_QueryFragment();
+        video_queryFragment.setArguments(bundle);
+        return video_queryFragment;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof ViewHolder){
-            ((ViewHolder) holder).recy_up_text.setText(list.get(position).getName());
-            ((ViewHolder) holder).recy_up_text.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String id = list.get(position).getId();
-                    setOnClick.onClick(id);
-                }
-            });
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        return list.size();
-    }
-    class ViewHolder extends RecyclerView.ViewHolder{
-
-        private final TextView recy_up_text;
-        private final LinearLayout linear_video;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            recy_up_text = itemView.findViewById(R.id.recy_up_text);
-            linear_video = itemView.findViewById(R.id.linear_video);
-        }
-    }
-    public interface setOnClick{
-        void onClick(String entryid);
-    }
-    private setOnClick setOnClick;
-
-    public void setSetOnClick(VideoAdapter.setOnClick setOnClick) {
-        this.setOnClick = setOnClick;
+    public int getCount() {
+        return 0;
     }
 }

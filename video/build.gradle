@@ -33,6 +33,8 @@ android {
 
 
     //ButterKnife需要   model中的andorid选项中   兼容java8
+
+//ButterKnife需要   model中的andorid选项中   兼容java8
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -75,6 +77,23 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    packagingOptions {
+        exclude 'lib/armeabi-v7a/libijkplayer.so'
+        pickFirst 'lib/armeabi-v7a/libnms.so'
+        pickFirst 'lib/x86/libijksdl.so'
+        pickFirst 'lib/x86/libijkplayer.so'
+        pickFirst 'lib/x86_64/libijksdl.so'
+        pickFirst 'lib/x86_64/libijkplayer.so'
+        //c c++ 软解硬解  解码
+        pickFirst 'lib/x86/libijkffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libijkplayer.so'
+        pickFirst 'lib/arm64-v8a/libijkffmpeg.so'
+        pickFirst 'lib/armeabi-v7a/libijkffmpeg.so'
+        pickFirst 'lib/x86_64/libijkffmpeg.so'
+        pickFirst 'lib/arm64-v8a/libijksdl.so'
+        pickFirst 'lib/armeabi-v7a/libijksdl.so'
+    }
+
 }
 
 dependencies {

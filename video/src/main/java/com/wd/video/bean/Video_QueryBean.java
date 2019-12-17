@@ -162,7 +162,7 @@ import java.util.List;
             this.whetherCollection = whetherCollection;
         }
 
-        public static List<ResultBean> arrayVideo_QueryBeanFromData(String str) {
+        public static List<Video_QueryBean.ResultBean> arrayVideo_QueryBeanFromData(String str) {
 
             Type listType = new TypeToken<ArrayList<ResultBean>>() {
             }.getType();
