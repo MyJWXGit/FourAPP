@@ -12,11 +12,16 @@ import com.wd.circle.bean.CommentBean;
 import com.wd.circle.bean.DiseaseBean;
 import com.wd.circle.bean.DoTaskBean;
 import com.wd.circle.bean.LoginBean;
+import com.wd.circle.bean.PictureBean;
+import com.wd.circle.bean.RepleaseCircleBean;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.bean.UserTaskListBean;
 import com.wd.circle.contract.Contract;
 import com.wd.common.utils.HttpUtils;
 
+import java.util.Map;
+
+import okhttp3.MultipartBody;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -288,6 +293,58 @@ public class MainModel implements Contract.IModer {
                     public void onNext(DiseaseBean diseaseBean) {
                         if (diseaseBean!=null){
                             iBallBask.onHttpOK(diseaseBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onReplease(String userId, String sessionId, Map<String, Object> map, IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .onRepleaseCircleBean(userId, sessionId, map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<RepleaseCircleBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(RepleaseCircleBean repleaseCircleBean) {
+                        if (repleaseCircleBean!=null){
+                            iBallBask.onHttpOK(repleaseCircleBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onPicture(String userId, String sessionId, int sickCircleId, MultipartBody.Part part, IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .onPictureBean(userId, sessionId, sickCircleId, part)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<PictureBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(PictureBean pictureBean) {
+                        if (pictureBean!=null){
+                            iBallBask.onHttpOK(pictureBean);
                         }
                     }
                 });
