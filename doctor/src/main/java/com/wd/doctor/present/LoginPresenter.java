@@ -19,6 +19,8 @@ import com.wd.doctor.contract.Contract;
 import com.wd.doctor.model.FragmentModel;
 import com.wd.doctor.model.LoginModel;
 
+import java.util.Map;
+
 
 /**
  * date:2019/11/6
@@ -333,6 +335,33 @@ public class LoginPresenter extends BasePresenter<Contract.IView> implements Con
                  }
              }
          });
+    }
+
+    @Override
+    public void onZhucec(Map<String, Object> paramsMap) {
+        model.onZhucec(paramsMap, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    RegisterBean bean = (RegisterBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
     }
 }
 

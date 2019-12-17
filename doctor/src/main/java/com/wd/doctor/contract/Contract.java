@@ -4,6 +4,8 @@ package com.wd.doctor.contract;
 import com.wd.common.base.IBaseView;
 import com.wd.doctor.bean.LoginBean;
 
+import java.util.Map;
+
 
 /**
  * date:2019/11/6
@@ -42,10 +44,13 @@ public interface Contract {
         void Publish(int doctorId, String sessionId, int sickCircleId, String content);
         //系统形象照
         void Imagep();
+        void onZhucec(Map<String, Object> paramsMap);
     }
 
     //Activity  M层
     interface IModer {
+        //注册
+        void onZhucec(Map<String, Object> paramsMap,IBallBask iBallBask);
         //注册
         void onRegister(String email, String code, String pwd1, String pwd2,String name,String inauguralHospital,String departmentName,String jobTitle,String personalProfile,String goodField, IBallBask iBallBask);
         //发送邮箱
