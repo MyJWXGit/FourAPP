@@ -6,9 +6,9 @@
     </solid>-->
     <!-- 设置圆角 -->
     <corners
+        android:radius="@dimen/dp_1"
         android:bottomLeftRadius="@dimen/dp_8"
         android:bottomRightRadius="@dimen/dp_8"
-        android:radius="@dimen/dp_1"
         android:topLeftRadius="@dimen/dp_8"
         android:topRightRadius="@dimen/dp_8" >
     </corners>
