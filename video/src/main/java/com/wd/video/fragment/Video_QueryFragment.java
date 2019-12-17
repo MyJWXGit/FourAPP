@@ -20,6 +20,7 @@ import com.dueeeke.videoplayer.player.PlayerConfig;
 import com.wd.common.base.BaseFragment;
 import com.wd.common.utils.Logger;
 import com.wd.video.R;
+import com.wd.video.R2;
 import com.wd.video.VideoActivity;
 import com.wd.video.adapter.Video_QueryAdapter;
 import com.wd.video.bean.Video_QueryBean;
@@ -38,7 +39,7 @@ public class Video_QueryFragment extends BaseFragment<Video_QueryFPresenter> imp
 
 
     private static final String TAG = "Video_QueryFragment";
-    @BindView(R.id.video_down)
+    @BindView(R2.id.video_down)
     RecyclerView videoDown;
     private int mCurrentPosition;
     private IjkVideoView mIjkVideoView;
