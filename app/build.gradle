@@ -73,6 +73,6 @@ dependencies {
     //路由器
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
-    implementation project(':home')
-    implementation project(':video')
+   /* implementation project(':home')
+    implementation project(':video')*/
 }

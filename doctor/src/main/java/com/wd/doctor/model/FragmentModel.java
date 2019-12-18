@@ -3,7 +3,9 @@ package com.wd.doctor.model;
 import com.wd.common.utils.HttpUtils;
 import com.wd.doctor.api.ApiService;
 import com.wd.doctor.bean.DetailsBean;
+import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.PatientsBean;
+import com.wd.doctor.bean.UploadingBean;
 import com.wd.doctor.contract.Contract;
 
 import rx.Observer;
@@ -70,6 +72,64 @@ public class FragmentModel implements Contract.FModer{
                         //成功的方法
                         if (iBallBask != null) {
                             iBallBask.onHttpOK(detailsBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void Imagep(Contract.IModer.IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
+                .Imagep()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<ImagePicBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ImagePicBean imagePicBean) {
+                        //成功的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(imagePicBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void Uploading(int doctorId, String sessionId, String imagePic, Contract.IModer.IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
+                .Uploading(doctorId, sessionId, imagePic)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<UploadingBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(UploadingBean uploadingBean) {
+                        //成功的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(uploadingBean);
                         }
                     }
                 });

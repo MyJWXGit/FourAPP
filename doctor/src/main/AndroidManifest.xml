@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.message.PersonageActivity"></activity>
+        <activity android:name=".view.activity.PictureActivity"></activity>
+        <activity android:name=".view.activity.message.PersonageActivity" />
         <activity android:name=".view.activity.message.MessageActivity" />
         <activity android:name=".view.activity.DetailsActivity" />
         <activity android:name=".view.activity.myview.StreamingActivity" />
@@ -24,6 +25,7 @@
         <activity android:name=".view.activity.RegisterActivity" />
         <activity android:name=".view.activity.LoginActivity" />
         <activity android:name=".view.activity.MainActivity" />
+        <activity android:name=".view.activity.SystemActivity" />
         <activity android:name=".view.activity.GuideActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

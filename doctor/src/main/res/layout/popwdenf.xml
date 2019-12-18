@@ -16,6 +16,7 @@
              android:background="@drawable/butterd"
              android:text="更换形象照"
              android:textColor="#3087ea"
+             android:id="@+id/genghuan"
              />
          <Button
              android:layout_width="match_parent"
@@ -24,6 +25,7 @@
              android:background="@drawable/butterd"
              android:text="取消"
              android:textColor="#3087ea"
+             android:id="@+id/quxiao"
              />
      </LinearLayout>
 </RelativeLayout>

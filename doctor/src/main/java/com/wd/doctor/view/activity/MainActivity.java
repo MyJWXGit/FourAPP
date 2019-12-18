@@ -71,6 +71,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements Contra
 
     @Override
     protected void initView() {
+        ButterKnife.bind(this);
         Intent intent = getIntent();
         doctorId = intent.getIntExtra("doctorId", 0);
         sessionId = intent.getStringExtra("sessionId");
@@ -129,6 +130,10 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements Contra
             intent.putExtra("sessionId", sessionId);
             startActivity(intent);
         } else if (id == R.id.main_my) {
+            Intent intent=new Intent(MainActivity.this,MessageActivity.class);
+            intent.putExtra("doctorId", doctorId);
+            intent.putExtra("sessionId", sessionId);
+            startActivity(intent);
         } else if (id == R.id.main_headportrait) {
         }
     }

@@ -14,9 +14,11 @@ import com.wd.doctor.bean.PublishBean;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
 import com.wd.doctor.bean.StreamBean;
+import com.wd.doctor.bean.UploadingBean;
 import com.wd.doctor.bean.VerifyBean;
 import com.wd.doctor.contract.Contract;
 
+import java.io.File;
 import java.util.Map;
 
 import rx.Observer;
@@ -361,6 +363,35 @@ public class LoginModel implements Contract.IModer {
                         //成功的方法
                         if (iBallBask != null) {
                             iBallBask.onHttpOK(imagePicBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void Uploading(int doctorId, String sessionId, String imagePic, IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
+                .Uploading(doctorId,sessionId,imagePic)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<UploadingBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(UploadingBean uploadingBean) {
+                        //成功的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(uploadingBean);
                         }
                     }
                 });
