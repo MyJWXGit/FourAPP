@@ -21,8 +21,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:background="@mipmap/dermatology"
-            app:failureImage="@drawable/ic_launcher_background"
-            app:placeholderImage="@drawable/ic_launcher_background"
+
             app:roundAsCircle="true" />
 
         <ImageView
@@ -32,7 +31,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:src="@mipmap/common_nav_message_black_n"/>
+            android:src="@mipmap/common_nav_message_black_s" />
 
     </RelativeLayout>
 
@@ -54,6 +53,7 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/citcle_edit"
             android:layout_width="210dp"
             android:layout_height="28dp"
             android:layout_centerHorizontal="true"
@@ -62,7 +62,6 @@
             android:hint="请输入病症名称或标题关键字"
             android:paddingLeft="10dp"
             android:src="@null"
-            android:id="@+id/citcle_edit"
             android:textSize="12sp" />
 
         <ImageView
@@ -72,7 +71,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:background="@mipmap/common_nav_message_black_n" />
+            android:background="@mipmap/common_nav_message_black_s" />
 
     </RelativeLayout>
 
@@ -90,20 +89,21 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/bbb"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="6dp"
                 android:background="#ffff">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/circle_recy1"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="60dp">
-
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/patient_iv_search"
+                    app:tabGravity="fill"
+                    app:tabMode="scrollable"
+                    app:tabSelectedTextColor="#3087ea"></com.google.android.material.tabs.TabLayout>
 
                 <ImageView
                     android:id="@+id/patient_iv_search"
@@ -116,11 +116,18 @@
 
             </RelativeLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/circle_recy2"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpage"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="800dp"
+                android:layout_below="@id/bbb"></androidx.viewpager.widget.ViewPager>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/circle_recy3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/bbb"
+                android:visibility="gone" />
         </LinearLayout>
     </com.wd.circle.utils.ObservableScrollView>
 </LinearLayout>

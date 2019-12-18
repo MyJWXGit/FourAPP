@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.wd.circle.view.ReleaseCirclesActivity">
+
     <LinearLayout
         android:id="@+id/release_circle_linear_sick_circle"
         android:layout_width="match_parent"
@@ -178,7 +179,7 @@
                     android:maxLength="300"
                     android:paddingLeft="15dp"
                     android:textColor="#333333"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -335,9 +336,9 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:hint="请输入治疗过程"
+                        android:maxLength="200"
                         android:textColor="#333333"
-                        android:textSize="12sp"
-                        android:maxLength="200"/>
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -370,16 +371,16 @@
                 android:id="@+id/release_circle_iv_upload_Picture"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:background="@mipmap/add"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"/>
+                android:layout_marginRight="5dp"
+                android:background="@mipmap/add" />
 
             <ImageView
                 android:id="@+id/release_circle_iv_delete_Picture"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
-                android:background="@mipmap/common_icon_close_n"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/common_icon_close_n" />
 
         </RelativeLayout>
 
@@ -397,13 +398,106 @@
                 android:text="提升悬赏额度" />
 
             <Switch
+                android:id="@+id/swit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp" />
 
         </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/xuanshangedu_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="提升额度可获得更多的关注,得到更多的建议"
+                android:textSize="10sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_shape"
+                    android:text="10H币"
+                    android:textColor="#999999"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:background="@drawable/button_shape"
+                    android:text="20H币"
+                    android:textColor="#999999"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:background="@drawable/button_shape"
+                    android:text="30H币"
+                    android:textColor="#999999"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp">
+
+                <Button
+                    android:id="@+id/button_hbi3"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_shape"
+                    android:text="自定义"
+                    android:textColor="#999999"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/aaa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@id/button_hbi3"
+                    android:text="当前H币余额 300. 不足? 去"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@id/aaa"
+                    android:text="充值"
+                    android:textColor="@color/blue"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -417,15 +511,14 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/btn_bluelogin"
                 android:text="发表"
-                android:textSize="14sp"
-                android:textColor="#ffffff"/>
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="30dp">
-
 
 
         </RelativeLayout>

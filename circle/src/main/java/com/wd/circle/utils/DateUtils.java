@@ -5,11 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * date:2019/9/6
- * author:孙杰健(fdg)
- * function:
- */
+
 public class DateUtils {
     public static String getTodayDateTime() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",

@@ -11,11 +11,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
-/**
- * date:2019/11/19
- * author:孙杰健(fdg)
- * function:
- */
+
 public class ImageUtil {
     public static Intent getGalleryIntent(Intent intent)
     {
