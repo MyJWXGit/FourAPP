@@ -8,8 +8,5 @@
         <activity android:name=".activity.CommonActivity" />
         <activity android:name=".activity.FindInfoActivity" /> <!-- 屏幕适配 -->
         <activity android:name=".activity.HomeActivity" />
-        <activity android:name=".activity.LoginActivity">
-        </activity>
-        <activity android:name=".activity.MainActivity" />
     </application>
 </manifest>

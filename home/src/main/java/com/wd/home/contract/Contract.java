@@ -13,12 +13,6 @@ public interface Contract {
 
     //Activity  P层方法
     interface IPresenter {
-        //注册
-        void onRegister(String email, String code, String pwd1, String pwd2, String invitationCode);
-
-        //登录
-        void onLogin(String email, String pwd);
-
         //首页banner板块数据展示
         void onBanner();
 
@@ -37,12 +31,6 @@ public interface Contract {
 
     //Activity  M层
     interface IModer {
-        //注册
-        void onRegister(String email, String code, String pwd1, String pwd2, String invitationCode, IBallBask iBallBask);
-
-        //登录
-        void onLogin(String email, String pwd, IBallBask iBallBask);
-
         //首页banner板块数据展示
         void onBanner(IBallBask iBallBask);
 

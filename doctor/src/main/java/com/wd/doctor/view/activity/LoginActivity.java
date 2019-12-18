@@ -12,8 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.Logger;
 import com.wd.doctor.R;
@@ -72,7 +70,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Contr
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_login;
+        return R.layout.doctor_activity_login;
     }
 
     @OnClick({R2.id.suo, R2.id.hit, R2.id.show, R2.id.login_wangji, R2.id.long_register, R2.id.login_deng})

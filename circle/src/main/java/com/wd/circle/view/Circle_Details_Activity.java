@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.circle.R;
 import com.wd.circle.R2;
-import com.wd.circle.api.Constant;
 import com.wd.circle.bean.Circle_Comment_Bean;
 import com.wd.circle.bean.Circle_Details_Bean;
 import com.wd.circle.bean.CommentBean;
@@ -28,6 +27,7 @@ import com.wd.circle.contract.Contract;
 import com.wd.circle.presenter.MainPresenter;
 import com.wd.circle.utils.DateUtils;
 import com.wd.circle.view.adapter.RecycleView_Comment_Adapter;
+import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.SpUtils;
 

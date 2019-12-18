@@ -1,26 +1,81 @@
 package com.wd.health;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.alibaba.android.arouter.launcher.ARouter;
+import com.wd.common.base.BaseActivity;
+import com.wd.health.presenter.MainPresenter;
 
-public class IntentActivity extends AppCompatActivity {
-    private Button bt_intent;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class IntentActivity extends BaseActivity<MainPresenter> {
+
+    @BindView(R.id.image_guide)
+    ImageView imageGuide;
+    @BindView(R.id.text_time)
+    TextView textTime;
+    private int i = 3;
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 0:
+                    if (i > 0) {
+                        i--;
+                        textTime.setText("" + i);
+                        handler.sendEmptyMessageDelayed(0, 1000);
+                    } else {
+                        Intent intent = new Intent(IntentActivity.this, APP_Login_Activity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    break;
+            }
+        }
+    };
+
+    @Override
+    protected MainPresenter providePresenter() {
+        return null;
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
+        handler.sendEmptyMessageDelayed(0, 1000);
+    }
+
+    @Override
+    protected int initLayout() {
+        return R.layout.activity_intent;
+    }
+
+    @Override
+    public Context context() {
+        return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_intent);
-        bt_intent = findViewById(R.id.bt_intent);
-        bt_intent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ARouter.getInstance().build("/home/activity").navigation();
-            }
-        });
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 }

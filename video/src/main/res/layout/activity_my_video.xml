@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".VideoActivity">
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/video_tab"
         android:layout_width="match_parent"

@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,7 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.wd.circle.R;
-import com.wd.circle.api.Constant;
+import com.wd.circle.R2;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.DiseaseBean;
 import com.wd.circle.bean.DoTaskBean;
@@ -42,6 +41,7 @@ import com.wd.circle.presenter.MainPresenter;
 import com.wd.circle.utils.ImageUtil;
 import com.wd.circle.view.adapter.ConsultationTwoAdapter;
 import com.wd.circle.view.adapter.IllnessAdapter;
+import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.SpUtils;
 
@@ -61,43 +61,42 @@ import okhttp3.RequestBody;
 public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implements Contract.IView {
 
     Calendar calendar = Calendar.getInstance(Locale.CHINA);
-    @BindView(R.id.release_sickCircle_iv_user_head_pic)
+    @BindView(R2.id.release_sickCircle_iv_user_head_pic)
     ImageView releaseSickCircleIvUserHeadPic;
-    @BindView(R.id.patient_iv_user_message)
+    @BindView(R2.id.patient_iv_user_message)
     ImageView patientIvUserMessage;
-    @BindView(R.id.release_circle_et_title)
+    @BindView(R2.id.release_circle_et_title)
     EditText releaseCircleEtTitle;
-    @BindView(R.id.release_circle_tv_choose_department)
+    @BindView(R2.id.release_circle_tv_choose_department)
     TextView releaseCircleTvChooseDepartment;
-    @BindView(R.id.release_circle_iv_choose_department)
+    @BindView(R2.id.release_circle_iv_choose_department)
     RelativeLayout releaseCircleIvChooseDepartment;
-    @BindView(R.id.release_circle_tv_choose_disease)
+    @BindView(R2.id.release_circle_tv_choose_disease)
     TextView releaseCircleTvChooseDisease;
-    @BindView(R.id.release_circle_iv_choose_disease)
+    @BindView(R2.id.release_circle_iv_choose_disease)
     RelativeLayout releaseCircleIvChooseDisease;
-    @BindView(R.id.release_circle_et_detail)
+    @BindView(R2.id.release_circle_et_detail)
     EditText releaseCircleEtDetail;
-    @BindView(R.id.release_circle_et_treatmentHospital)
+    @BindView(R2.id.release_circle_et_treatmentHospital)
     EditText releaseCircleEtTreatmentHospital;
-    @BindView(R.id.release_circle_tv_startTime)
+    @BindView(R2.id.release_circle_tv_startTime)
     TextView releaseCircleTvStartTime;
-    @BindView(R.id.release_circle_iv_startTime)
+    @BindView(R2.id.release_circle_iv_startTime)
     RelativeLayout releaseCircleIvStartTime;
-    @BindView(R.id.release_circle_tv_endTime)
+    @BindView(R2.id.release_circle_tv_endTime)
     TextView releaseCircleTvEndTime;
-    @BindView(R.id.release_circle_iv_endTime)
+    @BindView(R2.id.release_circle_iv_endTime)
     RelativeLayout releaseCircleIvEndTime;
-    @BindView(R.id.release_circle_et_treatmentProcess)
+    @BindView(R2.id.release_circle_et_treatmentProcess)
     EditText releaseCircleEtTreatmentProcess;
-    @BindView(R.id.release_circle_iv_upload_Picture)
+    @BindView(R2.id.release_circle_iv_upload_Picture)
     ImageView releaseCircleIvUploadPicture;
-    @BindView(R.id.release_circle_iv_delete_Picture)
+    @BindView(R2.id.release_circle_iv_delete_Picture)
     ImageView releaseCircleIvDeletePicture;
-    @BindView(R.id.release_circle_btn_publish)
+    @BindView(R2.id.release_circle_btn_publish)
     Button releaseCircleBtnPublish;
-    @BindView(R.id.release_circle_linear_sick_circle)
+    @BindView(R2.id.release_circle_linear_sick_circle)
     LinearLayout releaseCircleLinearSickCircle;
-//    private ShapeLoadingDialog shapeLoadingDialog;
     private int userId;
     private String sessionId;
     private RecyclerView popup_recycler_department;
@@ -236,9 +235,6 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
             }
         });
 
-//        shapeLoadingDialog = new ShapeLoadingDialog.Builder(ReleaseCirclesActivity.this)
-//                .loadText("上传图片中...")
-//                .build();
         initDate();
     }
 

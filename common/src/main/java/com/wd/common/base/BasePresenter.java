@@ -1,9 +1,5 @@
 package com.wd.common.base;
 
-import android.content.Context;
-
-import com.wd.common.app.App;
-
 import java.lang.ref.WeakReference;
 
 public abstract class BasePresenter<V extends IBaseView> {
@@ -36,12 +32,5 @@ public abstract class BasePresenter<V extends IBaseView> {
 
     protected V getView() {
         return reference.get();
-    }
-
-    protected Context context() {
-        if (isViewAttached() && getView().context() != null) {
-            return getView().context();
-        }
-        return App.getAppContext();
     }
 }

@@ -9,17 +9,11 @@ import com.wd.home.bean.DyugBean;
 import com.wd.home.bean.FindInfoBean;
 import com.wd.home.bean.IllnessBean;
 import com.wd.home.bean.Information_ListBean;
-import com.wd.home.bean.LoginBean;
 import com.wd.home.bean.Plate_ListBean;
-import com.wd.home.bean.RegisterBean;
 
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
-import rx.Observable;
 import rx.Observable;
 
 /**
@@ -33,23 +27,6 @@ import rx.Observable;
  * @class describe
  */
 public interface HttpApi {
-    //注册
-    @FormUrlEncoded
-    @POST(API.REGISTER)
-    Observable<RegisterBean> onRegister(
-            @Field("email") String email,
-            @Field("code") String code,
-            @Field("pwd1") String pwd1,
-            @Field("pwd2") String pwd2,
-            @Field("invitationCode") String invitationCode);
-
-    //注册
-    @FormUrlEncoded
-    @POST(API.LOGIN)
-    Observable<LoginBean> onLogin(
-            @Field("email") String email,
-            @Field("pwd") String pwd);
-
     //首页banner板块数据展示
     @GET(API.BANNER)
     Observable<BannerBean> onBanner();

@@ -10,12 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.wd.common.api.Constant;
 import com.wd.home.R;
 import com.wd.home.activity.DiseaseKnowledgeActivity;
-import com.wd.home.activity.DrugActivity;
-import com.wd.home.api.Constant;
 import com.wd.home.bean.CategoryBean;
-import com.wd.home.bean.DepartmentBean;
 
 import java.util.List;
 

@@ -19,10 +19,10 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.circle.R;
 import com.wd.circle.R2;
-import com.wd.circle.api.Constant;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.bean.SearchCircleBean;
@@ -32,6 +32,7 @@ import com.wd.circle.utils.ObservableScrollView;
 import com.wd.circle.view.adapter.Circle_List_Adapter;
 import com.wd.circle.view.adapter.Circle_Lists_Adapter;
 import com.wd.circle.view.adapter.Search_Circle_Adapter;
+import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.SpUtils;
 
@@ -40,10 +41,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
+@Route(path = "/circle/activity")
 public class Circle_Home_Activity extends BaseActivity<MainPresenter> implements Contract.IView, ObservableScrollView.ScrollViewListener {
-
-
     @BindView(R2.id.circle_touxiang)
     SimpleDraweeView circleTouxiang;
     @BindView(R2.id.circle_message)

@@ -7,9 +7,7 @@ import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.FindInfoBean;
 import com.wd.home.bean.Information_ListBean;
-import com.wd.home.bean.LoginBean;
 import com.wd.home.bean.Plate_ListBean;
-import com.wd.home.bean.RegisterBean;
 import com.wd.home.contract.Contract;
 
 import rx.Observer;
@@ -28,68 +26,6 @@ import rx.schedulers.Schedulers;
  * @class describe
  */
 public class Home_Dode implements Contract.IModer {
-    @Override
-    public void onRegister(String email, String code, String pwd1, String pwd2, String invitationCode, IBallBask iBallBask) {
-        //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
-                //你要跑的接口方法
-                .onRegister(email, code, pwd1, pwd2, invitationCode)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<RegisterBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (iBallBask != null) {
-                            iBallBask.onHttpNO(e);
-                        }
-                    }
-
-                    @Override
-                    public void onNext(RegisterBean registerBean) {
-                        //成功的方法
-                        if (iBallBask != null) {
-                            iBallBask.onHttpOK(registerBean);
-                        }
-                    }
-                });
-    }
-
-    @Override
-    public void onLogin(String email, String pwd, IBallBask iBallBask) {
-        //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
-                //你要跑的接口方法
-                .onLogin(email, pwd)
-                //切换线程
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<LoginBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (iBallBask != null) {
-                            iBallBask.onHttpNO(e);
-                        }
-                    }
-
-                    @Override
-                    public void onNext(LoginBean loginBean) {
-                        if (iBallBask != null) {
-                            iBallBask.onHttpOK(loginBean);
-                        }
-                    }
-                });
-    }
-
     @Override
     public void onBanner(IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口

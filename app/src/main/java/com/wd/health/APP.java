@@ -1,8 +1,11 @@
 package com.wd.health;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.wd.common.BaseAPPlication;
-import com.wd.common.app.App;
+import android.app.Application;
+import android.content.Context;
+
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.wd.common.app.BaseApplicationImp;
 
 /**
  * @name Health
@@ -14,10 +17,33 @@ import com.wd.common.app.App;
  * @chang time
  * @class describe
  */
-public class APP extends App {
+public class APP implements BaseApplicationImp {
+    public static Context context;
+    // APP_ID 替换为你的应用从官方网站申请到的合法appID
+    private static final String APP_ID = "wxe3fcbe8a55cd33ff";
+
+    // IWXAPI 是第三方app和微信通信的openApi接口
+    public static IWXAPI api;
+
     @Override
-    public void onCreate() {
-        super.onCreate();
-        Fresco.initialize(this);
+    public void onCreate(Application application) {
+        context = application;
+
+        // 通过WXAPIFactory工厂，获取IWXAPI的实例
+        api = WXAPIFactory.createWXAPI(APP.context, APP_ID, true);
+
+        // 将应用的appId注册到微信
+        api.registerApp(APP_ID);
+
+//        //建议动态监听微信启动广播进行注册到微信
+//        registerReceiver(new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//
+//                // 将该app注册到微信
+//                api.registerApp(APP_ID);
+//            }
+//        }, new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
+
     }
 }

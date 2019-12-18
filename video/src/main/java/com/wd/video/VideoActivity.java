@@ -2,10 +2,14 @@ package com.wd.video;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.Logger;
@@ -20,16 +24,17 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@Route(path = "/video/activity")
 public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements Contract.IView {
 
     private static final String TAG = "VideoActivity";
     TabLayout videoTab;
     ViewPager videoVp;
+    Button button;
 
-
-    private List<Video_QueryBean.ResultBean> result;
     private String eid;
     private String name;
+    private List<Video_EntryBean.ResultBean> result;
 
     @Override
     protected Video_EntryPresenter providePresenter() {
@@ -59,16 +64,22 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
         return null;
     }
 
-
     @Override
     protected void initData() {
         mPresenter.onVideo_Entry();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build("/circle/activity").navigation();
+            }
+        });
     }
 
     @Override
     public void onSuccess(Object data) {
         if (data instanceof Video_EntryBean) {
             Video_EntryBean video_entryBean = (Video_EntryBean) data;
+            result = video_entryBean.getResult();
             for (int i = 0; i < result.size(); i++) {
                 name = (video_entryBean).getResult().get(i).getName();
                 eid = (video_entryBean).getResult().get(i).getId();

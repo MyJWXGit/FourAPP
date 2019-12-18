@@ -7,13 +7,6 @@
     android:background="#FFF"
     tools:context="com.wd.home.activity.HomeActivity">
 
-    <Button
-        android:id="@+id/bt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FF0000"
-        android:text="跳转" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

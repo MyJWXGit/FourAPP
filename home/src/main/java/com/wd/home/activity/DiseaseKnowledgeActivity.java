@@ -2,18 +2,15 @@ package com.wd.home.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
 import com.wd.home.R;
 import com.wd.home.R2;
-import com.wd.home.api.Constant;
 import com.wd.home.bean.DyugBean;
 import com.wd.home.contract.Contract;
 import com.wd.home.presenter.Fragment_Presenter;
-import com.wd.home.presenter.HomePresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

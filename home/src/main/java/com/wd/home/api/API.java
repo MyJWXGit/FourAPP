@@ -11,10 +11,6 @@ package com.wd.home.api;
  * @class describe
  */
 public interface API {
-    //注册
-    String REGISTER = "health/user/v1/register";
-    //登录
-    String LOGIN = "health/user/v1/login";
     //首页banner板块数据展示
     String BANNER = "health/share/v1/bannersShow";
     //查询科室列表

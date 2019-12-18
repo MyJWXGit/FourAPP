@@ -1,8 +1,10 @@
 package com.wd.circle.utils;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.wd.common.app.BaseApplicationImp;
 
 /**
  * @name Health
@@ -14,10 +16,11 @@ import com.facebook.drawee.backends.pipeline.Fresco;
  * @chang time
  * @class describe
  */
-public class App extends Application {
+public class App implements BaseApplicationImp {
+    public static Context context;
+
     @Override
-    public void onCreate() {
-        super.onCreate();
-        Fresco.initialize(this);
+    public void onCreate(Application application) {
+        context = application;
     }
 }

@@ -1,28 +1,21 @@
 package com.wd.doctor;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.wd.common.utils.ToastUtils;
+import com.wd.common.app.BaseApplicationImp;
 
 /**
  * date:2019/12/13
  * author:金豪(Lenovo)
  * function:
  */
-public class App extends Application {
-    private static App sContext;
+public class App implements BaseApplicationImp {
+    public static Context context;
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        sContext=this;
-        Fresco.initialize(this);
-
+    public void onCreate(Application application) {
+        context = application;
     }
-
-    public static App getAppContext(){
-        return sContext;
-    }
-
 }

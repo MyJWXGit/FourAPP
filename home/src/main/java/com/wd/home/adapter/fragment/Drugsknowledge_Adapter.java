@@ -12,11 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.wd.common.api.Constant;
 import com.wd.home.R;
-import com.wd.home.activity.DiseaseKnowledgeActivity;
 import com.wd.home.activity.DrugActivity;
-import com.wd.home.api.Constant;
-import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 
 import java.util.List;

@@ -20,13 +20,13 @@ import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.entity.SimpleBannerInfo;
+import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
 import com.wd.home.R;
 import com.wd.home.R2;
 import com.wd.home.adapter.Department_Adapter;
 import com.wd.home.adapter.Information_Adapter;
 import com.wd.home.adapter.Plate_List_Adapter;
-import com.wd.home.api.Constant;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.Information_ListBean;
@@ -57,7 +57,6 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements Contrac
     LinearLayout commonIllness;
     @BindView(R2.id.common_drug)
     LinearLayout commonDrug;
-    private Button bt;
 
     @Override
     protected HomePresenter providePresenter() {
@@ -67,17 +66,10 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements Contrac
     @Override
     protected void initView() {
         ButterKnife.bind(this);
-        bt = findViewById(R.id.bt);
     }
 
     @Override
     protected void initData() {
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ARouter.getInstance().build("/video/activity").navigation();
-            }
-        });
         mPresenter.onBanner();
         mPresenter.onDepartment();
         mPresenter.onPlateList();

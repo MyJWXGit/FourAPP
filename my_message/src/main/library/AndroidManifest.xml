@@ -2,6 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wd.my_message">
     <application>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".My_Home_Activity" />
     </application>
 </manifest>

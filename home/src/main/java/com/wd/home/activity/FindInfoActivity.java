@@ -2,16 +2,15 @@ package com.wd.home.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
 import com.wd.home.R;
 import com.wd.home.R2;
-import com.wd.home.api.Constant;
 import com.wd.home.bean.FindInfoBean;
 import com.wd.home.contract.Contract;
 import com.wd.home.presenter.HomePresenter;
@@ -39,6 +38,7 @@ public class FindInfoActivity extends BaseActivity<HomePresenter> implements Con
 
     @Override
     protected void initView() {
+        ButterKnife.bind(this);
         webView = findViewById(R.id.web_view);
     }
 
