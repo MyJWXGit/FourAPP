@@ -16,12 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.wd.circle.R;
+import com.wd.circle.R2;
 import com.wd.circle.api.Constant;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.DiseaseBean;
@@ -61,43 +64,47 @@ import okhttp3.RequestBody;
 public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implements Contract.IView {
 
     Calendar calendar = Calendar.getInstance(Locale.CHINA);
-    @BindView(R.id.release_sickCircle_iv_user_head_pic)
+    @BindView(R2.id.xuanshangedu_linear)
+    LinearLayout xuanshangeduLinear;
+    @BindView(R2.id.release_sickCircle_iv_user_head_pic)
     ImageView releaseSickCircleIvUserHeadPic;
-    @BindView(R.id.patient_iv_user_message)
+    @BindView(R2.id.patient_iv_user_message)
     ImageView patientIvUserMessage;
-    @BindView(R.id.release_circle_et_title)
+    @BindView(R2.id.release_circle_et_title)
     EditText releaseCircleEtTitle;
-    @BindView(R.id.release_circle_tv_choose_department)
+    @BindView(R2.id.release_circle_tv_choose_department)
     TextView releaseCircleTvChooseDepartment;
-    @BindView(R.id.release_circle_iv_choose_department)
+    @BindView(R2.id.release_circle_iv_choose_department)
     RelativeLayout releaseCircleIvChooseDepartment;
-    @BindView(R.id.release_circle_tv_choose_disease)
+    @BindView(R2.id.release_circle_tv_choose_disease)
     TextView releaseCircleTvChooseDisease;
-    @BindView(R.id.release_circle_iv_choose_disease)
+    @BindView(R2.id.release_circle_iv_choose_disease)
     RelativeLayout releaseCircleIvChooseDisease;
-    @BindView(R.id.release_circle_et_detail)
+    @BindView(R2.id.release_circle_et_detail)
     EditText releaseCircleEtDetail;
-    @BindView(R.id.release_circle_et_treatmentHospital)
+    @BindView(R2.id.release_circle_et_treatmentHospital)
     EditText releaseCircleEtTreatmentHospital;
-    @BindView(R.id.release_circle_tv_startTime)
+    @BindView(R2.id.release_circle_tv_startTime)
     TextView releaseCircleTvStartTime;
-    @BindView(R.id.release_circle_iv_startTime)
+    @BindView(R2.id.release_circle_iv_startTime)
     RelativeLayout releaseCircleIvStartTime;
-    @BindView(R.id.release_circle_tv_endTime)
+    @BindView(R2.id.release_circle_tv_endTime)
     TextView releaseCircleTvEndTime;
-    @BindView(R.id.release_circle_iv_endTime)
+    @BindView(R2.id.release_circle_iv_endTime)
     RelativeLayout releaseCircleIvEndTime;
-    @BindView(R.id.release_circle_et_treatmentProcess)
+    @BindView(R2.id.release_circle_et_treatmentProcess)
     EditText releaseCircleEtTreatmentProcess;
-    @BindView(R.id.release_circle_iv_upload_Picture)
+    @BindView(R2.id.release_circle_iv_upload_Picture)
     ImageView releaseCircleIvUploadPicture;
-    @BindView(R.id.release_circle_iv_delete_Picture)
+    @BindView(R2.id.release_circle_iv_delete_Picture)
     ImageView releaseCircleIvDeletePicture;
-    @BindView(R.id.release_circle_btn_publish)
+    @BindView(R2.id.release_circle_btn_publish)
     Button releaseCircleBtnPublish;
-    @BindView(R.id.release_circle_linear_sick_circle)
+    @BindView(R2.id.release_circle_linear_sick_circle)
     LinearLayout releaseCircleLinearSickCircle;
-//    private ShapeLoadingDialog shapeLoadingDialog;
+    @BindView(R.id.swit)
+    Switch swit;
+    //    private ShapeLoadingDialog shapeLoadingDialog;
     private int userId;
     private String sessionId;
     private RecyclerView popup_recycler_department;
@@ -127,6 +134,17 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     protected void initData() {
         //设置在activity启动的时候输入法默认是不开启的
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        //悬赏额度的开关
+        swit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    xuanshangeduLinear.setVisibility(View.VISIBLE);
+                } else {
+                    xuanshangeduLinear.setVisibility(View.GONE);
+                }
+            }
+        });
         //开始时间
         releaseCircleIvStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -316,7 +334,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 map.put("amount", 0);
 
                 //调发布圈子接口
-                mPresenter.onReplease(userId+"", sessionId, map);
+                mPresenter.onReplease(userId + "", sessionId, map);
 //                shapeLoadingDialog.show();
             }
         });
@@ -397,8 +415,8 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                     popupWindow.dismiss();
                 }
             });
-        }else if (obj instanceof DiseaseBean){
-            DiseaseBean diseaseBean= (DiseaseBean) obj;
+        } else if (obj instanceof DiseaseBean) {
+            DiseaseBean diseaseBean = (DiseaseBean) obj;
             List<DiseaseBean.ResultBean> result = diseaseBean.getResult();
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
@@ -412,17 +430,17 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                     popWindowDisease.dismiss();
                 }
             });
-        }else if (obj instanceof RepleaseCircleBean){
-            RepleaseCircleBean repleaseCircleBean= (RepleaseCircleBean) obj;
+        } else if (obj instanceof RepleaseCircleBean) {
+            RepleaseCircleBean repleaseCircleBean = (RepleaseCircleBean) obj;
             if (repleaseCircleBean.getStatus().equals("0000")) {
                 Toast.makeText(this, repleaseCircleBean.getMessage(), Toast.LENGTH_SHORT).show();
                 sickCircleId = repleaseCircleBean.getResult();
                 Log.i("sickCircleId", "publishSuccess: " + "sickCircleId" + sickCircleId);
-                if (picture != null){
-                    mPresenter.onPicture(userId+"",sessionId, sickCircleId,picture);
-                }else {
+                if (picture != null) {
+                    mPresenter.onPicture(userId + "", sessionId, sickCircleId, picture);
+                } else {
                     //做任务
-                    mPresenter.onDoTask(userId+"",sessionId,1003);
+                    mPresenter.onDoTask(userId + "", sessionId, 1003);
 //                    shapeLoadingDialog.dismiss();
                     finish();
                 }
@@ -430,21 +448,21 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
             } else {
                 Toast.makeText(this, repleaseCircleBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }else if (obj instanceof DoTaskBean){
-            DoTaskBean doTaskBean= (DoTaskBean) obj;
-            if (doTaskBean.getStatus().equals("0000")){
+        } else if (obj instanceof DoTaskBean) {
+            DoTaskBean doTaskBean = (DoTaskBean) obj;
+            if (doTaskBean.getStatus().equals("0000")) {
                 Toast.makeText(this, "每日首发病友圈完成!快去领取奖励吧", Toast.LENGTH_SHORT).show();
-                mPresenter.onPicture(userId+"",sessionId, sickCircleId,picture);
+                mPresenter.onPicture(userId + "", sessionId, sickCircleId, picture);
             }
-        }else if (obj instanceof PictureBean){
-            PictureBean pictureBean= (PictureBean) obj;
+        } else if (obj instanceof PictureBean) {
+            PictureBean pictureBean = (PictureBean) obj;
             if (pictureBean.getStatus().equals("0000")) {
                 Toast.makeText(this, pictureBean.getMessage(), Toast.LENGTH_SHORT).show();
                 //做任务
-                mPresenter.onDoTask(userId+"",sessionId,1003);
+                mPresenter.onDoTask(userId + "", sessionId, 1003);
 //                shapeLoadingDialog.dismiss();
                 finish();
-            }else {
+            } else {
                 Toast.makeText(this, pictureBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
@@ -459,7 +477,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //判断是不是选中图片了
-        if (requestCode == 1){
+        if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
                 Uri uri = data.getData();
                 if (uri != null) {
@@ -481,5 +499,12 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 Toast.makeText(this, "取消相册", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

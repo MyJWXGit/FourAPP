@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#dddddd"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.Seach_Circle_Activity">
+    <LinearLayout
+        android:id="@+id/aaa"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fanhui_text"
+            android:background="@drawable/common_icon_back_black_n"
+            android:textSize="20dp"
+            android:layout_marginLeft="20dp"
+            />
+        <EditText
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/ed_mohucha"
+            android:layout_weight="3"
+            android:maxLength="10"
+            android:textSize="12sp"
+            android:paddingLeft="10dp"
+            android:hint="请输入病症名称或者标题关键字"
+            android:background="@drawable/my_buju"
+            android:layout_width="360dp"
+            android:layout_height="30dp" />
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:background="@drawable/my_bianjiao"
+            android:text="搜索"
+            android:textColor="@color/colorAccent3"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/but_bingquanshou"
+            />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:background="#ffffff"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/aaa"
+        android:id="@+id/recy_modainying"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+    <include layout="@layout/layout_include"
+        android:visibility="gone"/>
+</RelativeLayout>

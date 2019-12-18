@@ -56,12 +56,14 @@ public interface Contract {
 
     //Fragment  P层方法
     interface FPresenter extends IBaseView {
-        void onLogin(String ms);
+        void onHomes(int departmentId,int page,int count);
+        void onSearch(String keyWord);
     }
 
     //Fragment  M层
     interface FModer {
-
+        void onhomes(int departmentId,int page,int count,IBallBask iBallBask);
+        void onSearch(String keyWord,IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 

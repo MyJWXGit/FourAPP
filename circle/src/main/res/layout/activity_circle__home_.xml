@@ -7,7 +7,6 @@
     android:background="#cccc"
     android:orientation="vertical"
     tools:context="com.wd.circle.view.Circle_Home_Activity">
-
     <RelativeLayout
         android:id="@+id/patient_relative_titlebar"
         android:layout_width="match_parent"
@@ -21,8 +20,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:background="@mipmap/dermatology"
-            app:failureImage="@drawable/ic_launcher_background"
-            app:placeholderImage="@drawable/ic_launcher_background"
+
             app:roundAsCircle="true" />
 
         <ImageView
@@ -32,7 +30,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:src="@mipmap/common_nav_message_black_n"/>
+            android:src="@mipmap/common_nav_message_black_s"/>
 
     </RelativeLayout>
 
@@ -72,7 +70,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:background="@mipmap/common_nav_message_black_n" />
+            android:background="@mipmap/common_nav_message_black_s" />
 
     </RelativeLayout>
 
@@ -90,20 +88,21 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/bbb"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="6dp"
                 android:background="#ffff">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/circle_recy1"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab"
+                    app:tabSelectedTextColor="#3087ea"
+                    app:tabMode="scrollable"
+                    app:tabGravity="fill"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/patient_iv_search"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="60dp">
-
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="match_parent"></com.google.android.material.tabs.TabLayout>
 
                 <ImageView
                     android:id="@+id/patient_iv_search"
@@ -116,11 +115,17 @@
 
             </RelativeLayout>
 
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpage"
+                android:layout_below="@id/bbb"
+                android:layout_width="match_parent"
+                android:layout_height="800dp"></androidx.viewpager.widget.ViewPager>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/circle_recy2"
+                android:visibility="gone"
+                android:layout_below="@id/bbb"
+                android:id="@+id/circle_recy3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
         </LinearLayout>
     </com.wd.circle.utils.ObservableScrollView>
 </LinearLayout>

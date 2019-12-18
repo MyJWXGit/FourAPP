@@ -9,8 +9,8 @@ import android.view.ViewConfiguration;
 import android.widget.ScrollView;
 
 /**
- * date:2019/9/17
- * author:易宸锋(dell)ScrollView有方法监听用户的滑动,但是无法在外界调用
+ * date:2019/12/17
+ * ScrollView有方法监听用户的滑动,但是无法在外界调用
  * function:扩展式自定义View,在ScrollView的基础上添加新的功能
  * 1.类继承继承控件,实现三个方法覆写
  * 2.自定义一个ScrollView滑动监听的接口

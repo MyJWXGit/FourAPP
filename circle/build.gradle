@@ -98,6 +98,7 @@ dependencies {
     implementation rootProject.ext.dependencies["fresco"]
     implementation rootProject.ext.dependencies["espresso-cored"]
     implementation rootProject.ext.dependencies["espresso-cores"]
+    implementation rootProject.ext.dependencies["tablayout"]
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
     //glide依赖
