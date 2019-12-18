@@ -18,6 +18,8 @@ import com.wd.doctor.R2;
 import com.wd.doctor.bean.MianBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.present.LoginPresenter;
+import com.wd.doctor.view.activity.PictureActivity;
+import com.wd.doctor.view.activity.SystemActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -123,6 +125,15 @@ public class MessageActivity extends BaseActivity<LoginPresenter> implements Con
             @Override
             public void onClick(View v) {
                 inflate.setVisibility(View.INVISIBLE);
+            }
+        });
+        genghuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MessageActivity.this, PictureActivity.class);
+                intent.putExtra("doctorId", doctorId);
+                intent.putExtra("sessionId", sessionId);
+                startActivity(intent);
             }
         });
     }

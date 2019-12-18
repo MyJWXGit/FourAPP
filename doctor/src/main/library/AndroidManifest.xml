@@ -3,7 +3,8 @@
     package="com.wd.doctor">
 
     <application>
-        <activity android:name=".view.activity.DetailsActivity"></activity>
+        <activity android:name=".view.activity.SystemActivity"></activity>
+        <activity android:name=".view.activity.DetailsActivity" />
         <activity android:name=".view.activity.myview.StreamingActivity" />
         <activity android:name=".view.activity.InquiryActivity" />
         <activity android:name=".view.activity.SucceedActivity" />

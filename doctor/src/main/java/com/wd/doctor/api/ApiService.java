@@ -11,9 +11,11 @@ import com.wd.doctor.bean.PublishBean;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
 import com.wd.doctor.bean.StreamBean;
+import com.wd.doctor.bean.UploadingBean;
 import com.wd.doctor.bean.VerifyBean;
 
 
+import java.io.File;
 import java.util.Map;
 
 import retrofit2.http.Body;
@@ -83,4 +85,7 @@ public interface ApiService {
    //系统照片
     @GET("health/doctor/v1/findSystemImagePic")
    Observable<ImagePicBean> Imagep();
+    //选择系统提供形象照
+    @POST("health/doctor/verify/v1/chooseImagePic")
+    Observable<UploadingBean> Uploading(@Header("doctorId") int doctorId, @Header("sessionId") String sessionId, @Query("imagePic") String imagePic);
 }

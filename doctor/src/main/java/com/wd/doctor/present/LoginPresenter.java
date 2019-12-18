@@ -14,11 +14,13 @@ import com.wd.doctor.bean.PublishBean;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
 import com.wd.doctor.bean.StreamBean;
+import com.wd.doctor.bean.UploadingBean;
 import com.wd.doctor.bean.VerifyBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.model.FragmentModel;
 import com.wd.doctor.model.LoginModel;
 
+import java.io.File;
 import java.util.Map;
 
 
@@ -312,7 +314,7 @@ public class LoginPresenter extends BasePresenter<Contract.IView> implements Con
     //系统形象照
     @Override
     public void Imagep() {
-         model.Imagep(new Contract.IModer.IBallBask() {
+         fModel.Imagep(new Contract.IModer.IBallBask() {
              @Override
              public void onHttpOK(Object obj) {
                  //软引用
@@ -362,6 +364,33 @@ public class LoginPresenter extends BasePresenter<Contract.IView> implements Con
                 }
             }
         });
+    }
+     //上传系统照片
+    @Override
+    public void Uploading(int doctorId, String sessionId, String imagePic) {
+         fModel.Uploading(doctorId, sessionId, imagePic, new Contract.IModer.IBallBask() {
+             @Override
+             public void onHttpOK(Object obj) {
+                 //软引用
+                 if (isViewAttached()) {
+                     //Bean包强转  拿到Status进行判断
+                     UploadingBean bean = (UploadingBean) obj;
+                     if (bean != null && bean.getStatus().equals("0000")) {
+                         //getView是BasePresenter方法  使用getView进行调用P层
+                         getView().onSuccess(bean);
+                     } else {
+                         getView().onError(new Exception("请求失败"));
+                     }
+                 }
+             }
+
+             @Override
+             public void onHttpNO(Throwable e) {
+                 if (isViewAttached()) {
+                     Logger.d(TAG, e.getMessage() + "");
+                 }
+             }
+         });
     }
 }
 

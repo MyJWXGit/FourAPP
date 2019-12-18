@@ -4,6 +4,7 @@ package com.wd.doctor.contract;
 import com.wd.common.base.IBaseView;
 import com.wd.doctor.bean.LoginBean;
 
+import java.io.File;
 import java.util.Map;
 
 
@@ -44,7 +45,10 @@ public interface Contract {
         void Publish(int doctorId, String sessionId, int sickCircleId, String content);
         //系统形象照
         void Imagep();
+        //注册
         void onZhucec(Map<String, Object> paramsMap);
+        //上传照片
+        void Uploading(int doctorId, String sessionId, String imagePic);
     }
 
     //Activity  M层
@@ -70,6 +74,8 @@ public interface Contract {
         void Inquer(IBallBask iBallBask);
         //系统形象照
         void Imagep(IBallBask iBallBask);
+        //上传照片
+        void Uploading(int doctorId, String sessionId, String imagePic,IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 
@@ -83,6 +89,10 @@ public interface Contract {
         void Patients(int departmentId, int page, int count, IModer.IBallBask iBallBask);
         //查询病友圈详情
         void Details(int doctorId, String sessionId, int sickCircleId, IModer.IBallBask iBallBask);
+        //系统形象照
+        void Imagep(IModer.IBallBask iBallBask);
+        //上传照片
+        void Uploading(int doctorId, String sessionId, String imagePic, IModer.IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 
