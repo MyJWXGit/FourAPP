@@ -164,6 +164,7 @@ public class Circle_Home_Activity extends BaseActivity<MainPresenter> implements
         return null;
     }
 
+
     @Override
     public void onSuccess(Object obj) {
         if (obj instanceof Circle_list_Bean) {
@@ -172,6 +173,7 @@ public class Circle_Home_Activity extends BaseActivity<MainPresenter> implements
             ArrayList<String> list = new ArrayList<>();
             for (int i = 0; i < result.size(); i++) {
                 list.add(result.get(i).getDepartmentName());
+                patientTvDepartmentName.setText(result.get(i).getDepartmentName());
             }
             viewpage.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
                 @NonNull
