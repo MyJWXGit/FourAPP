@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.circle.R;
+import com.wd.circle.R2;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.presenter.MainPresenter;
@@ -30,21 +31,21 @@ import butterknife.ButterKnife;
 public class Seach_Circle_Activity extends BaseActivity<MainPresenter> implements Contract.IView {
 
 
-    @BindView(R.id.fanhui_text)
+    @BindView(R2.id.fanhui_text)
     ImageView fanhuiText;
-    @BindView(R.id.ed_mohucha)
+    @BindView(R2.id.ed_mohucha)
     EditText edMohucha;
-    @BindView(R.id.but_bingquanshou)
+    @BindView(R2.id.but_bingquanshou)
     Button butBingquanshou;
-    @BindView(R.id.aaa)
+    @BindView(R2.id.aaa)
     LinearLayout aaa;
-    @BindView(R.id.recy_modainying)
+    @BindView(R2.id.recy_modainying)
     RecyclerView recyModainying;
-    @BindView(R.id.include_img)
+    @BindView(R2.id.include_img)
     SimpleDraweeView includeImg;
-    @BindView(R.id.include_text)
+    @BindView(R2.id.include_text)
     TextView includeText;
-    @BindView(R.id.include_relate)
+    @BindView(R2.id.include_relate)
     RelativeLayout includeRelate;
 
 

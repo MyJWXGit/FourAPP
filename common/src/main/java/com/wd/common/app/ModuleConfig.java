@@ -14,10 +14,12 @@ public interface ModuleConfig {
     static final String MODULE_PDFREADER = "com.wd.common.app.BaseApplication";
     static final String MODULE_LAUNCHER_app = "com.wd.health.APP";
     static final String MODULE_LAUNCHER_home = "com.wd.home.APP";
+    static final String MODULE_LAUNCHER_my_message = "com.wd.my_message.APP";
 
     public static final String[] MODULELIST = {
             MODULE_LAUNCHER_app,
             MODULE_LAUNCHER_home,
+            MODULE_LAUNCHER_my_message,
             MODULE_PDFREADER
     };
 }

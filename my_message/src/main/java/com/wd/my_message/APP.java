@@ -2,8 +2,14 @@ package com.wd.my_message;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
+import com.baidu.ocr.sdk.OCR;
+import com.baidu.ocr.sdk.OnResultListener;
+import com.baidu.ocr.sdk.exception.OCRError;
+import com.baidu.ocr.sdk.model.AccessToken;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.wd.common.app.BaseApplication;
 import com.wd.common.app.BaseApplicationImp;
 
 /**
@@ -16,7 +22,7 @@ import com.wd.common.app.BaseApplicationImp;
  * @chang time
  * @class describe
  */
-public class APP implements BaseApplicationImp {
+public class APP extends BaseApplication implements BaseApplicationImp {
     public static Context context;
 
     @Override

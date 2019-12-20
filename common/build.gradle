@@ -15,7 +15,7 @@ android {
         //Arouter路由配置
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
                 includeCompileClasspath = true
             }
         }
@@ -73,4 +73,6 @@ dependencies {
     api 'com.alibaba:arouter-api:+'
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation rootProject.ext.dependencies["fresco"]
+    //悬浮按钮
+    implementation 'com.android.support:design:<version>'
 }

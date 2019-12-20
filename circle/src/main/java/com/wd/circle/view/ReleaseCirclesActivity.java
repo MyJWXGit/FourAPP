@@ -102,7 +102,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     Button releaseCircleBtnPublish;
     @BindView(R2.id.release_circle_linear_sick_circle)
     LinearLayout releaseCircleLinearSickCircle;
-    @BindView(R.id.swit)
+    @BindView(R2.id.swit)
     Switch swit;
     //    private ShapeLoadingDialog shapeLoadingDialog;
     private int userId;

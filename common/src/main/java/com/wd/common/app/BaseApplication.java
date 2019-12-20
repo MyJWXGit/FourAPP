@@ -2,6 +2,7 @@ package com.wd.common.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -28,8 +29,6 @@ public class BaseApplication extends Application {
 
         // 初始化模块配置
         initModuleConfit();
-        //初始化Fresco
-        Fresco.initialize(this);
     }
 
     private void initGlobalConfig() {
@@ -59,5 +58,7 @@ public class BaseApplication extends Application {
         ARouter.openLog();
         ARouter.openDebug();
         ARouter.init(this);
+        //初始化Fresco
+        Fresco.initialize(this);
     }
 }

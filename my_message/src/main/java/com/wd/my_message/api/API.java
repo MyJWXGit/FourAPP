@@ -29,5 +29,6 @@ public interface API {
     String UserInfoCollectionList = "health/user/verify/v1/findUserInfoCollectionList";
     //查询用户关注医生列表  我的关注
     String UserDoctorFollowList = "health/user/verify/v1/findUserDoctorFollowList";
-
+    //上传头像
+    String IMAGE_PIC = "health/user/verify/v1/modifyHeadPic";
 }

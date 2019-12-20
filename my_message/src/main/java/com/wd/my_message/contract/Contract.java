@@ -2,6 +2,8 @@ package com.wd.my_message.contract;
 
 import com.wd.common.base.IBaseView;
 
+import okhttp3.MultipartBody;
+
 /**
  * @name Health
  * @class name：com.wd.my_message.contract
@@ -27,6 +29,9 @@ public interface Contract {
         //绑定（换绑）银行卡信息
         void onUserBankCard(int userId, String sessionId, String bankCardNumber, String bankName, String bankCardType, IModelCallBack iModelCallBack);
 
+        //上传头像
+        void onImage_PIC(int userId, String sessionId, MultipartBody.Part part,IModelCallBack iModelCallBack);
+
         interface IModelCallBack {
             void onSuccess(Object data);
 
@@ -36,10 +41,13 @@ public interface Contract {
 
     interface IPresenter {
         //绑定身份证
-        void onUserIdCard(int userId, String sessionId, int userIdBoby, String name, String sex, String nation, String birthday, String address, String idNumber, String issueOffice);
+        void onUserIdCard(int userIdBoby, String name, String sex, String nation, String birthday, String address, String idNumber, String issueOffice);
 
         //绑定（换绑）银行卡信息
-        void onUserBankCard(int userId, String sessionId, String bankCardNumber, String bankName, String bankCardType);
+        void onUserBankCard(String bankCardNumber, String bankName, String bankCardType);
+
+        //上传头像
+        void onImage_PIC(MultipartBody.Part part);
 
     }
 
