@@ -1,42 +1,194 @@
 package com.wd.video.adapter;
 
-import android.os.Bundle;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.dou361.ijkplayer.widget.IjkVideoView;
+import com.wd.video.R;
 import com.wd.video.bean.Video_QueryBean;
-import com.wd.video.fragment.Video_QueryFragment;
+import com.wd.video.contract.Contract;
+
 
 import java.util.List;
 
-/*
- *author:郭昊坤
- *date:2019/12/17
- *function:*/public class VideoAdapter extends FragmentPagerAdapter {
-     List<Video_QueryBean.ResultBean> list;
-        String entyid;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-    public VideoAdapter( FragmentManager fm, List<Video_QueryBean.ResultBean> list, String entyid) {
-        super(fm);
+import tv.danmaku.ijk.media.exo.IjkExoMediaPlayer;
+
+public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
+    private List<Video_QueryBean.ResultBean> list;
+    private Context context;
+    private ImageView cb_collecte;
+    private CheckBox qian;
+    private CheckBox cb_barrage;
+    private String id;
+    private int count =  0;
+    private int counts =  0;
+    private int whetherCollection;
+    private String price;
+    private IjkVideoView video_view;
+    private int whetherBuy;
+
+
+    public VideoAdapter(List<Video_QueryBean.ResultBean> list, Context context) {
         this.list = list;
-        this.entyid = entyid;
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putString("yingyuanid",entyid);
-        Video_QueryFragment video_queryFragment = new Video_QueryFragment();
-        video_queryFragment.setArguments(bundle);
-        return video_queryFragment;
+    public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(context).inflate(R.layout.video_adapter, parent, false);
+        cb_collecte = inflate.findViewById(R.id.cb_collecte);
+        cb_barrage = inflate.findViewById(R.id.cb_barrage);
+        qian = inflate.findViewById(R.id.qian);
+        video_view = inflate.findViewById(R.id.video_view);
+
+        cb_barrage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                counts++;
+               setOnDian.onPriceClick(counts);
+                if (counts%2==1){
+                    cb_barrage.setBackgroundResource(R.drawable.video_common_icon_close_live_commenting_n);
+                }else if (counts%2==0){
+                    cb_barrage.setBackgroundResource(R.drawable.video_common_icon_open_live_commenting_n);
+                }
+            }
+        });
+        cb_collecte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setOnClick.onClick(id);
+                cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
+            }
+        });
+        qian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setOnPriceTouch.onPriceClick(price,id);
+            }
+        });
+        if (whetherCollection==1){
+            cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
+        }else if (whetherCollection==2){
+            cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_n);
+        }
+        if (whetherBuy==1){
+            qian.setBackgroundResource(R.drawable.common_icon_comment_small_n);
+        }else if (whetherBuy==2){
+            qian.setBackgroundResource(R.drawable.video_common_icon_toll_n);
+        }
+        return new Holder(inflate);
     }
 
     @Override
-    public int getCount() {
-        return 0;
+    public void onBindViewHolder(@NonNull Holder holder, int position) {
+        id = list.get(position).getId();
+        whetherBuy = list.get(position).getWhetherBuy();
+        whetherCollection = list.get(position).getWhetherCollection();
+        price = list.get(position).getPrice();
+        String originalUrl = list.get(position).getOriginalUrl();
+        String[] split = originalUrl.split(",");
+        holder.video_view
+                .setVideoPath(split[0]);
+        holder.video_view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                count++;
+                if (count%2==1){
+                    holder.video_view.start();
+                    holder.video_pause.setVisibility(View.INVISIBLE);
+                    setOnTouch.onClick(id);
+                }else if (count%2==0) {
+                    holder.video_view.pause();
+                    holder.video_pause.setVisibility(View.VISIBLE);
+                }
+                return false;
+            }
+        });
+
+
+        holder.video_title.setText(list.get(position).getTitle());
+        holder.video_content.setText(list.get(position).getAbstracts());
+        holder.video_want.setText(list.get(position).getBuyNum()+"人想看");
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    public class Holder extends RecyclerView.ViewHolder {
+
+        public IjkVideoView video_view;
+        public ImageView video_pause;
+        public TextView video_content;
+        public TextView video_title;
+        public TextView video_want;
+        public ImageView cb_collecte;
+        public CheckBox qian;
+
+        public Holder(@NonNull View itemView) {
+            super(itemView);
+            video_view = itemView.findViewById(R.id.video_view);
+            video_pause = itemView.findViewById(R.id.video_pause);
+            video_content = itemView.findViewById(R.id.video_content);
+            video_title = itemView.findViewById(R.id.video_title);
+            video_want = itemView.findViewById(R.id.video_want);
+            cb_collecte = itemView.findViewById(R.id.cb_collecte);
+            qian = itemView.findViewById(R.id.qian);
+
+        }
+    }
+    public VideLun videLun;
+    public interface VideLun{
+        void getData(int contens);
+    }
+
+    public void setVideLun(VideLun videLun) {
+        this.videLun = videLun;
+    }
+    public interface setOnClick{
+        void onClick(String oid);
+    }
+    private setOnClick setOnClick;
+
+    public void setSetOnClick(VideoAdapter.setOnClick setOnClick) {
+        this.setOnClick = setOnClick;
+    }
+    public interface setOnTouch{
+        void onClick(String osid);
+    }
+    private setOnTouch setOnTouch;
+
+    public void setsetOnTouch(VideoAdapter.setOnTouch setOnTouch) {
+        this.setOnTouch = setOnTouch;
+    }
+    public interface setOnPriceTouch{
+        void onPriceClick(String mp,String ooid);
+    }
+    private setOnPriceTouch setOnPriceTouch;
+
+    public void setSetOnPriceTouch(VideoAdapter.setOnPriceTouch setOnPriceTouch) {
+        this.setOnPriceTouch = setOnPriceTouch;
+    }
+    public interface setOnDian{
+        void onPriceClick(int ci);
+    }
+    private setOnDian setOnDian;
+
+    public void setOnDian(VideoAdapter.setOnDian setOnDian) {
+        this.setOnDian = setOnDian;
     }
 }

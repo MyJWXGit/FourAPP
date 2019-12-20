@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--类目-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginRight="30dp"
+    android:gravity="center"
+    android:id="@+id/video_ll_color"
+    android:background="@drawable/video_selector_text"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/permission_dp_40">
+    <TextView
+        android:id="@+id/text_name"
+        android:text="111"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

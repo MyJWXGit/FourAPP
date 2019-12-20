@@ -66,9 +66,9 @@ import java.util.List;
         private int buyNum;
         private int categoryId;
         private int duration;
-        private int id;
+        private String id;
         private String originalUrl;
-        private int price;
+        private String price;
         private String shearUrl;
         private String title;
         private int whetherBuy;
@@ -106,11 +106,11 @@ import java.util.List;
             this.duration = duration;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 
@@ -122,11 +122,11 @@ import java.util.List;
             this.originalUrl = originalUrl;
         }
 
-        public int getPrice() {
+        public String getPrice() {
             return price;
         }
 
-        public void setPrice(int price) {
+        public void setPrice(String price) {
             this.price = price;
         }
 

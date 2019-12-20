@@ -2,10 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/iv_thumb"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/xrecyc_video_fransnana"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+    <master.flame.danmaku.ui.widget.DanmakuView
+        android:id="@+id/video_danmu5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"/>
-
+        />
 </LinearLayout>
