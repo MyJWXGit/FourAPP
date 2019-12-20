@@ -11,6 +11,7 @@ import com.wd.home.APP;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.FindInfoBean;
+import com.wd.home.bean.HomeSearchBean;
 import com.wd.home.bean.Information_ListBean;
 import com.wd.home.bean.Plate_ListBean;
 import com.wd.home.contract.Contract;
@@ -157,6 +158,60 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
                 if (isViewAttached()) {
                     //Bean包强转  拿到Status进行判断
                     FindInfoBean bean = (FindInfoBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {//失败的方法
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onHomeSearch(String keyWord) {
+        home_dode.onHomeSearch(keyWord, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {//成功的方法
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    HomeSearchBean bean = (HomeSearchBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {//失败的方法
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onPopular() {
+        home_dode.onPopular(new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {//成功的方法
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    HomeSearchBean bean = (HomeSearchBean) obj;
                     if (bean != null && bean.getStatus().equals("0000")) {
                         //getView是BasePresenter方法  使用getView进行调用P层
                         getView().onSuccess(bean);

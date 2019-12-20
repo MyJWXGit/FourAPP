@@ -4,10 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
-import com.baidu.ocr.sdk.OCR;
-import com.baidu.ocr.sdk.OnResultListener;
-import com.baidu.ocr.sdk.exception.OCRError;
-import com.baidu.ocr.sdk.model.AccessToken;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wd.common.app.BaseApplication;
 import com.wd.common.app.BaseApplicationImp;

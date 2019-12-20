@@ -3,10 +3,12 @@
     package="com.wd.home">
 
     <application>
-        <activity android:name=".activity.DrugActivity"></activity>
+        <activity android:name=".activity.Edit_SearchActivity"></activity>
+        <activity android:name=".activity.DrugActivity" />
         <activity android:name=".activity.DiseaseKnowledgeActivity" />
         <activity android:name=".activity.CommonActivity" />
         <activity android:name=".activity.FindInfoActivity" /> <!-- 屏幕适配 -->
         <activity android:name=".activity.HomeActivity" />
     </application>
+
 </manifest>

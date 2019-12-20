@@ -55,6 +55,7 @@ public class Illness_Fragment extends BaseFragment<Fragment_Presenter> implement
     @Override
     protected void initData() {
         mPresenter.onCategoryList();
+        mPresenter.onDrugsKnowledgeList(1, 1, 5);
     }
 
     @Override
@@ -87,7 +88,6 @@ public class Illness_Fragment extends BaseFragment<Fragment_Presenter> implement
             infoRecycler.setLayoutManager(gridLayoutManager);
             Drugsknowledge_Adapter drugsknowledge_adapter = new Drugsknowledge_Adapter(result, getContext());
             infoRecycler.setAdapter(drugsknowledge_adapter);
-
         }
     }
 

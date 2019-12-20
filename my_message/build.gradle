@@ -95,6 +95,7 @@ dependencies {
     implementation rootProject.ext.dependencies["banner"]
     implementation rootProject.ext.dependencies["autosize"]
     implementation rootProject.ext.dependencies["tablayout"]
+    implementation rootProject.ext.dependencies["espresso-cored"]
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]
@@ -105,5 +106,4 @@ dependencies {
     implementation 'liji.library.dev:citypickerview:0.7.0'
     implementation 'cn.qqtheme.framework:AndroidPicker:latest.integration'
     implementation 'com.android.support:cardview-v7:28.0.0'
-
 }

@@ -24,6 +24,7 @@ import com.baidu.ocr.sdk.model.IDCardResult;
 import com.baidu.ocr.ui.camera.CameraActivity;
 import com.baidu.ocr.ui.camera.CameraNativeHelper;
 import com.baidu.ocr.ui.camera.CameraView;
+import com.wd.common.app.BaseApplication;
 import com.wd.common.base.BaseActivity;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
@@ -232,7 +233,7 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
     }
 
     //初始化
-    private void initAccessTokenWithAkSk() {
+    public static void initAccessTokenWithAkSk() {
         OCR.getInstance(APP.context).initAccessTokenWithAkSk(
                 new OnResultListener<AccessToken>() {
                     @Override
@@ -240,26 +241,16 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
                         // 本地自动识别需要初始化
                         initLicense();
                         Log.d("MainActivity", "onResult: " + result.toString());
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(AutonymActivity.this, "初始化认证成功", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        Toast.makeText(APP.context, "初始化失败", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(OCRError error) {
                         error.printStackTrace();
                         Log.e("MainActivity", "onError: " + error.getMessage());
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(AutonymActivity.this, "初始化认证失败,请检查 key", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        Toast.makeText(APP.context, "初始化认证失败,请检查 key", Toast.LENGTH_SHORT).show();
                     }
-                }, getApplicationContext(),
+                }, APP.context,
                 // 需要自己配置 https://console.bce.baidu.com
                 "2FKGrPppc5GO8opMcVIXGihP",
                 // 需要自己配置 https://console.bce.baidu.com
@@ -267,8 +258,8 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
     }
 
     //初始化回调监听
-    private void initLicense() {
-        CameraNativeHelper.init(this, OCR.getInstance(AutonymActivity.this).getLicense(),
+    private static void initLicense() {
+        CameraNativeHelper.init(APP.context, OCR.getInstance(APP.context).getLicense(),
                 new CameraNativeHelper.CameraNativeInitCallback() {
                     @Override
                     public void onError(int errorCode, Throwable e) {
@@ -286,13 +277,7 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
                             default:
                                 msg = String.valueOf(errorCode);
                         }
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(AutonymActivity.this,
-                                        "本地质量控制初始化错误，错误原因： " + msg, Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        Toast.makeText(APP.context, "初始化失败", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

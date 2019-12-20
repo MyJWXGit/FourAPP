@@ -28,6 +28,6 @@ public class App extends BaseApplication implements BaseApplicationImp {
     @Override
     public void onCreate() {
         super.onCreate();
-        context = this;
+        context=this;
     }
 }

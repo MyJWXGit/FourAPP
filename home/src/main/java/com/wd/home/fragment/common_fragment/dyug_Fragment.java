@@ -53,6 +53,7 @@ public class dyug_Fragment extends BaseFragment<Fragment_Presenter> implements C
     @Override
     protected void initData() {
         mPresenter.onDepartment();
+        mPresenter.onCategory(7);
     }
 
     @Override
@@ -80,7 +81,7 @@ public class dyug_Fragment extends BaseFragment<Fragment_Presenter> implements C
         } else if (obj instanceof CategoryBean) {
             CategoryBean bean = (CategoryBean) obj;
             List<CategoryBean.ResultBean> result = bean.getResult();
-            GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(),2);
+            GridLayoutManager linearLayoutManager = new GridLayoutManager(getActivity(), 2);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
             infoRecycler.setLayoutManager(linearLayoutManager);
             Category_Adapter category_adapter = new Category_Adapter(result, getActivity());

@@ -66,7 +66,7 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
         if (bean.getStatus().equals("0000")) {
             SpUtils.put(this, Constant.USERID, bean.getResult().getId());
             SpUtils.put(this, Constant.SESSIONID, bean.getResult().getSessionId());
-            ARouter.getInstance().build("/my_message/activity").navigation();
+            ARouter.getInstance().build("/home/activity").navigation();
         }
     }
 

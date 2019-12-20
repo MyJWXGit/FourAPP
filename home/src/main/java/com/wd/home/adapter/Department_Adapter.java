@@ -48,6 +48,12 @@ public class Department_Adapter extends RecyclerView.Adapter {
         MyViewHolder holder = (MyViewHolder) viewHolder;
         holder.department_view.setImageURI(list.get(position).getPic());
         holder.text_name.setText(list.get(position).getDepartmentName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onID.onID(list.get(position).getId());
+            }
+        });
     }
 
     @Override
@@ -64,5 +70,15 @@ public class Department_Adapter extends RecyclerView.Adapter {
             text_name = itemView.findViewById(R.id.text_name);
             department_view = itemView.findViewById(R.id.department_view);
         }
+    }
+
+    public onID onID;
+
+    public interface onID {
+        void onID(int id);
+    }
+
+    public void setOnID(Department_Adapter.onID onID) {
+        this.onID = onID;
     }
 }

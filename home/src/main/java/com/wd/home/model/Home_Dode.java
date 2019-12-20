@@ -6,8 +6,10 @@ import com.wd.home.api.HttpApi;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.FindInfoBean;
+import com.wd.home.bean.HomeSearchBean;
 import com.wd.home.bean.Information_ListBean;
 import com.wd.home.bean.Plate_ListBean;
+import com.wd.home.bean.PopularBean;
 import com.wd.home.contract.Contract;
 
 import rx.Observer;
@@ -176,6 +178,68 @@ public class Home_Dode implements Contract.IModer {
                     public void onNext(FindInfoBean findInfoBean) {
                         if (iBallBask != null) {
                             iBallBask.onHttpOK(findInfoBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onHomeSearch(String keyWord, IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onHomeSearch(keyWord)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<HomeSearchBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(HomeSearchBean homeSearchBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(homeSearchBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onPopular(IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onPopular()
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<PopularBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(PopularBean popularBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(popularBean);
                         }
                     }
                 });

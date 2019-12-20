@@ -33,4 +33,8 @@ public interface API {
     String DiseaseKnowledge = "health/share/knowledgeBase/v1/findDiseaseKnowledge";
     //查询常见药品详情
     String DrugsKnowledge = "health/share/knowledgeBase/v1/findDrugsKnowledge";
+    //首页搜索
+    String homePageSearch = "health/share/v1/homePageSearch";
+    //热门搜索
+    String POPULARSEARCH = "health/share/v1/popularSearch";
 }

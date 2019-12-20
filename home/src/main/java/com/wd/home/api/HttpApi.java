@@ -7,9 +7,11 @@ import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
 import com.wd.home.bean.FindInfoBean;
+import com.wd.home.bean.HomeSearchBean;
 import com.wd.home.bean.IllnessBean;
 import com.wd.home.bean.Information_ListBean;
 import com.wd.home.bean.Plate_ListBean;
+import com.wd.home.bean.PopularBean;
 
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -70,4 +72,12 @@ public interface HttpApi {
     //查询常见药品详情
     @GET(API.DrugsKnowledge)
     Observable<IllnessBean> onIllness(@Query("id") int id);
+
+    //查询常见药品详情
+    @GET(API.homePageSearch)
+    Observable<HomeSearchBean> onHomeSearch(@Query("keyWord") String keyWord);
+
+    //查询常见药品详情
+    @GET(API.POPULARSEARCH)
+    Observable<PopularBean> onPopular();
 }

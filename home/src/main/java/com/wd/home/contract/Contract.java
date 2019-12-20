@@ -27,6 +27,12 @@ public interface Contract {
 
         //资讯详情
         void onFindInfo(int infoId);
+
+        //首页搜索
+        void onHomeSearch(String keyWord);
+
+        //热门搜索
+        void onPopular();
     }
 
     //Activity  M层
@@ -45,6 +51,12 @@ public interface Contract {
 
         //资讯详情
         void onFindInfo(int userId, String sessionId, int infoId, IBallBask iBallBask);
+
+        //资讯详情
+        void onHomeSearch(String keyWord, IBallBask iBallBask);
+
+        //热门搜索
+        void onPopular(IBallBask iBallBask);
 
         interface IBallBask {
             void onHttpOK(Object obj);

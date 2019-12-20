@@ -126,6 +126,10 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]
-    annotationProcessor 'com.alibaba:arouter-compiler:+'
+    annotationProcessor 'com.alibaba:arouter-compiler:+' //流失布局
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
+    //快速适配
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     implementation project(':common')
+    implementation project(':my_message')
 }

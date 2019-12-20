@@ -41,6 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+@Route(path = "/home/activity")
 public class HomeActivity extends BaseActivity<HomePresenter> implements Contract.IView {
     @BindView(R2.id.edit_query)
     EditText editQuery;
@@ -117,6 +118,13 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements Contrac
             Department_Adapter department_adapter = new Department_Adapter(result, this);
             recycler.setLayoutManager(gridLayoutManager);
             recycler.setAdapter(department_adapter);
+
+            department_adapter.setOnID(new Department_Adapter.onID() {
+                @Override
+                public void onID(int id) {
+
+                }
+            });
         } else if (obj instanceof Plate_ListBean) {
             Plate_ListBean bean = (Plate_ListBean) obj;
             List<Plate_ListBean.ResultBean> result = bean.getResult();
@@ -127,10 +135,12 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements Contrac
             titleRecycler.setAdapter(list_adapter);
 
 
-            list_adapter.setOnId(new Plate_List_Adapter.onId() {
+            list_adapter.setOnId(new Plate_List_Adapter.onPosition() {
                 @Override
-                public void onId(int id) {
-                    mPresenter.onInformationList(id, 1, 5);
+                public void onId(int position) {
+                    mPresenter.onInformationList(result.get(position).getId(), 1, 5);
+                    list_adapter.setOnColor(position);
+                    list_adapter.notifyDataSetChanged();
                 }
             });
         } else if (obj instanceof Information_ListBean) {
@@ -170,15 +180,21 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements Contrac
         ButterKnife.bind(this);
     }
 
-    @OnClick({R2.id.common_Illness, R2.id.common_drug})
+    @OnClick({R2.id.common_Illness, R2.id.common_drug, R2.id.edit_query})
     public void onViewClicked(View view) {
+        Intent intent = new Intent();
         int id = view.getId();
         if (id == R.id.common_Illness) {
-            Intent intent = new Intent(HomeActivity.this, CommonActivity.class);
+            intent = new Intent(HomeActivity.this, CommonActivity.class);
+            intent.putExtra("1", 1);
             startActivity(intent);
         } else if (id == R.id.common_drug) {
-            Intent intent1 = new Intent(HomeActivity.this, CommonActivity.class);
-            startActivity(intent1);
+            intent = new Intent(HomeActivity.this, CommonActivity.class);
+            intent.putExtra("2", 2);
+            startActivity(intent);
+        } else if (id == R.id.edit_query) {
+            intent = new Intent(HomeActivity.this, Edit_SearchActivity.class);
+            startActivity(intent);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.wd.home.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +26,8 @@ import java.util.List;
  * @class describe
  */
 public class Plate_List_Adapter extends RecyclerView.Adapter {
-    List<Plate_ListBean.ResultBean> list;
-    Context context;
+    private List<Plate_ListBean.ResultBean> list;
+    private Context context;
 
     public Plate_List_Adapter(List<Plate_ListBean.ResultBean> result, Context context) {
         this.context = context;
@@ -47,10 +48,17 @@ public class Plate_List_Adapter extends RecyclerView.Adapter {
         holder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onId.onId(list.get(position).getId());
+                onId.onId(position);
+                notifyDataSetChanged();
             }
         });
+        if (position == getColor()) {
+            holder.textView.setTextColor(Color.parseColor("#3084ea"));
+        } else {
+            holder.textView.setTextColor(Color.parseColor("#333333"));
+        }
     }
+
 
     @Override
     public int getItemCount() {
@@ -66,13 +74,23 @@ public class Plate_List_Adapter extends RecyclerView.Adapter {
         }
     }
 
-    public onId onId;
+    public onPosition onId;
 
-    public interface onId {
-        void onId(int id);
+    public interface onPosition {
+        void onId(int position);
     }
 
-    public void setOnId(Plate_List_Adapter.onId onId) {
+    public void setOnId(onPosition onId) {
         this.onId = onId;
+    }
+
+    public int onColor;
+
+    private int getColor() {
+        return onColor;
+    }
+
+    public void setOnColor(int onColor) {
+        this.onColor = onColor;
     }
 }

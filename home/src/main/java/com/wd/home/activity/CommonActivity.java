@@ -55,6 +55,15 @@ public class CommonActivity extends BaseActivity {
         tab.setupWithViewPager(viewPager);
         MyFragment_Adapter fragment_adapter = new MyFragment_Adapter(getSupportFragmentManager(), fragments, tabs);
         viewPager.setAdapter(fragment_adapter);
+
+        Intent intent = getIntent();
+        int one = intent.getIntExtra("1", 0);
+        int two = intent.getIntExtra("2", 0);
+        if (one == 1) {
+            viewPager.setCurrentItem(0);
+        } else if (two == 2) {
+            viewPager.setCurrentItem(1);
+        }
     }
 
     @Override
