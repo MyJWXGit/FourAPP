@@ -41,7 +41,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-@Route(path = "/home/activity")
 public class HomeActivity extends BaseActivity<HomePresenter> implements Contract.IView {
     @BindView(R2.id.edit_query)
     EditText editQuery;

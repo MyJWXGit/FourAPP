@@ -27,6 +27,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.circle.R;
+import com.wd.circle.R2;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.contract.Contract;
@@ -46,33 +47,33 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class Circle_Home_Activity extends BaseActivity<MainPresenter> implements Contract.IView, ObservableScrollView.ScrollViewListener {
-    @BindView(R.id.circle_touxiang)
+    @BindView(R2.id.circle_touxiang)
     SimpleDraweeView circleTouxiang;
-    @BindView(R.id.circle_message)
+    @BindView(R2.id.circle_message)
     ImageView circleMessage;
-    @BindView(R.id.patient_relative_titlebar)
+    @BindView(R2.id.patient_relative_titlebar)
     RelativeLayout patientRelativeTitlebar;
-    @BindView(R.id.patient_tv_department_name)
+    @BindView(R2.id.patient_tv_department_name)
     TextView patientTvDepartmentName;
-    @BindView(R.id.citcle_edit)
+    @BindView(R2.id.citcle_edit)
     EditText citcleEdit;
-    @BindView(R.id.patient_iv_user_news)
+    @BindView(R2.id.patient_iv_user_news)
     ImageView patientIvUserNews;
-    @BindView(R.id.patient_relative_serach)
+    @BindView(R2.id.patient_relative_serach)
     RelativeLayout patientRelativeSerach;
-    @BindView(R.id.tab)
+    @BindView(R2.id.tab)
     TabLayout tab;
-    @BindView(R.id.patient_iv_search)
+    @BindView(R2.id.patient_iv_search)
     ImageView patientIvSearch;
-    @BindView(R.id.bbb)
+    @BindView(R2.id.bbb)
     RelativeLayout bbb;
-    @BindView(R.id.viewpage)
+    @BindView(R2.id.viewpage)
     ViewPager viewpage;
-    @BindView(R.id.circle_recy3)
+    @BindView(R2.id.circle_recy3)
     RecyclerView circleRecy3;
-    @BindView(R.id.patient_linear_layout)
+    @BindView(R2.id.patient_linear_layout)
     LinearLayout patientLinearLayout;
-    @BindView(R.id.patient_scorll_view)
+    @BindView(R2.id.patient_scorll_view)
     ObservableScrollView patientScorllView;
     private List<Circle_list_Bean.ResultBean> result;
     private Unbinder bind;

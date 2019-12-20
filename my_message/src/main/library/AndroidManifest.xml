@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wd.my_message">
+
     <application>
+        <activity android:name=".view.message.InquiryMessageActivity"/>
+        <activity android:name=".view.message.CurrencyMessageActivity"/>
+        <activity android:name=".view.message.SystemMessageActivity"/>
+        <activity android:name=".view.MessagesActivity"></activity>
+        <activity android:name=".view.Suggest_Activity" />
+        <activity android:name=".view.Collection_Activity" />
         <activity android:name=".My_Home_Activity" />
     </application>
+
 </manifest>
