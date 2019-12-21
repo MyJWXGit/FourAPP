@@ -18,23 +18,24 @@ import com.wd.video.model.Video_QueryFModel;
     private Video_QueryFModel video_queryFModel;
     private String userId = "444";
     private String sessionId = "1576824015011444";
+
     @Override
     protected void initModel() {
         video_queryFModel = new Video_QueryFModel();
     }
+
     public void onVideo_Query(String categoryId, String page, String count) {
         video_queryFModel.onVideo_Query(userId, sessionId, categoryId, page, count, new Contract.FModel.FModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()) {
-                    Video_QueryBean video_queryBean = (Video_QueryBean) data;
-                    if (video_queryBean != null && video_queryBean.getStatus().equals("0000")) {
-                        getView().onSuccess(video_queryBean);
-                    } else {
-                        getView().onError(new Exception("请求失败"));
-                    }
+                Video_QueryBean video_queryBean = (Video_QueryBean) data;
+                if (video_queryBean != null && video_queryBean.getStatus().equals("0000")) {
+                    getView().onSuccess(video_queryBean);
+                } else {
+                    getView().onError(new Exception("请求失败"));
                 }
             }
+
             @Override
             public void onError(Throwable e) {
                 if (isViewAttached()) {
@@ -43,20 +44,21 @@ import com.wd.video.model.Video_QueryFModel;
             }
         });
     }
+
     @Override
     public void onVideo_Collection(String videoId) {
         video_queryFModel.onVideo_Collection(userId, sessionId, videoId, new Contract.FModel.FModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     Video_CollectionBean video_collectionBean = (Video_CollectionBean) data;
-                        getView().onSuccess(video_collectionBean);
+                    getView().onSuccess(video_collectionBean);
                 }
             }
 
             @Override
             public void onError(Throwable e) {
-                if(isViewAttached()){
+                if (isViewAttached()) {
                     Logger.d(TAG, e.getMessage() + "");
                 }
             }
@@ -68,11 +70,11 @@ import com.wd.video.model.Video_QueryFModel;
         video_queryFModel.onVideo_Query_Barrage(videoId, new Contract.FModel.FModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     Video_Query_BarrageBean video_query_barrageBean = (Video_Query_BarrageBean) data;
-                    if (video_query_barrageBean!=null&&video_query_barrageBean.getStatus().equals("0000")){
+                    if (video_query_barrageBean != null && video_query_barrageBean.getStatus().equals("0000")) {
                         getView().onSuccess(video_query_barrageBean);
-                    }else {
+                    } else {
                         getView().onError(new Exception("请求失败"));
                     }
                 }
@@ -80,7 +82,7 @@ import com.wd.video.model.Video_QueryFModel;
 
             @Override
             public void onError(Throwable e) {
-                if(isViewAttached()){
+                if (isViewAttached()) {
                     Logger.d(TAG, e.getMessage() + "");
                 }
             }
@@ -92,15 +94,15 @@ import com.wd.video.model.Video_QueryFModel;
         video_queryFModel.onVideo_Pay(userId, sessionId, videoId, price, new Contract.FModel.FModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     Video_PayBean video_payBean = (Video_PayBean) data;
-                        getView().onSuccess(video_payBean);
+                    getView().onSuccess(video_payBean);
                 }
             }
 
             @Override
             public void onError(Throwable e) {
-                if(isViewAttached()){
+                if (isViewAttached()) {
                     Logger.d(TAG, e.getMessage() + "");
                 }
             }

@@ -2,8 +2,11 @@ package com.wd.video.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.dou361.ijkplayer.widget.IjkVideoView;
@@ -17,10 +20,13 @@ import com.wd.video.bean.Video_Query_BarrageBean;
 import com.wd.video.contract.Contract;
 import com.wd.video.presenter.Video_QueryFPresenter;
 import com.wd.video.utils.AcFunDanmakuParser;
+import com.wd.video.utils.Fragment_Utils;
 import com.wd.video.utils.OnViewPagerListener;
 import com.wd.video.utils.PagerLayoutManager;
 
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -185,7 +191,9 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
 
     @Override
     protected void initData() {
-        mPresenter.onVideo_Query("1","1","100");
+        String tid = getArguments().getString("tid");
+        Toast.makeText(getActivity(), tid, Toast.LENGTH_SHORT).show();
+        mPresenter.onVideo_Query(tid,"1","100");
         mContext = DanmakuContext.create();
         //设置最大显示行数
 
@@ -268,6 +276,17 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
         if (video_danmu != null && video_danmu.isPrepared() && video_danmu.isPaused()) {
             video_danmu.resume();
         }
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        if (video_danmu != null) {
+            // dont forget release!
+            video_danmu.release();
+            video_danmu = null;
+        }
+        super.onDestroyView();
     }
 
     @Override
