@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+     android:filterTouchesWhenObscured="true"
     tools:context="com.wd.doctor.view.activity.LoginActivity">
     <ImageView
         android:layout_width="match_parent"
@@ -30,7 +31,9 @@
             android:hint="请输入邮箱账号"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginRight="@dimen/dp_20"
-            android:id="@+id/login_edity"/>
+            android:singleLine="true"
+            android:id="@+id/login_edity"
+            android:theme="@style/MyEditText"/>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,11 +52,14 @@
             android:layout_height="@dimen/dp_70"
             android:layout_marginLeft="@dimen/dp_40"
             android:hint="请输入密码"
+            android:singleLine="true"
             android:inputType="textPassword"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginRight="@dimen/dp_20"
             android:layout_alignLeft="@+id/suo"
-            android:id="@+id/login_pwd"/>
+            android:id="@+id/login_pwd"
+            android:theme="@style/MyEditText"
+            />
 
         <ImageView
             android:id="@+id/hit"

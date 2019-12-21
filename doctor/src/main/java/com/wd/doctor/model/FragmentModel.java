@@ -5,9 +5,11 @@ import com.wd.doctor.api.ApiService;
 import com.wd.doctor.bean.DetailsBean;
 import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.PatientsBean;
+import com.wd.doctor.bean.PhotographBean;
 import com.wd.doctor.bean.UploadingBean;
 import com.wd.doctor.contract.Contract;
 
+import okhttp3.MultipartBody;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -130,6 +132,35 @@ public class FragmentModel implements Contract.FModer{
                         //成功的方法
                         if (iBallBask != null) {
                             iBallBask.onHttpOK(uploadingBean);
+                        }
+                    }
+                });
+    }
+    //上传图片
+    @Override
+    public void Photograph(int doctorId, String sessionId, MultipartBody.Part part, Contract.IModer.IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
+                .Photograph(doctorId,sessionId,part)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<PhotographBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(PhotographBean photographBean) {
+                        //成功的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(photographBean);
                         }
                     }
                 });

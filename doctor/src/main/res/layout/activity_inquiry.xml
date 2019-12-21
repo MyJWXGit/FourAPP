@@ -32,7 +32,7 @@
         >
 
         <com.google.android.material.tabs.TabLayout
-            app:tabSelectedTextColor="#F7D6D6"
+            app:tabSelectedTextColor="#3087ea"
             app:tabMode="scrollable"
             android:id="@+id/tab_lay"
             android:layout_width="0dp"

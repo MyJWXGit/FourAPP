@@ -7,8 +7,9 @@ package com.wd.doctor.bean;
  */
 public class UploadingBean {
 
+
     /**
-     * result : http://172.17.8.100/images/health/doctor/image_pic/2019-12-18/PwlCuv20191218142806.jpg
+     * result : http://172.17.8.100/images/health/doctor/system_image_pic/system_image1.jpg
      * message : 上传成功
      * status : 0000
      */

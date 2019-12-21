@@ -3,6 +3,7 @@ package com.wd.doctor.view.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.wd.doctor.contract.Contract;
 import com.wd.doctor.present.LoginPresenter;
 import com.wd.doctor.view.activity.MainActivity;
 import com.wd.doctor.view.activity.SystemActivity;
+import com.wd.doctor.view.activity.message.MessageActivity;
 import com.wd.doctor.view.adapter.SystemAdapter;
 
 /**
@@ -26,10 +28,11 @@ import com.wd.doctor.view.adapter.SystemAdapter;
  */
 public class PictureFragmentone extends BaseFragment<LoginPresenter> implements Contract.IView {
     private RecyclerView recyfdf;
-    private LinearLayout butedk;
+    private Button butedk;
     private String imagePic;
     private int doctorId;
     private String sessionId;
+    private boolean isFirstLoading = true;
     @Override
     protected LoginPresenter providePresenter() {
         return new LoginPresenter();
@@ -71,7 +74,7 @@ public class PictureFragmentone extends BaseFragment<LoginPresenter> implements 
             @Override
             public void setPic(int position) {
                 imagePic = bean.getResult().get(position).getImagePic();
-                //Toast.makeText(SystemActivity.this, "1223323123123", Toast.LENGTH_SHORT).show();
+
             }
         });
         adapter.notifyDataSetChanged();
@@ -81,9 +84,9 @@ public class PictureFragmentone extends BaseFragment<LoginPresenter> implements 
             public void onClick(View view) {
                 if (imagePic!=null) {
                     mPresenter.Uploading(doctorId,sessionId,imagePic);
-                 //   Intent intent = new Intent(getActivity(), MainActivity.class);
-                   // startActivity(intent);
-                 getActivity(). finish();
+                    Intent intent = new Intent(getActivity(), MessageActivity.class);
+                    startActivity(intent);
+                // getActivity(). finish();
                 }else {
                     Toast.makeText(getActivity(), "你没有选择照片", Toast.LENGTH_SHORT).show();
                 }
@@ -95,5 +98,16 @@ public class PictureFragmentone extends BaseFragment<LoginPresenter> implements 
     @Override
     public void onError(Throwable e) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isFirstLoading) {
+            //如果不是第一次加载，刷新数据
+            initLayout();
+        }
+
+        isFirstLoading = false;
     }
 }

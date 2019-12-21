@@ -7,6 +7,7 @@ import com.wd.doctor.bean.InquiryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.MianBean;
 import com.wd.doctor.bean.PatientsBean;
+import com.wd.doctor.bean.PhotographBean;
 import com.wd.doctor.bean.PublishBean;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
@@ -18,13 +19,16 @@ import com.wd.doctor.bean.VerifyBean;
 import java.io.File;
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -88,4 +92,17 @@ public interface ApiService {
     //选择系统提供形象照
     @POST("health/doctor/verify/v1/chooseImagePic")
     Observable<UploadingBean> Uploading(@Header("doctorId") int doctorId, @Header("sessionId") String sessionId, @Query("imagePic") String imagePic);
+    //上传照片
+    @Multipart
+    @POST("health/doctor/verify/v1/uploadImagePic")
+    Observable<PhotographBean> Photograph(@Header("doctorId") int doctorId, @Header("sessionId") String sessionId,@Part MultipartBody.Part part);
+
+ /*   Observable<PictureBean> onPictureBean(
+            @Header("userId") String userId,
+            @Header("sessionId") String sessionId,
+            @Query("sickCircleId") int sickCircleId,
+            @Part MultipartBody.Part part
+    );*/
+
+
 }

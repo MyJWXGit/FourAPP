@@ -11,6 +11,24 @@
       android:text="1111"
       android:id="@+id/pati_name"
       />
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textSize="@dimen/sp_16"
+      android:text="20"
+    android:textColor="#d92109"
+    android:layout_marginTop="@dimen/dp_10"
+      android:id="@+id/patien_num"
+    android:layout_alignParentRight="true"/>
+  <ImageView
+      android:layout_width="@dimen/dp_20"
+      android:layout_height="@dimen/dp_20"
+      android:src="@mipmap/h_currency"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="@dimen/dp_10"
+     android:layout_toLeftOf="@id/patien_num"
+      android:layout_marginRight="@dimen/dp_25"
+    android:id="@+id/hhhb"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

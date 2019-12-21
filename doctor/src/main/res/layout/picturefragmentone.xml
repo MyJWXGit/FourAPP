@@ -53,20 +53,21 @@
               android:layout_marginTop="@dimen/dp_50"
               android:background="@mipmap/according_to_the_image"/>
       </LinearLayout>-->
-    <LinearLayout
-        android:id="@+id/butedk"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_36"
-        android:layout_marginTop="@dimen/dp_40"
-        android:gravity="center"
-        android:background="@drawable/shape4"
+        android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/dp_30"
         android:layout_marginRight="@dimen/dp_30">
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/butedk"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shape4"
+            android:layout_alignParentBottom="true"
             android:text="完成设置"
             android:textSize="@dimen/sp_14"
-            android:textColor="#ffffff"/>
-    </LinearLayout>
+            android:textColor="#ffffff"
+            android:layout_marginBottom="@dimen/dp_40"
+            />
+    </RelativeLayout>
 </LinearLayout>

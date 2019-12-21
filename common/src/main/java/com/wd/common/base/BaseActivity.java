@@ -33,6 +33,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected abstract void initData();
 
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

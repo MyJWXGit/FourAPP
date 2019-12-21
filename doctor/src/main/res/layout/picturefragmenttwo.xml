@@ -27,12 +27,13 @@
         android:layout_marginRight="@dimen/dp_30"
         android:orientation="vertical"
         android:gravity="center"
-        android:id="@+id/shangchuan"
+
         >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/doctor_camera_n"
+            android:id="@+id/shangchuan"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -93,7 +94,7 @@
         android:id="@+id/butedk"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_36"
-        android:layout_marginTop="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_140"
         android:gravity="center"
         android:background="@drawable/shape4"
         android:layout_marginLeft="@dimen/dp_30"

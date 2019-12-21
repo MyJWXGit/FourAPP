@@ -29,4 +29,12 @@
         <item name="android:layout_marginRight">@dimen/dp_20</item>
         <item name="android:layout_alignParentRight">true</item>
     </style>
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#f2f2f2</item>
+        <item name="colorControlActivated">#BBBB</item>
+    </style>
+
+    <style name="AppTheme.TransparentStausBar" parent="AppTheme">
+
+    </style>
 </resources>

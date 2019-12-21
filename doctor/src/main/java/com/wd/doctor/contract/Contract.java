@@ -7,6 +7,8 @@ import com.wd.doctor.bean.LoginBean;
 import java.io.File;
 import java.util.Map;
 
+import okhttp3.MultipartBody;
+
 
 /**
  * date:2019/11/6
@@ -47,8 +49,10 @@ public interface Contract {
         void Imagep();
         //注册
         void onZhucec(Map<String, Object> paramsMap);
-        //上传照片
+        //系统图片上传
         void Uploading(int doctorId, String sessionId, String imagePic);
+        //上传图片
+        void Photograph(int doctorId, String sessionId, MultipartBody.Part part);
     }
 
     //Activity  M层
@@ -93,6 +97,8 @@ public interface Contract {
         void Imagep(IModer.IBallBask iBallBask);
         //上传照片
         void Uploading(int doctorId, String sessionId, String imagePic, IModer.IBallBask iBallBask);
+        //上传图片
+        void Photograph(int doctorId, String sessionId, MultipartBody.Part part, IModer.IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 
