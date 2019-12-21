@@ -96,11 +96,14 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]
+    implementation rootProject.ext.dependencies["takephoto"]
+    implementation rootProject.ext.dependencies["takephotos"]
     implementation rootProject.ext.dependencies["espresso-cored"]
     implementation rootProject.ext.dependencies["espresso-cores"]
     implementation rootProject.ext.dependencies["tablayout"]
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
     implementation 'com.google.android.material:material:1.0.0'
-    //glide依赖
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
+    implementation 'com.ypx.yimagepicker:androidx:3.0.1'
 }

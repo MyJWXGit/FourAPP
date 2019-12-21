@@ -1,15 +1,16 @@
 package com.wd.circle.view;
 
-import android.app.Activity;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -27,7 +29,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,14 +42,24 @@ import com.wd.circle.bean.PictureBean;
 import com.wd.circle.bean.RepleaseCircleBean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.presenter.MainPresenter;
+import com.wd.circle.utils.CustomImgPickerPresenter;
 import com.wd.circle.utils.ImageUtil;
+import com.wd.circle.utils.WeChatPresenter;
 import com.wd.circle.view.adapter.ConsultationTwoAdapter;
 import com.wd.circle.view.adapter.IllnessAdapter;
 import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.SpUtils;
+import com.ypx.imagepicker.ImagePicker;
+import com.ypx.imagepicker.bean.ImageItem;
+import com.ypx.imagepicker.data.OnImagePickCompleteListener;
+import com.ypx.imagepicker.presenter.IPickerPresenter;
 
-import java.io.File;
+;
+import org.devio.takephoto.app.TakePhotoActivity;
+
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -57,9 +68,10 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.MediaType;
+
+
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
+
 
 public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implements Contract.IView {
 
@@ -94,8 +106,6 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     RelativeLayout releaseCircleIvEndTime;
     @BindView(R2.id.release_circle_et_treatmentProcess)
     EditText releaseCircleEtTreatmentProcess;
-    @BindView(R2.id.release_circle_iv_upload_Picture)
-    ImageView releaseCircleIvUploadPicture;
     @BindView(R2.id.release_circle_iv_delete_Picture)
     ImageView releaseCircleIvDeletePicture;
     @BindView(R2.id.release_circle_btn_publish)
@@ -104,21 +114,18 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     LinearLayout releaseCircleLinearSickCircle;
     @BindView(R2.id.swit)
     Switch swit;
-    //    private ShapeLoadingDialog shapeLoadingDialog;
     private int userId;
     private String sessionId;
     private RecyclerView popup_recycler_department;
     private PopupWindow popupWindow;
     private int id;
     private RecyclerView popup_recycler_disease;
-    private MultipartBody.Part picture;
+    private List<MultipartBody.Part> picture;
     private PopupWindow popWindowDisease;
     private int sickCircleId;
+    private GridLayout mGridLayout;
 
-    @Override
-    protected int initLayout() {
-        return R.layout.activity_release_circles;
-    }
+    private ArrayList<ImageItem> picList = new ArrayList<>();
 
     @Override
     protected MainPresenter providePresenter() {
@@ -128,10 +135,13 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     @Override
     protected void initView() {
         ButterKnife.bind(this);
+        mGridLayout = findViewById(R.id.release_circle_iv_upload_Picture);
     }
 
     @Override
     protected void initData() {
+        initDate();
+        refreshGridLayout();
         //设置在activity启动的时候输入法默认是不开启的
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         //悬赏额度的开关
@@ -224,40 +234,99 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         releaseCircleIvChooseDepartment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initPopuWindows(view);
+                mPresenter.onHome();
             }
         });
         //对应病症
         releaseCircleIvChooseDisease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initPopWindowDisease(v);
+                //根据科室查询对应病症
+                mPresenter.onDisease(id);
             }
         });
+    }
 
-        //打开相册
-        releaseCircleIvUploadPicture.setOnClickListener(new View.OnClickListener() {
+    @Override
+    protected int initLayout() {
+        return R.layout.activity_release_circles;
+    }
+
+    private void initPopWindowDisease(List<DiseaseBean.ResultBean> result ) {
+        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_disease, null,false);
+        popup_recycler_disease = view.findViewById(R.id.popup_recycler_disease);
+        //1.构造一个PopupWindow，参数依次是加载的View，宽高
+        popWindowDisease = new PopupWindow(view,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+
+        popWindowDisease.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
+        //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
+        //代码的话，你会发现，当你把PopupWindow显示出来了，无论你按多少次后退键
+        //PopupWindow并不会关闭，而且退不出程序，加上下述代码可以解决这个问题
+        popWindowDisease.setTouchable(true);
+        popWindowDisease.setTouchInterceptor(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(ReleaseCirclesActivity.this, "打开相册", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, 1);
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
             }
         });
-
-        //删除选中图片
-        releaseCircleIvDeletePicture.setOnClickListener(new View.OnClickListener() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
+        popup_recycler_disease.setLayoutManager(linearLayoutManager);
+        popup_recycler_disease.setAdapter(illnessAdapter);
+        illnessAdapter.setSetOnItemClicks(new IllnessAdapter.SetOnItemClicks() {
             @Override
-            public void onClick(View v) {
-                releaseCircleIvUploadPicture.setImageResource(R.mipmap.add);
+            public void setOnItems(int i) {
+                String name = result.get(i).getName();
+                releaseCircleTvChooseDisease.setText(name + "");
+                popWindowDisease.dismiss();
+            }
+        });
+        popWindowDisease.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
+        //设置popupWindow显示的位置，参数依次是参照View，x轴的偏移量，y轴的偏移量
+        popWindowDisease.showAsDropDown(view, 50, 0);
+
+
+    }
+
+    private void initPopuWindows(List<Circle_list_Bean.ResultBean> result) {
+        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_department, null, false);
+        popup_recycler_department = view.findViewById(R.id.popup_recycler_department);
+        //1.构造一个PopupWindow，参数依次是加载的View，宽高
+        popupWindow = new PopupWindow(view,
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
+        //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
+        //代码的话，你会发现，当你把PopupWindow显示出来了，无论你按多少次后退键
+        //PopupWindow并不会关闭，而且退不出程序，加上下述代码可以解决这个问题
+        popupWindow.setTouchable(true);
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        ConsultationTwoAdapter consultationTwoAdapter = new ConsultationTwoAdapter(result, this);
+        popup_recycler_department.setLayoutManager(linearLayoutManager);
+        popup_recycler_department.setAdapter(consultationTwoAdapter);
+        consultationTwoAdapter.setSetOnItemClickListen(new ConsultationTwoAdapter.SetOnItemClickListen() {
+            @Override
+            public void setOnItemClik(int i) {
+                id = result.get(i).getId();
+                releaseCircleTvChooseDepartment.setText(result.get(i).getDepartmentName());
+                Toast.makeText(ReleaseCirclesActivity.this, result.get(i).getDepartmentName(), Toast.LENGTH_SHORT).show();
+                popupWindow.dismiss();
             }
         });
 
-//        shapeLoadingDialog = new ShapeLoadingDialog.Builder(ReleaseCirclesActivity.this)
-//                .loadText("上传图片中...")
-//                .build();
-        initDate();
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
+        //设置popupWindow显示的位置，参数依次是参照View，x轴的偏移量，y轴的偏移量
+        popupWindow.showAsDropDown(view, 50, 0);
     }
 
     private void initDate() {
@@ -335,62 +404,10 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
 
                 //调发布圈子接口
                 mPresenter.onReplease(userId + "", sessionId, map);
-//                shapeLoadingDialog.show();
             }
         });
     }
 
-    private void initPopWindowDisease(View v) {
-        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_disease, null, false);
-        popup_recycler_disease = view.findViewById(R.id.popup_recycler_disease);
-        //1.构造一个PopupWindow，参数依次是加载的View，宽高
-        popWindowDisease = new PopupWindow(view,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        popWindowDisease.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
-        //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
-        //代码的话，你会发现，当你把PopupWindow显示出来了，无论你按多少次后退键
-        //PopupWindow并不会关闭，而且退不出程序，加上下述代码可以解决这个问题
-        popWindowDisease.setTouchable(true);
-        popWindowDisease.setTouchInterceptor(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return false;
-                // 这里如果返回true的话，touch事件将被拦截
-                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
-            }
-        });
-        popWindowDisease.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
-        //设置popupWindow显示的位置，参数依次是参照View，x轴的偏移量，y轴的偏移量
-        popWindowDisease.showAsDropDown(v, 50, 0);
-
-        //根据科室查询对应病症
-        mPresenter.onDisease(id);
-    }
-
-    private void initPopuWindows(View view) {
-        View v = LayoutInflater.from(this).inflate(R.layout.item_popip_department, null, false);
-        popup_recycler_department = v.findViewById(R.id.popup_recycler_department);
-        //1.构造一个PopupWindow，参数依次是加载的View，宽高
-        popupWindow = new PopupWindow(v,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
-        popupWindow.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
-        //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
-        //代码的话，你会发现，当你把PopupWindow显示出来了，无论你按多少次后退键
-        //PopupWindow并不会关闭，而且退不出程序，加上下述代码可以解决这个问题
-        popupWindow.setTouchable(true);
-        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return false;
-                // 这里如果返回true的话，touch事件将被拦截
-                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
-            }
-        });
-        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
-        //设置popupWindow显示的位置，参数依次是参照View，x轴的偏移量，y轴的偏移量
-        popupWindow.showAsDropDown(view, 50, 0);
-        mPresenter.onHome();
-    }
 
     @Override
     public Context context() {
@@ -402,34 +419,12 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         if (obj instanceof Circle_list_Bean) {
             Circle_list_Bean circle_list_bean = (Circle_list_Bean) obj;
             List<Circle_list_Bean.ResultBean> result = circle_list_bean.getResult();
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-            ConsultationTwoAdapter consultationTwoAdapter = new ConsultationTwoAdapter(result, this);
-            popup_recycler_department.setLayoutManager(linearLayoutManager);
-            popup_recycler_department.setAdapter(consultationTwoAdapter);
-            consultationTwoAdapter.setSetOnItemClickListen(new ConsultationTwoAdapter.SetOnItemClickListen() {
-                @Override
-                public void setOnItemClik(int i) {
-                    id = result.get(i).getId();
-                    releaseCircleTvChooseDepartment.setText(result.get(i).getDepartmentName());
-                    Toast.makeText(ReleaseCirclesActivity.this, result.get(i).getDepartmentName(), Toast.LENGTH_SHORT).show();
-                    popupWindow.dismiss();
-                }
-            });
+            initPopuWindows(result);
         } else if (obj instanceof DiseaseBean) {
             DiseaseBean diseaseBean = (DiseaseBean) obj;
             List<DiseaseBean.ResultBean> result = diseaseBean.getResult();
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-            IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
-            popup_recycler_disease.setLayoutManager(linearLayoutManager);
-            popup_recycler_disease.setAdapter(illnessAdapter);
-            illnessAdapter.setSetOnItemClicks(new IllnessAdapter.SetOnItemClicks() {
-                @Override
-                public void setOnItems(int i) {
-                    String name = result.get(i).getName();
-                    releaseCircleTvChooseDisease.setText(name + "");
-                    popWindowDisease.dismiss();
-                }
-            });
+            initPopWindowDisease(result);
+
         } else if (obj instanceof RepleaseCircleBean) {
             RepleaseCircleBean repleaseCircleBean = (RepleaseCircleBean) obj;
             if (repleaseCircleBean.getStatus().equals("0000")) {
@@ -441,7 +436,6 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 } else {
                     //做任务
                     mPresenter.onDoTask(userId + "", sessionId, 1003);
-//                    shapeLoadingDialog.dismiss();
                     finish();
                 }
                 notifyAll();
@@ -460,7 +454,6 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 Toast.makeText(this, pictureBean.getMessage(), Toast.LENGTH_SHORT).show();
                 //做任务
                 mPresenter.onDoTask(userId + "", sessionId, 1003);
-//                shapeLoadingDialog.dismiss();
                 finish();
             } else {
                 Toast.makeText(this, pictureBean.getMessage(), Toast.LENGTH_SHORT).show();
@@ -473,38 +466,139 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //判断是不是选中图片了
-        if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
-                Uri uri = data.getData();
-                if (uri != null) {
-                    //用一个工具类获取图片的绝对路径,我会粘到下方
-                    String path = ImageUtil.getPath(this, uri);
-                    Glide.with(this).load(path)
-                            .placeholder(R.mipmap.add)
-                            .error(R.mipmap.add)
-                            .into(releaseCircleIvUploadPicture);
-                    if (path != null) {
-                        //转换为file类型
-                        File file = new File(path);
-                        //进行类型转换,因为在RetrofitService定义的是@Part MultipartBody.Part,所以要转成这样的格式
-                        RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                        picture = MultipartBody.Part.createFormData("picture", file.getName(), requestBody);
-                    }
-                }
-            } else {
-                Toast.makeText(this, "取消相册", Toast.LENGTH_SHORT).show();
+
+    /**
+     * 刷新图片显示
+     */
+    private void refreshGridLayout() {
+        mGridLayout.setVisibility(View.VISIBLE);
+        mGridLayout.removeAllViews();
+        int num = picList.size();
+        final int picSize = (getScreenWidth() - dp(20)) / 4;
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(picSize, picSize);
+        if (num >= 6) {
+            mGridLayout.setVisibility(View.VISIBLE);
+            for (int i = 0; i < num; i++) {
+                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.a_layout_pic_select, null);
+                view.setLayoutParams(params);
+                view.setPadding(dp(5), dp(5), dp(5), dp(5));
+                setPicItemClick(view, i);
+                mGridLayout.addView(view);
             }
+        } else {
+            mGridLayout.setVisibility(View.VISIBLE);
+            ImageView imageView = new ImageView(this);
+            imageView.setLayoutParams(params);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setPadding(dp(5), dp(5), dp(5), dp(5));
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startPick();
+                }
+            });
+            for (int i = 0; i < num; i++) {
+                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.a_layout_pic_select, null);
+                view.setLayoutParams(params);
+                view.setPadding(dp(5), dp(5), dp(5), dp(5));
+                setPicItemClick(view, i);
+                mGridLayout.addView(view);
+            }
+            mGridLayout.addView(imageView);
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void setPicItemClick(RelativeLayout layout, final int pos) {
+        ImageView iv_pic = (ImageView) layout.getChildAt(0);
+        ImageView iv_close = (ImageView) layout.getChildAt(1);
+        Glide.with(this).load(picList.get(pos).path).into(iv_pic);
+        iv_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                picList.remove(pos);
+                refreshGridLayout();
+            }
+        });
+        iv_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                preview(pos);
+            }
+        });
+    }
+
+    public int dp(float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, this.getResources().getDisplayMetrics());
+    }
+
+    /**
+     * 获得屏幕宽度
+     */
+    public int getScreenWidth() {
+        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        assert wm != null;
+        wm.getDefaultDisplay().getMetrics(outMetrics);
+        return outMetrics.widthPixels;
+    }
+
+    private void startPick() {
+//        ImagePicker.provideMediaSets(this, MimeType.ofAll(), new MediaSetsDataSource.MediaSetProvider() {
+//            @Override
+//            public void providerMediaSets(ArrayList<ImageSet> imageSets) {
+//                Log.e("startPick", "providerMediaSets: " + imageSets.size());
+//            }
+//        });
+
+//        ImagePicker.provideAllMediaItems(this, getMimeTypes(), new MediaItemsDataSource.MediaItemProvider() {
+//            @Override
+//            public void providerMediaItems(ArrayList<ImageItem> imageItems, ImageSet allVideoSet) {
+//                Log.e("startPick", "providerMediaSets: " + imageItems.size());
+//            }
+//        });
+
+        pick(6 - picList.size());
+    }
+
+    private void preview(int pos) {
+        IPickerPresenter presenter = true ? new WeChatPresenter() : new CustomImgPickerPresenter();
+        //开启编辑预览
+        ImagePicker.preview(this, presenter, picList, pos, new OnImagePickCompleteListener() {
+            @Override
+            public void onImagePickComplete(ArrayList<ImageItem> items) {
+                //图片编辑回调，主线程
+                picList.clear();
+                picList.addAll(items);
+                refreshGridLayout();
+            }
+        });
+    }
+
+    private void pick(int count) {
+        final IPickerPresenter presenter = true ? new WeChatPresenter() : new CustomImgPickerPresenter();
+        ImagePicker.withMulti(presenter)//指定presenter
+                .setMaxCount(count)//设置选择的最大数
+                .setColumnCount(4)//设置显示列数
+                .showCamera(true)//设置是否显示拍照按钮（在列表第一个）
+                .setMaxVideoDuration(120000)//设置视频可选择的最大时长
+                //设置只能选择视频或图片
+                .setSinglePickImageOrVideoType(true)
+                //设置只能选择一个视频
+                .setVideoSinglePick(true)
+                //设置下次选择需要屏蔽的图片或视频（简单点就是不可重复选择）
+                .setShieldList(new ArrayList<String>())
+                //设置下次选择需要带入的图片和视频（简单点就是记录上次选择的图片，可以取消之前选择）
+                .setLastImageList(new ArrayList<String>())
+                //调用多选
+                .pick(this, new OnImagePickCompleteListener() {
+                    @Override
+                    public void onImagePickComplete(ArrayList<ImageItem> items) {
+                        //处理回调回来的图片信息，主线程
+                        picList.addAll(items);
+                        refreshGridLayout();
+                    }
+                });
+
     }
 }

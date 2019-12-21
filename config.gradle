@@ -91,7 +91,8 @@ ext {
             "dkplayer-x86"           : 'com.github.dueeeke.dkplayer:dkplayer-x86:2.5.5',
             "dkplayer-x86_64"        : 'com.github.dueeeke.dkplayer:dkplayer-x86_64:2.5.5',
             "dkplayer-ui"            : 'com.github.dueeeke.dkplayer:dkplayer-ui:2.5.5',
-
+            "takephoto"              : "com.ypx.yimagepicker:androidx:2.4.2",
+            "takephotos"              : "org.devio.takephoto:takephoto_library:4.1.0",
 
             "espresso-cored"         : 'com.github.bumptech.glide:glide:4.9.0',//测试依赖，新建项目时会默认添加，一般不建议添加
             "espresso-cores"         : 'com.github.bumptech.glide:compiler:4.9.0',//测试依赖，新建项目时会默认添加，一般不建议添加

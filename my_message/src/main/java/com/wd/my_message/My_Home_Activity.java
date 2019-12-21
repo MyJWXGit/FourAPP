@@ -14,8 +14,10 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.base.BasePresenter;
+import com.wd.my_message.view.Attention_Doctor_Activity;
 import com.wd.my_message.view.Collection_Activity;
 import com.wd.my_message.view.MessagesActivity;
+import com.wd.my_message.view.My_Walk_Activity;
 import com.wd.my_message.view.Suggest_Activity;
 
 import butterknife.BindView;
@@ -113,6 +115,7 @@ public class My_Home_Activity extends BaseActivity {
         } else if (id == R.id.re_latiview) {
         } else if (id == R.id.my_button_record) {
         } else if (id == R.id.my_button_wallet) {
+            startActivity(new Intent(this, My_Walk_Activity.class));
         } else if (id == R.id.my_button_collect) {
             startActivity(new Intent(this, Collection_Activity.class));
         } else if (id == R.id.my_button_suggest) {
@@ -120,6 +123,7 @@ public class My_Home_Activity extends BaseActivity {
         } else if (id == R.id.my_button_video) {
         } else if (id == R.id.my_button_patients_circle) {
         } else if (id == R.id.my_button_attention) {
+            startActivity(new Intent(this, Attention_Doctor_Activity.class));
         } else if (id == R.id.my_button_task) {
         } else if (id == R.id.my_button_set) {
         } else if (id == R.id.linear_my) {

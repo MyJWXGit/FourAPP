@@ -19,6 +19,7 @@ import com.wd.circle.bean.UserTaskListBean;
 import com.wd.circle.contract.Contract;
 import com.wd.common.utils.HttpUtils;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -77,7 +78,7 @@ public class MainModel implements Contract.IModer {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable e)                    {
                         Log.i("xxx", "onError: "+e);
                     }
 
@@ -325,7 +326,7 @@ public class MainModel implements Contract.IModer {
     }
 
     @Override
-    public void onPicture(String userId, String sessionId, int sickCircleId, MultipartBody.Part part, IBallBask iBallBask) {
+    public void onPicture(String userId, String sessionId, int sickCircleId, List<MultipartBody.Part> part, IBallBask iBallBask) {
         HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
                 .onPictureBean(userId, sessionId, sickCircleId, part)
                 .subscribeOn(Schedulers.io())
