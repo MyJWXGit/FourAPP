@@ -9,6 +9,9 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.wd.common.base.BaseFragment;
 import com.wd.doctor.R;
 import com.wd.doctor.bean.PatientsBean;
@@ -16,6 +19,9 @@ import com.wd.doctor.contract.Contract;
 import com.wd.doctor.present.LoginPresenter;
 import com.wd.doctor.view.activity.DetailsActivity;
 import com.wd.doctor.view.adapter.PatientsAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -31,6 +37,9 @@ public class InquiryFragment extends BaseFragment<LoginPresenter> implements Con
     private int doctorId;
     private String sessionId;
    private RecyclerView xlistView;
+   private SmartRefreshLayout refreshLayout;
+    private ArrayList<PatientsBean.ResultBean> mList;
+
     @Override
     protected LoginPresenter providePresenter() {
         return new LoginPresenter();
@@ -44,11 +53,11 @@ public class InquiryFragment extends BaseFragment<LoginPresenter> implements Con
     @Override
     protected void initView(View view) {
         xlistView=view.findViewById(R.id.xlist_view);
+        refreshLayout=view.findViewById(R.id.refreshLayout);
         xlistView.setLayoutManager(new LinearLayoutManager(getActivity()));
         Intent intent = getActivity().getIntent();
          doctorId = intent.getIntExtra("doctorId", 0);
-
-        sessionId = intent.getStringExtra("sessionId");
+         sessionId = intent.getStringExtra("sessionId");
     }
 
     @Override
@@ -57,12 +66,32 @@ public class InquiryFragment extends BaseFragment<LoginPresenter> implements Con
         String departmentId = arguments.getString("departmentId");
         int i = Integer.parseInt(departmentId);
         mPresenter.Patients(i,page,10);
+        refreshLayout.setEnableRefresh(true);
+        refreshLayout.setEnableLoadMore(true);
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshLayout) {
+                page++;
+                mPresenter.Patients(i,page,10);
+                refreshLayout.finishLoadMore();
+            }
 
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                mList.clear();
+                page = 1;
+                mPresenter.Patients(i,page,10);
+                refreshLayout.finishRefresh();
+            }
+        });
     }
 
     @Override
     public void onSuccess(Object obj) {
         PatientsBean bean= (PatientsBean) obj;
+        List<PatientsBean.ResultBean> result = bean.getResult();
+        mList = new ArrayList<>();
+        mList.addAll(result);
         PatientsAdapter adapter=new PatientsAdapter(bean.getResult(),getActivity());
         xlistView.setAdapter(adapter);
         adapter.setCallBack(new PatientsAdapter.CallBack() {

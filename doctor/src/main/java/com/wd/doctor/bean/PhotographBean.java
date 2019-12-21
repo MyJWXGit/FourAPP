@@ -1,15 +1,14 @@
 package com.wd.doctor.bean;
 
 /**
- * date:2019/12/18
+ * date:2019/12/19
  * author:金豪(Lenovo)
  * function:
  */
-public class UploadingBean {
-
+public class PhotographBean {
 
     /**
-     * result : http://172.17.8.100/images/health/doctor/system_image_pic/system_image1.jpg
+     * result : http://172.17.8.100/images/health/doctor/image_pic/2019-12-19/TWRzlk20191219095115.jpg
      * message : 上传成功
      * status : 0000
      */

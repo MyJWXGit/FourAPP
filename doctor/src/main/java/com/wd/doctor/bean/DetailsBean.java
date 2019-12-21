@@ -76,6 +76,15 @@ public class DetailsBean {
         private long treatmentStartTime;
         private int userId;
         private int whetherContent;
+        private String content;
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
 
         public int getAmount() {
             return amount;

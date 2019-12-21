@@ -28,6 +28,7 @@ public class InquiryActivity extends BaseActivity<LoginPresenter> implements Con
     private TabLayout tab_lay;
     private ViewPager view_pager;
     private int did;
+   ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,7 @@ public class InquiryActivity extends BaseActivity<LoginPresenter> implements Con
     @Override
     protected void initData() {
      mPresenter.Inquer();
+     tab_lay.setSelectedTabIndicatorHeight(0);
      details_back.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
@@ -103,4 +105,5 @@ public class InquiryActivity extends BaseActivity<LoginPresenter> implements Con
     public Context context() {
         return null;
     }
+
 }

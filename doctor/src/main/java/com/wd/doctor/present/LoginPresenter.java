@@ -10,6 +10,7 @@ import com.wd.doctor.bean.InquiryBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.MianBean;
 import com.wd.doctor.bean.PatientsBean;
+import com.wd.doctor.bean.PhotographBean;
 import com.wd.doctor.bean.PublishBean;
 import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
@@ -22,6 +23,8 @@ import com.wd.doctor.model.LoginModel;
 
 import java.io.File;
 import java.util.Map;
+
+import okhttp3.MultipartBody;
 
 
 /**
@@ -391,6 +394,33 @@ public class LoginPresenter extends BasePresenter<Contract.IView> implements Con
                  }
              }
          });
+    }
+    //上传图片
+    @Override
+    public void Photograph(int doctorId, String sessionId, MultipartBody.Part part) {
+        fModel.Photograph(doctorId, sessionId, part, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    PhotographBean bean = (PhotographBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
     }
 }
 

@@ -74,6 +74,8 @@ ext {
             "autosize"               : 'me.jessyan:autosize:+',
             "arouter-api"            : 'com.alibaba:arouter-api:+',//ARouter api
             "arouter-compiler"       : 'com.alibaba:arouter-compiler:+',//ARouter
+            "SmartRefreshLayout"     : 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0',
+            "RefreshHeader"          : 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14',
 
             "constraint-layout"      : 'com.android.support.constraint:constraint-layout:1.1.0',//约束性布局
             "test:runner"            : 'com.android.support.test:runner:1.0.2',//测试依赖，新建项目时会默认添加，一般不建议添加
@@ -84,6 +86,7 @@ ext {
             "exoPlayerVersion"       : '2.10.8',
 
             "annotation"             : 'androidx.annotation:annotation:1.1.0',
+
 
 
             "espresso-cored"         : 'com.github.bumptech.glide:glide:4.9.0',//测试依赖，新建项目时会默认添加，一般不建议添加

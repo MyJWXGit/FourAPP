@@ -45,6 +45,7 @@ public class MessageActivity extends BaseActivity<LoginPresenter> implements Con
     LinearLayout messageSeif;
     private int doctorId;
     private String sessionId;
+    private MianBean bean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class MessageActivity extends BaseActivity<LoginPresenter> implements Con
         doctorId = intent.getIntExtra("doctorId", 0);
         sessionId = intent.getStringExtra("sessionId");
         mPresenter.Mian(doctorId, sessionId);
+
     }
 
     @Override
@@ -79,7 +81,7 @@ public class MessageActivity extends BaseActivity<LoginPresenter> implements Con
     @Override
     public void onSuccess(Object obj) {
         if (obj instanceof MianBean) {
-            MianBean bean = (MianBean) obj;
+            bean = (MianBean) obj;
             messageImg.setImageURI(bean.getResult().getImagePic());
         }
     }
@@ -134,7 +136,9 @@ public class MessageActivity extends BaseActivity<LoginPresenter> implements Con
                 intent.putExtra("doctorId", doctorId);
                 intent.putExtra("sessionId", sessionId);
                 startActivity(intent);
+
             }
         });
     }
+
 }

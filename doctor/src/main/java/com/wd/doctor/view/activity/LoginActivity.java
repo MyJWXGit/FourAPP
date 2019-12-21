@@ -3,6 +3,7 @@ package com.wd.doctor.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -60,7 +61,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Contr
 
     @Override
     protected void initView() {
-
+       // loginEdity.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
     }
 
     @Override
