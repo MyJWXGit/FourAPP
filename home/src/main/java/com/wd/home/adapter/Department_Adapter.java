@@ -1,6 +1,7 @@
 package com.wd.home.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.home.R;
+import com.wd.home.activity.InfoActivity;
 import com.wd.home.bean.DepartmentBean;
 
 import java.util.List;
@@ -51,7 +53,8 @@ public class Department_Adapter extends RecyclerView.Adapter {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onID.onID(list.get(position).getId());
+                Intent intent = new Intent(context, InfoActivity.class);
+                context.startActivity(intent);
             }
         });
     }
@@ -70,15 +73,5 @@ public class Department_Adapter extends RecyclerView.Adapter {
             text_name = itemView.findViewById(R.id.text_name);
             department_view = itemView.findViewById(R.id.department_view);
         }
-    }
-
-    public onID onID;
-
-    public interface onID {
-        void onID(int id);
-    }
-
-    public void setOnID(Department_Adapter.onID onID) {
-        this.onID = onID;
     }
 }

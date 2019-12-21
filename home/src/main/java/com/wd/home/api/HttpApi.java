@@ -4,6 +4,7 @@ import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.DepartmentBean;
+import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
 import com.wd.home.bean.FindInfoBean;
@@ -80,4 +81,8 @@ public interface HttpApi {
     //查询常见药品详情
     @GET(API.POPULARSEARCH)
     Observable<PopularBean> onPopular();
+
+    //查询问诊医生列表
+    @GET(API.DoctorList)
+    Observable<DoctorListBean> onDoctorList(@Query("deptId") int deptId, @Query("condition") int condition, @Query("page") int page, @Query("count") int count);
 }

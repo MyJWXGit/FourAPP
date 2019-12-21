@@ -5,6 +5,7 @@ import com.wd.common.utils.Logger;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.DepartmentBean;
+import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
 import com.wd.home.bean.IllnessBean;
@@ -176,6 +177,33 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
                 if (isViewAttached()) {
                     //Bean包强转  拿到Status进行判断
                     IllnessBean bean = (IllnessBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {//失败的方法
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onDoctorList(int deptId, int condition, int page, int count) {
+        home_dode.onDoctorList(deptId, condition, page, count, new Contract.FModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {//成功的方法
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    DoctorListBean bean = (DoctorListBean) obj;
                     if (bean != null && bean.getStatus().equals("0000")) {
                         //getView是BasePresenter方法  使用getView进行调用P层
                         getView().onSuccess(bean);

@@ -118,13 +118,6 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements Contrac
             Department_Adapter department_adapter = new Department_Adapter(result, this);
             recycler.setLayoutManager(gridLayoutManager);
             recycler.setAdapter(department_adapter);
-
-            department_adapter.setOnID(new Department_Adapter.onID() {
-                @Override
-                public void onID(int id) {
-
-                }
-            });
         } else if (obj instanceof Plate_ListBean) {
             Plate_ListBean bean = (Plate_ListBean) obj;
             List<Plate_ListBean.ResultBean> result = bean.getResult();

@@ -37,4 +37,8 @@ public interface API {
     String homePageSearch = "health/share/v1/homePageSearch";
     //热门搜索
     String POPULARSEARCH = "health/share/v1/popularSearch";
+    //查询问诊医生列表
+    String DoctorList = "health/user/inquiry/v1/findDoctorList";
+    //查询问诊医生列表
+    //  String DoctorList = "health/user/inquiry/v1/findDoctorList";
 }

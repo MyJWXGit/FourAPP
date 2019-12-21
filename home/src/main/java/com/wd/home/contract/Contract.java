@@ -84,6 +84,9 @@ public interface Contract {
 
         //查询常见药品详情
         void onIllness(int id);
+
+        //查询问诊医生列表
+        void onDoctorList(int deptId, int condition, int page, int count);
     }
 
     //Fragment  M层
@@ -105,6 +108,9 @@ public interface Contract {
 
         //查询常见药品详情
         void onIllness(int id, IBallBask iBallBask);
+
+        //查询问诊医生列表
+        void onDoctorList(int deptId, int condition , int page, int count, IBallBask iBallBask);
 
         interface IBallBask {
             void onHttpOK(Object obj);

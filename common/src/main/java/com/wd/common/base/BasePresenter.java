@@ -28,6 +28,7 @@ public abstract class BasePresenter<V extends IBaseView> {
             return false;
         }
         return true;
+
     }
 
     protected V getView() {

@@ -5,6 +5,7 @@ import com.wd.home.api.HttpApi;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.DepartmentBean;
+import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
 import com.wd.home.bean.FindInfoBean;
@@ -207,6 +208,37 @@ public class Fragment_Mode implements Contract.FModer {
                     public void onNext(IllnessBean illnessBean) {
                         if (iBallBask != null) {
                             iBallBask.onHttpOK(illnessBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onDoctorList(int deptId, int condition, int page, int count, IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onDoctorList(deptId, condition, page, count)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<DoctorListBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(DoctorListBean doctorListBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(doctorListBean);
                         }
                     }
                 });

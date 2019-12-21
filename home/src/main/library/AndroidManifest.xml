@@ -3,7 +3,8 @@
     package="com.wd.home">
 
     <application>
-        <activity android:name=".activity.Edit_SearchActivity"></activity>
+        <activity android:name=".activity.InfoActivity"></activity>
+        <activity android:name=".activity.Edit_SearchActivity" />
         <activity android:name=".activity.DrugActivity" />
         <activity android:name=".activity.DiseaseKnowledgeActivity" />
         <activity android:name=".activity.CommonActivity" />
