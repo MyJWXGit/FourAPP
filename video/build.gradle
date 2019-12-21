@@ -8,6 +8,10 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -56,42 +60,10 @@ android {
             }
         }
     }
-    packagingOptions {
-        exclude 'lib/armeabi-v7a/libijkplayer.so'
-        pickFirst 'lib/armeabi-v7a/libnms.so'
-        pickFirst 'lib/x86/libijksdl.so'
-        pickFirst 'lib/x86/libijkplayer.so'
-        pickFirst 'lib/x86_64/libijksdl.so'
-        pickFirst 'lib/x86_64/libijkplayer.so'
-        //c c++ 软解硬解  解码
-        pickFirst 'lib/x86/libijkffmpeg.so'
-        pickFirst 'lib/arm64-v8a/libijkplayer.so'
-        pickFirst 'lib/arm64-v8a/libijkffmpeg.so'
-        pickFirst 'lib/armeabi-v7a/libijkffmpeg.so'
-        pickFirst 'lib/x86_64/libijkffmpeg.so'
-        pickFirst 'lib/arm64-v8a/libijksdl.so'
-        pickFirst 'lib/armeabi-v7a/libijksdl.so'
-    }
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
         }
-    }
-    packagingOptions {
-        exclude 'lib/armeabi-v7a/libijkplayer.so'
-        pickFirst 'lib/armeabi-v7a/libnms.so'
-        pickFirst 'lib/x86/libijksdl.so'
-        pickFirst 'lib/x86/libijkplayer.so'
-        pickFirst 'lib/x86_64/libijksdl.so'
-        pickFirst 'lib/x86_64/libijkplayer.so'
-        //c c++ 软解硬解  解码
-        pickFirst 'lib/x86/libijkffmpeg.so'
-        pickFirst 'lib/arm64-v8a/libijkplayer.so'
-        pickFirst 'lib/arm64-v8a/libijkffmpeg.so'
-        pickFirst 'lib/armeabi-v7a/libijkffmpeg.so'
-        pickFirst 'lib/x86_64/libijkffmpeg.so'
-        pickFirst 'lib/arm64-v8a/libijksdl.so'
-        pickFirst 'lib/armeabi-v7a/libijksdl.so'
     }
 
 }
@@ -117,27 +89,18 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]
     implementation rootProject.ext.dependencies["jiecao"]
-    implementation rootProject.ext.dependencies["tablayout"]
     implementation rootProject.ext.dependencies["glide"]
-    /*  implementation rootProject.ext.dependencies["dkplayer-java"]
-      implementation rootProject.ext.dependencies["dkplayer-armv7a"]
-      implementation rootProject.ext.dependencies["dkplayer-armv5"]
-      implementation rootProject.ext.dependencies["dkplayer-arm64"]
-      implementation rootProject.ext.dependencies["dkplayer-x86"]
-      implementation rootProject.ext.dependencies["dkplayer-x86_64"]
-      implementation rootProject.ext.dependencies["dkplayer-ui"]*/
+    implementation rootProject.ext.dependencies["jiaozivideoplayer"]
+    implementation rootProject.ext.dependencies["ijkplayer"]
+    implementation rootProject.ext.dependencies["ijkplayerarmv7a"]
+    implementation rootProject.ext.dependencies["ijkplayerexo"]
+    implementation rootProject.ext.dependencies["constraint-layout"]
+    implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]
+    implementation rootProject.ext.dependencies["tablayout"]
+    implementation rootProject.ext.dependencies["xrecyclerview"]
+    compile 'com.github.ctiao:DanmakuFlameMaster:0.7.3'
+    compile 'com.github.ctiao:ndkbitmap-armv7a:0.7.3'
     implementation 'com.yanzhenjie:permission:2.0.3'
-    //    # 必选，可兼容市面上绝大部分设备
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.5'
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-armv7a:2.5.5'
-//    # 可选，用于兼容一些其他的CPU架构
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-armv5:2.5.5'
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-arm64:2.5.5'
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-x86:2.5.5'
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-x86_64:2.5.5'
-//    # 可选，里面包含StandardVideoController的实现
-    implementation 'com.github.dueeeke.dkplayer:dkplayer-ui:2.5.5'
-
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
 

@@ -4,6 +4,10 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -66,6 +70,14 @@ dependencies {
     implementation rootProject.ext.dependencies["retrofit-converter-gson"]
     implementation rootProject.ext.dependencies["retrofit-adapter-rxjava"]
     implementation rootProject.ext.dependencies["converter-scalars"]
+    implementation rootProject.ext.dependencies["jiaozivideoplayer"]
+    implementation rootProject.ext.dependencies["ijkplayer"]
+    implementation rootProject.ext.dependencies["ijkplayerarmv7a"]
+    implementation rootProject.ext.dependencies["ijkplayerexo"]
+    implementation rootProject.ext.dependencies["constraint-layout"]
+    implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]
+    implementation rootProject.ext.dependencies["tablayout"]
+    implementation rootProject.ext.dependencies["xrecyclerview"]
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     //阿里巴巴路由    放入MVP依赖

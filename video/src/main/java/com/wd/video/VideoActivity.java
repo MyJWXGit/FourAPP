@@ -1,40 +1,42 @@
 package com.wd.video;
 
+
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.CheckBox;
 
-import androidx.appcompat.app.ActionBar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+
 import androidx.viewpager.widget.ViewPager;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
-import com.wd.common.utils.Logger;
-import com.wd.video.adapter.VideoAdapter;
 import com.wd.video.bean.Video_EntryBean;
-import com.wd.video.bean.Video_QueryBean;
 import com.wd.video.contract.Contract;
+import com.wd.video.fragment.BeautyFragment;
 import com.wd.video.presenter.Video_EntryPresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
-@Route(path = "/video/activity")
 public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements Contract.IView {
 
     private static final String TAG = "VideoActivity";
-    TabLayout videoTab;
-    ViewPager videoVp;
-    Button button;
-
-    private String eid;
-    private String name;
+    private ViewPager videoVp;
+    private TabLayout videoTab;
+    private CheckBox video_pull;
     private List<Video_EntryBean.ResultBean> result;
+    private String id;
+
 
     @Override
     protected Video_EntryPresenter providePresenter() {
@@ -43,14 +45,42 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
 
     @Override
     protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
         videoVp = findViewById(R.id.video_vp);
         videoTab = findViewById(R.id.video_tab);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("抖音");
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        video_pull = findViewById(R.id.video_pull);
+        mPresenter.onVideo_Entry();
+        video_pull.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.video_pull:
 
+                        if (video_pull.isChecked()) {
+                            float translationY = view.getTranslationY();
+                            ObjectAnimator animator = ObjectAnimator.ofFloat(videoTab, "translationY", translationY, -120f);
+                            ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, -120f);
+                            animator.setDuration(500);
+                            animator1.setDuration(500);
+                            animator.start();
+                            animator1.start();
+                        } else {
+                            float translationY = view.getTranslationY();
+                            ObjectAnimator animator = ObjectAnimator.ofFloat(videoTab, "translationY", translationY, 0f);
+                            ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, 0f);
+                            animator.setDuration(500);
+                            animator1.setDuration(500);
+                            animator.start();
+                            animator1.start();
+                        }
+                        break;
+                }
+            }
+        });
     }
 
 
@@ -60,53 +90,45 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
     }
 
     @Override
-    public Context context() {
-        return null;
-    }
+    public void onSuccess(Object data) {
+        Video_EntryBean video_entryBean = (Video_EntryBean) data;
+        result = video_entryBean.getResult();
+        List<String> strings1 = new ArrayList<>();
 
-    @Override
-    protected void initData() {
-        mPresenter.onVideo_Entry();
-        button.setOnClickListener(new View.OnClickListener() {
+        for (int i = 0; i < result.size(); i++) {
+            String name = result.get(i).getName();
+            strings1.add(name);
+        }
+        videoTab.addTab(videoTab.newTab().setText(strings1.get(0)));
+        videoTab.addTab(videoTab.newTab().setText(strings1.get(1)));
+        videoTab.addTab(videoTab.newTab().setText(strings1.get(2)));
+        videoTab.addTab(videoTab.newTab().setText(strings1.get(3)));
+        videoTab.addTab(videoTab.newTab().setText(strings1.get(4)));
+        videoTab.addTab(videoTab.newTab().setText(strings1.get(5)));
+        videoVp.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @NonNull
             @Override
-            public void onClick(View view) {
-                ARouter.getInstance().build("/circle/activity").navigation();
+            public Fragment getItem(int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString("tid",result.get(position).getId());
+                BeautyFragment beautyFragment = new BeautyFragment();
+                beautyFragment.setArguments(bundle);
+                return beautyFragment;
+            }
+
+            @Override
+            public int getCount() {
+                return strings1.size();
+            }
+
+            @Nullable
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return strings1.get(position);
             }
         });
-    }
-
-    @Override
-    public void onSuccess(Object data) {
-        if (data instanceof Video_EntryBean) {
-            Video_EntryBean video_entryBean = (Video_EntryBean) data;
-            result = video_entryBean.getResult();
-            for (int i = 0; i < result.size(); i++) {
-                name = (video_entryBean).getResult().get(i).getName();
-                eid = (video_entryBean).getResult().get(i).getId();
-                Logger.d(TAG, name);
-                Logger.d(TAG, name);
-                TabLayout.Tab tab = videoTab.newTab();
-                if (tab != null) {
-                    tab.setText(name);
-                    videoTab.addTab(tab);
-                }
-            }
-            VideoAdapter videoAdapter = new VideoAdapter(getSupportFragmentManager(), result, eid);
-            videoVp.setAdapter(videoAdapter);
-            videoTab.setupWithViewPager(videoVp);
-            /*videoTab.setOnClickListener(new View.OnClickListener() {
-
-                private SharedPreferences.Editor edit;
-
-                @Override
-                public void onClick(View view) {
-                    SharedPreferences essid = getSharedPreferences("essid", Context.MODE_PRIVATE);
-                    edit = essid.edit();
-                    edit.putString("eid", eid);
-                    edit.commit();
-                }
-            });*/
-        }
+        videoTab.setupWithViewPager(videoVp);
+        videoVp.setOffscreenPageLimit(strings1.size());
     }
 
     @Override
@@ -114,12 +136,8 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
 
     }
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public Context context() {
+        return null;
     }
-
 }
