@@ -51,4 +51,10 @@ public interface API {
     String AttentionDoctor="health/user/inquiry/verify/v1/followDoctor";
     //取消关注医生
     String UnAttentionDoctor="health/user/inquiry/verify/v1/cancelFollow";
+    //签到
+    String Sign="health/user/verify/v1/addSign";
+    //查询用户是否签到
+    String QueryUserSign="health/user/verify/v1/whetherSignToday";
+    //查询我的被采纳的意见
+    String MySuggest="health/user/verify/v1/findMyAdoptedCommentList";
 }

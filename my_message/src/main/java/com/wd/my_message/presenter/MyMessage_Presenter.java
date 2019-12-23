@@ -5,16 +5,16 @@ import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.Logger;
 import com.wd.common.utils.SpUtils;
 import com.wd.my_message.APP;
-import com.wd.my_message.bean.ImageBean;
-import com.wd.common.utils.HttpUtils;
-import com.wd.common.utils.SpUtils;
-import com.wd.my_message.APP;
 import com.wd.my_message.api.HttpApi;
 import com.wd.my_message.bean.AttentionDoctorListBean;
 import com.wd.my_message.bean.ConsumptionRecordBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
+import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.MyWalletBean;
+import com.wd.my_message.bean.QuerySignBean;
+import com.wd.my_message.bean.SignBean;
+import com.wd.my_message.bean.SuggestBean;
 import com.wd.my_message.bean.SystemMessageBean;
 import com.wd.my_message.bean.UnAttentionDoctorBean;
 import com.wd.my_message.bean.UserColletionBean;
@@ -307,6 +307,78 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
                     UnAttentionDoctorBean unAttentionDoctorBean= (UnAttentionDoctorBean) data;
                     if (unAttentionDoctorBean!=null){
                         getView().onSuccess(unAttentionDoctorBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onSign() {
+        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onSign(userId, sessionid, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()){
+                    SignBean signBean= (SignBean) data;
+                    if (signBean!=null){
+                        getView().onSuccess(signBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onQueryUserSign() {
+        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onQueryUserSign(userId, sessionid, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()){
+                    QuerySignBean querySignBean= (QuerySignBean) data;
+                    if (querySignBean!=null){
+                        getView().onSuccess(querySignBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()){
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onMySuggest(int page, int count) {
+        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onMySuggest(userId, sessionid, page, count, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()){
+                    SuggestBean suggestBean= (SuggestBean) data;
+                    if (suggestBean!=null){
+                        getView().onSuccess(suggestBean);
                     }
                 }
             }

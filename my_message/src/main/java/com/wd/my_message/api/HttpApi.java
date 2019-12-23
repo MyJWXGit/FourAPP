@@ -7,6 +7,9 @@ import com.wd.my_message.bean.HealthyCurrencyBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.MyWalletBean;
+import com.wd.my_message.bean.QuerySignBean;
+import com.wd.my_message.bean.SignBean;
+import com.wd.my_message.bean.SuggestBean;
 import com.wd.my_message.bean.SystemMessageBean;
 import com.wd.my_message.bean.UnAttentionDoctorBean;
 import com.wd.my_message.bean.UserColletionBean;
@@ -21,6 +24,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.POST;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -86,16 +90,7 @@ public interface HttpApi {
 
     @GET(API.MyMoneyBao)
     Observable<MyWalletBean> getmyWallet(@Header("userId") int userId,
-                                         @Header("sessionId") String sessionId); //上传图片
-
-    @Multipart
-    @POST(API.IMAGE_PIC)
-    Observable<ImageBean> onImage_PIC(
-            @Header("userId") int userId,
-            @Header("sessionId") String sessionId,
-            @Part MultipartBody.Part part
-    );
-
+                                         @Header("sessionId") String sessionId);
 
     @GET(API.RecordsOfConsumption)
     Observable<ConsumptionRecordBean> getconsumptionRecord(@Header("userId") int userId,
@@ -114,5 +109,29 @@ public interface HttpApi {
             @Header("userId") int userId,
             @Header("sessionId") String sessionId,
             @Query("doctorId") int doctorId
+    );
+    @POST(API.Sign)
+    Observable<SignBean> onSignBean(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId
+    );
+    @GET(API.QueryUserSign)
+    Observable<QuerySignBean> onQueryUserSignBean(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId
+    );
+    @GET(API.MySuggest)
+    Observable<SuggestBean> onSuggestBean(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("page") int page,
+            @Query("count") int count
+    );
+    @Multipart
+    @POST(API.IMAGE_PIC)
+    Observable<ImageBean> onImage_PIC(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Part MultipartBody.Part part
     );
 }

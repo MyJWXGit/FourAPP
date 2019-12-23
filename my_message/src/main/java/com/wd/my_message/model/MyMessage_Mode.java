@@ -8,6 +8,9 @@ import com.wd.my_message.bean.HealthyCurrencyBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.MyWalletBean;
+import com.wd.my_message.bean.QuerySignBean;
+import com.wd.my_message.bean.SignBean;
+import com.wd.my_message.bean.SuggestBean;
 import com.wd.my_message.bean.SystemMessageBean;
 import com.wd.my_message.bean.UnAttentionDoctorBean;
 import com.wd.my_message.bean.UserColletionBean;
@@ -218,7 +221,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(HealthyCurrencyBean healthyCurrencyBean) {
-                        if (healthyCurrencyBean!=null){
+                        if (healthyCurrencyBean != null) {
                             iModelCallBack.onSuccess(healthyCurrencyBean);
                         }
                     }
@@ -246,13 +249,12 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(MyWalletBean myWalletBean) {
-                        if (iModelCallBack != null) {
+                        if (myWalletBean != null) {
                             iModelCallBack.onSuccess(myWalletBean);
                         }
                     }
                 });
     }
-
 
 
     @Override
@@ -274,7 +276,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(AttentionDoctorListBean attentionDoctorListBean) {
-                        if (attentionDoctorListBean!=null){
+                        if (attentionDoctorListBean != null) {
                             iModelCallBack.onSuccess(attentionDoctorListBean);
                         }
                     }
@@ -300,7 +302,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(UnAttentionDoctorBean unAttentionDoctorBean) {
-                        if (unAttentionDoctorBean!=null){
+                        if (unAttentionDoctorBean != null) {
                             iModelCallBack.onSuccess(unAttentionDoctorBean);
                         }
                     }
@@ -326,8 +328,86 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(ConsumptionRecordBean consumptionRecordBean) {
-                        if (consumptionRecordBean!=null){
+                        if (consumptionRecordBean != null) {
                             iModelCallBack.onSuccess(consumptionRecordBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onSign(int userId, String sessionId, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .onSignBean(userId, sessionId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<SignBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(SignBean signBean) {
+                        if (signBean != null) {
+                            iModelCallBack.onSuccess(signBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onQueryUserSign(int userId, String sessionId, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .onQueryUserSignBean(userId, sessionId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<QuerySignBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(QuerySignBean querySignBean) {
+                        if (querySignBean != null) {
+                            iModelCallBack.onSuccess(querySignBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onMySuggest(int userId, String sessionId, int page, int count, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .onSuggestBean(userId, sessionId, page, count)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<SuggestBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(SuggestBean suggestBean) {
+                        if (suggestBean != null) {
+                            iModelCallBack.onSuccess(suggestBean);
                         }
                     }
                 });

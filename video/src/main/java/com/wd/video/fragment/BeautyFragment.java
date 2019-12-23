@@ -317,9 +317,4 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
         super.onDestroy();
 
     }
-
-
-
 }
-
-

@@ -17,6 +17,7 @@
         <activity android:name=".view.Suggest_Activity" />
         <activity android:name=".view.Collection_Activity" />
         <activity android:name=".My_Home_Activity" />
+        <activity android:name=".My_Home_Activity$My_Home_Activity" />
     </application>
 
 </manifest>

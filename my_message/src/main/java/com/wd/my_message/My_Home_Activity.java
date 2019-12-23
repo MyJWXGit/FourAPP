@@ -9,15 +9,23 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.base.BasePresenter;
 import com.wd.my_message.view.Attention_Doctor_Activity;
+import com.wd.my_message.bean.QuerySignBean;
+import com.wd.my_message.bean.SignBean;
+import com.wd.my_message.contract.Contract;
+import com.wd.my_message.presenter.MyMessage_Presenter;
+import com.wd.my_message.view.Attention_Doctor_Activity;
 import com.wd.my_message.view.Collection_Activity;
 import com.wd.my_message.view.MessagesActivity;
 import com.wd.my_message.view.My_Walk_Activity;
+import com.wd.my_message.view.My_Walk_Activity;
+import com.wd.my_message.view.RecordActivity;
 import com.wd.my_message.view.Suggest_Activity;
 
 import butterknife.BindView;
@@ -25,7 +33,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @Route(path = "/my_message/activity")
-public class My_Home_Activity extends BaseActivity {
+public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implements Contract.IView {
     @BindView(R2.id.head_details_back)
     ImageView headDetailsBack;
     @BindView(R2.id.my_image_simple)
@@ -68,8 +76,8 @@ public class My_Home_Activity extends BaseActivity {
     ImageView imagemessage;
 
     @Override
-    protected BasePresenter providePresenter() {
-        return null;
+    protected MyMessage_Presenter providePresenter() {
+        return new MyMessage_Presenter();
     }
 
     @Override
@@ -79,7 +87,8 @@ public class My_Home_Activity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        ButterKnife.bind(this);
+        mPresenter.onQueryUserSign();
     }
 
     @Override
@@ -92,14 +101,6 @@ public class My_Home_Activity extends BaseActivity {
         return null;
     }
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     @OnClick({R2.id.head_details_back, R2.id.messages, R2.id.my_image_simple, R2.id.my_text_login, R2.id.my_button_sing_in, R2.id.linear_lay, R2.id.my_button_inquiry, R2.id.my_button_history, R2.id.re_latiview, R2.id.my_button_record, R2.id.my_button_wallet, R2.id.my_button_collect, R2.id.my_button_suggest, R2.id.my_button_video, R2.id.my_button_patients_circle, R2.id.my_button_attention, R2.id.my_button_task, R2.id.my_button_set, R2.id.linear_my, R2.id.my_text_title})
     public void onViewClicked(View view) {
         int id = view.getId();
@@ -108,11 +109,13 @@ public class My_Home_Activity extends BaseActivity {
         } else if (id == R.id.my_image_simple) {
         } else if (id == R.id.my_text_login) {
         } else if (id == R.id.my_button_sing_in) {
+            mPresenter.onSign();
         } else if (id == R.id.linear_lay) {
         } else if (id == R.id.my_button_inquiry) {
         } else if (id == R.id.my_button_history) {
         } else if (id == R.id.re_latiview) {
         } else if (id == R.id.my_button_record) {
+            startActivity(new Intent(this, RecordActivity.class));
         } else if (id == R.id.my_button_wallet) {
             startActivity(new Intent(this, My_Walk_Activity.class));
         } else if (id == R.id.my_button_collect) {
@@ -131,5 +134,38 @@ public class My_Home_Activity extends BaseActivity {
         } else if (id == R.id.messages) {
             startActivity(new Intent(this, MessagesActivity.class));
         }
+    }
+
+    @Override
+    public void onSuccess(Object data) {
+        if (data instanceof SignBean) {
+            SignBean signBean = (SignBean) data;
+            if (signBean.getStatus().equals("0000")) {
+                Toast.makeText(this, signBean.getMessage(), Toast.LENGTH_SHORT).show();
+                myButtonSingIn.setText("已签到");
+                //查询当天是否签到
+                mPresenter.onQueryUserSign();
+
+            } else {
+                Toast.makeText(this, signBean.getMessage(), Toast.LENGTH_SHORT).show();
+                myButtonSingIn.setText("已签到");
+            }
+        } else if (data instanceof QuerySignBean) {
+            QuerySignBean querySignBean = (QuerySignBean) data;
+            if (querySignBean.getStatus().equals("0000")) {
+                int result = querySignBean.getResult();
+                if (result == 1) {
+                    myButtonSingIn.setText("已签到");
+                } else if (result == 2) {
+                    myButtonSingIn.setText("签到");
+                }
+            }
+        }
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
     }
 }
