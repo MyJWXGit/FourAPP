@@ -55,6 +55,12 @@ public interface Contract {
         void onUnAttentionDoctor(int userId, String sessionId,int doctorId,IModelCallBack iModelCallBack);
         //消费记录
         void onRecordsOfConsumption(int userId, String sessionId,int page,int count,IModelCallBack iModelCallBack);
+        //签到
+        void onSign(int userId, String sessionId,IModelCallBack iModelCallBack);
+        //查询是否签到
+        void onQueryUserSign(int userId, String sessionId,IModelCallBack iModelCallBack);
+        //查询我的被采纳的信息
+        void onMySuggest(int userId, String sessionId,int page,int count,IModelCallBack iModelCallBack);
         interface IModelCallBack {
             void onSuccess(Object data);
 
@@ -98,6 +104,15 @@ public interface Contract {
 
         //取消关注医生
         void onUnAttentionDoctor(int doctorId);
+
+        //签到
+        void onSign();
+
+        //查询是否签到
+        void onQueryUserSign();
+
+        //查询我的被采纳的信息
+        void onMySuggest(int page,int count);
     }
 
     //Fragment   M

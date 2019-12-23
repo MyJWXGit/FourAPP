@@ -6,6 +6,9 @@ import com.wd.my_message.bean.DeleteCollectionBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.MyWalletBean;
+import com.wd.my_message.bean.QuerySignBean;
+import com.wd.my_message.bean.SignBean;
+import com.wd.my_message.bean.SuggestBean;
 import com.wd.my_message.bean.SystemMessageBean;
 import com.wd.my_message.bean.UnAttentionDoctorBean;
 import com.wd.my_message.bean.UserColletionBean;
@@ -100,5 +103,22 @@ public interface HttpApi {
             @Header("userId") int userId,
             @Header("sessionId") String sessionId,
             @Query("doctorId") int doctorId
+    );
+    @POST(API.Sign)
+    Observable<SignBean> onSignBean(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId
+    );
+    @GET(API.QueryUserSign)
+    Observable<QuerySignBean> onQueryUserSignBean(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId
+    );
+    @GET(API.MySuggest)
+    Observable<SuggestBean> onSuggestBean(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("page") int page,
+            @Query("count") int count
     );
 }

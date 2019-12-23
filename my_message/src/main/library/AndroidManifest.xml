@@ -3,12 +3,13 @@
     package="com.wd.my_message">
 
     <application>
-        <activity android:name=".view.Attention_Doctor_Activity"/>
-        <activity android:name=".view.My_Walk_Activity"/>
-        <activity android:name=".view.message.InquiryMessageActivity"/>
-        <activity android:name=".view.message.CurrencyMessageActivity"/>
-        <activity android:name=".view.message.SystemMessageActivity"/>
-        <activity android:name=".view.MessagesActivity"></activity>
+        <activity android:name=".view.RecordActivity"></activity>
+        <activity android:name=".view.Attention_Doctor_Activity" />
+        <activity android:name=".view.My_Walk_Activity" />
+        <activity android:name=".view.message.InquiryMessageActivity" />
+        <activity android:name=".view.message.CurrencyMessageActivity" />
+        <activity android:name=".view.message.SystemMessageActivity" />
+        <activity android:name=".view.MessagesActivity" />
         <activity android:name=".view.Suggest_Activity" />
         <activity android:name=".view.Collection_Activity" />
         <activity android:name=".My_Home_Activity" />
