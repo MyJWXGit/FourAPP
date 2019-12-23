@@ -20,4 +20,5 @@ public interface Constant {
     String Sp_sessionId="Sp_sessionId";
     String Sp_touxiang="touxiang";
     String WX_CODE="WX_CODE";
+    String doctorId="doctorId";
 }

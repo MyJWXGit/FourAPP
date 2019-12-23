@@ -57,27 +57,24 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
         video_pull.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.video_pull:
-
-                        if (video_pull.isChecked()) {
-                            float translationY = view.getTranslationY();
-                            ObjectAnimator animator = ObjectAnimator.ofFloat(videoTab, "translationY", translationY, -120f);
-                            ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, -120f);
-                            animator.setDuration(500);
-                            animator1.setDuration(500);
-                            animator.start();
-                            animator1.start();
-                        } else {
-                            float translationY = view.getTranslationY();
-                            ObjectAnimator animator = ObjectAnimator.ofFloat(videoTab, "translationY", translationY, 0f);
-                            ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, 0f);
-                            animator.setDuration(500);
-                            animator1.setDuration(500);
-                            animator.start();
-                            animator1.start();
-                        }
-                        break;
+                if (view.getId() == R.id.video_pull) {
+                    if (video_pull.isChecked()) {
+                        float translationY = view.getTranslationY();
+                        ObjectAnimator animator = ObjectAnimator.ofFloat(videoTab, "translationY", translationY, -120f);
+                        ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, -120f);
+                        animator.setDuration(500);
+                        animator1.setDuration(500);
+                        animator.start();
+                        animator1.start();
+                    } else {
+                        float translationY = view.getTranslationY();
+                        ObjectAnimator animator = ObjectAnimator.ofFloat(videoTab, "translationY", translationY, 0f);
+                        ObjectAnimator animator1 = ObjectAnimator.ofFloat(view, "translationY", translationY, 0f);
+                        animator.setDuration(500);
+                        animator1.setDuration(500);
+                        animator.start();
+                        animator1.start();
+                    }
                 }
             }
         });

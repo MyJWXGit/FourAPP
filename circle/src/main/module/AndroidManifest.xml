@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".utils.App"
@@ -14,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.Seach_Circle_Activity"></activity>
+        <activity android:name=".view.SecondActivity"></activity>
+        <activity android:name=".view.Seach_Circle_Activity" />
         <activity android:name=".view.ReleaseCirclesActivity" />
         <activity android:name=".view.Circle_Details_Activity" />
         <activity android:name=".view.Circle_Home_Activity" />

@@ -24,6 +24,17 @@ android {
                 includeCompileClasspath = true
             }
         }
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.wd.health",
+                JPUSH_APPKEY : "564c4319e940cdd0aadeebf0", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
 
     buildTypes {
@@ -98,4 +109,6 @@ dependencies {
     implementation rootProject.ext.dependencies["RefreshHeader"]
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 }

@@ -2,14 +2,20 @@ package com.wd.home.model;
 
 import com.wd.common.utils.HttpUtils;
 import com.wd.home.api.HttpApi;
+import com.wd.home.bean.CancelFllowBean;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.DepartmentBean;
+import com.wd.home.bean.DoctorInfoBean;
 import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
+import com.wd.home.bean.EvaluateListBean;
 import com.wd.home.bean.FindInfoBean;
+import com.wd.home.bean.FollowBean;
 import com.wd.home.bean.IllnessBean;
+import com.wd.home.bean.InquiryRecordBean;
+import com.wd.home.bean.UserWalletBean;
 import com.wd.home.contract.Contract;
 
 import rx.Observer;
@@ -239,6 +245,192 @@ public class Fragment_Mode implements Contract.FModer {
                     public void onNext(DoctorListBean doctorListBean) {
                         if (iBallBask != null) {
                             iBallBask.onHttpOK(doctorListBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onDoctorInfo(int userId, String sessionId, String doctorId, IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onDoctorInfo(userId, sessionId, doctorId)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<DoctorInfoBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(DoctorInfoBean doctorInfoBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(doctorInfoBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onFollow(int userId, String sessionId, int doctorId, IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onFollow(userId, sessionId, doctorId)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<FollowBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(FollowBean followBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(followBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onCancelFollow(int userId, String sessionId, int doctorId, IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onCancelFollow(userId, sessionId, doctorId)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CancelFllowBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(CancelFllowBean cancelFllowBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(cancelFllowBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onInquiryRecord(int userId, String sessionId, IBallBask iBallBask) {
+//HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onInquiryRecord(userId, sessionId)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<InquiryRecordBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(InquiryRecordBean inquiryRecordBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(inquiryRecordBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onUserWallet(int userId, String sessionId, IBallBask iBallBask) {
+//HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onUserWallet(userId, sessionId)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UserWalletBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(UserWalletBean userWalletBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(userWalletBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onEvaluateList(int doctorId, int page, int count, IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onEvaluateList(doctorId, page,count)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<EvaluateListBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(EvaluateListBean evaluateListBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(evaluateListBean);
                         }
                     }
                 });

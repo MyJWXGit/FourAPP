@@ -20,6 +20,7 @@ import com.wd.circle.bean.RepleaseCircleBean;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.bean.UserTaskListBean;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -137,14 +138,6 @@ public interface HttpApi {
             @Query("page") int page
     );
 
-    //发布病友圈
-    @POST(Api.PUT_CIRCLE_URL)
-    Observable<Put_Circle_Bean> onPutCircleBean(
-            @Header("userId") String userId,
-            @Header("sessionId") String sessionId
-
-    );
-
     //上传头像
     @Multipart
     @FormUrlEncoded
@@ -192,6 +185,6 @@ public interface HttpApi {
             @Header("userId") String userId,
             @Header("sessionId") String sessionId,
             @Query("sickCircleId") int sickCircleId,
-            @Part MultipartBody.Part part
+            @Part List<MultipartBody.Part> part
     );
 }

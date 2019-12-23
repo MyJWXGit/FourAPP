@@ -2,11 +2,14 @@ package com.wd.my_message.model;
 
 import com.wd.common.utils.HttpUtils;
 import com.wd.my_message.api.HttpApi;
+import com.wd.my_message.bean.AttentionDoctorListBean;
+import com.wd.my_message.bean.ConsumptionRecordBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.SystemMessageBean;
+import com.wd.my_message.bean.UnAttentionDoctorBean;
 import com.wd.my_message.bean.UserColletionBean;
 import com.wd.my_message.bean.UserSickCollectionBean;
 import com.wd.my_message.bean.VideoCollectionBean;
@@ -215,7 +218,9 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(HealthyCurrencyBean healthyCurrencyBean) {
-
+                        if (healthyCurrencyBean!=null){
+                            iModelCallBack.onSuccess(healthyCurrencyBean);
+                        }
                     }
                 });
     }
@@ -243,6 +248,86 @@ public class MyMessage_Mode implements Contract.IModel {
                     public void onNext(MyWalletBean myWalletBean) {
                         if (iModelCallBack != null) {
                             iModelCallBack.onSuccess(myWalletBean);
+                        }
+                    }
+                });
+    }
+
+
+
+    @Override
+    public void onAttentionDoctorList(int userId, String sessionId, int page, int count, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .onAttentionDoctorListBean(userId, sessionId, page, count)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AttentionDoctorListBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(AttentionDoctorListBean attentionDoctorListBean) {
+                        if (attentionDoctorListBean!=null){
+                            iModelCallBack.onSuccess(attentionDoctorListBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onUnAttentionDoctor(int userId, String sessionId, int doctorId, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .onUnAttentionDoctorBean(userId, sessionId, doctorId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<UnAttentionDoctorBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(UnAttentionDoctorBean unAttentionDoctorBean) {
+                        if (unAttentionDoctorBean!=null){
+                            iModelCallBack.onSuccess(unAttentionDoctorBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onRecordsOfConsumption(int userId, String sessionId, int page, int count, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .getconsumptionRecord(userId, sessionId, page, count)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<ConsumptionRecordBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(ConsumptionRecordBean consumptionRecordBean) {
+                        if (consumptionRecordBean!=null){
+                            iModelCallBack.onSuccess(consumptionRecordBean);
                         }
                     }
                 });

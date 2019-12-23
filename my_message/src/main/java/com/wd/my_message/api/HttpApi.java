@@ -1,11 +1,14 @@
 package com.wd.my_message.api;
 
+import com.wd.my_message.bean.AttentionDoctorListBean;
+import com.wd.my_message.bean.ConsumptionRecordBean;
 import com.wd.my_message.bean.DeleteCollectionBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.SystemMessageBean;
+import com.wd.my_message.bean.UnAttentionDoctorBean;
 import com.wd.my_message.bean.UserColletionBean;
 import com.wd.my_message.bean.UserSickCollectionBean;
 import com.wd.my_message.bean.VideoCollectionBean;
@@ -18,6 +21,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -90,5 +94,25 @@ public interface HttpApi {
             @Header("userId") int userId,
             @Header("sessionId") String sessionId,
             @Part MultipartBody.Part part
+    );
+
+
+    @GET(API.RecordsOfConsumption)
+    Observable<ConsumptionRecordBean> getconsumptionRecord(@Header("userId") int userId,
+                                                           @Header("sessionId") String sessionId,
+                                                           @Query("page") int page,
+                                                           @Query("count") int count);
+    @GET(API.AttentionDoctorList)
+    Observable<AttentionDoctorListBean> onAttentionDoctorListBean(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("page") int page,
+            @Query("count") int count
+    );
+    @DELETE(API.UnAttentionDoctor)
+    Observable<UnAttentionDoctorBean> onUnAttentionDoctorBean(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("doctorId") int doctorId
     );
 }

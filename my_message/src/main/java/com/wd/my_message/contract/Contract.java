@@ -53,6 +53,13 @@ public interface Contract {
         //wode我的钱包
         void onGetmyWallet(int userId, String sessionId, IModelCallBack iModelCallBack);
 
+        //查询我的关注的医生列表
+        void onAttentionDoctorList(int userId, String sessionId,int page,int count,IModelCallBack iModelCallBack);
+
+        //取消关注医生
+        void onUnAttentionDoctor(int userId, String sessionId,int doctorId,IModelCallBack iModelCallBack);
+        //消费记录
+        void onRecordsOfConsumption(int userId, String sessionId,int page,int count,IModelCallBack iModelCallBack);
         interface IModelCallBack {
             void onSuccess(Object data);
 
@@ -90,6 +97,15 @@ public interface Contract {
 
         //wode我的钱包
         void onGetmyWallet();
+
+        //消费记录
+        void onRecordsOfConsumption(int page,int count);
+
+        //查询我的关注的医生列表
+        void onAttentionDoctorList(int page,int count);
+
+        //取消关注医生
+        void onUnAttentionDoctor(int doctorId);
     }
 
     //Fragment   M

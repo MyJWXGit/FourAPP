@@ -20,6 +20,7 @@ import com.wd.circle.model.MainModel;
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.ToastUtils;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -297,7 +298,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
     }
 
     @Override
-    public void onPicture(String userId, String sessionId, int sickCircleId, MultipartBody.Part part) {
+    public void onPicture(String userId, String sessionId, int sickCircleId, List<MultipartBody.Part> part) {
         mainModel.onPicture(userId, sessionId, sickCircleId, part, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {

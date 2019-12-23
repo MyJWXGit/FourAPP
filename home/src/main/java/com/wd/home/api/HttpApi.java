@@ -1,21 +1,29 @@
 package com.wd.home.api;
 
 import com.wd.home.bean.BannerBean;
+import com.wd.home.bean.CancelFllowBean;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.DepartmentBean;
+import com.wd.home.bean.DoctorInfoBean;
 import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
+import com.wd.home.bean.EvaluateListBean;
 import com.wd.home.bean.FindInfoBean;
+import com.wd.home.bean.FollowBean;
 import com.wd.home.bean.HomeSearchBean;
 import com.wd.home.bean.IllnessBean;
 import com.wd.home.bean.Information_ListBean;
+import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.bean.Plate_ListBean;
 import com.wd.home.bean.PopularBean;
+import com.wd.home.bean.UserWalletBean;
 
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -85,4 +93,28 @@ public interface HttpApi {
     //查询问诊医生列表
     @GET(API.DoctorList)
     Observable<DoctorListBean> onDoctorList(@Query("deptId") int deptId, @Query("condition") int condition, @Query("page") int page, @Query("count") int count);
+
+    //查询医生明细信息
+    @GET(API.DoctorInfo)
+    Observable<DoctorInfoBean> onDoctorInfo(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("doctorId") String doctorId);
+
+    //关注医生
+    @POST(API.followDoctor)
+    Observable<FollowBean> onFollow(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("doctorId") int doctorId);
+
+    //取消关注医生
+    @DELETE(API.cancelFollow)
+    Observable<CancelFllowBean> onCancelFollow(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("doctorId") int doctorId);
+
+    //用户查看当前问诊
+    @GET(API.CurrentInquiryRecord)
+    Observable<InquiryRecordBean> onInquiryRecord(@Header("userId") int userId, @Header("sessionId") String sessionId);
+
+    //我的钱包
+    @GET(API.UserWallet)
+    Observable<UserWalletBean> onUserWallet(@Header("userId") int userId, @Header("sessionId") String sessionId);
+
+    //查询医生评价列表
+    @GET(API.EvaluateList)
+    Observable<EvaluateListBean> onEvaluateList(@Query("doctorId") int doctorId, @Query("page") int page, @Query("count") int size);
 }

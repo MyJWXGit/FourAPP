@@ -22,6 +22,17 @@ android {
                 includeCompileClasspath = true
             }
         }
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.wd.health",
+                JPUSH_APPKEY : "564c4319e940cdd0aadeebf0", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
 
     buildTypes {
@@ -96,11 +107,16 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]
+    implementation rootProject.ext.dependencies["takephoto"]
+    implementation rootProject.ext.dependencies["takephotos"]
     implementation rootProject.ext.dependencies["espresso-cored"]
     implementation rootProject.ext.dependencies["espresso-cores"]
     implementation rootProject.ext.dependencies["tablayout"]
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
     implementation 'com.google.android.material:material:1.0.0'
-    //glide依赖
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
+    implementation 'com.ypx.yimagepicker:androidx:3.0.1'
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 }

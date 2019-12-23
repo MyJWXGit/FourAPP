@@ -43,4 +43,12 @@ public interface API {
     String UserHMoneyMessage="health/user/verify/v1/findHealthyCurrencyNoticeList";
     //wode我的钱包
     String MyMoneyBao="health/user/verify/v1/findUserWallet";
+    //消费记录
+    String RecordsOfConsumption="health/user/verify/v1/findUserConsumptionRecordList";
+    //查询关注医生列表
+    String AttentionDoctorList="health/user/verify/v1/findUserDoctorFollowList";
+    //关注医生
+    String AttentionDoctor="health/user/inquiry/verify/v1/followDoctor";
+    //取消关注医生
+    String UnAttentionDoctor="health/user/inquiry/verify/v1/cancelFollow";
 }

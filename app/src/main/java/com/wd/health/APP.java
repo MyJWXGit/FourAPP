@@ -3,9 +3,13 @@ package com.wd.health;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.multidex.MultiDex;
+
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.wd.common.app.BaseApplicationImp;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * @name Health
@@ -34,7 +38,9 @@ public class APP implements BaseApplicationImp {
 
         // 将应用的appId注册到微信
         api.registerApp(APP_ID);
-
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(application);
+        MultiDex.install(application);
 //        //建议动态监听微信启动广播进行注册到微信
 //        registerReceiver(new BroadcastReceiver() {
 //            @Override
@@ -44,6 +50,5 @@ public class APP implements BaseApplicationImp {
 //                api.registerApp(APP_ID);
 //            }
 //        }, new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
-
     }
 }

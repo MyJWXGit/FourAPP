@@ -8,6 +8,8 @@
         <activity android:name=".Update_Message_Activity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".UserBankCardActivity" />
+        <activity android:name=".view.Attention_Doctor_Activity"/>
+        <activity android:name=".view.My_Walk_Activity"/>
         <activity android:name=".view.message.InquiryMessageActivity"/>
         <activity android:name=".view.message.CurrencyMessageActivity"/>
         <activity android:name=".view.message.SystemMessageActivity"/>

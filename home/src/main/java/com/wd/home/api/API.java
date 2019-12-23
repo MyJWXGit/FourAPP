@@ -1,5 +1,11 @@
 package com.wd.home.api;
 
+import retrofit2.http.DELETE;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+
 /**
  * @name Health
  * @class name：com.wd.home.api
@@ -39,6 +45,16 @@ public interface API {
     String POPULARSEARCH = "health/share/v1/popularSearch";
     //查询问诊医生列表
     String DoctorList = "health/user/inquiry/v1/findDoctorList";
-    //查询问诊医生列表
-    //  String DoctorList = "health/user/inquiry/v1/findDoctorList";
+    //查询医生明细信息
+    String DoctorInfo = "health/user/inquiry/v1/findDoctorInfo";
+    //关注医生
+    String followDoctor = "health/user/inquiry/verify/v1/followDoctor";
+    //取消关注医生
+    String cancelFollow = "health/user/inquiry/verify/v1/cancelFollow";
+    //用户查看当前问诊
+    String CurrentInquiryRecord = "health/user/inquiry/verify/v1/findCurrentInquiryRecord";
+    //我的钱包
+    String UserWallet = "health/user/verify/v1/findUserWallet";
+    //查询医生评价列表
+    String EvaluateList = "health/user/inquiry/v1/findDoctorEvaluateList";
 }

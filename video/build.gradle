@@ -10,8 +10,16 @@ android {
     defaultConfig {
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.wd.health",
+                JPUSH_APPKEY : "564c4319e940cdd0aadeebf0", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -98,10 +106,12 @@ dependencies {
     implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]
     implementation rootProject.ext.dependencies["tablayout"]
     implementation rootProject.ext.dependencies["xrecyclerview"]
-    compile 'com.github.ctiao:DanmakuFlameMaster:0.7.3'
-    compile 'com.github.ctiao:ndkbitmap-armv7a:0.7.3'
+    implementation 'com.github.ctiao:DanmakuFlameMaster:0.7.3'
+    implementation 'com.github.ctiao:ndkbitmap-armv7a:0.7.3'
     implementation 'com.yanzhenjie:permission:2.0.3'
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 
 }

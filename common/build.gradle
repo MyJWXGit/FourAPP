@@ -5,9 +5,6 @@ android {
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
         multiDexEnabled true
-        ndk {
-            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
-        }
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -23,6 +20,17 @@ android {
                 includeCompileClasspath = true
             }
         }
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.wd.health",
+                JPUSH_APPKEY : "564c4319e940cdd0aadeebf0", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
 
     buildTypes {
@@ -87,4 +95,6 @@ dependencies {
     implementation rootProject.ext.dependencies["fresco"]
     //悬浮按钮
     implementation 'com.android.support:design:<version>'
+    implementation 'cn.jiguang.sdk:jpush:3.1.6'  // 此处以JPush 3.1.6 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:1.2.5'  // 此处以JCore 1.2.5 版本为例。
 }

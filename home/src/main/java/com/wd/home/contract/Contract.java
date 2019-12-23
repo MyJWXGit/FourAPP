@@ -87,6 +87,24 @@ public interface Contract {
 
         //查询问诊医生列表
         void onDoctorList(int deptId, int condition, int page, int count);
+
+        //查询医生明细信息
+        void onDoctorInfo(String doctorId);
+
+        //关注医生
+        void onFollow(int doctorId);
+
+        //取消关注医生
+        void onCancelFollow(int doctorId);
+
+        //用户查看当前问诊
+        void onInquiryRecord();
+
+        //我的钱包
+        void onUserWallet();
+
+        //查询医生评价列表
+        void onEvaluateList(int doctorId, int page, int count);
     }
 
     //Fragment  M层
@@ -110,7 +128,25 @@ public interface Contract {
         void onIllness(int id, IBallBask iBallBask);
 
         //查询问诊医生列表
-        void onDoctorList(int deptId, int condition , int page, int count, IBallBask iBallBask);
+        void onDoctorList(int deptId, int condition, int page, int count, IBallBask iBallBask);
+
+        //关注医生
+        void onDoctorInfo(int userId, String sessionId, String doctorId, IBallBask iBallBask);
+
+        //关注医生
+        void onFollow(int userId, String sessionId, int doctorId, IBallBask iBallBask);
+
+        //取消关注医生
+        void onCancelFollow(int userId, String sessionId, int doctorId, IBallBask iBallBask);
+
+        //用户查看当前问诊
+        void onInquiryRecord(int userId, String sessionId, IBallBask iBallBask);
+
+        //我的钱包
+        void onUserWallet(int userId, String sessionId, IBallBask iBallBask);
+
+        //查询医生评价列表
+        void onEvaluateList(int doctorId, int page, int count, IBallBask iBallBask);
 
         interface IBallBask {
             void onHttpOK(Object obj);

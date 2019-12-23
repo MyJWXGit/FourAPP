@@ -3,7 +3,10 @@
     package="com.wd.home">
 
     <application>
-        <activity android:name=".activity.InfoActivity"></activity>
+        <activity android:name=".activity.SendMessageActivity"></activity>
+        <activity android:name=".activity.CommentActivity" />
+        <activity android:name=".activity.Doctor_detailsActivity" />
+        <activity android:name=".activity.InfoActivity" />
         <activity android:name=".activity.Edit_SearchActivity" />
         <activity android:name=".activity.DrugActivity" />
         <activity android:name=".activity.DiseaseKnowledgeActivity" />
