@@ -6,6 +6,7 @@ import com.wd.video.bean.Video_CollectionBean;
 import com.wd.video.bean.Video_PayBean;
 import com.wd.video.bean.Video_QueryBean;
 import com.wd.video.bean.Video_Query_BarrageBean;
+import com.wd.video.bean.Video_SendBean;
 import com.wd.video.contract.Contract;
 import com.wd.video.model.Video_QueryFModel;
 
@@ -17,7 +18,7 @@ import com.wd.video.model.Video_QueryFModel;
     private static final String TAG = "Video_QueryFPresenter";
     private Video_QueryFModel video_queryFModel;
     private String userId = "444";
-    private String sessionId = "1576824015011444";
+    private String sessionId = "1577070717264444";
 
     @Override
     protected void initModel() {
@@ -97,6 +98,26 @@ import com.wd.video.model.Video_QueryFModel;
                 if (isViewAttached()) {
                     Video_PayBean video_payBean = (Video_PayBean) data;
                     getView().onSuccess(video_payBean);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onVideo_Send(String videoId, String content) {
+        video_queryFModel.onVideo_Send(userId, sessionId, videoId, content, new Contract.FModel.FModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    Video_SendBean video_sendBean = (Video_SendBean) data;
+                    getView().onSuccess(video_sendBean);
                 }
             }
 

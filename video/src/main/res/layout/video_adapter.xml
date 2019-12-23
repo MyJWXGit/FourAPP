@@ -75,5 +75,25 @@
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_marginRight="@dimen/permission_dp_20"
+        android:visibility="invisible"
+        android:layout_marginLeft="@dimen/permission_dp_20"
+        android:id="@+id/video_edit"
+        android:hint="快来留下你的看法吧"
+        android:layout_marginBottom="@dimen/permission_dp_10"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/video_send"
+        android:visibility="invisible"
+        android:background="@mipmap/common_icon_send_n"
+        android:layout_marginBottom="@dimen/permission_dp_10"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/permission_dp_20"
+        android:layout_width="45dp"
+        android:layout_height="45dp"/>
 
 </RelativeLayout>

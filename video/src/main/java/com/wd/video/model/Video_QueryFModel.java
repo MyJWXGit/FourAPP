@@ -7,6 +7,7 @@ import com.wd.video.bean.Video_CollectionBean;
 import com.wd.video.bean.Video_PayBean;
 import com.wd.video.bean.Video_QueryBean;
 import com.wd.video.bean.Video_Query_BarrageBean;
+import com.wd.video.bean.Video_SendBean;
 import com.wd.video.contract.Contract;
 
 import rx.Observer;
@@ -43,6 +44,34 @@ import rx.schedulers.Schedulers;
                     }
                 });
 
+    }
+
+    @Override
+    public void onVideo_Send(String userId, String sessionId, String videoId, String content, FModelCallBack fModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                .getVideo_Send(userId, sessionId, videoId, content)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Video_SendBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (fModelCallBack != null) {
+                            fModelCallBack.onError(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(Video_SendBean video_sendBean) {
+                        if (fModelCallBack != null) {
+                            fModelCallBack.onSuccess(video_sendBean);
+                        }
+                    }
+                });
     }
 
     @Override

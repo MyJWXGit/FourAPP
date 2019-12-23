@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.dou361.ijkplayer.widget.IjkVideoView;
@@ -28,9 +30,6 @@ import tv.danmaku.ijk.media.exo.IjkExoMediaPlayer;
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
     private List<Video_QueryBean.ResultBean> list;
     private Context context;
-    private ImageView cb_collecte;
-    private CheckBox qian;
-    private CheckBox cb_barrage;
     private String id;
     private int count =  0;
     private int counts =  0;
@@ -49,46 +48,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.video_adapter, parent, false);
-        cb_collecte = inflate.findViewById(R.id.cb_collecte);
-        cb_barrage = inflate.findViewById(R.id.cb_barrage);
-        qian = inflate.findViewById(R.id.qian);
-        video_view = inflate.findViewById(R.id.video_view);
-
-        cb_barrage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                counts++;
-               setOnDian.onPriceClick(counts);
-                if (counts%2==1){
-                    cb_barrage.setBackgroundResource(R.drawable.video_common_icon_close_live_commenting_n);
-                }else if (counts%2==0){
-                    cb_barrage.setBackgroundResource(R.drawable.video_common_icon_open_live_commenting_n);
-                }
-            }
-        });
-        cb_collecte.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setOnClick.onClick(id);
-                cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
-            }
-        });
-        qian.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setOnPriceTouch.onPriceClick(price,id);
-            }
-        });
-        if (whetherCollection==1){
-            cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
-        }else if (whetherCollection==2){
-            cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_n);
-        }
-        if (whetherBuy==1){
-            qian.setBackgroundResource(R.drawable.common_icon_comment_small_n);
-        }else if (whetherBuy==2){
-            qian.setBackgroundResource(R.drawable.video_common_icon_toll_n);
-        }
         return new Holder(inflate);
     }
 
@@ -102,6 +61,61 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
         String[] split = originalUrl.split(",");
         holder.video_view
                 .setVideoPath(split[0]);
+
+        if (whetherCollection==1){
+            holder.cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
+        }else if (whetherCollection==2){
+            holder.cb_collecte.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setOnClick.onClick(id);
+                    holder.cb_collecte.setBackgroundResource(R.drawable.video_common_button_collection_small_s);
+                }
+            });
+        }
+        if (whetherBuy==1){
+            holder.qian.setBackgroundResource(R.drawable.common_icon_comment_small_n);
+            holder.qian.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    holder.video_edit.setVisibility(View.VISIBLE);
+                    holder.video_send.setVisibility(View.VISIBLE);
+                    holder.video_send.setOnClickListener(new View.OnClickListener() {
+
+                        private String string;
+
+                        @Override
+                        public void onClick(View view) {
+                            string = holder.video_edit.getText().toString();
+                            Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
+                            setOnPingLun.onPingLunClick(id,string);
+                        }
+                    });
+                }
+            });
+        }else if (whetherBuy==2){
+            holder.qian.setBackgroundResource(R.drawable.common_icon_toll_n);
+            holder.qian.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setOnPriceTouch.onPriceClick(price,id);
+                }
+            });
+        }
+
+        holder.cb_barrage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                counts++;
+                setOnDian.onPriceClick(counts);
+                if (counts%2==1){
+                    holder.cb_barrage.setBackgroundResource(R.drawable.video_common_icon_close_live_commenting_n);
+                }else if (counts%2==0){
+                    holder.cb_barrage.setBackgroundResource(R.drawable.video_common_icon_open_live_commenting_n);
+                }
+            }
+        });
+
         holder.video_view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -138,6 +152,9 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
         public TextView video_want;
         public ImageView cb_collecte;
         public CheckBox qian;
+        public CheckBox cb_barrage;
+        public Button video_send;
+        public EditText video_edit;
 
         public Holder(@NonNull View itemView) {
             super(itemView);
@@ -148,6 +165,9 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
             video_want = itemView.findViewById(R.id.video_want);
             cb_collecte = itemView.findViewById(R.id.cb_collecte);
             qian = itemView.findViewById(R.id.qian);
+            cb_barrage = itemView.findViewById(R.id.cb_barrage);
+            video_edit = itemView.findViewById(R.id.video_edit);
+            video_send = itemView.findViewById(R.id.video_send);
 
         }
     }
@@ -190,5 +210,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
 
     public void setOnDian(VideoAdapter.setOnDian setOnDian) {
         this.setOnDian = setOnDian;
+    }
+    public interface setOnPingLun{
+        void onPingLunClick(String vid,String pl);
+    }
+    private setOnPingLun setOnPingLun;
+
+    public void setSetOnPingLun(VideoAdapter.setOnPingLun setOnPingLun) {
+        this.setOnPingLun = setOnPingLun;
     }
 }
