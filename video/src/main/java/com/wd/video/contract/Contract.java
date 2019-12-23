@@ -33,9 +33,13 @@ public interface Contract {
         }
         //Fragment   M
     interface FModel{
+            //发送评论（弹幕）
+            void onVideo_Send(String userId,String sessionId,String videoId,String content,FModelCallBack fModelCallBack);
+            //购买视频
             void onVideo_Pay(String userId,String sessionId,String videoId,String price,FModelCallBack fModelCallBack);
             //收藏视频
             void onVideo_Query_Barrage(String videoId,FModelCallBack iModelCallBack);
+            //收藏视频
             void onVideo_Collection(String userId, String sessionId, String videoId,FModelCallBack iModelCallBack);
             interface FModelCallBack{
                 void onSuccess(Object data);
@@ -46,7 +50,11 @@ public interface Contract {
     interface FPresenter{
             //收藏视频
             void onVideo_Collection(String videoId);
+            //查询弹幕
             void onVideo_Query_Barrage(String videoId);
+            //购买视频
             void onVideo_Pay(String videoId,String price);
+            //发送评论（弹幕）
+            void onVideo_Send(String videoId,String content);
         }
 }

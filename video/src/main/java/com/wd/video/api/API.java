@@ -14,4 +14,6 @@ package com.wd.video.api;
     String VIDEO_QUERY_BARRAGE = "health/user/video/v1/findVideoCommentList";
     //购买视频
     String VIDEO_PAY = "health/user/video/verify/v1/videoBuy";
+    //发布评论（弹幕）
+    String VIDEO_SEND = "health/user/video/verify/v1/addVideoComment";
 }

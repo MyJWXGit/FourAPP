@@ -17,6 +17,7 @@ import com.wd.video.bean.Video_CollectionBean;
 import com.wd.video.bean.Video_PayBean;
 import com.wd.video.bean.Video_QueryBean;
 import com.wd.video.bean.Video_Query_BarrageBean;
+import com.wd.video.bean.Video_SendBean;
 import com.wd.video.contract.Contract;
 import com.wd.video.presenter.Video_QueryFPresenter;
 import com.wd.video.utils.AcFunDanmakuParser;
@@ -56,6 +57,7 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
     private VideoAdapter videoAdapter;
     private IjkVideoView mVideoView;
     private PagerLayoutManager mlayoutManager;
+    private Video_PayBean video_payBean;
 
     @Override
     public void onSuccess(Object data) {
@@ -95,6 +97,14 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
                     }
                 }
             });
+            videoAdapter.setSetOnPingLun(new VideoAdapter.setOnPingLun() {
+                @Override
+                public void onPingLunClick(String vid, String pl) {
+                   // Toast.makeText(getContext(), vid, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), pl, Toast.LENGTH_SHORT).show();
+                    mPresenter.onVideo_Send(vid,pl);
+                }
+            });
         }
         else if (data instanceof Video_Query_BarrageBean){
             Video_Query_BarrageBean video_query_barrageBean = (Video_Query_BarrageBean) data;
@@ -109,13 +119,17 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
             sendTextMessage();
         }
         else if (data instanceof Video_PayBean){
-            Video_PayBean video_payBean = (Video_PayBean) data;
+            video_payBean = (Video_PayBean) data;
             String message = video_payBean.getMessage();
             Toast.makeText(getActivity(),message , Toast.LENGTH_SHORT).show();
         }else if (data instanceof Video_CollectionBean){
             Video_CollectionBean video_collectionBean = (Video_CollectionBean) data;
            String message1 = video_collectionBean.getMessage();
             Toast.makeText(getActivity(),message1 , Toast.LENGTH_SHORT).show();
+        }else if (data instanceof Video_SendBean){
+            Video_SendBean video_sendBean = (Video_SendBean) data;
+            String message = video_sendBean.getMessage();
+            Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
         }
         mlayoutManager.setOnViewPagerListener(new OnViewPagerListener() {
             @Override
@@ -192,21 +206,20 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
     @Override
     protected void initData() {
         String tid = getArguments().getString("tid");
-        Toast.makeText(getActivity(), tid, Toast.LENGTH_SHORT).show();
         mPresenter.onVideo_Query(tid,"1","100");
         mContext = DanmakuContext.create();
         //设置最大显示行数
 
         HashMap<Integer, Integer> maxLinesPair = new HashMap<>();
-        maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL, 8); // 滚动弹幕最大显示5行
+        maxLinesPair.put(BaseDanmaku.TYPE_SCROLL_RL, 5); // 滚动弹幕最大显示5行
         // 设置是否禁止重叠
         HashMap<Integer, Boolean> overlappingEnablePair = new HashMap<>();
         overlappingEnablePair.put(BaseDanmaku.TYPE_SCROLL_RL, true);
         overlappingEnablePair.put(BaseDanmaku.TYPE_FIX_TOP, true);
         mContext.setDanmakuStyle(IDisplayer.DANMAKU_STYLE_STROKEN, 10) //描边的厚度
                 .setDuplicateMergingEnabled(false)
-                .setScrollSpeedFactor(1.2f) //弹幕的速度。注意！此值越小，速度越快！值越大，速度越慢。// by phil
-                .setScaleTextSize(1.2f)  //缩放的值
+                .setScrollSpeedFactor(1.5f) //弹幕的速度。注意！此值越小，速度越快！值越大，速度越慢。// by phil
+                .setScaleTextSize(1.5f)  //缩放的值
                 //.setCacheStuffer(new SpannedCacheStuffer(), mCacheStufferAdapter) // 图文混排使用SpannedCacheStuffer
                 // .setCacheStuffer(new BackgroundCacheStuffer())  // 绘制背景使用BackgroundCacheStuffer
                 .setMaximumLines(maxLinesPair)
@@ -254,9 +267,9 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
 
         danmaku.text = contents;
         danmaku.padding = 5;
-        danmaku.priority = 0;  // 可能会被各种过滤器过滤并隐藏显示
+        //danmaku.priority = 0;  // 可能会被各种过滤器过滤并隐藏显示
         danmaku.isLive = islive;
-        danmaku.setTime(video_danmu.getCurrentTime() + 1200);
+        danmaku.setTime(video_danmu.getCurrentTime() + 1000);
         danmaku.textSize = 20f * (mParser.getDisplayer().getDensity() - 0.6f); //文本弹幕字体大小
 
         video_danmu.addDanmaku(danmaku);
@@ -264,18 +277,20 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
 
     @Override
     public void onPause() {
-        super.onPause();
         if (video_danmu != null && video_danmu.isPrepared()) {
             video_danmu.pause();
         }
+        super.onPause();
+
     }
 
     @Override
     public void onResume() {
-        super.onResume();
         if (video_danmu != null && video_danmu.isPrepared() && video_danmu.isPaused()) {
             video_danmu.resume();
         }
+        super.onResume();
+
     }
 
 
@@ -291,12 +306,16 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        if (mVideoView != null) {
+            mVideoView.pause();
+        }
         if (video_danmu != null) {
             // dont forget release!
             video_danmu.release();
             video_danmu = null;
         }
+        super.onDestroy();
+
     }
 
 

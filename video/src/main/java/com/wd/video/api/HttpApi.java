@@ -5,6 +5,7 @@ import com.wd.video.bean.Video_EntryBean;
 import com.wd.video.bean.Video_PayBean;
 import com.wd.video.bean.Video_QueryBean;
 import com.wd.video.bean.Video_Query_BarrageBean;
+import com.wd.video.bean.Video_SendBean;
 
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -31,4 +32,7 @@ import rx.Observable;
     //购买视频
     @POST(API.VIDEO_PAY)
     Observable<Video_PayBean> getVideo_Pay(@Header("userId") String userId, @Header("sessionId") String sessionId,@Query("videoId")String videoId,@Query("price")String price);
+    //发送评论（弹幕）
+    @POST(API.VIDEO_SEND)
+    Observable<Video_SendBean> getVideo_Send(@Header("userId") String userId, @Header("sessionId") String sessionId,@Query("videoId")String videoId,@Query("content")String content);
 }
