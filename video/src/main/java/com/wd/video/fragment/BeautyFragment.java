@@ -264,18 +264,20 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
 
     @Override
     public void onPause() {
-        super.onPause();
         if (video_danmu != null && video_danmu.isPrepared()) {
             video_danmu.pause();
         }
+        super.onPause();
+
     }
 
     @Override
     public void onResume() {
-        super.onResume();
         if (video_danmu != null && video_danmu.isPrepared() && video_danmu.isPaused()) {
             video_danmu.resume();
         }
+        super.onResume();
+
     }
 
 
@@ -291,12 +293,16 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        if (mVideoView != null) {
+            mVideoView.pause();
+        }
         if (video_danmu != null) {
             // dont forget release!
             video_danmu.release();
             video_danmu = null;
         }
+        super.onDestroy();
+
     }
 
 
