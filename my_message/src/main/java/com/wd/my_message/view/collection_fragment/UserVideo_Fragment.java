@@ -1,19 +1,22 @@
 package com.wd.my_message.view.collection_fragment;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.base.BaseFragment;
 import com.wd.my_message.R;
+import com.wd.my_message.R2;
+import com.wd.my_message.bean.VideoCollectionBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyFragmentMessage_Presenter;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @name Health
@@ -25,11 +28,12 @@ import com.wd.my_message.presenter.MyFragmentMessage_Presenter;
  * @chang time
  * @class describe
  */
-public class UserVideo_Fragment extends BaseFragment<MyFragmentMessage_Presenter> implements Contract.IView  {
+public class UserVideo_Fragment extends BaseFragment<MyFragmentMessage_Presenter> implements Contract.IView {
+    RecyclerView CollectionVideo;
 
     @Override
     protected MyFragmentMessage_Presenter providePresenter() {
-        return null;
+        return new MyFragmentMessage_Presenter();
     }
 
     @Override
@@ -39,17 +43,25 @@ public class UserVideo_Fragment extends BaseFragment<MyFragmentMessage_Presenter
 
     @Override
     protected void initView(View view) {
-
+        CollectionVideo = view.findViewById(R.id.Collection_Video);
     }
 
     @Override
     protected void initData() {
-
+        mPresenter.onUserVideo(1, 100);
     }
 
     @Override
     public void onSuccess(Object data) {
-
+        if (data instanceof VideoCollectionBean) {
+            VideoCollectionBean videoCollectionBean = (VideoCollectionBean) data;
+            List<VideoCollectionBean.ResultBean> result = videoCollectionBean.getResult();
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            Collection_VideoAdapter collection_videoAdapter = new Collection_VideoAdapter(result, getActivity());
+         /*   CollectionVideo.setLayoutManager(linearLayoutManager);
+            CollectionVideo.setAdapter(collection_videoAdapter);*/
+        }
     }
 
     @Override

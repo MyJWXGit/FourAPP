@@ -110,5 +110,6 @@ dependencies {
     implementation 'cn.jiguang.sdk:jcore:1.2.5'  // 此处以JCore 1.2.5 版本为例。
     implementation 'com.android.support:multidex:1.0.3'
     implementation project(':common')
-    implementation project(':home')
+   /* implementation project(':home')
+    implementation project(':my_message')*/
 }

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 
 import androidx.annotation.Nullable;
 
@@ -24,7 +24,6 @@ import com.baidu.ocr.sdk.model.IDCardResult;
 import com.baidu.ocr.ui.camera.CameraActivity;
 import com.baidu.ocr.ui.camera.CameraNativeHelper;
 import com.baidu.ocr.ui.camera.CameraView;
-import com.wd.common.app.BaseApplication;
 import com.wd.common.base.BaseActivity;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;

@@ -86,7 +86,7 @@ dependencies {
     implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]
     implementation rootProject.ext.dependencies["tablayout"]
     implementation rootProject.ext.dependencies["xrecyclerview"]
-    implementation 'com.jakewharton:butterknife:10.2.0'
+    implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     //阿里巴巴路由    放入MVP依赖
     //路由器

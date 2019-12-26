@@ -134,7 +134,7 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
         mlayoutManager.setOnViewPagerListener(new OnViewPagerListener() {
             @Override
             public void onInitComplete(View view) {
-                playVideo(0,view);
+               // playVideo(0,view);
             }
 
             @Override
@@ -293,6 +293,15 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
 
     }
 
+    @Override
+    public void onStop() {
+        if (video_danmu != null) {
+            // dont forget release!
+            video_danmu.stop();
+            video_danmu = null;
+        }
+        super.onStop();
+    }
 
     @Override
     public void onDestroyView() {

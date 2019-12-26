@@ -14,7 +14,7 @@ android {
         versionName rootProject.ext.android["versionName"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
         //Arouter路由配置
         javaCompileOptions {
             annotationProcessorOptions {
@@ -121,4 +121,5 @@ dependencies {
     implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
     implementation 'com.ypx.yimagepicker:androidx:3.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
 }

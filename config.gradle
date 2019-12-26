@@ -2,7 +2,7 @@ ext {
 
 
     //是否处于Module模式
-    isModule = false
+    isModule = true
     //有重用的地方写在这里面，保证代码一致
     android = [compileSdkVersion       : 29,
                buildToolsVersion       : "29.0.0",
@@ -86,6 +86,8 @@ ext {
 //            "exoPlayerVersion"       : '2.10.8',
 
             "annotation"             : 'androidx.annotation:annotation:1.1.0',
+
+            "jiecao"             : 'fm.jiecao:jiecaovideoplayer:4.8.3',
 
 
             "dkplayer-java"          : 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.5',
