@@ -17,7 +17,7 @@ android {
         versionName rootProject.ext.android["versionName"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
 
         //Arouter路由配置
         javaCompileOptions {
@@ -83,6 +83,11 @@ android {
         pickFirst 'lib/arm64-v8a/libijksdl.so'
         pickFirst 'lib/armeabi-v7a/libijksdl.so'
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
@@ -105,6 +110,10 @@ dependencies {
     implementation rootProject.ext.dependencies["autosize"]
     implementation rootProject.ext.dependencies["tablayout"]
     implementation rootProject.ext.dependencies["espresso-cored"]
+    implementation rootProject.ext.dependencies["jiecao"]
+    implementation 'com.github.ctiao:DanmakuFlameMaster:0.7.3'
+    implementation 'com.github.ctiao:ndkbitmap-armv7a:0.7.3'
+    implementation 'com.yanzhenjie:permission:2.0.3'
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]
@@ -115,4 +124,7 @@ dependencies {
     implementation 'liji.library.dev:citypickerview:0.7.0'
     implementation 'cn.qqtheme.framework:AndroidPicker:latest.integration'
     implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
+    implementation 'com.android.support:multidex:1.0.3'
 }

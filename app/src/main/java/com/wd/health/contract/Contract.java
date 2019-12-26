@@ -1,6 +1,5 @@
 package com.wd.health.contract;
 
-
 import com.wd.common.base.IBaseView;
 
 public interface Contract {

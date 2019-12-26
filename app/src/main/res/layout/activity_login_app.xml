@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
+    tools:context=".APP_Login_Activity">
+
+    <ImageView
+        android:id="@+id/i1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="46dp"
+        android:background="@mipmap/whitelogo" />
+
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="280dp"
+        android:layout_height="218dp"
+        android:layout_below="@id/i1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="30dp"
+        android:background="#FFF"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="17701300447@163.com" />
+
+        <EditText
+            android:id="@+id/pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="123" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="230dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="36dp"
+            android:background="#3087ea"
+            android:text="登录"
+            android:textColor="#FFF" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/forget_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:layout_alignLeft="@id/line1"
+        android:layout_marginTop="10dp"
+        android:text="忘记密码"
+        android:textColor="#FFF" />
+
+    <TextView
+        android:id="@+id/text_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:layout_alignRight="@id/line1"
+        android:layout_marginTop="10dp"
+        android:text="暂无账号?立即注册"
+        android:textColor="#FFF" />
+
+    <TextView
+        android:id="@+id/wx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
+        android:text="-------其它登录方式-------"
+        android:textColor="#FFF" />
+
+    <ImageButton
+        android:id="@+id/login_wx"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/wx"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/common_icon_weixin_n" />
+</RelativeLayout>

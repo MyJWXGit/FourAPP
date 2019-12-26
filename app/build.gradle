@@ -110,4 +110,5 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation project(':common')
     implementation project(':home')
+    implementation project(':my_message')
 }

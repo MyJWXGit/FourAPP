@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -80,7 +81,7 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my_video;
+        return R2.layout.activity_my_video;
     }
 
     @Override
@@ -99,7 +100,7 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
         videoTab.addTab(videoTab.newTab().setText(strings1.get(3)));
         videoTab.addTab(videoTab.newTab().setText(strings1.get(4)));
         videoTab.addTab(videoTab.newTab().setText(strings1.get(5)));
-        videoVp.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+        videoVp.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @NonNull
             @Override
             public Fragment getItem(int position) {
@@ -133,5 +134,13 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
     @Override
     public Context context() {
         return null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(videoVp!=null){
+            onDestroy();
+        }
+        super.onDestroy();
     }
 }

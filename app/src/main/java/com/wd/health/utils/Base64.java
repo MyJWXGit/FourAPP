@@ -1,4 +1,4 @@
-/*
+package com.wd.health.utils;/*
  * Copyright (c) 2007, 2017, Oracle and/or its affiliates. All rights reserved.
  * ORACLE PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -18,7 +18,6 @@
  * limitations under the License.
  */
 
-package com.wd.health.utils;
 
 /**
  * This class provides encode/decode for RFC 2045 Base64 as

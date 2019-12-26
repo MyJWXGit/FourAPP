@@ -18,7 +18,7 @@ import com.wd.video.model.Video_QueryFModel;
     private static final String TAG = "Video_QueryFPresenter";
     private Video_QueryFModel video_queryFModel;
     private String userId = "444";
-    private String sessionId = "1577070717264444";
+    private String sessionId = "1577150365428444";
 
     @Override
     protected void initModel() {

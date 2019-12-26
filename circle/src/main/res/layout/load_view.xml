@@ -3,12 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tool="http://schemas.android.com/tools">
 
-    <com.wd.health.shapeloading.ShapeLoadingView
-        android:id="@+id/shapeLoadingView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="2dp"/>
+
 
     <ImageView
         android:id="@+id/indication"

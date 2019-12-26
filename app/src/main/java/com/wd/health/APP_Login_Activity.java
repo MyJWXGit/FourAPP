@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.transition.Explode;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -32,18 +32,24 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class APP_Login_Activity extends BaseActivity<MainPresenter> implements Contract.IView {
+    @BindView(R.id.i1)
+    ImageView i1;
     @BindView(R.id.email)
     EditText email;
     @BindView(R.id.pwd)
     EditText pwd;
     @BindView(R.id.button)
     Button button;
-    @BindView(R.id.login_wx)
-    ImageButton loginWx;
-    @BindView(R.id.text_register)
-    TextView textRegister;
+    @BindView(R.id.line1)
+    LinearLayout line1;
     @BindView(R.id.forget_pwd)
     TextView forgetPwd;
+    @BindView(R.id.text_register)
+    TextView textRegister;
+    @BindView(R.id.wx)
+    TextView wx;
+    @BindView(R.id.login_wx)
+    ImageButton loginWx;
 
     @Override
     protected MainPresenter providePresenter() {
@@ -64,7 +70,7 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_app__login_;
+        return R.layout.activity_login_app;
     }
 
     @Override
@@ -157,5 +163,12 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
             System.out.println(e);
         }
         return result;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wd.health">
+    package="com.wd.my_message">
 
     <application>
         <activity android:name=".view.Suggest_message_Activity"></activity>

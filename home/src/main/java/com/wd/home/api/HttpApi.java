@@ -1,5 +1,6 @@
 package com.wd.home.api;
 
+import com.wd.home.api.API;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.CancelFllowBean;
 import com.wd.home.bean.CategoryBean;

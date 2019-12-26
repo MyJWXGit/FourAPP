@@ -87,6 +87,8 @@ ext {
 
             "annotation"             : 'androidx.annotation:annotation:1.1.0',
 
+            "jiecao"             : 'fm.jiecao:jiecaovideoplayer:4.8.3',
+
 
             "dkplayer-java"          : 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.5',
             "dkplayer-armv7a"        : 'com.github.dueeeke.dkplayer:dkplayer-armv7a:2.5.5',
