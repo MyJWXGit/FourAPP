@@ -30,9 +30,9 @@ android {
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME : "com.wd.health",
+                JPUSH_PKGNAME: "com.wd.health",
                 JPUSH_APPKEY : "564c4319e940cdd0aadeebf0", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
 
@@ -143,6 +143,13 @@ dependencies {
     //glide图片获取
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation project(':common')
+    implementation project(':circle')
+    implementation project(':video')
+    implementation project(':my_message')
     implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
     implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
+    //1.1.0 API改动过大，老用户升级需谨慎
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'//没有使用特殊Header，可以不加这行
+    implementation 'com.android.support:appcompat-v7:25.3.1'//版本 23以上（必须）
 }

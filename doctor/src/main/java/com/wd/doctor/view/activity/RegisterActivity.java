@@ -11,13 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.ToastUtils;
 import com.wd.doctor.R;
 import com.wd.doctor.R2;
-import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.SendBean;
 import com.wd.doctor.bean.VerifyBean;
 import com.wd.doctor.contract.Contract;
@@ -78,7 +75,7 @@ public class RegisterActivity extends BaseActivity<LoginPresenter> implements Co
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_register;
+        return R.layout.activity_doctor_register;
     }
 
     @OnClick({R2.id.register_forget, R2.id.register_hiet, R2.id.register_show, R2.id.register_hiet1, R2.id.register_show1, R2.id.register_xia})

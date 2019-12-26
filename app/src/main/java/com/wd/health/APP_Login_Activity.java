@@ -1,7 +1,9 @@
 package com.wd.health;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.transition.Explode;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -19,6 +23,9 @@ import com.wd.health.bean.LoginBean;
 import com.wd.health.contract.Contract;
 import com.wd.health.presenter.MainPresenter;
 import com.wd.health.utils.RsaCoder;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,6 +73,12 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
         if (bean.getStatus().equals("0000")) {
             SpUtils.put(this, Constant.USERID, bean.getResult().getId());
             SpUtils.put(this, Constant.SESSIONID, bean.getResult().getSessionId());
+            int id = bean.getResult().getId();
+            String sessionId = bean.getResult().getSessionId();
+            String str = id + "" + sessionId + "movie";
+            String s = MD5(str);
+            Log.i("xxx", "onSuccess: " + str);
+            Log.i("xxx", "onSuccess: " + s);
             ARouter.getInstance().build("/home/activity").navigation();
         }
     }
@@ -99,8 +112,7 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
                 Toast.makeText(this, "忘记密码,请重新注册吧", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.text_register:
-                Intent intent = new Intent(APP_Login_Activity.this, RegisterActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(this, RegisterActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
                 break;
             case R.id.login_wx:
                 // send oauth request
@@ -116,5 +128,34 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
                 }
                 break;
         }
+    }
+
+    /**
+     * MD5加密
+     *
+     * @param sourceStr
+     * @return
+     */
+    public static String MD5(String sourceStr) {
+        String result = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(sourceStr.getBytes());
+            byte b[] = md.digest();
+            int i;
+            StringBuffer buf = new StringBuffer("");
+            for (int offset = 0; offset < b.length; offset++) {
+                i = b[offset];
+                if (i < 0)
+                    i += 256;
+                if (i < 16)
+                    buf.append("0");
+                buf.append(Integer.toHexString(i));
+            }
+            result = buf.toString();
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println(e);
+        }
+        return result;
     }
 }

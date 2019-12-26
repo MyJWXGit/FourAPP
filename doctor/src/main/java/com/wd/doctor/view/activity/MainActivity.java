@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements Contra
 
     @Override
     protected int initLayout() {
-        return R2.layout.activity_main;
+        return R2.layout.activity_doctor_main;
     }
 
     @Override

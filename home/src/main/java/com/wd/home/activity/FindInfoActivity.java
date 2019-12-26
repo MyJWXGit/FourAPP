@@ -2,6 +2,9 @@ package com.wd.home.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.transition.Explode;
+import android.transition.Transition;
+import android.transition.TransitionSet;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -51,6 +54,9 @@ public class FindInfoActivity extends BaseActivity<HomePresenter> implements Con
 
     @Override
     protected int initLayout() {
+        Transition transition = new TransitionSet().addTransition(new Explode());
+        getWindow().setEnterTransition(transition.setDuration(2000));
+        getWindow().setExitTransition(new Explode().setDuration(2000));
         return R.layout.activity_find_info;
     }
 

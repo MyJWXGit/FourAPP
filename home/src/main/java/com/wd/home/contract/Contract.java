@@ -33,6 +33,18 @@ public interface Contract {
 
         //热门搜索
         void onPopular();
+
+        //问诊-发送消息（文本消息）
+        void onPuMessage(int inquiryId, String content, int type, int doctorId);
+
+        //查询历史问诊聊天记录
+        void getRecording(int inquiryId, int page, int count);
+
+        //查询历史问诊聊天记录
+        void onEndInquiry();
+
+        //用户查看当前问诊
+        void onInquiryRecord();
     }
 
     //Activity  M层
@@ -57,6 +69,16 @@ public interface Contract {
 
         //热门搜索
         void onPopular(IBallBask iBallBask);
+
+        //问诊-发送消息（文本消息）
+        void onPuMessage(int userId, String sessionId, int inquiryId, String content, int type, int doctorId, IBallBask iBallBask);
+
+        //查询历史问诊聊天记录
+        void getRecording(int userId, String sessionId, int inquiryId, int page, int count, IBallBask iBallBask);
+
+
+        //用户查看当前问诊
+        void onInquiryRecord(int userId, String sessionId, IBallBask iBallBask);
 
         interface IBallBask {
             void onHttpOK(Object obj);
@@ -97,14 +119,21 @@ public interface Contract {
         //取消关注医生
         void onCancelFollow(int doctorId);
 
-        //用户查看当前问诊
-        void onInquiryRecord();
-
         //我的钱包
         void onUserWallet();
 
         //查询医生评价列表
         void onEvaluateList(int doctorId, int page, int count);
+
+        //咨询医生
+        void getConsult(int doctorId);
+
+        //结束问诊
+        void onEndInquiry(int recordId);
+
+        //用户查看当前问诊
+        void onInquiryRecord();
+
     }
 
     //Fragment  M层
@@ -139,14 +168,20 @@ public interface Contract {
         //取消关注医生
         void onCancelFollow(int userId, String sessionId, int doctorId, IBallBask iBallBask);
 
-        //用户查看当前问诊
-        void onInquiryRecord(int userId, String sessionId, IBallBask iBallBask);
-
         //我的钱包
         void onUserWallet(int userId, String sessionId, IBallBask iBallBask);
 
         //查询医生评价列表
         void onEvaluateList(int doctorId, int page, int count, IBallBask iBallBask);
+
+        //咨询医生
+        void getConsult(int userId, String sessionId, int doctorId, IBallBask iBallBask);
+
+        //结束问诊
+        void onEndInquiry(int userId, String sessionId, int recordId, IBallBask iBallBask);
+
+        //用户查看当前问诊
+        void onInquiryRecord(int userId, String sessionId, IBallBask iBallBask);
 
         interface IBallBask {
             void onHttpOK(Object obj);

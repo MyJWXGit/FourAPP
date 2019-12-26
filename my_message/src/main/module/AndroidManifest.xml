@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wd.my_message">
+    package="com.wd.health">
 
     <application
         android:name="com.wd.common.app.BaseApplication"

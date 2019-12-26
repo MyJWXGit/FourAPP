@@ -203,7 +203,6 @@ public class Doctor_detailsActivity extends BaseActivity<Fragment_Presenter> imp
             int i = Integer.parseInt(doctorId);
             mPresenter.onCancelFollow(i);
         } else if (id == R.id.go_now) {
-            mPresenter.onInquiryRecord();
         }
     }
 }

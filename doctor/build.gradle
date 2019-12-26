@@ -109,6 +109,4 @@ dependencies {
     implementation rootProject.ext.dependencies["RefreshHeader"]
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
-    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
-    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 }

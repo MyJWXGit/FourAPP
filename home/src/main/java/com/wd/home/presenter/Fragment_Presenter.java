@@ -8,16 +8,19 @@ import com.wd.home.APP;
 import com.wd.home.bean.CancelFllowBean;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.CategoryListBean;
+import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.DoctorInfoBean;
 import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
+import com.wd.home.bean.EndInquiryBean;
 import com.wd.home.bean.EvaluateListBean;
 import com.wd.home.bean.FollowBean;
 import com.wd.home.bean.IllnessBean;
 import com.wd.home.bean.Information_ListBean;
 import com.wd.home.bean.InquiryRecordBean;
+import com.wd.home.bean.RecordingBean;
 import com.wd.home.bean.UserWalletBean;
 import com.wd.home.contract.Contract;
 import com.wd.home.model.Fragment_Mode;
@@ -319,35 +322,6 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
     }
 
     @Override
-    public void onInquiryRecord() {
-        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
-        String sessionid = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
-        home_dode.onInquiryRecord(userId, sessionid, new Contract.FModer.IBallBask() {
-            @Override
-            public void onHttpOK(Object obj) {//成功的方法
-                //软引用
-                if (isViewAttached()) {
-                    //Bean包强转  拿到Status进行判断
-                    InquiryRecordBean bean = (InquiryRecordBean) obj;
-                    if (bean != null && bean.getStatus().equals("0000")) {
-                        //getView是BasePresenter方法  使用getView进行调用P层
-                        getView().onSuccess(bean);
-                    } else {
-                        getView().onError(new Exception("请求失败"));
-                    }
-                }
-            }
-
-            @Override
-            public void onHttpNO(Throwable e) {//失败的方法
-                if (isViewAttached()) {
-                    Logger.d(TAG, e.getMessage() + "");
-                }
-            }
-        });
-    }
-
-    @Override
     public void onUserWallet() {
         int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
@@ -385,6 +359,89 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
                 if (isViewAttached()) {
                     //Bean包强转  拿到Status进行判断
                     EvaluateListBean bean = (EvaluateListBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {//失败的方法
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getConsult(int doctorId) {
+        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
+        String sessionId = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
+        home_dode.getConsult(userId, sessionId, doctorId, new Contract.FModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {//成功的方法
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    ConsultBean bean = (ConsultBean) obj;
+                    //getView是BasePresenter方法  使用getView进行调用P层
+                    getView().onSuccess(bean);
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {//失败的方法
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onEndInquiry(int recordId) {
+        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
+        String sessionId = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
+        home_dode.onEndInquiry(userId, sessionId, recordId, new Contract.FModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {//成功的方法
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    EndInquiryBean bean = (EndInquiryBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {//失败的方法
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onInquiryRecord() {
+        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
+        home_dode.onInquiryRecord(userId, sessionid, new Contract.FModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {//成功的方法
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    InquiryRecordBean bean = (InquiryRecordBean) obj;
                     if (bean != null && bean.getStatus().equals("0000")) {
                         //getView是BasePresenter方法  使用getView进行调用P层
                         getView().onSuccess(bean);

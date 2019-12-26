@@ -57,4 +57,12 @@ public interface API {
     String UserWallet = "health/user/verify/v1/findUserWallet";
     //查询医生评价列表
     String EvaluateList = "health/user/inquiry/v1/findDoctorEvaluateList";
+    //问诊-发送消息（文本消息）
+    String pushMessage = "health/user/inquiry/verify/v1/pushMessage";
+    //咨询医生
+    String consultDoctor = "health/user/inquiry/verify/v1/consultDoctor";
+    //查询历史问诊聊天记录
+    String InquiryRecordList = "health/user/inquiry/verify/v1/findInquiryRecordList";
+    //结束问诊
+    String endInquiry = "health/user/inquiry/verify/v1/endInquiry";
 }

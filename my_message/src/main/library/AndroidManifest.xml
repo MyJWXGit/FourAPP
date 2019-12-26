@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wd.my_message">
+    package="com.wd.health">
 
     <application>
-        <activity android:name=".ConfirmActivity"></activity>
+        <activity android:name=".view.Suggest_message_Activity"></activity>
+        <activity android:name=".ConfirmActivity" />
         <activity android:name=".AutonymActivity" />
         <activity android:name=".Update_Message_Activity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".UserBankCardActivity" />
-        <activity android:name=".view.Attention_Doctor_Activity"/>
-        <activity android:name=".view.My_Walk_Activity"/>
-        <activity android:name=".view.message.InquiryMessageActivity"/>
-        <activity android:name=".view.message.CurrencyMessageActivity"/>
-        <activity android:name=".view.message.SystemMessageActivity"/>
-        <activity android:name=".view.MessagesActivity"></activity>
-        <activity android:name=".view.Suggest_Activity" />
+        <activity android:name=".view.Attention_Doctor_Activity" />
+        <activity android:name=".view.My_Walk_Activity" />
+        <activity android:name=".view.message.InquiryMessageActivity" />
+        <activity android:name=".view.message.CurrencyMessageActivity" />
+        <activity android:name=".view.message.SystemMessageActivity" />
+        <activity android:name=".view.MessagesActivity" />
         <activity android:name=".view.Collection_Activity" />
         <activity android:name=".My_Home_Activity" />
+        <activity android:name=".view.RecordActivity" />
         <activity android:name=".My_Home_Activity$My_Home_Activity" />
     </application>
 

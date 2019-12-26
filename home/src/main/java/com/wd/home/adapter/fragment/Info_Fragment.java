@@ -1,12 +1,17 @@
 package com.wd.home.adapter.fragment;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +22,13 @@ import com.wd.common.base.BaseFragment;
 import com.wd.home.R;
 import com.wd.home.R2;
 import com.wd.home.activity.Doctor_detailsActivity;
+import com.wd.home.activity.SendMessageActivity;
+import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DoctorListBean;
+import com.wd.home.bean.EndInquiryBean;
+import com.wd.home.bean.InquiryRecordBean;
+import com.wd.home.bean.RecordingBean;
+import com.wd.home.bean.UserWalletBean;
 import com.wd.home.contract.Contract;
 import com.wd.home.presenter.Fragment_Presenter;
 
@@ -71,6 +82,7 @@ public class Info_Fragment extends BaseFragment<Fragment_Presenter> implements C
     private String doctorId;
     private int count = 1;
     private List<DoctorListBean.ResultBean> result;
+    private int servicePrice;
 
     @Override
     protected Fragment_Presenter providePresenter() {
@@ -137,9 +149,68 @@ public class Info_Fragment extends BaseFragment<Fragment_Presenter> implements C
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                int id = Integer.parseInt(doctorId);
+                mPresenter.getConsult(id);
             }
         });
+    }
+
+    private void initPopupWindow() {
+        View view = View.inflate(getContext(), R.layout.popupwindow_layout, null);
+        Button cancel = view.findViewById(R.id.cancel);
+        Button Recharge = view.findViewById(R.id.Recharge);
+
+        final PopupWindow popupWindow = new PopupWindow(view, GridLayoutManager.LayoutParams.MATCH_PARENT, GridLayoutManager.LayoutParams.MATCH_PARENT);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //点击选择完收回PopupWidow
+                popupWindow.dismiss();
+            }
+        });
+        Recharge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.onInquiryRecord();
+                //点击选择完收回PopupWidow
+                popupWindow.dismiss();
+            }
+        });
+
+        //动画样式
+        popupWindow.setAnimationStyle(android.R.style.Animation_InputMethod);
+        //显示位置
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 200, 0);
+    }
+
+    private void initPopupWindow_inquiry() {
+        View view = View.inflate(getContext(), R.layout.popupwindow_inquiry, null);
+        Button cancel = view.findViewById(R.id.cancel);
+        Button Recharge = view.findViewById(R.id.Recharge);
+
+        final PopupWindow popupWindow = new PopupWindow(view, GridLayoutManager.LayoutParams.MATCH_PARENT, GridLayoutManager.LayoutParams.MATCH_PARENT);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //点击选择完收回PopupWidow
+                popupWindow.dismiss();
+            }
+        });
+        Recharge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "联系管理员充值", Toast.LENGTH_SHORT).show();
+                //点击选择完收回PopupWidow
+                popupWindow.dismiss();
+            }
+        });
+
+        //动画样式
+        popupWindow.setAnimationStyle(android.R.style.Animation_InputMethod);
+        //显示位置
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
     }
 
     @Override
@@ -155,6 +226,7 @@ public class Info_Fragment extends BaseFragment<Fragment_Presenter> implements C
             number.setText("服务患者数 " + result.get(0).getPraiseNum());
             money.setText(result.get(0).getServicePrice() + "H币/次");
             page.setText("" + count);
+            servicePrice = bean.getResult().get(0).getServicePrice();
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
             linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
             recy.setLayoutManager(linearLayoutManager);
@@ -182,6 +254,34 @@ public class Info_Fragment extends BaseFragment<Fragment_Presenter> implements C
                     money.setText(result.get(position).getServicePrice() + "H币/次");
                 }
             });
+        } else if (obj instanceof ConsultBean) {
+            ConsultBean bean = (ConsultBean) obj;
+            String status = bean.getStatus();
+            if (status.equals("0000")) {
+                Intent intent = new Intent(getActivity(), SendMessageActivity.class);
+                startActivity(intent);
+            } else if (status.equals("8001")) {
+                Toast.makeText(getContext(), bean.getMessage(), Toast.LENGTH_SHORT).show();
+                initPopupWindow();
+            }
+        } else if (obj instanceof InquiryRecordBean) {//查看当前问诊
+            InquiryRecordBean bean = (InquiryRecordBean) obj;
+            int recordId = bean.getResult().getRecordId();
+            mPresenter.onEndInquiry(recordId);
+        } else if (obj instanceof EndInquiryBean) {  //结束问诊
+            EndInquiryBean bean = (EndInquiryBean) obj;
+            if (bean.getStatus().equals("0000")) {
+                mPresenter.onUserWallet();
+            }
+        } else if (obj instanceof UserWalletBean) {
+            UserWalletBean bean = (UserWalletBean) obj;
+            int result = bean.getResult();
+            if (result > servicePrice) {
+                Intent intent = new Intent(getActivity(), SendMessageActivity.class);
+                startActivity(intent);
+            } else {
+                initPopupWindow_inquiry();
+            }
         }
     }
 

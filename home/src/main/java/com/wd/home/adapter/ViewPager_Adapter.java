@@ -13,7 +13,7 @@ import com.wd.home.bean.DepartmentBean;
 import java.util.List;
 
 /**
- * @name APP
+ * @name Message_APP
  * @class name：com.bw.tablayout
  * @class describe
  * @anthor 24673

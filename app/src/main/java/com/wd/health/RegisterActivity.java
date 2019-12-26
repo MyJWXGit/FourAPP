@@ -2,12 +2,16 @@ package com.wd.health;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Transition;
+import android.transition.TransitionSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 
 import com.wd.common.base.BaseActivity;
 import com.wd.health.bean.EmailBean;
@@ -65,11 +69,13 @@ public class RegisterActivity extends BaseActivity<MainPresenter> implements Con
 
     @Override
     protected void initData() {
-
     }
 
     @Override
     protected int initLayout() {
+        Transition transition = new TransitionSet().addTransition(new Explode());
+        getWindow().setEnterTransition(transition.setDuration(2000));
+        getWindow().setExitTransition(new Explode().setDuration(2000));
         return R.layout.activity_register;
     }
 
@@ -83,7 +89,7 @@ public class RegisterActivity extends BaseActivity<MainPresenter> implements Con
             RegisterBean bean = (RegisterBean) obj;
             if (bean.getStatus().equals("0000")) {
                 finish();
-            }else {
+            } else {
                 Toast.makeText(this, "账号或密码错误", Toast.LENGTH_SHORT).show();
             }
         }

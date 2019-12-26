@@ -7,7 +7,7 @@
     android:layout_height="110dp">
 
 
-    <com.wd.my_message.utils.SwipeMenu
+    <com.wd.health.utils.SwipeMenu
         android:layout_width="match_parent"
         android:layout_height="100dp">
         <LinearLayout
@@ -124,5 +124,5 @@
             android:text="取    消    关    注"
             android:layout_width="40dp"
             android:layout_height="match_parent"/>
-    </com.wd.my_message.utils.SwipeMenu>
+    </com.wd.health.utils.SwipeMenu>
 </LinearLayout>

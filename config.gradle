@@ -4,9 +4,9 @@ ext {
     //是否处于Module模式
     isModule = false
     //有重用的地方写在这里面，保证代码一致
-    android = [compileSdkVersion       : 29,
+    android = [compileSdkVersion       : 28,
                buildToolsVersion       : "29.0.0",
-               minSdkVersion           : 19,
+               minSdkVersion           : 22,
                targetSdkVersion        : 26,
                versionCode             : 100000,
                versionName             : "1.0.0",

@@ -71,7 +71,7 @@ public class DoctorListBean {
         private String praise;
         private String praiseNum;
         private String serverNum;
-        private String servicePrice;
+        private int servicePrice;
 
         public String getBadNum() {
             return badNum;
@@ -145,11 +145,11 @@ public class DoctorListBean {
             this.serverNum = serverNum;
         }
 
-        public String getServicePrice() {
+        public int getServicePrice() {
             return servicePrice;
         }
 
-        public void setServicePrice(String servicePrice) {
+        public void setServicePrice(int servicePrice) {
             this.servicePrice = servicePrice;
         }
     }

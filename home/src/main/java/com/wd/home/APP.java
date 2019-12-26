@@ -6,6 +6,8 @@ import android.content.Context;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wd.common.app.BaseApplicationImp;
 
+import cn.jpush.im.android.api.JMessageClient;
+
 /**
  * @name Health
  * @class name：com.wd.home
@@ -22,5 +24,7 @@ public class APP implements BaseApplicationImp {
     @Override
     public void onCreate(Application application) {
         context = application;
+        JMessageClient.setDebugMode(true);
+        JMessageClient.init(application);
     }
 }

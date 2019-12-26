@@ -12,16 +12,11 @@ import com.wd.circle.R;
 import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.presenter.Home_CirclePresenter;
-import com.wd.circle.presenter.MainPresenter;
 import com.wd.circle.view.Circle_Details_Activity;
-import com.wd.circle.view.Circle_Home_Activity;
 import com.wd.circle.view.adapter.Circle_Lists_Adapter;
 import com.wd.common.base.BaseFragment;
-import com.wd.common.utils.Logger;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * @name Health

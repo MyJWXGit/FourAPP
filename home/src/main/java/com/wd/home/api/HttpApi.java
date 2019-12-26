@@ -4,11 +4,13 @@ import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.CancelFllowBean;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.CategoryListBean;
+import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.DoctorInfoBean;
 import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
+import com.wd.home.bean.EndInquiryBean;
 import com.wd.home.bean.EvaluateListBean;
 import com.wd.home.bean.FindInfoBean;
 import com.wd.home.bean.FollowBean;
@@ -18,12 +20,17 @@ import com.wd.home.bean.Information_ListBean;
 import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.bean.Plate_ListBean;
 import com.wd.home.bean.PopularBean;
+import com.wd.home.bean.PuMessageBean;
+import com.wd.home.bean.RecordingBean;
 import com.wd.home.bean.UserWalletBean;
 
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -117,4 +124,21 @@ public interface HttpApi {
     //查询医生评价列表
     @GET(API.EvaluateList)
     Observable<EvaluateListBean> onEvaluateList(@Query("doctorId") int doctorId, @Query("page") int page, @Query("count") int size);
+
+    //问诊-发送消息（文本消息）
+    @FormUrlEncoded
+    @POST(API.pushMessage)
+    Observable<PuMessageBean> onPuMessage(@Header("userId") int userId, @Header("sessionId") String sessionId, @Field("inquiryId") int inquiryId, @Field("content") String content, @Field("type") int type, @Field("doctorId") int doctorId);
+
+    //咨询医生
+    @PUT(API.consultDoctor)
+    Observable<ConsultBean> getConsult(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("doctorId") int doctorId);
+
+    //查询历史问诊聊天记录
+    @GET(API.InquiryRecordList)
+    Observable<RecordingBean> getRecording(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("inquiryId") int inquiryId, @Query("page") int page, @Query("count") int count);
+
+    //结束问诊
+    @PUT(API.endInquiry)
+    Observable<EndInquiryBean> onEndInquiry(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("recordId") int recordId);
 }

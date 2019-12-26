@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
 import com.wd.video.bean.Video_EntryBean;
@@ -26,8 +27,6 @@ import com.wd.video.presenter.Video_EntryPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements Contract.IView {
 
     private static final String TAG = "VideoActivity";
@@ -50,9 +49,7 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
 
     @Override
     protected void initData() {
-        videoVp = findViewById(R.id.video_vp);
-        videoTab = findViewById(R.id.video_tab);
-        video_pull = findViewById(R.id.video_pull);
+
         mPresenter.onVideo_Entry();
         video_pull.setOnClickListener(new View.OnClickListener() {
             @Override

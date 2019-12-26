@@ -4,12 +4,17 @@ package com.wd.home.model;
 import com.wd.common.utils.HttpUtils;
 import com.wd.home.api.HttpApi;
 import com.wd.home.bean.BannerBean;
+import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.FindInfoBean;
 import com.wd.home.bean.HomeSearchBean;
 import com.wd.home.bean.Information_ListBean;
+import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.bean.Plate_ListBean;
 import com.wd.home.bean.PopularBean;
+import com.wd.home.bean.PuMessageBean;
+import com.wd.home.bean.RecordingBean;
+import com.wd.home.bean.UserWalletBean;
 import com.wd.home.contract.Contract;
 
 import rx.Observer;
@@ -243,5 +248,101 @@ public class Home_Dode implements Contract.IModer {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onPuMessage(int userId, String sessionId, int inquiryId, String content, int type, int doctorId, IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onPuMessage(userId, sessionId, inquiryId, content, type, doctorId)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<PuMessageBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(PuMessageBean popularBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(popularBean);
+                        }
+                    }
+                });
+    }
+
+
+    @Override
+    public void getRecording(int userId, String sessionId, int inquiryId, int page, int count, IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .getRecording(userId, sessionId, inquiryId, page, count)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<RecordingBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(RecordingBean recordingBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(recordingBean);
+                        }
+                    }
+                });
+    }
+
+
+    @Override
+    public void onInquiryRecord(int userId, String sessionId, IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+                //你要跑的接口方法
+                .onInquiryRecord(userId, sessionId)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<InquiryRecordBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(InquiryRecordBean inquiryRecordBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(inquiryRecordBean);
+                        }
+                    }
+                });
+
     }
 }
