@@ -4,6 +4,7 @@ package com.wd.doctor.model;
 
 import com.wd.common.utils.HttpUtils;
 import com.wd.doctor.api.ApiService;
+import com.wd.doctor.bean.BindDoctorIdCardBean;
 import com.wd.doctor.bean.DetailsBean;
 import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.InquiryBean;
@@ -15,7 +16,9 @@ import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
 import com.wd.doctor.bean.StreamBean;
 import com.wd.doctor.bean.UploadingBean;
+import com.wd.doctor.bean.UserparticularsBean;
 import com.wd.doctor.bean.VerifyBean;
+import com.wd.doctor.bean.WenzhenBean;
 import com.wd.doctor.contract.Contract;
 
 import java.io.File;
@@ -367,6 +370,35 @@ public class LoginModel implements Contract.IModer {
                     }
                 });
     }
+    //绑定身份证
+    @Override
+    public void BindDoctor(int doctorId, String sessionId, Map<String, Object> BodyMap, IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
+                .doBindDoctorIdCard(doctorId,sessionId,BodyMap)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<BindDoctorIdCardBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(BindDoctorIdCardBean bindDoctorIdCardBean) {
+                        //成功的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(bindDoctorIdCardBean);
+                        }
+                    }
+                });
+    }
 
     @Override
     public void Uploading(int doctorId, String sessionId, String imagePic, IBallBask iBallBask) {
@@ -395,5 +427,64 @@ public class LoginModel implements Contract.IModer {
                         }
                     }
                 });
+    }
+     //查询医生的问诊记录列表
+    @Override
+    public void Wenzhen(int doctorId, String sessionId, IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
+                .Wenzhen(doctorId, sessionId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<WenzhenBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(WenzhenBean wenzhenBean) {
+                        //成功的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(wenzhenBean);
+                        }
+                    }
+                });
+    }
+    //查询用户详细信息
+    @Override
+    public void UserParti(int doctorId, String sessionId, int userId, IBallBask iBallBask) {
+        HttpUtils.getHttpUtils().getRetrofit().create(ApiService.class)
+                .UserParti(doctorId, sessionId, userId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<UserparticularsBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(UserparticularsBean userparticularsBean) {
+                        //成功的方法
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(userparticularsBean);
+                        }
+                    }
+                });
+
     }
 }

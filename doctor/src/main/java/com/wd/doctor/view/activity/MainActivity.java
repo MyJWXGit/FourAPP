@@ -124,6 +124,10 @@ public class MainActivity extends BaseActivity<LoginPresenter> implements Contra
         int id = view.getId();
         if (id == R.id.main_bell) {
         } else if (id == R.id.main_interrogation) {
+            Intent intent = new Intent(MainActivity.this, WenzhenActivity.class);
+            intent.putExtra("doctorId", doctorId);
+            intent.putExtra("sessionId", sessionId);
+            startActivity(intent);
         } else if (id == R.id.main_wardmate) {
             Intent intent = new Intent(MainActivity.this, InquiryActivity.class);
             intent.putExtra("doctorId", doctorId);

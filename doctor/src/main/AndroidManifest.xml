@@ -2,10 +2,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wd.doctor">
 
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission android:name="com.wapchief.jpushim.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name=".App"
@@ -16,7 +32,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.TransparentStausBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.PictureActivity"></activity>
+        <activity android:name=".view.activity.ParticulatsActivity"></activity>
+        <activity android:name=".view.activity.WenzhenActivity" />
+        <activity android:name=".view.activity.UserdetailsActivity" />
+        <activity android:name=".view.activity.AcceptActivity" /> <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name=".view.activity.MyService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".view.activity.WalletActivity" />
+        <activity android:name=".view.activity.HuiFuActivity" />
+        <activity android:name=".view.activity.PictureActivity" />
         <activity android:name=".view.activity.message.PersonageActivity" />
         <activity android:name=".view.activity.message.MessageActivity" />
         <activity android:name=".view.activity.DetailsActivity" />
@@ -28,7 +60,9 @@
         <activity android:name=".view.activity.RegisterActivity" />
         <activity android:name=".view.activity.LoginActivity" />
         <activity android:name=".view.activity.MainActivity" />
+        <activity android:name=".view.activity.CameraActivity" />
         <activity android:name=".view.activity.SystemActivity" />
+        <activity android:name=".view.activity.IdCardActivity" />
         <activity android:name=".view.activity.GuideActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,6 +2,7 @@ package com.wd.doctor.view.activity.message;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,12 @@ import com.wd.doctor.R2;
 import com.wd.doctor.bean.MianBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.present.LoginPresenter;
+import com.wd.doctor.utils.SPUtils;
+import com.wd.doctor.view.activity.HuiFuActivity;
+import com.wd.doctor.view.activity.IdCardActivity;
 import com.wd.doctor.view.activity.PictureActivity;
 import com.wd.doctor.view.activity.SystemActivity;
+import com.wd.doctor.view.activity.WalletActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,6 +51,8 @@ public class MessageActivity extends BaseActivity<LoginPresenter> implements Con
     private int doctorId;
     private String sessionId;
     private MianBean bean;
+    private SharedPreferences.Editor edit;
+    private SharedPreferences jin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +77,8 @@ public class MessageActivity extends BaseActivity<LoginPresenter> implements Con
         doctorId = intent.getIntExtra("doctorId", 0);
         sessionId = intent.getStringExtra("sessionId");
         mPresenter.Mian(doctorId, sessionId);
-
+        jin = getSharedPreferences("jin", MODE_PRIVATE);
+        edit = jin.edit();
     }
 
     @Override
@@ -109,8 +117,16 @@ public class MessageActivity extends BaseActivity<LoginPresenter> implements Con
             startActivity(intent);
         } else if (id == R.id.message_history) {
         } else if (id == R.id.message_wallet) {
+            Intent intent=new Intent(MessageActivity.this, IdCardActivity.class);
+            edit.putInt("doctorId",doctorId);
+            edit.putString("sessionId",sessionId);
+            edit.commit();
+            startActivity(intent);
         } else if (id == R.id.message_suggest) {
         } else if (id == R.id.message_seif) {
+            Intent intent = new Intent(MessageActivity.this, HuiFuActivity.class);
+
+            startActivity(intent);
         }
     }
 

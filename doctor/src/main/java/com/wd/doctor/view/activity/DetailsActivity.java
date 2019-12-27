@@ -34,51 +34,51 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class DetailsActivity extends BaseActivity<LoginPresenter> implements Contract.IView {
-    @BindView(R.id.xiang_back)
+    @BindView(R2.id.xiang_back)
     ImageView xiangBack;
-    @BindView(R.id.xiang_title)
+    @BindView(R2.id.xiang_title)
     TextView xiangTitle;
-    @BindView(R.id.xiang_name)
+    @BindView(R2.id.xiang_name)
     TextView xiangName;
-    @BindView(R.id.xiang_bing)
+    @BindView(R2.id.xiang_bing)
     TextView xiangBing;
-    @BindView(R.id.xiang_keshi)
+    @BindView(R2.id.xiang_keshi)
     TextView xiangKeshi;
-    @BindView(R.id.xiang_xq)
+    @BindView(R2.id.xiang_xq)
     TextView xiangXq;
-    @BindView(R.id.xiang_yiyuan)
+    @BindView(R2.id.xiang_yiyuan)
     TextView xiangYiyuan;
-    @BindView(R.id.xiang_time)
+    @BindView(R2.id.xiang_time)
     TextView xiangTime;
-    @BindView(R.id.xiang_jl)
+    @BindView(R2.id.xiang_jl)
     TextView xiangJl;
-    @BindView(R.id.xiang_img)
+    @BindView(R2.id.xiang_img)
     ImageView xiangImg;
-    @BindView(R.id.xiang_hb)
+    @BindView(R2.id.xiang_hb)
     TextView xiangHb;
-    @BindView(R.id.xiang_jd)
+    @BindView(R2.id.xiang_jd)
     TextView xiangJd;
-    @BindView(R.id.xiang_end_time)
+    @BindView(R2.id.xiang_end_time)
     TextView xiangEndTime;
-    @BindView(R.id.et_text)
+    @BindView(R2.id.et_text)
     EditText etText;
-    @BindView(R.id.img_enjoy)
+    @BindView(R2.id.img_enjoy)
     ImageView imgEnjoy;
-    @BindView(R.id.img_send)
+    @BindView(R2.id.img_send)
     ImageView imgSend;
-    @BindView(R.id.linear_et)
+    @BindView(R2.id.linear_et)
     LinearLayout linearEt;
-    @BindView(R.id.relative_edit)
+    @BindView(R2.id.relative_edit)
     RelativeLayout relativeEdit;
-    @BindView(R.id.linear_jd)
+    @BindView(R2.id.linear_jd)
     LinearLayout linearJd;
-    @BindView(R.id.linear_show)
+    @BindView(R2.id.linear_show)
     LinearLayout linearShow;
-    @BindView(R.id.tv_my_jd)
+    @BindView(R2.id.tv_my_jd)
     TextView tvMyJd;
-    @BindView(R.id.linear_cancel_jd)
+    @BindView(R2.id.linear_cancel_jd)
     LinearLayout linearCancelJd;
-    @BindView(R.id.line_view)
+    @BindView(R2.id.line_view)
     View lineView;
     private String sessionId;
     private int whetherContent;
@@ -192,7 +192,7 @@ public class DetailsActivity extends BaseActivity<LoginPresenter> implements Con
     public Context context() {
         return null;
     }
-    @OnClick({R.id.xiang_back, R.id.xiang_hb, R.id.xiang_jd, R.id.img_enjoy, R.id.img_send, R.id.linear_show})
+    @OnClick({R2.id.xiang_back, R2.id.xiang_hb, R2.id.xiang_jd, R2.id.img_enjoy, R2.id.img_send, R2.id.linear_show})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.xiang_back:
@@ -346,15 +346,15 @@ public class DetailsActivity extends BaseActivity<LoginPresenter> implements Con
     @OnClick({R2.id.details_backfh, R2.id.publish, R2.id.xiepingl, R2.id.xuanz})
     public void onViewClicked(View view) {
         int id = view.getId();
-        if (id == R.id.details_backfh) {
+        if (id == R2.id.details_backfh) {
             finish();
-        } else if (id == R.id.publish) {
+        } else if (id == R2.id.publish) {
             jieda.setVisibility(View.INVISIBLE);
             wdejida.setVisibility(View.INVISIBLE);
             but.setVisibility(View.VISIBLE);
             butd.setVisibility(View.INVISIBLE);
-        } else if (id == R.id.xiepingl) {
-        } else if (id == R.id.xuanz) {
+        } else if (id == R2.id.xiepingl) {
+        } else if (id == R2.id.xuanz) {
             jieda.setVisibility(View.VISIBLE);
             wdejida.setVisibility(View.VISIBLE);
             but.setVisibility(View.INVISIBLE);
@@ -363,27 +363,27 @@ public class DetailsActivity extends BaseActivity<LoginPresenter> implements Con
 
     }
 
-*//*    @OnClick({R.id.details_backfh, R.id.xiepingl, R.id.xuanz})
+*//*    @OnClick({R2.id.details_backfh, R2.id.xiepingl, R2.id.xuanz})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.details_backfh:
+            case R2.id.details_backfh:
                 finish();
                 break;
-            case R.id.xiepingl:
+            case R2.id.xiepingl:
                 break;
-            case R.id.xuanz:
+            case R2.id.xuanz:
                  jieda.setVisibility(View.VISIBLE);
                  wdejida.setVisibility(View.VISIBLE);
                 break;
         }
     }*//*
 
-    *//*@OnClick(R.id.details_backfh)
+    *//*@OnClick(R2.id.details_backfh)
     public void onViewClicked() {
         finish();
     }
 
-    @OnClick(R.id.xuanz)
+    @OnClick(R2.id.xuanz)
     public void onViewClicked() {
     }*/
 }

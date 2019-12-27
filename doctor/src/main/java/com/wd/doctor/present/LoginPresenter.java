@@ -4,6 +4,7 @@ package com.wd.doctor.present;
 
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.Logger;
+import com.wd.doctor.bean.BindDoctorIdCardBean;
 import com.wd.doctor.bean.DetailsBean;
 import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.InquiryBean;
@@ -16,7 +17,9 @@ import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
 import com.wd.doctor.bean.StreamBean;
 import com.wd.doctor.bean.UploadingBean;
+import com.wd.doctor.bean.UserparticularsBean;
 import com.wd.doctor.bean.VerifyBean;
+import com.wd.doctor.bean.WenzhenBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.model.FragmentModel;
 import com.wd.doctor.model.LoginModel;
@@ -421,6 +424,87 @@ public class LoginPresenter extends BasePresenter<Contract.IView> implements Con
                 }
             }
         });
+    }
+    //绑定身份证
+    @Override
+    public void BindDoctor(int doctorId, String sessionId, Map<String, Object> BodyMap) {
+        model.BindDoctor(doctorId, sessionId, BodyMap, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    BindDoctorIdCardBean bean = (BindDoctorIdCardBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+    //查询医生的问诊记录列表
+    @Override
+    public void Wenzhen(int doctorId, String sessionId) {
+        model.Wenzhen(doctorId, sessionId, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进 行判断
+                    WenzhenBean bean = (WenzhenBean) obj;
+                    if (bean != null && bean.getStatus().equals("0000")) {
+                        //getView是BasePresenter方法  使用getView进行调用P层
+                        getView().onSuccess(bean);
+                    } else {
+                        getView().onError(new Exception("请求失败"));
+                    }
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
+     //查询用户详细信息
+    @Override
+    public void UserParti(int doctorId, String sessionId, int userId) {
+       model.UserParti(doctorId, sessionId, userId, new Contract.IModer.IBallBask() {
+           @Override
+           public void onHttpOK(Object obj) {
+               //软引用
+               if (isViewAttached()) {
+                   //Bean包强转  拿到Status进 行判断
+                   UserparticularsBean bean = (UserparticularsBean) obj;
+                   if (bean != null && bean.getStatus().equals("0000")) {
+                       //getView是BasePresenter方法  使用getView进行调用P层
+                       getView().onSuccess(bean);
+                   } else {
+                       getView().onError(new Exception("请求失败"));
+                   }
+               }
+           }
+
+           @Override
+           public void onHttpNO(Throwable e) {
+               if (isViewAttached()) {
+                   Logger.d(TAG, e.getMessage() + "");
+               }
+           }
+       });
     }
 }
 

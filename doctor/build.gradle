@@ -9,13 +9,21 @@ android {
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
+        applicationId "com.wd.doctor"
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "143250b0b24813def6be6484", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+        }
 
         //Arouter路由配置
         javaCompileOptions {
@@ -96,6 +104,11 @@ dependencies {
     implementation rootProject.ext.dependencies["tablayout"]
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["RefreshHeader"]
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以J
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'
     annotationProcessor 'com.alibaba:arouter-compiler:+'
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
     implementation project(':common')
+    implementation project(path: ':orc_library')
+    implementation files('libs\\ocr-sdk.jar')
 }

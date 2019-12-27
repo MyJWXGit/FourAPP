@@ -1,6 +1,7 @@
 package com.wd.doctor.api;
 
 import com.wd.doctor.bean.AppnBean;
+import com.wd.doctor.bean.BindDoctorIdCardBean;
 import com.wd.doctor.bean.DetailsBean;
 import com.wd.doctor.bean.ImagePicBean;
 import com.wd.doctor.bean.InquiryBean;
@@ -13,7 +14,9 @@ import com.wd.doctor.bean.RegisterBean;
 import com.wd.doctor.bean.SendBean;
 import com.wd.doctor.bean.StreamBean;
 import com.wd.doctor.bean.UploadingBean;
+import com.wd.doctor.bean.UserparticularsBean;
 import com.wd.doctor.bean.VerifyBean;
+import com.wd.doctor.bean.WenzhenBean;
 
 
 import java.io.File;
@@ -96,8 +99,16 @@ public interface ApiService {
     @Multipart
     @POST("health/doctor/verify/v1/uploadImagePic")
     Observable<PhotographBean> Photograph(@Header("doctorId") int doctorId, @Header("sessionId") String sessionId,@Part MultipartBody.Part part);
-
- /*   Observable<PictureBean> onPictureBean(
+    //身份证绑定
+    @POST("health/doctor/verify/v1/bindDoctorIdCard")
+    Observable<BindDoctorIdCardBean> doBindDoctorIdCard(@Header("doctorId") int doctorId, @Header("sessionId") String sessionId, @Body Map<String,Object> BodyMap);
+    //查询医生的问诊记录列表
+    @GET("health/doctor/inquiry/verify/v1/findInquiryRecordList")
+    Observable<WenzhenBean> Wenzhen(@Header("doctorId") int doctorId, @Header("sessionId") String sessionId);
+    //查询用户详情信息
+    @GET("health/doctor/inquiry/verify/v1/findUserInfo")
+    Observable<UserparticularsBean> UserParti(@Header("doctorId") int doctorId, @Header("sessionId") String sessionId,@Query("userId") int userId);
+    /*   Observable<PictureBean> onPictureBean(
             @Header("userId") String userId,
             @Header("sessionId") String sessionId,
             @Query("sickCircleId") int sickCircleId,

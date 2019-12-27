@@ -8,6 +8,7 @@ import java.io.File;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
+import retrofit2.http.Body;
 
 
 /**
@@ -53,6 +54,12 @@ public interface Contract {
         void Uploading(int doctorId, String sessionId, String imagePic);
         //上传图片
         void Photograph(int doctorId, String sessionId, MultipartBody.Part part);
+        //绑定身份证
+        void BindDoctor(int doctorId, String sessionId, Map<String,Object> BodyMap);
+        //查询医生的问诊记录列表
+        void Wenzhen(int doctorId, String sessionId);
+        //查询用户详情信息
+        void UserParti(int doctorId, String sessionId, int userId);
     }
 
     //Activity  M层
@@ -78,8 +85,14 @@ public interface Contract {
         void Inquer(IBallBask iBallBask);
         //系统形象照
         void Imagep(IBallBask iBallBask);
+        //绑定身份证
+        void BindDoctor(int doctorId, String sessionId, Map<String,Object> BodyMap,IBallBask iBallBask);
         //上传照片
         void Uploading(int doctorId, String sessionId, String imagePic,IBallBask iBallBask);
+        //查询医生的问诊记录列表
+        void Wenzhen(int doctorId, String sessionId,IBallBask iBallBask);
+        //查询用户详情信息
+        void UserParti(int doctorId, String sessionId,int userId,IBallBask iBallBask);
         interface IBallBask {
             void onHttpOK(Object obj);
 
