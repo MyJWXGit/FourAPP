@@ -369,18 +369,12 @@
 
             <GridLayout
                 android:id="@+id/release_circle_iv_upload_Picture"
-                android:layout_width="72dp"
+                android:layout_width="wrap_content"
                 android:layout_height="72dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@mipmap/add" />
 
-            <ImageView
-                android:id="@+id/release_circle_iv_delete_Picture"
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_alignParentRight="true"
-                android:background="@mipmap/common_icon_close_n" />
 
         </RelativeLayout>
 

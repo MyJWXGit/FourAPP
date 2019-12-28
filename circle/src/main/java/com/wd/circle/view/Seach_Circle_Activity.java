@@ -47,6 +47,10 @@ public class Seach_Circle_Activity extends BaseActivity<MainPresenter> implement
     TextView includeText;
     @BindView(R2.id.include_relate)
     RelativeLayout includeRelate;
+    @BindView(R2.id.seach_tus)
+    ImageView seachTus;
+    @BindView(R2.id.seach_jiankong)
+    RelativeLayout seachJiankong;
 
 
     @Override
@@ -73,7 +77,7 @@ public class Seach_Circle_Activity extends BaseActivity<MainPresenter> implement
             @Override
             public void onClick(View view) {
                 String trim = edMohucha.getText().toString().trim();
-                if (trim!=null){
+                if (trim != null) {
                     mPresenter.onSearch(trim);
                 }
             }
@@ -90,26 +94,30 @@ public class Seach_Circle_Activity extends BaseActivity<MainPresenter> implement
     public Context context() {
         return null;
     }
+
     @Override
     public void onSuccess(Object obj) {
-        SearchCircleBean searchCircleBean= (SearchCircleBean) obj;
-        List<SearchCircleBean.ResultBean> result = searchCircleBean.getResult();
-        Search_Circle_Adapter search_circle_adapter=new Search_Circle_Adapter(result,Seach_Circle_Activity.this);
-        recyModainying.setAdapter(search_circle_adapter);
-        search_circle_adapter.setSetOnItems(new Search_Circle_Adapter.SetOnItems() {
-            @Override
-            public void setOns(int i) {
-                int sickCircleId = result.get(i).getSickCircleId();
-                Intent intent = new Intent(Seach_Circle_Activity.this,Circle_Details_Activity.class);
-                intent.putExtra("sickCircleId",sickCircleId);
-                startActivity(intent);
-            }
-        });
+        SearchCircleBean searchCircleBean = (SearchCircleBean) obj;
+        if (searchCircleBean.getResult().size() > 0) {
+            List<SearchCircleBean.ResultBean> result = searchCircleBean.getResult();
+            Search_Circle_Adapter search_circle_adapter = new Search_Circle_Adapter(result, Seach_Circle_Activity.this);
+            recyModainying.setAdapter(search_circle_adapter);
+            search_circle_adapter.setSetOnItems(new Search_Circle_Adapter.SetOnItems() {
+                @Override
+                public void setOns(int i) {
+                    int sickCircleId = result.get(i).getSickCircleId();
+                    Intent intent = new Intent(Seach_Circle_Activity.this, Circle_Details_Activity.class);
+                    intent.putExtra("sickCircleId", sickCircleId);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            seachJiankong.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public void onError(Throwable e) {
 
     }
-
 }

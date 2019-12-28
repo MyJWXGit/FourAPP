@@ -1,10 +1,9 @@
-package com.wd.my_message;
+package com.wd.my_message.view;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,8 +23,11 @@ import com.baidu.ocr.sdk.model.IDCardResult;
 import com.baidu.ocr.ui.camera.CameraActivity;
 import com.baidu.ocr.ui.camera.CameraNativeHelper;
 import com.baidu.ocr.ui.camera.CameraView;
-import com.wd.common.app.BaseApplication;
 import com.wd.common.base.BaseActivity;
+import com.wd.my_message.APP;
+import com.wd.my_message.ConfirmActivity;
+import com.wd.my_message.R;
+import com.wd.my_message.R2;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.utils.FileUtil;
@@ -40,8 +42,6 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
     private static final int REQUEST_CODE_PICK_IMAGE_FRONT = 201;
     private static final int REQUEST_CODE_PICK_IMAGE_BACK = 202;
     private static final int REQUEST_CODE_CAMERA = 102;
-    private SharedPreferences sp1;
-    private SharedPreferences sp;
     @BindView(R2.id.fanhui)
     ImageView fanhui;
     @BindView(R2.id.image_just)
@@ -49,7 +49,10 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
     @BindView(R2.id.image_against)
     ImageView imageAgainst;
     @BindView(R2.id.but_submit)
-    Button but_submit;
+    Button butSubmit;
+    private SharedPreferences sp1;
+    private SharedPreferences sp;
+
 
     @Override
     protected MyMessage_Presenter providePresenter() {
@@ -99,9 +102,9 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
     public void onViewClicked(View view) {
         Intent intent = new Intent();
         int id = view.getId();
-        if (id == R.id.fanhui) {
+        if (id == R2.id.fanhui) {
             finish();
-        } else if (id == R.id.image_just) {//正面
+        } else if (id == R2.id.image_just) {//正面
             intent = new Intent(AutonymActivity.this, CameraActivity.class);
             intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                     FileUtil.getSaveFile(getApplication()).getAbsolutePath());
@@ -112,7 +115,7 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
             intent.putExtra(CameraActivity.KEY_NATIVE_MANUAL, true);
             intent.putExtra(CameraActivity.KEY_CONTENT_TYPE, CameraActivity.CONTENT_TYPE_ID_CARD_FRONT);
             startActivityForResult(intent, REQUEST_CODE_CAMERA);
-        } else if (id == R.id.image_against) {//反面
+        } else if (id == R2.id.image_against) {//反面
             intent = new Intent(AutonymActivity.this, CameraActivity.class);
             intent.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
                     FileUtil.getSaveFile(getApplication()).getAbsolutePath());

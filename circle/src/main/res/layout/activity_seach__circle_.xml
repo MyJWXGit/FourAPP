@@ -45,7 +45,32 @@
             android:id="@+id/but_bingquanshou"
             />
     </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/seach_jiankong"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
+        <ImageView
+            android:id="@+id/seach_tus"
+            android:layout_width="126dp"
+            android:layout_height="135dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:background="@mipmap/no_search_message" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/seach_tus"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="抱歉,没有找到“癌症”的相关病友!"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:background="#ffffff"
         android:layout_marginTop="10dp"

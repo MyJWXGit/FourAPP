@@ -2,7 +2,6 @@ package com.wd.my_message;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,16 +13,17 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
-import com.wd.common.base.BasePresenter;
 import com.wd.my_message.view.Attention_Doctor_Activity;
 import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.SignBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
-import com.wd.my_message.view.Attention_Doctor_Activity;
+import com.wd.my_message.view.AutonymActivity;
 import com.wd.my_message.view.Collection_Activity;
 import com.wd.my_message.view.MessagesActivity;
-import com.wd.my_message.view.My_Walk_Activity;
+import com.wd.my_message.view.MyCircle_Patients_Activity;
+import com.wd.my_message.view.My_Record_Activity;
+import com.wd.my_message.view.My_Task_Activity;
 import com.wd.my_message.view.My_Walk_Activity;
 import com.wd.my_message.view.RecordActivity;
 import com.wd.my_message.view.Suggest_Activity;
@@ -115,7 +115,7 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
         } else if (id == R.id.my_button_history) {
         } else if (id == R.id.re_latiview) {
         } else if (id == R.id.my_button_record) {
-            startActivity(new Intent(this, RecordActivity.class));
+            startActivity(new Intent(this, My_Record_Activity.class));
         } else if (id == R.id.my_button_wallet) {
             startActivity(new Intent(this, My_Walk_Activity.class));
         } else if (id == R.id.my_button_collect) {
@@ -124,9 +124,11 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
             startActivity(new Intent(this, Suggest_Activity.class));
         } else if (id == R.id.my_button_video) {
         } else if (id == R.id.my_button_patients_circle) {
+            startActivity(new Intent(this, MyCircle_Patients_Activity.class));
         } else if (id == R.id.my_button_attention) {
             startActivity(new Intent(this, Attention_Doctor_Activity.class));
         } else if (id == R.id.my_button_task) {
+            startActivity(new Intent(this, My_Task_Activity.class));
         } else if (id == R.id.my_button_set) {
             startActivity(new Intent(My_Home_Activity.this, AutonymActivity.class));
         } else if (id == R.id.linear_my) {

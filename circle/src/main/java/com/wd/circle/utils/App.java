@@ -3,6 +3,8 @@ package com.wd.circle.utils;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.multidex.MultiDex;
+
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wd.common.app.BaseApplication;
 import com.wd.common.app.BaseApplicationImp;
@@ -29,5 +31,6 @@ public class App extends BaseApplication implements BaseApplicationImp {
     public void onCreate() {
         super.onCreate();
         context=this;
+        MultiDex.install(this);
     }
 }
