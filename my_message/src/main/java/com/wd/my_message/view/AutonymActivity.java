@@ -1,4 +1,4 @@
-package com.wd.my_message;
+package com.wd.my_message.view;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,8 +26,10 @@ import com.baidu.ocr.ui.camera.CameraActivity;
 import com.baidu.ocr.ui.camera.CameraNativeHelper;
 import com.baidu.ocr.ui.camera.CameraView;
 import com.wd.common.base.BaseActivity;
+import com.wd.my_message.Message_APP;
 import com.wd.my_message.R;
 import com.wd.my_message.R2;
+import com.wd.my_message.ConfirmActivity;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.utils.FileUtil;
@@ -43,8 +45,6 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
     private static final int REQUEST_CODE_PICK_IMAGE_FRONT = 201;
     private static final int REQUEST_CODE_PICK_IMAGE_BACK = 202;
     private static final int REQUEST_CODE_CAMERA = 102;
-    private SharedPreferences sp1;
-    private SharedPreferences sp;
     @BindView(R2.id.fanhui)
     ImageView fanhui;
     @BindView(R2.id.image_just)
@@ -52,7 +52,10 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
     @BindView(R2.id.image_against)
     ImageView imageAgainst;
     @BindView(R2.id.but_submit)
-    Button but_submit;
+    Button butSubmit;
+    private SharedPreferences sp1;
+    private SharedPreferences sp;
+
 
     @Override
     protected MyMessage_Presenter providePresenter() {

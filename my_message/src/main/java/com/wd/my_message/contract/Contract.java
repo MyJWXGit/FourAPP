@@ -2,6 +2,9 @@ package com.wd.my_message.contract;
 
 import com.wd.common.base.IBaseView;
 
+import java.util.List;
+import java.util.Map;
+
 import okhttp3.MultipartBody;
 
 /**
@@ -68,6 +71,8 @@ public interface Contract {
         //查询是否签到
         void onQueryUserSign(int userId, String sessionId, IModelCallBack iModelCallBack);
 
+        //查询是否签到
+        void onLianxuSign(int userId, String sessionId,IModelCallBack iModelCallBack);
         //查询我的被采纳的信息
         void onMySuggest(int userId, String sessionId, int page, int count, IModelCallBack iModelCallBack);
 
@@ -77,6 +82,17 @@ public interface Contract {
         //结束问诊
         void onEndInquiry(int userId, String sessionId, int recordId, IModelCallBack iBallBask);
 
+        void onMyFile(int userId, String sessionId,IModelCallBack iModelCallBack);
+        void onDeleteFile(int userId, String sessionId, int archivesId,IModelCallBack iModelCallBack);
+        void onUpdateFile(int userId, String sessionId, Map<String,Object> map,IModelCallBack iModelCallBack);
+        void onInsertFile(int userId, String sessionId, Map<String,Object> map,IModelCallBack iModelCallBack);
+        void onUploadPiture(int userId, String sessionId, Map<String,MultipartBody.Part> picture, IModelCallBack iModelCallBack);
+        //做任务
+        void onDoTask(int userId, String sessionId,int taskId,IModelCallBack iModelCallBack);
+        void onGetTask(int userId, String sessionId,int taskId,IModelCallBack iModelCallBack);
+        void onQueryTaskList(int userId, String sessionId,IModelCallBack iModelCallBack);
+        void onMyCircle(int userId, String sessionId,int page,int count,IModelCallBack iModelCallBack);
+        void onMyCircleComment(int userId, String sessionId,int sickCircleId,int page,int count,IModelCallBack iModelCallBac);
         interface IModelCallBack {
             void onSuccess(Object data);
 
@@ -129,7 +145,8 @@ public interface Contract {
 
         //查询是否签到
         void onQueryUserSign();
-
+        //查询是否签到
+        void onLianxuSign();
         //查询我的被采纳的信息
         void onMySuggest(int page, int count);
 
@@ -138,6 +155,18 @@ public interface Contract {
 
         //结束问诊
         void onEndInquiry(int recordId);
+        //我的档案
+        void onMyFile();
+        void onDeleteFile(int archivesId);
+        void onUpdateFile(Map<String,Object> map);
+        void onInsertFile(Map<String,Object> map);
+        void onUploadPiture(Map<String,MultipartBody.Part> picture);
+        //做任务
+        void onDoTask(int taskId);
+        void onGetTask(int taskId);
+        void onQueryTaskList();
+        void onMyCircle(int page,int count);
+        void onMyCircleComment(int sickCircleId,int page,int count);
     }
 
     //Fragment   M

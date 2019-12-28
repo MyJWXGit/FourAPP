@@ -55,8 +55,25 @@ public interface My_messageAPI {
     String Sign = "health/user/verify/v1/addSign";
     //查询用户是否签到
     String QueryUserSign = "health/user/verify/v1/whetherSignToday";
+    //查询用户是否签到
+    String LianxuSign="health/user/verify/v1/findUserSign";
     //查询我的被采纳的意见
     String MySuggest = "health/user/verify/v1/findMyAdoptedCommentList";
     //结束问诊
     String endInquiry = "health/user/inquiry/verify/v1/endInquiry";
+    String MyFile="health/user/verify/v1/findUserArchives";
+    String DeleteFile="health/user/verify/v1/deleteUserArchives";
+    String UpdateFile="health/user/verify/v1/updateUserArchives";
+    String InsertFile="health/user/verify/v1/addUserArchives";
+    String UploadPiture="health/user/verify/v1/uploadArchivesPicture";
+    //做任务
+    String DoTask="health/user/verify/v1/doTask";
+    //领取任务奖励
+    String GetTask="health/user/verify/v1/receiveReward";
+    //查询用户任务列表
+    String QueryTaskList="health/user/verify/v1/findUserTaskList";
+    //我的病友圈
+    String MyCircle="health/user/sickCircle/verify/v1/findMySickCircleList";
+    //查询我的病友圈帖子的评论列表
+    String MyCircleCommentent="health/user/sickCircle/verify/v1/findMySickCircleCommentList";
 }

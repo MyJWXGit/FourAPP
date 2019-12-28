@@ -59,6 +59,7 @@ import com.ypx.imagepicker.presenter.IPickerPresenter;
 import org.devio.takephoto.app.TakePhotoActivity;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -70,7 +71,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 
 public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implements Contract.IView {
@@ -106,8 +109,6 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     RelativeLayout releaseCircleIvEndTime;
     @BindView(R2.id.release_circle_et_treatmentProcess)
     EditText releaseCircleEtTreatmentProcess;
-    @BindView(R2.id.release_circle_iv_delete_Picture)
-    ImageView releaseCircleIvDeletePicture;
     @BindView(R2.id.release_circle_btn_publish)
     Button releaseCircleBtnPublish;
     @BindView(R2.id.release_circle_linear_sick_circle)
@@ -120,12 +121,12 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     private PopupWindow popupWindow;
     private int id;
     private RecyclerView popup_recycler_disease;
-    private List<MultipartBody.Part> picture;
     private PopupWindow popWindowDisease;
     private int sickCircleId;
     private GridLayout mGridLayout;
-
+    private List<MultipartBody.Part> parts = new ArrayList<>();
     private ArrayList<ImageItem> picList = new ArrayList<>();
+    private List<String> list;
 
     @Override
     protected MainPresenter providePresenter() {
@@ -234,7 +235,8 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         releaseCircleIvChooseDepartment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.onHome();
+
+                initPopuWindows(view);
             }
         });
         //对应病症
@@ -242,7 +244,8 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
             @Override
             public void onClick(View v) {
                 //根据科室查询对应病症
-                mPresenter.onDisease(id);
+
+                initPopWindowDisease(v);
             }
         });
     }
@@ -252,8 +255,8 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         return R.layout.activity_release_circles;
     }
 
-    private void initPopWindowDisease(List<DiseaseBean.ResultBean> result ) {
-        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_disease, null,false);
+    private void initPopWindowDisease(View v) {
+        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_disease, null, false);
         popup_recycler_disease = view.findViewById(R.id.popup_recycler_disease);
         //1.构造一个PopupWindow，参数依次是加载的View，宽高
         popWindowDisease = new PopupWindow(view,
@@ -272,26 +275,14 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
             }
         });
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
-        popup_recycler_disease.setLayoutManager(linearLayoutManager);
-        popup_recycler_disease.setAdapter(illnessAdapter);
-        illnessAdapter.setSetOnItemClicks(new IllnessAdapter.SetOnItemClicks() {
-            @Override
-            public void setOnItems(int i) {
-                String name = result.get(i).getName();
-                releaseCircleTvChooseDisease.setText(name + "");
-                popWindowDisease.dismiss();
-            }
-        });
         popWindowDisease.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
         //设置popupWindow显示的位置，参数依次是参照View，x轴的偏移量，y轴的偏移量
-        popWindowDisease.showAsDropDown(view, 50, 0);
+        popWindowDisease.showAsDropDown(v, 50, 0);
 
-
+        mPresenter.onDisease(id);
     }
 
-    private void initPopuWindows(List<Circle_list_Bean.ResultBean> result) {
+    private void initPopuWindows(View v) {
         View view = LayoutInflater.from(this).inflate(R.layout.item_popip_department, null, false);
         popup_recycler_department = view.findViewById(R.id.popup_recycler_department);
         //1.构造一个PopupWindow，参数依次是加载的View，宽高
@@ -310,23 +301,12 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
             }
         });
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        ConsultationTwoAdapter consultationTwoAdapter = new ConsultationTwoAdapter(result, this);
-        popup_recycler_department.setLayoutManager(linearLayoutManager);
-        popup_recycler_department.setAdapter(consultationTwoAdapter);
-        consultationTwoAdapter.setSetOnItemClickListen(new ConsultationTwoAdapter.SetOnItemClickListen() {
-            @Override
-            public void setOnItemClik(int i) {
-                id = result.get(i).getId();
-                releaseCircleTvChooseDepartment.setText(result.get(i).getDepartmentName());
-                Toast.makeText(ReleaseCirclesActivity.this, result.get(i).getDepartmentName(), Toast.LENGTH_SHORT).show();
-                popupWindow.dismiss();
-            }
-        });
+
 
         popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));    //要为popWindow设置一个背景才有效
         //设置popupWindow显示的位置，参数依次是参照View，x轴的偏移量，y轴的偏移量
-        popupWindow.showAsDropDown(view, 50, 0);
+        popupWindow.showAsDropDown(v, 50, 0);
+        mPresenter.onHome();
     }
 
     private void initDate() {
@@ -419,11 +399,34 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         if (obj instanceof Circle_list_Bean) {
             Circle_list_Bean circle_list_bean = (Circle_list_Bean) obj;
             List<Circle_list_Bean.ResultBean> result = circle_list_bean.getResult();
-            initPopuWindows(result);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            ConsultationTwoAdapter consultationTwoAdapter = new ConsultationTwoAdapter(result, this);
+            popup_recycler_department.setLayoutManager(linearLayoutManager);
+            popup_recycler_department.setAdapter(consultationTwoAdapter);
+            consultationTwoAdapter.setSetOnItemClickListen(new ConsultationTwoAdapter.SetOnItemClickListen() {
+                @Override
+                public void setOnItemClik(int i) {
+                    id = result.get(i).getId();
+                    releaseCircleTvChooseDepartment.setText(result.get(i).getDepartmentName());
+                    Toast.makeText(ReleaseCirclesActivity.this, result.get(i).getDepartmentName(), Toast.LENGTH_SHORT).show();
+                    popupWindow.dismiss();
+                }
+            });
         } else if (obj instanceof DiseaseBean) {
             DiseaseBean diseaseBean = (DiseaseBean) obj;
             List<DiseaseBean.ResultBean> result = diseaseBean.getResult();
-            initPopWindowDisease(result);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
+            popup_recycler_disease.setLayoutManager(linearLayoutManager);
+            popup_recycler_disease.setAdapter(illnessAdapter);
+            illnessAdapter.setSetOnItemClicks(new IllnessAdapter.SetOnItemClicks() {
+                @Override
+                public void setOnItems(int i) {
+                    String name = result.get(i).getName();
+                    releaseCircleTvChooseDisease.setText(name + "");
+                    popWindowDisease.dismiss();
+                }
+            });
 
         } else if (obj instanceof RepleaseCircleBean) {
             RepleaseCircleBean repleaseCircleBean = (RepleaseCircleBean) obj;
@@ -431,8 +434,8 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 Toast.makeText(this, repleaseCircleBean.getMessage(), Toast.LENGTH_SHORT).show();
                 sickCircleId = repleaseCircleBean.getResult();
                 Log.i("sickCircleId", "publishSuccess: " + "sickCircleId" + sickCircleId);
-                if (picture != null) {
-                    mPresenter.onPicture(userId + "", sessionId, sickCircleId, picture);
+                if (picList != null) {
+                    mPresenter.onPicture(userId + "", sessionId, sickCircleId, parts);
                 } else {
                     //做任务
                     mPresenter.onDoTask(userId + "", sessionId, 1003);
@@ -446,7 +449,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
             DoTaskBean doTaskBean = (DoTaskBean) obj;
             if (doTaskBean.getStatus().equals("0000")) {
                 Toast.makeText(this, "每日首发病友圈完成!快去领取奖励吧", Toast.LENGTH_SHORT).show();
-                mPresenter.onPicture(userId + "", sessionId, sickCircleId, picture);
+                mPresenter.onPicture(userId + "", sessionId, sickCircleId, parts);
             }
         } else if (obj instanceof PictureBean) {
             PictureBean pictureBean = (PictureBean) obj;
@@ -503,6 +506,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 view.setPadding(dp(5), dp(5), dp(5), dp(5));
                 setPicItemClick(view, i);
                 mGridLayout.addView(view);
+                Log.e("qwe", "" + view);
             }
             mGridLayout.addView(imageView);
         }
@@ -544,19 +548,6 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     }
 
     private void startPick() {
-//        ImagePicker.provideMediaSets(this, MimeType.ofAll(), new MediaSetsDataSource.MediaSetProvider() {
-//            @Override
-//            public void providerMediaSets(ArrayList<ImageSet> imageSets) {
-//                Log.e("startPick", "providerMediaSets: " + imageSets.size());
-//            }
-//        });
-
-//        ImagePicker.provideAllMediaItems(this, getMimeTypes(), new MediaItemsDataSource.MediaItemProvider() {
-//            @Override
-//            public void providerMediaItems(ArrayList<ImageItem> imageItems, ImageSet allVideoSet) {
-//                Log.e("startPick", "providerMediaSets: " + imageItems.size());
-//            }
-//        });
 
         pick(6 - picList.size());
     }
@@ -592,11 +583,22 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 .setLastImageList(new ArrayList<String>())
                 //调用多选
                 .pick(this, new OnImagePickCompleteListener() {
+
+
+
                     @Override
                     public void onImagePickComplete(ArrayList<ImageItem> items) {
                         //处理回调回来的图片信息，主线程
                         picList.addAll(items);
-                        refreshGridLayout();
+
+                        String path = items.get(0).path;
+                        if (path!=null) {
+                            File file = new File(path);
+                            RequestBody requestBody = MultipartBody.create(MediaType.parse("image/*"), file);
+                            MultipartBody.Part part = MultipartBody.Part.createFormData("picture", file.getName(), requestBody);
+                            parts.add(part);
+                            refreshGridLayout();
+                        }
                     }
                 });
 

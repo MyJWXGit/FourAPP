@@ -339,7 +339,7 @@ public class MainModel implements Contract.IModer {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.i("xxx", "onError: "+e);
                     }
 
                     @Override

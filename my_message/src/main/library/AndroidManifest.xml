@@ -7,7 +7,12 @@
         <activity android:name=".My_Present_InquiryActivity" />
         <activity android:name=".view.Suggest_message_Activity" />
         <activity android:name=".ConfirmActivity" />
-        <activity android:name=".AutonymActivity" />
+        <activity android:name=".view.AutonymActivity" />
+        <activity android:name=".view.MyCircle_Patients_Activity"></activity>
+        <activity android:name=".view.My_Task_Activity" />
+        <activity android:name=".view.record.Update_RecordActivity" />
+        <activity android:name=".view.My_Record_Activity" />
+        <activity android:name=".view.RecordActivity" />
         <activity android:name=".Update_Message_Activity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".UserBankCardActivity" />
@@ -19,7 +24,6 @@
         <activity android:name=".view.MessagesActivity" />
         <activity android:name=".view.Collection_Activity" />
         <activity android:name=".My_Home_Activity" />
-        <activity android:name=".view.RecordActivity" />
         <activity android:name=".My_Home_Activity$My_Home_Activity" />
     </application>
 
