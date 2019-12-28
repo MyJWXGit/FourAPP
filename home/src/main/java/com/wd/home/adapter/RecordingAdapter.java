@@ -16,7 +16,7 @@ import com.wd.home.bean.RecordingBean;
 
 import java.util.List;
 
-public class RecordingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecordingAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<RecordingBean.ResultBean> result;
     private getposition getposition;
@@ -33,7 +33,7 @@ public class RecordingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             View inflate = LayoutInflater.from(context).inflate(R.layout.one_recording_layout, parent, false);
             return new MyOneRecordHolder(inflate);
         } else if (viewType == 1) {
-            View inflate = LayoutInflater.from(context).inflate(R.layout.one_recording_layout, parent, false);
+            View inflate = LayoutInflater.from(context).inflate(R.layout.two_recording_layout, parent, false);
             return new MyTwoRecordHolder(inflate);
         }
         return null;
@@ -44,21 +44,19 @@ public class RecordingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         int viewType = getItemViewType(position);
         switch (viewType) {
             case 0:
-                if (holder instanceof MyOneRecordHolder) {
-                    ((MyOneRecordHolder) holder).one_recording_img.setImageURI(Uri.parse(result.get(position).getDoctorHeadPic()));
-                    ((MyOneRecordHolder) holder).one_recording_tx.setText(result.get(position).getContent());
-                    if (getposition != null) {
-                        getposition.getposition(position);
-                    }
+                MyOneRecordHolder recordHolder = (MyOneRecordHolder) holder;
+                recordHolder.one_recording_img.setImageURI(result.get(position).getDoctorHeadPic());
+                recordHolder.one_recording_tx.setText(result.get(position).getContent());
+                if (getposition != null) {
+                    getposition.getposition(position);
                 }
                 break;
             case 1:
-                if (holder instanceof MyTwoRecordHolder) {
-                    ((MyTwoRecordHolder) holder).two_recording_img.setImageURI(Uri.parse(result.get(position).getUserHeadPic()));
-                    ((MyTwoRecordHolder) holder).two_recording_tx.setText(result.get(position).getContent());
-                    if (getposition != null) {
-                        getposition.getposition(position);
-                    }
+                MyTwoRecordHolder twoRecordHolder = (MyTwoRecordHolder) holder;
+                twoRecordHolder.two_recording_img.setImageURI(result.get(position).getUserHeadPic());
+                twoRecordHolder.two_recording_tx.setText(result.get(position).getContent());
+                if (getposition != null) {
+                    getposition.getposition(position);
                 }
                 break;
         }
@@ -81,20 +79,20 @@ public class RecordingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     class MyOneRecordHolder extends RecyclerView.ViewHolder {
-        private final SimpleDraweeView one_recording_img;
-        private final TextView one_recording_tx;
+        private TextView one_recording_tx;
+        private SimpleDraweeView one_recording_img;
 
         public MyOneRecordHolder(@NonNull View itemView) {
             super(itemView);
-            one_recording_img = itemView.findViewById(R.id.one_recording_img);
             one_recording_tx = itemView.findViewById(R.id.one_recording_tx);
+            one_recording_img = itemView.findViewById(R.id.one_recording_img);
         }
     }
 
     class MyTwoRecordHolder extends RecyclerView.ViewHolder {
 
-        private final SimpleDraweeView two_recording_img;
-        private final TextView two_recording_tx;
+        private SimpleDraweeView two_recording_img;
+        private TextView two_recording_tx;
 
         public MyTwoRecordHolder(@NonNull View itemView) {
             super(itemView);

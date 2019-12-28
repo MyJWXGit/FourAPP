@@ -32,7 +32,6 @@ public class APP implements BaseApplicationImp {
     @Override
     public void onCreate(Application application) {
         context = application;
-
         // 通过WXAPIFactory工厂，获取IWXAPI的实例
         api = WXAPIFactory.createWXAPI(APP.context, APP_ID, true);
 

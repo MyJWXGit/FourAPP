@@ -149,8 +149,8 @@ public class Info_Fragment extends BaseFragment<Fragment_Presenter> implements C
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int id = Integer.parseInt(doctorId);
-                mPresenter.getConsult(id);
+                Intent intent = new Intent(getActivity(), SendMessageActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -277,8 +277,7 @@ public class Info_Fragment extends BaseFragment<Fragment_Presenter> implements C
             UserWalletBean bean = (UserWalletBean) obj;
             int result = bean.getResult();
             if (result > servicePrice) {
-                Intent intent = new Intent(getActivity(), SendMessageActivity.class);
-                startActivity(intent);
+
             } else {
                 initPopupWindow_inquiry();
             }

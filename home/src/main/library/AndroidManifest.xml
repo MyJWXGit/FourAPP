@@ -13,6 +13,12 @@
         <activity android:name=".activity.CommonActivity" />
         <activity android:name=".activity.FindInfoActivity" /> <!-- 屏幕适配 -->
         <activity android:name=".activity.HomeActivity" />
+        <service android:name=".activity.XService"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="cn.jiguang.user.service.action" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

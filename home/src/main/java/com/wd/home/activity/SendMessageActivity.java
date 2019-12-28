@@ -28,9 +28,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.content.MessageContent;
 import cn.jpush.im.android.api.content.TextContent;
 import cn.jpush.im.android.api.event.MessageEvent;
 import cn.jpush.im.android.api.event.NotificationClickEvent;
+import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.api.BasicCallback;
 
@@ -38,13 +40,11 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
 
     @BindView(R2.id.im_recycler)
     RecyclerView imRecycler;
-    @BindView(R2.id.im_smart)
-    SmartRefreshLayout imSmart;
     @BindView(R2.id.im_edit)
     EditText imEdit;
     @BindView(R2.id.im_fs_tv)
     TextView imFsTv;
-    private RecordingAdapter recordingAdapter;
+    private RecordingAdapter recordingAdapter = null;
 
     @Override
     protected HomePresenter providePresenter() {
@@ -59,11 +59,7 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
     @Override
     protected void initData() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setReverseLayout(true);//布局反向
-        linearLayoutManager.setStackFromEnd(true);//数据反向
-        mPresenter.onInquiryRecord();
-        imRecycler.setLayoutManager(linearLayoutManager);
+        mPresenter.getRecording(3853, 1, 10);
         imFsTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,7 +70,6 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SendMessageActivity.this);
                     linearLayoutManager.setReverseLayout(true);//布局反向
                     linearLayoutManager.setStackFromEnd(true);//数据反向
-
                     imRecycler.setLayoutManager(linearLayoutManager);
                     imEdit.setText(null);
                 } else {
@@ -83,7 +78,6 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
             }
         });
         JMessageClient.registerEventReceiver(this);
-
     }
 
     @Override
@@ -97,16 +91,10 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
             InquiryRecordBean currentBean = (InquiryRecordBean) obj;
             InquiryRecordBean.ResultBean result = currentBean.getResult();
             if (result != null) {
-                int recordId = result.getRecordId();
-                int doctorId = result.getDoctorId();
-                String doctorName = result.getDoctorName();
-                mPresenter.getRecording(3853, 1, 10);
-                String userName = result.getUserName();
-                String jiGuangPwd = "c7f6a1d56cb8da740fd18bfa";
-                JMessageClient.login("f8f351c14f72b79dfd000ae6981d8423", jiGuangPwd, new BasicCallback() {
+                JMessageClient.login("HLo7T517701300447", "202cb962ac59075b964b07152d234b70", new BasicCallback() {
                     @Override
                     public void gotResult(int i, String s) {
-                        Toast.makeText(SendMessageActivity.this, "" + s + i, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SendMessageActivity.this, "" + i, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -116,6 +104,11 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
             if (result != null) {
                 imRecycler.setSelected(false);
                 recordingAdapter = new RecordingAdapter(this, result);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SendMessageActivity.this);
+                linearLayoutManager.setReverseLayout(true);//布局反向
+                linearLayoutManager.setStackFromEnd(true);//数据反向
+
+                imRecycler.setLayoutManager(linearLayoutManager);
                 imRecycler.setAdapter(recordingAdapter);
                 recordingAdapter.setId(new RecordingAdapter.getposition() {
                     @Override
@@ -141,6 +134,7 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
                 // 处理文字消息
                 TextContent textContent = (TextContent) msg.getContent();
                 textContent.getText();
+                recordingAdapter.notifyDataSetChanged();
                 mPresenter.onInquiryRecord();
                 break;
         }

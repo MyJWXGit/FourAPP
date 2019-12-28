@@ -3,6 +3,8 @@ ext {
 
     //是否处于Module模式
     isModule = false
+    //需要运行的组件，当allPackage为false的时候，此变量生效，模块名参照settings.gradle中的
+    needPackage = ['circle',"doctor","home","my_message","video"]
     //有重用的地方写在这里面，保证代码一致
     android = [compileSdkVersion       : 28,
                buildToolsVersion       : "29.0.0",
@@ -87,7 +89,7 @@ ext {
 
             "annotation"             : 'androidx.annotation:annotation:1.1.0',
 
-            "jiecao"             : 'fm.jiecao:jiecaovideoplayer:4.8.3',
+            "jiecao"                 : 'fm.jiecao:jiecaovideoplayer:4.8.3',
 
 
             "dkplayer-java"          : 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.5',
@@ -100,7 +102,7 @@ ext {
             "takephoto"              : "com.ypx.yimagepicker:androidx:2.4.2",
             "takephotos"             : "org.devio.takephoto:takephoto_library:4.1.0",
             "takephoto"              : "com.ypx.yimagepicker:androidx:2.4.2",
-            "takephotos"              : "org.devio.takephoto:takephoto_library:4.1.0",
+            "takephotos"             : "org.devio.takephoto:takephoto_library:4.1.0",
 
             "espresso-cored"         : 'com.github.bumptech.glide:glide:4.9.0',//测试依赖，新建项目时会默认添加，一般不建议添加
             "espresso-cores"         : 'com.github.bumptech.glide:compiler:4.9.0',//测试依赖，新建项目时会默认添加，一般不建议添加

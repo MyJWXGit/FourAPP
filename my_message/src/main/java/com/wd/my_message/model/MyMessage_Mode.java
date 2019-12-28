@@ -4,9 +4,11 @@ import com.wd.common.utils.HttpUtils;
 import com.wd.my_message.api.My_MessageHttpApi;
 import com.wd.my_message.bean.AttentionDoctorListBean;
 import com.wd.my_message.bean.ConsumptionRecordBean;
+import com.wd.my_message.bean.EndInquiryBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
+import com.wd.my_message.bean.InquiryRecordBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.SignBean;
@@ -409,6 +411,68 @@ public class MyMessage_Mode implements Contract.IModel {
                     public void onNext(SuggestBean suggestBean) {
                         if (suggestBean != null) {
                             iModelCallBack.onSuccess(suggestBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onInquiryRecord(int userId, String sessionId, IModelCallBack iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                //你要跑的接口方法
+                .onInquiryRecord(userId, sessionId)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<InquiryRecordBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onError(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(InquiryRecordBean inquiryRecordBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onSuccess(inquiryRecordBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onEndInquiry(int userId, String sessionId, int recordId, IModelCallBack iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                //你要跑的接口方法
+                .onEndInquiry(userId, sessionId,recordId)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<EndInquiryBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onError(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(EndInquiryBean endInquiryBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onSuccess(endInquiryBean);
                         }
                     }
                 });

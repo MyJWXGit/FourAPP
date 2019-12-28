@@ -28,7 +28,7 @@ android {
         }
         ndk {
             //选择要添加的对应cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86'
+            abiFilters "armeabi",'arm64-v8a'
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
 
@@ -119,7 +119,7 @@ dependencies {
     implementation rootProject.ext.dependencies["fresco"]
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
-    implementation files('libs/ocr-sdk.jar')
+    api files('libs/ocr-sdk.jar')
     implementation project(':orc_library')
     implementation 'liji.library.dev:citypickerview:0.7.0'
     implementation 'cn.qqtheme.framework:AndroidPicker:latest.integration'

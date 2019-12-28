@@ -50,6 +50,8 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
     TextView wx;
     @BindView(R.id.login_wx)
     ImageButton loginWx;
+    private LoginBean.ResultBean result;
+    private String string;
 
     @Override
     protected MainPresenter providePresenter() {
@@ -79,13 +81,19 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
         if (bean.getStatus().equals("0000")) {
             SpUtils.put(this, Constant.USERID, bean.getResult().getId());
             SpUtils.put(this, Constant.SESSIONID, bean.getResult().getSessionId());
-            int id = bean.getResult().getId();
-            String sessionId = bean.getResult().getSessionId();
-            String str = id + "" + sessionId + "movie";
-            String s = MD5(str);
-            Log.i("xxx", "onSuccess: " + str);
-            Log.i("xxx", "onSuccess: " + s);
             ARouter.getInstance().build("/home/activity").navigation();
+            result = bean.getResult();
+            String userName = result.getUserName();
+            Log.d("SSSS", "userName: "+userName);
+            String jiGuangPwd = result.getJiGuangPwd();
+            try {
+                string = RsaCoder.decryptByPublicKey(jiGuangPwd);
+                Log.d("aaaa", "onSuccess: "+string);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String s = MD5(string);
+            Log.d("ssss", "s: "+s);
         }
     }
 

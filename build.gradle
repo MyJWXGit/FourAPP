@@ -6,7 +6,6 @@ buildscript {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
-
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
@@ -14,6 +13,7 @@ buildscript {
         classpath "com.alibaba:arouter-register:+"
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
         //classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.0.0"
+
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -31,4 +31,29 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+def modules = getSubprojects()
+//def modules = getAllprojects()
+// app 是主工程模块名
+project('app') { p ->
+    p.afterEvaluate {
+        modules.each() { module ->
+            if (isModule) {//所有模块都打包
+                if (module != p) {
+                    println p.name + "全功能打包，已添加模块:" + module.name
+                    p.dependencies.add("implementation", project(':' + module.name))
+                } else {
+                    println p.name + "全模块打包，重复或者不添加的模块:" + module.name
+                }
+            } else {
+                if (needPackage.contains(module.name)) {
+                    if (module != p) {
+                        println p.name + "组件化打包，清单文件默认采用src/test/AndroidManifest.xml...加载模块:" + module.name
+                        p.dependencies.add("implementation", project(':' + module.name))
+                    }
+                }
+            }
+        }
+    }
 }

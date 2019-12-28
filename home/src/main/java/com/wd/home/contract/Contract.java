@@ -40,8 +40,6 @@ public interface Contract {
         //查询历史问诊聊天记录
         void getRecording(int inquiryId, int page, int count);
 
-        //查询历史问诊聊天记录
-        void onEndInquiry();
 
         //用户查看当前问诊
         void onInquiryRecord();

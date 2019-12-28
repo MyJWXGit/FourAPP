@@ -4,9 +4,11 @@ import com.wd.my_message.api.My_messageAPI;
 import com.wd.my_message.bean.AttentionDoctorListBean;
 import com.wd.my_message.bean.ConsumptionRecordBean;
 import com.wd.my_message.bean.DeleteCollectionBean;
+import com.wd.my_message.bean.EndInquiryBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
+import com.wd.my_message.bean.InquiryRecordBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.SignBean;
@@ -23,6 +25,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -139,4 +142,12 @@ public interface My_MessageHttpApi {
             @Header("sessionId") String sessionId,
             @Part MultipartBody.Part part
     );
+
+    //用户查看当前问诊
+    @GET(My_messageAPI.CurrentInquiryRecord)
+    Observable<InquiryRecordBean> onInquiryRecord(@Header("userId") int userId, @Header("sessionId") String sessionId);
+
+    //结束问诊
+    @PUT(My_messageAPI.endInquiry)
+    Observable<EndInquiryBean> onEndInquiry(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("recordId") int recordId);
 }

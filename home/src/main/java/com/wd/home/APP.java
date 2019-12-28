@@ -25,6 +25,6 @@ public class APP implements BaseApplicationImp {
     public void onCreate(Application application) {
         context = application;
         JMessageClient.setDebugMode(true);
-        JMessageClient.init(application);
+        JMessageClient.init(context);
     }
 }

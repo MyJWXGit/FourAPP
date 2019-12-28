@@ -28,7 +28,10 @@ import com.wd.video.presenter.Video_EntryPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements Contract.IView {
+
+
 
     private static final String TAG = "VideoActivity";
     private ViewPager videoVp;
@@ -45,7 +48,9 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
 
     @Override
     protected void initView() {
-
+        videoVp = findViewById(R.id.video_vp);
+        videoTab = findViewById(R.id.video_tab);
+        video_pull = findViewById(R.id.video_pull);
     }
 
     @Override
@@ -81,7 +86,7 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
 
     @Override
     protected int initLayout() {
-        return R2.layout.activity_my_video;
+        return R.layout.activity_my_video;
     }
 
     @Override
@@ -105,7 +110,7 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
             @Override
             public Fragment getItem(int position) {
                 Bundle bundle = new Bundle();
-                bundle.putString("tid",result.get(position).getId());
+                bundle.putString("tid", result.get(position).getId());
                 BeautyFragment beautyFragment = new BeautyFragment();
                 beautyFragment.setArguments(bundle);
                 return beautyFragment;
@@ -138,9 +143,9 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
 
     @Override
     protected void onDestroy() {
-        if(videoVp!=null){
+        super.onDestroy();
+        if (videoVp != null) {
             onDestroy();
         }
-        super.onDestroy();
     }
 }

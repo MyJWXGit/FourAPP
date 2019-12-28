@@ -3,7 +3,9 @@
     package="com.wd.my_message">
 
     <application>
-        <activity android:name=".view.Suggest_message_Activity"></activity>
+        <activity android:name=".Special_HistoryActivity"></activity>
+        <activity android:name=".My_Present_InquiryActivity" />
+        <activity android:name=".view.Suggest_message_Activity" />
         <activity android:name=".ConfirmActivity" />
         <activity android:name=".AutonymActivity" />
         <activity android:name=".Update_Message_Activity" />

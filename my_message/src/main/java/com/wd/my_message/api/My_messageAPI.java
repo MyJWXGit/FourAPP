@@ -24,7 +24,7 @@ public interface My_messageAPI {
     //用户收藏健康课堂视频列表  我的视频
     String VideoCollectionList = "health/user/verify/v1/findVideoCollectionList";
     //用户收藏资讯  健康咨询资讯
-    String UserCollection="health/user/verify/v1/findUserInfoCollectionList";
+    String UserCollection = "health/user/verify/v1/findUserInfoCollectionList";
     //查询我的被采纳的建议  被采纳建议
     String MyAdoptedCommentList = "health/user/verify/v1/findMyAdoptedCommentList";
     //查询用户资讯收藏列表  我的收藏
@@ -34,27 +34,29 @@ public interface My_messageAPI {
     //上传头像
     String IMAGE_PIC = "health/user/verify/v1/modifyHeadPic";
     //取消收藏病友圈
-    String DeleteCollection="health/user/verify/v1/cancelSickCollection";
+    String DeleteCollection = "health/user/verify/v1/cancelSickCollection";
     //系统消息 查询用户系统通知列表
-    String MessageUserList= "health/user/verify/v1/findSystemNoticeList";
+    String MessageUserList = "health/user/verify/v1/findSystemNoticeList";
     //问诊消息
-    String WenZhen="health/user/verify/v1/findInquiryNoticeList";
+    String WenZhen = "health/user/verify/v1/findInquiryNoticeList";
     //查询用户H币通知列表
-    String UserHMoneyMessage="health/user/verify/v1/findHealthyCurrencyNoticeList";
+    String UserHMoneyMessage = "health/user/verify/v1/findHealthyCurrencyNoticeList";
     //wode我的钱包
-    String MyMoneyBao="health/user/verify/v1/findUserWallet";
+    String MyMoneyBao = "health/user/verify/v1/findUserWallet";
     //消费记录
-    String RecordsOfConsumption="health/user/verify/v1/findUserConsumptionRecordList";
+    String RecordsOfConsumption = "health/user/verify/v1/findUserConsumptionRecordList";
     //查询关注医生列表
-    String AttentionDoctorList="health/user/verify/v1/findUserDoctorFollowList";
+    String AttentionDoctorList = "health/user/verify/v1/findUserDoctorFollowList";
     //关注医生
-    String AttentionDoctor="health/user/inquiry/verify/v1/followDoctor";
+    String AttentionDoctor = "health/user/inquiry/verify/v1/followDoctor";
     //取消关注医生
-    String UnAttentionDoctor="health/user/inquiry/verify/v1/cancelFollow";
+    String UnAttentionDoctor = "health/user/inquiry/verify/v1/cancelFollow";
     //签到
-    String Sign="health/user/verify/v1/addSign";
+    String Sign = "health/user/verify/v1/addSign";
     //查询用户是否签到
-    String QueryUserSign="health/user/verify/v1/whetherSignToday";
+    String QueryUserSign = "health/user/verify/v1/whetherSignToday";
     //查询我的被采纳的意见
-    String MySuggest="health/user/verify/v1/findMyAdoptedCommentList";
+    String MySuggest = "health/user/verify/v1/findMyAdoptedCommentList";
+    //结束问诊
+    String endInquiry = "health/user/inquiry/verify/v1/endInquiry";
 }

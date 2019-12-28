@@ -10,11 +10,12 @@ import com.wd.common.app.BaseApplication;
  *author:郭昊坤
  *date:2019/12/13
  *function:*/public class APP extends BaseApplication {
-    private Context context;
+    private static Context context;
+
     @Override
     public void onCreate() {
         super.onCreate();
-        context=this;
+        context = this;
         Fresco.initialize(this);
     }
 }

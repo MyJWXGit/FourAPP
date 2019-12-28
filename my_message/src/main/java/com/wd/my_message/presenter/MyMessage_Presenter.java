@@ -7,9 +7,11 @@ import com.wd.common.utils.SpUtils;
 import com.wd.my_message.Message_APP;
 import com.wd.my_message.bean.AttentionDoctorListBean;
 import com.wd.my_message.bean.ConsumptionRecordBean;
+import com.wd.my_message.bean.EndInquiryBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
+import com.wd.my_message.bean.InquiryRecordBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.SignBean;
@@ -377,6 +379,54 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
                     SuggestBean suggestBean = (SuggestBean) data;
                     if (suggestBean != null) {
                         getView().onSuccess(suggestBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onInquiryRecord() {
+        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onInquiryRecord(userId, sessionid, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    InquiryRecordBean inquiryRecordBean = (InquiryRecordBean) data;
+                    if (inquiryRecordBean != null) {
+                        getView().onSuccess(inquiryRecordBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onEndInquiry(int recordId) {
+        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onEndInquiry(userId, sessionid, recordId, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    EndInquiryBean endInquiryBean = (EndInquiryBean) data;
+                    if (endInquiryBean != null) {
+                        getView().onSuccess(endInquiryBean);
                     }
                 }
             }

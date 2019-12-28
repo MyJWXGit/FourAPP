@@ -294,11 +294,6 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
         });
     }
 
-    @Override
-    public void onEndInquiry() {
-
-    }
-
 
     @Override
     public void onInquiryRecord() {
