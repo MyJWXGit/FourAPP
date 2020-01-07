@@ -76,4 +76,14 @@ public interface My_messageAPI {
     String MyCircle="health/user/sickCircle/verify/v1/findMySickCircleList";
     //查询我的病友圈帖子的评论列表
     String MyCircleCommentent="health/user/sickCircle/verify/v1/findMySickCircleCommentList";
+    //修改昵称
+    String SetName="health/user/verify/v1/modifyNickName";
+    //根据ID查询用户信息
+    String UserInfo="health/user/verify/v1/getUserInfoById";
+    //修改性别
+    String SetSex="health/user/verify/v1/updateUserSex";
+    //修改密码
+    String SetPwd="health/user/verify/v1/updateUserPwd";
+    //完善用户信息
+    String SetSign="health/user/verify/v1/perfectUserInfo";
 }

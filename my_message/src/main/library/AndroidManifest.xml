@@ -24,7 +24,11 @@
         <activity android:name=".view.MessagesActivity" />
         <activity android:name=".view.Collection_Activity" />
         <activity android:name=".My_Home_Activity" />
-        <activity android:name=".My_Home_Activity$My_Home_Activity" />
+        <activity android:name=".view.SetSignActivity" />
+        <activity android:name=".view.SetSexActivity" />
+        <activity android:name=".view.SetNameActivity" />
+        <activity android:name=".view.Change_Password_Activity" />
+
     </application>
 
 </manifest>

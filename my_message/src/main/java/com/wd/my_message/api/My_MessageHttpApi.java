@@ -20,6 +20,10 @@ import com.wd.my_message.bean.MySickCircleListBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.QueryTaskListBean;
+import com.wd.my_message.bean.SetPwdBean;
+import com.wd.my_message.bean.SetSexBean;
+import com.wd.my_message.bean.SetSignBean;
+import com.wd.my_message.bean.Set_NameBean;
 import com.wd.my_message.bean.SignBean;
 import com.wd.my_message.bean.SuggestBean;
 import com.wd.my_message.bean.SystemMessageBean;
@@ -29,6 +33,7 @@ import com.wd.my_message.bean.UserArchivesBean;
 import com.wd.my_message.bean.UserArchivesPictureBean;
 import com.wd.my_message.bean.UserColletionBean;
 import com.wd.my_message.bean.UserSickCollectionBean;
+import com.wd.my_message.bean.User_InfoBean;
 import com.wd.my_message.bean.VideoCollectionBean;
 
 
@@ -238,4 +243,36 @@ public interface My_MessageHttpApi {
     //查看历史问诊
     @GET(My_messageAPI.HistoryInquiryRecord)
     Observable<HistoryBean> onHistory(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("page") int page, @Query("count") int count);
+    @PUT(My_messageAPI.SetName)
+    Observable<Set_NameBean> onSet_Name(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("nickName") String nickName
+    );
+    @GET(My_messageAPI.UserInfo)
+    Observable<User_InfoBean> onUser_Info(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId
+    );
+    @PUT(My_messageAPI.SetSex)
+    Observable<SetSexBean> onSet_Sex(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("sex") int sex
+    );
+    @PUT(My_messageAPI.SetPwd)
+    Observable<SetPwdBean> onSet_Pwd(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("oldPwd") String oldPwd,
+            @Query("newPwd") String newPwd
+    );
+    @PUT(My_messageAPI.SetSign)
+    Observable<SetSignBean> onSet_Sign(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("age") int age,
+            @Query("height") int height,
+            @Query("weight") int weight
+    );
 }
