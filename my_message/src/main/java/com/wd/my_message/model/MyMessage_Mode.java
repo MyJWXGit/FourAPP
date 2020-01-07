@@ -1,5 +1,7 @@
 package com.wd.my_message.model;
 
+import android.util.Log;
+
 import com.wd.common.utils.HttpUtils;
 import com.wd.my_message.api.My_MessageHttpApi;
 import com.wd.my_message.bean.AddArchivesBean;
@@ -20,6 +22,10 @@ import com.wd.my_message.bean.MySickCircleListBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.QueryTaskListBean;
+import com.wd.my_message.bean.SetPwdBean;
+import com.wd.my_message.bean.SetSexBean;
+import com.wd.my_message.bean.SetSignBean;
+import com.wd.my_message.bean.Set_NameBean;
 import com.wd.my_message.bean.SignBean;
 import com.wd.my_message.bean.SuggestBean;
 import com.wd.my_message.bean.SystemMessageBean;
@@ -29,6 +35,7 @@ import com.wd.my_message.bean.UserArchivesBean;
 import com.wd.my_message.bean.UserArchivesPictureBean;
 import com.wd.my_message.bean.UserColletionBean;
 import com.wd.my_message.bean.UserSickCollectionBean;
+import com.wd.my_message.bean.User_InfoBean;
 import com.wd.my_message.bean.VideoCollectionBean;
 import com.wd.my_message.contract.Contract;
 
@@ -809,4 +816,134 @@ public class MyMessage_Mode implements Contract.IModel {
                     }
                 });
     }
+
+    public void onSet_Name(int userId, String sessionId, String nickName, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onSet_Name(userId, sessionId, nickName)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Set_NameBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("xxx", "onError: "+e);
+                    }
+
+                    @Override
+                    public void onNext(Set_NameBean set_nameBean) {
+                        if (set_nameBean != null) {
+                            iModelCallBack.onSuccess(set_nameBean);
+                        }
+                    }
+                });
+    }
+
+
+    public void onUser_Info(int userId, String sessionId, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onUser_Info(userId, sessionId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<User_InfoBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("xxx", "onError: "+e);
+                    }
+
+                    @Override
+                    public void onNext(User_InfoBean user_infoBean) {
+                        if (user_infoBean != null) {
+                            iModelCallBack.onSuccess(user_infoBean);
+                        }
+                    }
+                });
+    }
+
+
+    public void onSet_Sex(int userId, String sessionId, int sex, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onSet_Sex(userId, sessionId,sex)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<SetSexBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("xxx", "onError: "+e);
+                    }
+
+                    @Override
+                    public void onNext(SetSexBean setSexBean) {
+                        if (setSexBean != null) {
+                            iModelCallBack.onSuccess(setSexBean);
+                        }
+                    }
+                });
+    }
+
+
+    public void onSet_Pwd(int userId, String sessionId, String oldPwd, String newPwd, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onSet_Pwd(userId, sessionId,oldPwd,newPwd)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<SetPwdBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("xxx", "onError: "+e);
+                    }
+
+                    @Override
+                    public void onNext(SetPwdBean setPwdBean) {
+                        if (setPwdBean != null) {
+                            iModelCallBack.onSuccess(setPwdBean);
+                        }
+                    }
+                });
+    }
+
+
+    public void onSet_Sign(int userId, String sessionId, int age, int height, int weight, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onSet_Sign(userId, sessionId,age,height,weight)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<SetSignBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("xxx", "onError: "+e);
+                    }
+
+                    @Override
+                    public void onNext(SetSignBean setSignBean) {
+                        if (setSignBean != null) {
+                            iModelCallBack.onSuccess(setSignBean);
+                        }
+                    }
+                });
+    }
+
 }
