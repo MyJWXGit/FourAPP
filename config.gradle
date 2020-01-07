@@ -1,5 +1,5 @@
 ext {
-    
+
     //是否处于Module模式
     isModule = false
     //需要运行的组件，当allPackage为false的时候，此变量生效，模块名参照settings.gradle中的
