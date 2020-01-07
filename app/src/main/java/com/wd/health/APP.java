@@ -11,6 +11,7 @@ import com.wd.common.app.BaseApplicationImp;
 
 import cn.jpush.android.api.JPushInterface;
 
+
 /**
  * @name Health
  * @class name：com.wd.health

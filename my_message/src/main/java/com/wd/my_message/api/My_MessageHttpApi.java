@@ -10,6 +10,7 @@ import com.wd.my_message.bean.EndInquiryBean;
 import com.wd.my_message.bean.DoTaskBean;
 import com.wd.my_message.bean.GetTaskBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
+import com.wd.my_message.bean.HistoryBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.InquiryRecordBean;
@@ -145,6 +146,7 @@ public interface My_MessageHttpApi {
             @Header("userId") int userId,
             @Header("sessionId") String sessionId
     );
+
     @GET(My_messageAPI.LianxuSign)
     Observable<LianxuSignBean> onLianxuSignBean(
             @Header("userId") int userId,
@@ -179,35 +181,43 @@ public interface My_MessageHttpApi {
     //http://172.17.8.100/health/user/verify/v1/findUserArchives
     @GET(My_messageAPI.MyFile)
     Observable<UserArchivesBean> getarchives(@Header("userId") int userId, @Header("sessionId") String sessionId);
+
     //删除档案
     //http://172.17.8.100/health/user/verify/v1/deleteUserArchives
     @DELETE(My_messageAPI.DeleteFile)
     Observable<DeleteArchivesBean> getdeleteUserArchives(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("archivesId") int archivesId);
+
     //用户修改档案
     //http://172.17.8.100/health/user/verify/v1/updateUserArchives
     @PUT(My_messageAPI.UpdateFile)
-    Observable<UpdateArchivesBean> getupdateUserArchives(@Header("userId") int userId, @Header("sessionId") String sessionId, @Body Map<String,Object> map);
+    Observable<UpdateArchivesBean> getupdateUserArchives(@Header("userId") int userId, @Header("sessionId") String sessionId, @Body Map<String, Object> map);
+
     //用户添加档案
     //http://172.17.8.100/health/user/verify/v1/addUserArchives
     @POST(My_messageAPI.InsertFile)
-    Observable<AddArchivesBean> getaddUserArchives(@Header("userId") int userId, @Header("sessionId") String sessionId, @Body Map<String,Object> map);
+    Observable<AddArchivesBean> getaddUserArchives(@Header("userId") int userId, @Header("sessionId") String sessionId, @Body Map<String, Object> map);
+
     //用户档案上传图片
     //http://172.17.8.100/health/user/verify/v1/uploadArchivesPicture
     @Multipart
     @POST(My_messageAPI.UploadPiture)
-    Observable<UserArchivesPictureBean> getpicture(@Header("userId") int userId, @Header("sessionId") String sessionId, @PartMap Map<String,MultipartBody.Part> picture);
+    Observable<UserArchivesPictureBean> getpicture(@Header("userId") int userId, @Header("sessionId") String sessionId, @PartMap Map<String, MultipartBody.Part> picture);
+
     //做任务
     @POST(My_messageAPI.DoTask)
     Observable<DoTaskBean> onDoTaskBean(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("taskId") int taskId);
+
     //领取任务奖励
     @POST(My_messageAPI.GetTask)
     Observable<GetTaskBean> onGetTaskBean(@Header("userId") int userId,
                                           @Header("sessionId") String sessionId,
                                           @Query("taskId") int taskId);
+
     //查询用户任务列表
     @GET(My_messageAPI.QueryTaskList)
     Observable<QueryTaskListBean> onQueryTaskBean(@Header("userId") int userId,
-                                                   @Header("sessionId") String sessionId);
+                                                  @Header("sessionId") String sessionId);
+
     //我的病友圈
     //http://172.17.8.100/health/user/sickCircle/verify/v1/findMySickCircleList?page=1&count=5
     @GET(My_messageAPI.MyCircle)
@@ -215,6 +225,7 @@ public interface My_MessageHttpApi {
                                                          @Header("sessionId") String sessionId,
                                                          @Query("page") int page,
                                                          @Query("count") int count);
+
     //查询我的病友圈帖子的评论列表
     //http://172.17.8.100/health/user/sickCircle/verify/v1/findMySickCircleCommentList?sickCircleId=1796&page=1&count=5
     @GET(My_messageAPI.MyCircleCommentent)
@@ -223,4 +234,8 @@ public interface My_MessageHttpApi {
                                                                        @Query("sickCircleId") int sickCircleId,
                                                                        @Query("page") int page,
                                                                        @Query("count") int count);
+
+    //查看历史问诊
+    @GET(My_messageAPI.HistoryInquiryRecord)
+    Observable<HistoryBean> onHistory(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("page") int page, @Query("count") int count);
 }

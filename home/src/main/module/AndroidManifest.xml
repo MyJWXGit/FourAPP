@@ -17,10 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activity.DrugActivity"></activity>
+        <activity android:name=".activity.SendMessageActivity"></activity>
+        <activity android:name=".activity.CommentActivity" />
+        <activity android:name=".activity.Doctor_detailsActivity" />
+        <activity android:name=".activity.InfoActivity" />
+        <activity android:name=".activity.Edit_SearchActivity" />
+        <activity android:name=".activity.DrugActivity" />
         <activity android:name=".activity.DiseaseKnowledgeActivity" />
         <activity android:name=".activity.CommonActivity" />
-        <activity android:name=".activity.FindInfoActivity" />
+        <activity android:name=".activity.FindInfoActivity" /> <!-- 屏幕适配 -->
         <!-- 屏幕适配 -->
         <receiver
             android:name=".activity.HomeActivity"

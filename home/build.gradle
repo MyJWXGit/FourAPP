@@ -25,15 +25,9 @@ android {
         }
         ndk {
             //选择要添加的对应cpu类型的.so库。
-            abiFilters "armeabi",'arm64-v8a'
+            abiFilters "armeabi",'arm64-v8a','x86', 'x86_64', 'mips', 'mips64'
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
-
-        manifestPlaceholders = [
-                JPUSH_PKGNAME: "com.wd.health",
-                JPUSH_APPKEY : "c7f6a1d56cb8da740fd18bfa", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
-        ]
     }
 
     buildTypes {
@@ -128,23 +122,22 @@ dependencies {
     implementation rootProject.ext.dependencies["banner"]
     implementation rootProject.ext.dependencies["autosize"]
     implementation rootProject.ext.dependencies["tablayout"]
+    implementation rootProject.ext.dependencies["flowlayout"]
+    implementation rootProject.ext.dependencies["kuaisuAdapter"]
+    implementation rootProject.ext.dependencies["glide"]
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]
     annotationProcessor 'com.alibaba:arouter-compiler:+' //流失布局
-    implementation 'com.hyman:flowlayout-lib:1.1.2'
-    //快速适配
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     //glide图片获取
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation project(':common')
     implementation project(':circle')
     implementation project(':video')
     implementation project(':my_message')
-    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
-    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
+    implementation rootProject.ext.dependencies["jiguang_sdk_jmessage"]
+    implementation rootProject.ext.dependencies["jiguang_sdk_jcore"]// 此处以JCore 2.0.0 版本为例。
     //1.1.0 API改动过大，老用户升级需谨慎
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
-    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'//没有使用特殊Header，可以不加这行
-    implementation 'com.android.support:appcompat-v7:25.3.1'//版本 23以上（必须）
+    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
+    implementation rootProject.ext.dependencies["SmartRefreshHeader"]
+    implementation rootProject.ext.dependencies["appcompat"]
 }

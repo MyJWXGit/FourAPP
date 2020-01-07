@@ -10,6 +10,7 @@ import com.wd.my_message.bean.DeleteArchivesBean;
 import com.wd.my_message.bean.DoTaskBean;
 import com.wd.my_message.bean.GetTaskBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
+import com.wd.my_message.bean.HistoryBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.InquiryRecordBean;
@@ -773,6 +774,37 @@ public class MyMessage_Mode implements Contract.IModel {
                     public void onNext(MySickCircleCommentListBean mySickCircleCommentListBean) {
                         if (mySickCircleCommentListBean!=null){
                             iModelCallBac.onSuccess(mySickCircleCommentListBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onHistory(int userId, String sessionId, int page, int count, IModelCallBack iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                //你要跑的接口方法
+                .onHistory(userId, sessionId, page, count)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<HistoryBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onError(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(HistoryBean historyBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onSuccess(historyBean);
                         }
                     }
                 });

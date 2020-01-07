@@ -4,7 +4,7 @@ ext {
     //是否处于Module模式
     isModule = false
     //需要运行的组件，当allPackage为false的时候，此变量生效，模块名参照settings.gradle中的
-    needPackage = ['circle',"doctor","home","my_message","video"]
+    needPackage = ['circle', "doctor", "home", "my_message", "video"]
     //有重用的地方写在这里面，保证代码一致
     android = [compileSdkVersion       : 28,
                buildToolsVersion       : "29.0.0",
@@ -39,7 +39,7 @@ ext {
 
             "rxpermissions"          : "com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar",
             //图片处理框架
-            "glide"                  : "com.github.bumptech.glide:glide:3.7.0",
+            "glide"                  : "com.github.bumptech.glide:glide:4.9.0",
             "fresco"                 : "com.facebook.fresco:fresco:2.0.0",
             //TabLayout导航
             "tablayout"              : "com.android.support:design:28.0.0",
@@ -76,7 +76,6 @@ ext {
             "autosize"               : 'me.jessyan:autosize:+',
             "arouter-api"            : 'com.alibaba:arouter-api:+',//ARouter api
             "arouter-compiler"       : 'com.alibaba:arouter-compiler:+',//ARouter
-            "SmartRefreshLayout"     : 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0',
             "RefreshHeader"          : 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14',
 
             "constraint-layout"      : 'com.android.support.constraint:constraint-layout:1.1.0',//约束性布局
@@ -114,5 +113,22 @@ ext {
             "ijkplayerexo"           : "tv.danmaku.ijk.media:ijkplayer-exo:0.8.8",
             "xrecyclerview"          : 'com.jcodecraeer:xrecyclerview:1.2.6',
             "tablayout"              : 'com.google.android.material:material:1.0.0',
+            "DanmakuFlameMaster"     : 'com.github.ctiao:DanmakuFlameMaster:0.7.3',
+            "ndkbitmap"              : 'com.github.ctiao:ndkbitmap-armv7a:0.7.3',
+            "permission"             : 'com.yanzhenjie:permission:2.0.3',
+            "citypickerview"         : 'liji.library.dev:citypickerview:0.7.0',
+            "AndroidPicker"          : 'cn.qqtheme.framework:AndroidPicker:latest.integration',
+            "cardview"               : 'com.android.support:cardview-v7:28.0.0',
+            "jiguang_sdk_jmessage"   : 'cn.jiguang.sdk:jmessage:2.9.0',
+            "jiguang_sdk_jcore"      : 'cn.jiguang.sdk:jcore:2.0.0',
+            "multidex"               : 'com.android.support:multidex:1.0.3',
+            "PickerView"             : 'com.contrarywind:Android-PickerView:3.2.7',
+            "flowlayout"             : 'com.hyman:flowlayout-lib:1.1.2',
+            "kuaisuAdapter"          : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30',
+            "SmartRefreshLayout"     : 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14',
+            "SmartRefreshHeader"     : 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14',
+            "appcompat"              : 'com.android.support:appcompat-v7:25.3.1',
+            "eventbus"               : 'org.greenrobot:eventbus:3.1.1',
+            "StickyListHeaders"      : 'com.github.mtotschnig:StickyListHeaders:2.7.1',
     ]
 }

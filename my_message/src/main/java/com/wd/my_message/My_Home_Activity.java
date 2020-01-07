@@ -113,7 +113,11 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
             mPresenter.onSign();
         } else if (id == R.id.linear_lay) {
         } else if (id == R.id.my_button_inquiry) {
+            Intent intent = new Intent(My_Home_Activity.this, My_Present_InquiryActivity.class);
+            startActivity(intent);
         } else if (id == R.id.my_button_history) {
+            Intent intent = new Intent(My_Home_Activity.this, Special_HistoryActivity.class);
+            startActivity(intent);
         } else if (id == R.id.re_latiview) {
         } else if (id == R.id.my_button_record) {
             startActivity(new Intent(this, My_Record_Activity.class));

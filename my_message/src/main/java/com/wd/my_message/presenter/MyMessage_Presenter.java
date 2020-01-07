@@ -13,6 +13,7 @@ import com.wd.my_message.bean.DeleteArchivesBean;
 import com.wd.my_message.bean.DoTaskBean;
 import com.wd.my_message.bean.GetTaskBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
+import com.wd.my_message.bean.HistoryBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.InquiryRecordBean;
@@ -705,6 +706,30 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
                     MySickCircleCommentListBean mySickCircleCommentListBean= (MySickCircleCommentListBean) data;
                     if (mySickCircleCommentListBean!=null){
                         getView().onSuccess(mySickCircleCommentListBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onHistory(int page, int count) {
+        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onHistory(userId, sessionid, page, count, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    HistoryBean historyBean = (HistoryBean) data;
+                    if (historyBean != null) {
+                        getView().onSuccess(historyBean);
                     }
                 }
             }

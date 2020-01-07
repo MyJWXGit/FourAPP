@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wd.health">
     <!-- Required -->
-
     <!-- Required  一些系统要求的权限，如访问网络等-->
     <uses-permission android:name="com.jpushtest.click.jpushtest.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -34,14 +33,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".APP_Login_Activity">
+        <activity android:name=".APP_Login_Activity"></activity>
+        <activity android:name=".IntentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IntentActivity" />
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true"
