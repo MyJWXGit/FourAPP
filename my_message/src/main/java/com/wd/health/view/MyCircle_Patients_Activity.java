@@ -57,7 +57,7 @@ public class MyCircle_Patients_Activity extends BaseActivity<MyMessage_Presenter
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my_circle__patients_;
+        return R.layout.message_activity_my_circle__patients_;
     }
 
     @Override

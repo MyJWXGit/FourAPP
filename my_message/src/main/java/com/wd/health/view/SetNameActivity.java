@@ -73,7 +73,7 @@ public class SetNameActivity extends BaseActivity<MyMessage_Presenter> implement
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_set_name;
+        return R.layout.message_activity_set_name;
 
     }
 

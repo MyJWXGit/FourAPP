@@ -38,7 +38,7 @@ public class FindUserSickCollectionListAdapter extends RecyclerView.Adapter<Find
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.adapter_findusersickcollectionlist_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.message_adapter_findusersickcollectionlist_item, null);
         return new Holder(inflate);
     }
 

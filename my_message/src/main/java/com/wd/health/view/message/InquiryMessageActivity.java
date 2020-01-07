@@ -62,7 +62,7 @@ public class InquiryMessageActivity extends BaseActivity<MyMessage_Presenter> im
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_inquiry_message;
+        return R.layout.message_activity_inquiry_message;
     }
 
     @Override

@@ -56,7 +56,7 @@ public class CurrencyMessageActivity extends BaseActivity<MyMessage_Presenter> i
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_currency_message;
+        return R.layout.message_activity_currency_message;
     }
 
     @Override

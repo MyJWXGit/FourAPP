@@ -40,7 +40,7 @@ public class Special_HistoryActivity extends BaseActivity<MyMessage_Presenter> i
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_special_history;
+        return R.layout.message_activity_special_history;
     }
 
     @Override

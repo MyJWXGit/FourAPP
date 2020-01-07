@@ -188,7 +188,7 @@
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
         </RelativeLayout>
-        <include layout="@layout/myfile_include"
+        <include layout="@layout/message_myfile_include"
             android:visibility="gone"
             />
     </RelativeLayout>

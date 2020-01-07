@@ -39,7 +39,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.Holder
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.system_message_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.message_system_message_item, null);
         return new Holder(inflate);
     }
 

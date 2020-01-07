@@ -69,7 +69,7 @@ public class Collection_Activity extends BaseActivity<MyMessage_Presenter> imple
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my_collection;
+        return R.layout.message_activity_my_collection;
     }
 
     @Override

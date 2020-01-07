@@ -105,7 +105,7 @@ public class My_Task_Activity extends BaseActivity<MyMessage_Presenter> implemen
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my__task_;
+        return R.layout.message_activity_my__task_;
     }
 
     @Override

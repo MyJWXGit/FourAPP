@@ -58,7 +58,7 @@ public class SystemMessageActivity extends BaseActivity<MyMessage_Presenter> imp
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_system_message;
+        return R.layout.message_activity_system_message;
     }
 
     @Override

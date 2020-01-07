@@ -58,7 +58,7 @@ public class Change_Password_Activity extends BaseActivity<MyMessage_Presenter> 
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_change__password_;
+        return R.layout.message_activity_change__password_;
     }
 
     @Override

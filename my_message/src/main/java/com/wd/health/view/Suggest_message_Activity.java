@@ -58,7 +58,7 @@ public class Suggest_message_Activity extends BaseActivity<MyMessage_Presenter> 
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_suggest_message_;
+        return R.layout.message_activity_suggest_message_;
     }
 
     @Override

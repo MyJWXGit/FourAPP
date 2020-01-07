@@ -62,7 +62,7 @@ public class Attention_Doctor_Activity extends BaseActivity<MyMessage_Presenter>
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_attention__doctor_;
+        return R.layout.message_activity_attention__doctor_;
     }
 
     @Override

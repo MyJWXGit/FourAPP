@@ -39,7 +39,7 @@ public class InquirtMessageAdapter extends RecyclerView.Adapter<InquirtMessageAd
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.inquiry_message_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.message_inquiry_message_item, null);
         return new Holder(inflate);
     }
 

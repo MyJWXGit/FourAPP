@@ -90,7 +90,7 @@ public class Fragment_home extends BaseFragment<HomePresenter> implements Contra
 
     @Override
     protected int initLayout() {
-        return R.layout.fragment_home;
+        return R.layout.home_fragment_home;
     }
 
     @Override

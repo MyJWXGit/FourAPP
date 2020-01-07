@@ -75,7 +75,7 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_autonym;
+        return R.layout.message_activity_autonym;
     }
 
     @Override

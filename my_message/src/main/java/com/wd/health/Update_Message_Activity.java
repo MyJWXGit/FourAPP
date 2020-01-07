@@ -111,7 +111,7 @@ public class Update_Message_Activity extends BaseActivity<MyMessage_Presenter> i
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_update_message;
+        return R.layout.message_activity_update_message;
     }
 
     @OnClick({R2.id.fanhui, R2.id.my_information_Avatar, R2.id.my_information_Certification_a,R2.id.my_information_name_a,R2.id.my_information_gender_a,R2.id.my_information_Sign})
@@ -139,7 +139,7 @@ public class Update_Message_Activity extends BaseActivity<MyMessage_Presenter> i
     private void initPopupWindow() {
         Button butShoot, butPhoto, butFinish;
         // 生成 View 对象
-        View view = View.inflate(this, R.layout.pic_popupwindow_xml, null);
+        View view = View.inflate(this, R.layout.message_pic_popupwindow_xml, null);
         butFinish = view.findViewById(R.id.but_finish);
         butPhoto = view.findViewById(R.id.but_photo);
         butShoot = view.findViewById(R.id.but_shoot);

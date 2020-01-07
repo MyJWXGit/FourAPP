@@ -232,7 +232,7 @@ public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_record;
+        return R.layout.message_activity_record;
     }
 
     @Override

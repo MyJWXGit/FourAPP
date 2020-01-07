@@ -18,7 +18,7 @@ public class ConfirmActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_confirm);
+        setContentView(R.layout.message_activity_confirm);
         EditText name = findViewById(R.id.name);
         EditText num = findViewById(R.id.num);
         TextView end = findViewById(R.id.end);

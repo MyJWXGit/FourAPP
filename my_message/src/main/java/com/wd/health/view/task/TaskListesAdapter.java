@@ -37,7 +37,7 @@ public class TaskListesAdapter extends RecyclerView.Adapter<TaskListesAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.mytask_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.message_mytask_item, null);
         return new ViewHolder(inflate);
     }
 

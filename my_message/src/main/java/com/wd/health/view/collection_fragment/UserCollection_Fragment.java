@@ -48,7 +48,7 @@ public class UserCollection_Fragment extends BaseFragment<MyFragmentMessage_Pres
 
     @Override
     protected int initLayout() {
-        return R.layout.usercolleciton_fragment;
+        return R.layout.message_usercolleciton_fragment;
     }
 
     @Override

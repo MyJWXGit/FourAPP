@@ -88,7 +88,7 @@ public class SetSexActivity extends BaseActivity<MyMessage_Presenter> implements
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_set_sex;
+        return R.layout.message_activity_set_sex;
     }
 
     @Override

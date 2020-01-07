@@ -92,7 +92,7 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my_home;
+        return R.layout.message_activity_my_home;
     }
 
     @Override

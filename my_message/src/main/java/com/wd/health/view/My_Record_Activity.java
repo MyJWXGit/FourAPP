@@ -85,7 +85,7 @@ public class My_Record_Activity extends BaseActivity<MyMessage_Presenter> implem
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my__record_;
+        return R.layout.message_activity_my__record_;
     }
 
     @OnClick({R2.id.message_fanhui, R2.id.button_delete, R2.id.button_bianji, R2.id.myfile_button})
@@ -98,7 +98,7 @@ public class My_Record_Activity extends BaseActivity<MyMessage_Presenter> implem
             AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialog);
             final AlertDialog dialog = builder.create();
             //此处设置位置窗体大小
-            View inflate = View.inflate(this, R.layout.layout_dialog, null);
+            View inflate = View.inflate(this, R.layout.message_layout_dialog, null);
             dialog.setView(inflate);
             dialog.show();//显示对话框
             Button quxiaoButton = inflate.findViewById(R.id.dialog_quxiao_button);

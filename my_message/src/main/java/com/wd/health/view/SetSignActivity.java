@@ -157,7 +157,7 @@ public class SetSignActivity extends BaseActivity<MyMessage_Presenter> implement
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_set_sign;
+        return R.layout.message_activity_set_sign;
     }
 
     @Override
