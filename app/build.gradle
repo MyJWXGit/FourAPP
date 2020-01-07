@@ -89,19 +89,19 @@ dependencies {
     implementation rootProject.ext.dependencies["autosize"]
     implementation rootProject.ext.dependencies["tablayout"]
     implementation rootProject.ext.dependencies["rxjava"]
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     implementation rootProject.ext.dependencies["fresco"]
+    implementation rootProject.ext.dependencies["butterknife"]
+    implementation rootProject.ext.dependencies["PickerView"]
+    implementation rootProject.ext.dependencies["wx_sdk"]
+    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
+    implementation rootProject.ext.dependencies["StickyListHeaders"]
+    implementation rootProject.ext.dependencies["jpush"]
+    implementation rootProject.ext.dependencies["jpushcore"]
+    implementation rootProject.ext.dependencies["multidex"]
+    implementation rootProject.ext.dependencies["eventbus"]
+    implementation rootProject.ext.dependencies["permission"]
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     annotationProcessor 'com.alibaba:arouter-compiler:+'
-    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
-    implementation 'com.contrarywind:Android-PickerView:3.2.4'
-    implementation 'com.yanzhenjie:permission:1.1.2'
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-26'
-    implementation 'com.github.mtotschnig:StickyListHeaders:2.7.1'
-    implementation 'cn.jiguang.sdk:jpush:3.1.6'  // 此处以JPush 3.1.6 版本为例。
-    implementation 'cn.jiguang.sdk:jcore:1.2.5'  // 此处以JCore 1.2.5 版本为例。
-    implementation 'com.android.support:multidex:1.0.3'
     implementation project(':common')
     implementation project(':home')
     implementation project(':my_message')

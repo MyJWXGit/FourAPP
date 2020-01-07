@@ -76,7 +76,8 @@ dependencies {
     implementation rootProject.ext.dependencies["xrecyclerview"]
     implementation rootProject.ext.dependencies["jiguang_sdk_jmessage"]
     implementation rootProject.ext.dependencies["jiguang_sdk_jcore"]
-    implementation 'com.jakewharton:butterknife:10.2.1'
+    implementation rootProject.ext.dependencies["jiguang_sdk_jcore"]
+    implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     //阿里巴巴路由    放入MVP依赖
     //路由器

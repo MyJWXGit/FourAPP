@@ -115,11 +115,11 @@ dependencies {
     implementation rootProject.ext.dependencies["jiguang_sdk_jcore"]
     implementation rootProject.ext.dependencies["multidex"]
     implementation rootProject.ext.dependencies["PickerView"]
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+    implementation rootProject.ext.dependencies["butterknife"]
     implementation rootProject.ext.dependencies["fresco"]
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
     api files('libs/ocr-sdk.jar')
     implementation project(':orc_library')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 }

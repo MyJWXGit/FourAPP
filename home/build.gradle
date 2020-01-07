@@ -133,19 +133,17 @@ dependencies {
     implementation rootProject.ext.dependencies["flowlayout"]
     implementation rootProject.ext.dependencies["kuaisuAdapter"]
     implementation rootProject.ext.dependencies["glide"]
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+    implementation rootProject.ext.dependencies["butterknife"]
     implementation rootProject.ext.dependencies["fresco"]
-    annotationProcessor 'com.alibaba:arouter-compiler:+' //流失布局
-    //glide图片获取
+    implementation rootProject.ext.dependencies["jiguang_sdk_jmessage"]
+    implementation rootProject.ext.dependencies["jiguang_sdk_jcore"]
+    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
+    implementation rootProject.ext.dependencies["SmartRefreshHeader"]
+    implementation rootProject.ext.dependencies["appcompat"]
     implementation project(':common')
     implementation project(':circle')
     implementation project(':video')
     implementation project(':my_message')
-    implementation rootProject.ext.dependencies["jiguang_sdk_jmessage"]
-    implementation rootProject.ext.dependencies["jiguang_sdk_jcore"]// 此处以JCore 2.0.0 版本为例。
-    //1.1.0 API改动过大，老用户升级需谨慎
-    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
-    implementation rootProject.ext.dependencies["SmartRefreshHeader"]
-    implementation rootProject.ext.dependencies["appcompat"]
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:+' //流失布局
 }

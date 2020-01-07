@@ -25,7 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".VideoActivity"
+            android:name="com.wd.health.VideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">

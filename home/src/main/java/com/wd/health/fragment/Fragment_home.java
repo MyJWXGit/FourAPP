@@ -35,6 +35,7 @@ import com.wd.health.bean.Information_ListBean;
 import com.wd.health.bean.Plate_ListBean;
 import com.wd.health.presenter.HomePresenter;
 import com.wd.health.R2;
+
 import java.util.AbstractList;
 import java.util.List;
 
@@ -89,7 +90,7 @@ public class Fragment_home extends BaseFragment<HomePresenter> implements Contra
 
     @Override
     protected int initLayout() {
-        return R2.layout.fragment_home;
+        return R.layout.fragment_home;
     }
 
     @Override
