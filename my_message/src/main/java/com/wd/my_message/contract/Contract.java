@@ -75,7 +75,7 @@ public interface Contract {
         void onDeleteFile(int userId, String sessionId, int archivesId,IModelCallBack iModelCallBack);
         void onUpdateFile(int userId, String sessionId, Map<String,Object> map,IModelCallBack iModelCallBack);
         void onInsertFile(int userId, String sessionId, Map<String,Object> map,IModelCallBack iModelCallBack);
-        void onUploadPiture(int userId, String sessionId, Map<String,MultipartBody.Part> picture, IModelCallBack iModelCallBack);
+        void onUploadPiture(int userId, String sessionId,MultipartBody.Part picture, IModelCallBack iModelCallBack);
         //做任务
         void onDoTask(int userId, String sessionId,int taskId,IModelCallBack iModelCallBack);
         void onGetTask(int userId, String sessionId,int taskId,IModelCallBack iModelCallBack);
@@ -143,7 +143,7 @@ public interface Contract {
         void onDeleteFile(int archivesId);
         void onUpdateFile(Map<String,Object> map);
         void onInsertFile(Map<String,Object> map);
-        void onUploadPiture(Map<String,MultipartBody.Part> picture);
+        void onUploadPiture(MultipartBody.Part picture);
         //做任务
         void onDoTask(int taskId);
         void onGetTask(int taskId);

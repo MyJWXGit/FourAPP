@@ -527,7 +527,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
     }
 
     @Override
-    public void onUploadPiture(Map<String,MultipartBody.Part> picture) {
+    public void onUploadPiture(MultipartBody.Part picture) {
         int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
         myMessage_mode.onUploadPiture(userId, sessionid, picture, new Contract.IModel.IModelCallBack() {

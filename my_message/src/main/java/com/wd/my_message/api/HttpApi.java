@@ -179,7 +179,7 @@ public interface HttpApi {
     //http://172.17.8.100/health/user/verify/v1/uploadArchivesPicture
     @Multipart
     @POST(API.UploadPiture)
-    Observable<UserArchivesPictureBean> getpicture(@Header("userId") int userId, @Header("sessionId") String sessionId, @PartMap Map<String,MultipartBody.Part> picture);
+    Observable<UserArchivesPictureBean> getpicture(@Header("userId") int userId, @Header("sessionId") String sessionId, @Part MultipartBody.Part picture);
     //做任务
     @POST(API.DoTask)
     Observable<DoTaskBean> onDoTaskBean(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("taskId") int taskId);

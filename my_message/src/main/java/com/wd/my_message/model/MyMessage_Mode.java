@@ -558,7 +558,7 @@ public class MyMessage_Mode implements Contract.IModel {
     }
 
     @Override
-    public void onUploadPiture(int userId, String sessionId, Map<String,MultipartBody.Part> picture, IModelCallBack iModelCallBack) {
+    public void onUploadPiture(int userId, String sessionId, MultipartBody.Part picture, IModelCallBack iModelCallBack) {
         HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
                 .getpicture(userId,sessionId,picture)
                 .subscribeOn(Schedulers.io())

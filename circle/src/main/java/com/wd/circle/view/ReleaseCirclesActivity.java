@@ -29,6 +29,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -126,8 +127,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     private GridLayout mGridLayout;
     private List<MultipartBody.Part> parts = new ArrayList<>();
     private ArrayList<ImageItem> picList = new ArrayList<>();
-    private List<String> list;
-
+    int position;
     @Override
     protected MainPresenter providePresenter() {
         return new MainPresenter();
@@ -260,7 +260,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         popup_recycler_disease = view.findViewById(R.id.popup_recycler_disease);
         //1.构造一个PopupWindow，参数依次是加载的View，宽高
         popWindowDisease = new PopupWindow(view,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
 
         popWindowDisease.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
         //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
@@ -287,7 +287,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         popup_recycler_department = view.findViewById(R.id.popup_recycler_department);
         //1.构造一个PopupWindow，参数依次是加载的View，宽高
         popupWindow = new PopupWindow(view,
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
         popupWindow.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
         //这些为了点击非PopupWindow区域，PopupWindow会消失的，如果没有下面的
         //代码的话，你会发现，当你把PopupWindow显示出来了，无论你按多少次后退键
@@ -399,9 +399,9 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         if (obj instanceof Circle_list_Bean) {
             Circle_list_Bean circle_list_bean = (Circle_list_Bean) obj;
             List<Circle_list_Bean.ResultBean> result = circle_list_bean.getResult();
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
             ConsultationTwoAdapter consultationTwoAdapter = new ConsultationTwoAdapter(result, this);
-            popup_recycler_department.setLayoutManager(linearLayoutManager);
+            popup_recycler_department.setLayoutManager(gridLayoutManager);
             popup_recycler_department.setAdapter(consultationTwoAdapter);
             consultationTwoAdapter.setSetOnItemClickListen(new ConsultationTwoAdapter.SetOnItemClickListen() {
                 @Override
@@ -415,9 +415,9 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         } else if (obj instanceof DiseaseBean) {
             DiseaseBean diseaseBean = (DiseaseBean) obj;
             List<DiseaseBean.ResultBean> result = diseaseBean.getResult();
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
             IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
-            popup_recycler_disease.setLayoutManager(linearLayoutManager);
+            popup_recycler_disease.setLayoutManager(gridLayoutManager);
             popup_recycler_disease.setAdapter(illnessAdapter);
             illnessAdapter.setSetOnItemClicks(new IllnessAdapter.SetOnItemClicks() {
                 @Override
@@ -583,19 +583,17 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 .setLastImageList(new ArrayList<String>())
                 //调用多选
                 .pick(this, new OnImagePickCompleteListener() {
-
-
-
                     @Override
                     public void onImagePickComplete(ArrayList<ImageItem> items) {
                         //处理回调回来的图片信息，主线程
                         picList.addAll(items);
+                        String path = items.get(position).path;
 
-                        String path = items.get(0).path;
                         if (path!=null) {
                             File file = new File(path);
                             RequestBody requestBody = MultipartBody.create(MediaType.parse("image/*"), file);
                             MultipartBody.Part part = MultipartBody.Part.createFormData("picture", file.getName(), requestBody);
+
                             parts.add(part);
                             refreshGridLayout();
                         }
