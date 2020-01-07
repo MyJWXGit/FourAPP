@@ -54,7 +54,7 @@ public class Seach_Circle_Activity extends BaseActivity<MainPresenter> implement
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_seach__circle_;
+        return R.layout.circle_activity_seach__circle_;
     }
 
     @Override

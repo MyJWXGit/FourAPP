@@ -159,7 +159,7 @@ public class Fragmentn_circle extends BaseFragment<MainPresenter> implements Con
 
     @Override
     protected int initLayout() {
-        return R.layout.fragment_circle__home_;
+        return R.layout.circle_fragment_circle__home_;
     }
 
     @Override

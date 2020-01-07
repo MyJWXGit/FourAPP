@@ -36,7 +36,7 @@ public class IllnessAdapter extends RecyclerView.Adapter<IllnessAdapter.Holder> 
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.adapter_illness_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.circle_adapter_illness_item, null);
         return new Holder(inflate);
     }
 

@@ -145,7 +145,7 @@ public class Circle_Details_Activity extends BaseActivity<MainPresenter> impleme
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_circle__details_;
+        return R.layout.circle_activity_circle__details_;
     }
 
     @Override

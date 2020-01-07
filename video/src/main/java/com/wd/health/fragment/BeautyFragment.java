@@ -185,7 +185,7 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
 
     @Override
     protected int initLayout() {
-        return R.layout.beauty_fragment;
+        return R.layout.video_beauty_fragment;
     }
 
     @Override

@@ -81,7 +81,7 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my_video;
+        return R.layout.video_activity_my_video;
     }
 
     @Override

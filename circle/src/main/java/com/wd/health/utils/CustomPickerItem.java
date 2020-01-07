@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wd.health.R;
-import com.wd.health.R2;
 import com.ypx.imagepicker.bean.ImageItem;
 import com.ypx.imagepicker.bean.PickerItemDisableCode;
 import com.ypx.imagepicker.bean.selectconfig.BaseSelectConfig;
@@ -40,7 +39,7 @@ public class CustomPickerItem extends PickerItemView {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.layout_custom_item;
+        return R.layout.circle_layout_custom_item;
     }
 
     @Override

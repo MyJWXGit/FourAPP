@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.health.R;
-import com.wd.health.R2;
 import com.ypx.imagepicker.adapter.MultiPreviewAdapter;
 import com.ypx.imagepicker.bean.ImageItem;
 import com.ypx.imagepicker.bean.selectconfig.BaseSelectConfig;
@@ -53,7 +52,7 @@ public class CustomPreviewControllerView extends PreviewControllerView {
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.layout_custom_preview;
+        return R.layout.circle_layout_custom_preview;
     }
 
     /**

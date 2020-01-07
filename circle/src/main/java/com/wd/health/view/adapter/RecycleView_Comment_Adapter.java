@@ -40,7 +40,7 @@ private Context context;
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.adapter_sick_circle_comment_list_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.circle_adapter_sick_circle_comment_list_item, null);
         return new Holder(inflate);
     }
 

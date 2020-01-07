@@ -146,7 +146,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ReleaseCirclesActivity.this);
-                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_date, null);
+                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.circle_dialog_date, null);
                 final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
@@ -184,7 +184,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ReleaseCirclesActivity.this);
-                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_date, null);
+                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.circle_dialog_date, null);
                 final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
@@ -237,11 +237,11 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_release_circles;
+        return R.layout.circle_activity_release_circles;
     }
 
     private void initPopWindowDisease(View v) {
-        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_disease, null, false);
+        View view = LayoutInflater.from(this).inflate(R.layout.circle_item_popip_disease, null, false);
         popup_recycler_disease = view.findViewById(R.id.popup_recycler_disease);
         //1.构造一个PopupWindow，参数依次是加载的View，宽高
         popWindowDisease = new PopupWindow(view,
@@ -268,7 +268,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     }
 
     private void initPopuWindows(View v) {
-        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_department, null, false);
+        View view = LayoutInflater.from(this).inflate(R.layout.circle_item_popip_department, null, false);
         popup_recycler_department = view.findViewById(R.id.popup_recycler_department);
         //1.构造一个PopupWindow，参数依次是加载的View，宽高
         popupWindow = new PopupWindow(view,
@@ -467,7 +467,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         if (num >= 6) {
             mGridLayout.setVisibility(View.VISIBLE);
             for (int i = 0; i < num; i++) {
-                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.a_layout_pic_select, null);
+                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.circle_a_layout_pic_select, null);
                 view.setLayoutParams(params);
                 view.setPadding(dp(5), dp(5), dp(5), dp(5));
                 setPicItemClick(view, i);
@@ -486,7 +486,7 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 }
             });
             for (int i = 0; i < num; i++) {
-                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.a_layout_pic_select, null);
+                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.circle_a_layout_pic_select, null);
                 view.setLayoutParams(params);
                 view.setPadding(dp(5), dp(5), dp(5), dp(5));
                 setPicItemClick(view, i);

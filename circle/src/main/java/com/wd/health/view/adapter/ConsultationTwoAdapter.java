@@ -37,7 +37,7 @@ public class ConsultationTwoAdapter extends RecyclerView.Adapter<ConsultationTwo
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.consultationtwo_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.circle_consultationtwo_item, null);
         return new Holder(inflate);
     }
 

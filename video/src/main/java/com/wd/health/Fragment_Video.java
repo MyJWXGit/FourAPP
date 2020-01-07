@@ -48,7 +48,7 @@ public class Fragment_Video extends BaseFragment<Video_EntryPresenter> implement
 
     @Override
     protected int initLayout() {
-        return R.layout.fragment_my_video;
+        return R.layout.video_fragment_my_video;
     }
 
     @Override

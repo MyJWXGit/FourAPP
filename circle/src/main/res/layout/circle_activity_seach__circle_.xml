@@ -83,6 +83,6 @@
         android:background="#ffffff"></androidx.recyclerview.widget.RecyclerView>
 
     <include
-        layout="@layout/layout_include"
+        layout="@layout/circle_layout_include"
         android:visibility="gone" />
 </RelativeLayout>

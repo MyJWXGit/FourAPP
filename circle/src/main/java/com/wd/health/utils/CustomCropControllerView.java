@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.wd.health.R;
-import com.wd.health.R2;
 import com.ypx.imagepicker.utils.PStatusBarUtil;
 import com.ypx.imagepicker.views.base.SingleCropControllerView;
 import com.ypx.imagepicker.widget.cropimage.CropImageView;
@@ -25,7 +24,7 @@ public class CustomCropControllerView extends SingleCropControllerView {
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.layout_custom_crop;
+        return R.layout.circle_layout_custom_crop;
     }
 
     /**

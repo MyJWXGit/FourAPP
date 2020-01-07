@@ -34,7 +34,7 @@ public class HomeFragment extends BaseFragment<Home_CirclePresenter> implements 
 
     @Override
     protected int initLayout() {
-        return R.layout.home_fragment;
+        return R.layout.circle_home_fragment;
     }
 
     @Override

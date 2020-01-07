@@ -19,7 +19,7 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PStatusBarUtil.fullScreen(this);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.circle_activity_second);
         imageItems = (ArrayList<ImageItem>) getIntent().getSerializableExtra(ImagePicker.INTENT_KEY_PICKER_RESULT);
         ImagesViewPager viewPager = findViewById(R.id.viewpager);
         viewPager.setImageViewList(imageItems);
