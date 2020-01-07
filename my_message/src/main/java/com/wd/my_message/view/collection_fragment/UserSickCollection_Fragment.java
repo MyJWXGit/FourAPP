@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.base.BaseFragment;
-import com.wd.my_message.R;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.bean.DeleteCollectionBean;
 import com.wd.my_message.bean.UserSickCollectionBean;
 import com.wd.my_message.contract.Contract;

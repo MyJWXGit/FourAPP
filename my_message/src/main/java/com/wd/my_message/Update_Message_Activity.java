@@ -29,7 +29,8 @@ import com.wd.my_message.view.AutonymActivity;
 import com.wd.my_message.view.SetNameActivity;
 import com.wd.my_message.view.SetSexActivity;
 import com.wd.my_message.view.SetSignActivity;
-
+import com.wd.health.R;
+import com.wd.health.R2;
 import java.io.File;
 
 import butterknife.BindView;

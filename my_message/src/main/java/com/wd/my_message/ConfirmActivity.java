@@ -9,7 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.wd.my_message.R;
+import com.wd.health.R;
+import com.wd.health.R2;
 
 
 public class ConfirmActivity extends AppCompatActivity {

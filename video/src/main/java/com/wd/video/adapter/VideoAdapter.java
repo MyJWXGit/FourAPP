@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 
 import com.dou361.ijkplayer.widget.IjkVideoView;
-import com.wd.video.R;
+import com.wd.health.R;
 import com.wd.video.bean.Video_QueryBean;
 import com.wd.video.contract.Contract;
 

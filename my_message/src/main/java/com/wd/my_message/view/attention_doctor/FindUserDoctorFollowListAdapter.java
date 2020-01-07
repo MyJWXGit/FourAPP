@@ -12,7 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.wd.my_message.R;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.bean.AttentionDoctorListBean;
 
 import java.util.List;

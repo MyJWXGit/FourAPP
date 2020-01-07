@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.base.BaseActivity;
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.bean.SystemMessageBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;

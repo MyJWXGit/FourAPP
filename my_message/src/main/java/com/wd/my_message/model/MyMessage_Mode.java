@@ -431,7 +431,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(LianxuSignBean lianxuSignBean) {
-                        if (lianxuSignBean!=null){
+                        if (lianxuSignBean != null) {
                             iModelCallBack.onSuccess(lianxuSignBean);
                         }
                     }
@@ -500,7 +500,7 @@ public class MyMessage_Mode implements Contract.IModel {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
                 //你要跑的接口方法
-                .onEndInquiry(userId, sessionId,recordId)
+                .onEndInquiry(userId, sessionId, recordId)
                 //切换线程
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -545,7 +545,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(UserArchivesBean userArchivesBean) {
-                        if (userArchivesBean!=null){
+                        if (userArchivesBean != null) {
                             iModelCallBack.onSuccess(userArchivesBean);
                         }
                     }
@@ -571,7 +571,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(DeleteArchivesBean deleteArchivesBean) {
-                        if (deleteArchivesBean!=null){
+                        if (deleteArchivesBean != null) {
                             iModelCallBack.onSuccess(deleteArchivesBean);
                         }
                     }
@@ -597,7 +597,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(UpdateArchivesBean updateArchivesBean) {
-                        if (updateArchivesBean!=null){
+                        if (updateArchivesBean != null) {
                             iModelCallBack.onSuccess(updateArchivesBean);
                         }
                     }
@@ -623,7 +623,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(AddArchivesBean addArchivesBean) {
-                        if (addArchivesBean!=null){
+                        if (addArchivesBean != null) {
                             iModelCallBack.onSuccess(addArchivesBean);
                         }
                     }
@@ -631,9 +631,9 @@ public class MyMessage_Mode implements Contract.IModel {
     }
 
     @Override
-    public void onUploadPiture(int userId, String sessionId, Map<String,MultipartBody.Part> picture, IModelCallBack iModelCallBack) {
+    public void onUploadPiture(int userId, String sessionId, MultipartBody.Part picture, IModelCallBack iModelCallBack) {
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
-                .getpicture(userId,sessionId,picture)
+                .getpicture(userId, sessionId, picture)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<UserArchivesPictureBean>() {
@@ -649,7 +649,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(UserArchivesPictureBean userArchivesPictureBean) {
-                        if (userArchivesPictureBean!=null){
+                        if (userArchivesPictureBean != null) {
                             iModelCallBack.onSuccess(userArchivesPictureBean);
                         }
                     }
@@ -675,7 +675,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(DoTaskBean doTaskBean) {
-                        if (doTaskBean!=null){
+                        if (doTaskBean != null) {
                             iModelCallBack.onSuccess(doTaskBean);
                         }
                     }
@@ -701,7 +701,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(GetTaskBean getTaskBean) {
-                        if (getTaskBean!=null){
+                        if (getTaskBean != null) {
                             iModelCallBack.onSuccess(getTaskBean);
                         }
                     }
@@ -727,7 +727,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(QueryTaskListBean queryTaskListBean) {
-                        if (queryTaskListBean!=null){
+                        if (queryTaskListBean != null) {
                             iModelCallBack.onSuccess(queryTaskListBean);
                         }
                     }
@@ -753,7 +753,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(MySickCircleListBean mySickCircleListBean) {
-                        if (mySickCircleListBean!=null){
+                        if (mySickCircleListBean != null) {
                             iModelCallBack.onSuccess(mySickCircleListBean);
                         }
                     }
@@ -763,7 +763,7 @@ public class MyMessage_Mode implements Contract.IModel {
     @Override
     public void onMyCircleComment(int userId, String sessionId, int sickCircleId, int page, int count, IModelCallBack iModelCallBac) {
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
-                .getMySickCircleCommentList(userId,sessionId,sickCircleId,page,count)
+                .getMySickCircleCommentList(userId, sessionId, sickCircleId, page, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MySickCircleCommentListBean>() {
@@ -779,7 +779,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(MySickCircleCommentListBean mySickCircleCommentListBean) {
-                        if (mySickCircleCommentListBean!=null){
+                        if (mySickCircleCommentListBean != null) {
                             iModelCallBac.onSuccess(mySickCircleCommentListBean);
                         }
                     }
@@ -830,7 +830,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("xxx", "onError: "+e);
+                        Log.i("xxx", "onError: " + e);
                     }
 
                     @Override
@@ -856,7 +856,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("xxx", "onError: "+e);
+                        Log.i("xxx", "onError: " + e);
                     }
 
                     @Override
@@ -871,7 +871,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
     public void onSet_Sex(int userId, String sessionId, int sex, IModelCallBack iModelCallBack) {
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
-                .onSet_Sex(userId, sessionId,sex)
+                .onSet_Sex(userId, sessionId, sex)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<SetSexBean>() {
@@ -882,7 +882,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("xxx", "onError: "+e);
+                        Log.i("xxx", "onError: " + e);
                     }
 
                     @Override
@@ -897,7 +897,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
     public void onSet_Pwd(int userId, String sessionId, String oldPwd, String newPwd, IModelCallBack iModelCallBack) {
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
-                .onSet_Pwd(userId, sessionId,oldPwd,newPwd)
+                .onSet_Pwd(userId, sessionId, oldPwd, newPwd)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<SetPwdBean>() {
@@ -908,7 +908,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("xxx", "onError: "+e);
+                        Log.i("xxx", "onError: " + e);
                     }
 
                     @Override
@@ -923,7 +923,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
     public void onSet_Sign(int userId, String sessionId, int age, int height, int weight, IModelCallBack iModelCallBack) {
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
-                .onSet_Sign(userId, sessionId,age,height,weight)
+                .onSet_Sign(userId, sessionId, age, height, weight)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<SetSignBean>() {
@@ -934,7 +934,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("xxx", "onError: "+e);
+                        Log.i("xxx", "onError: " + e);
                     }
 
                     @Override

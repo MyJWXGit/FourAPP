@@ -23,8 +23,8 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.wd.common.base.BaseActivity;
 import com.wd.my_message.My_Home_Activity;
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.bean.AddArchivesBean;
 import com.wd.my_message.bean.UserArchivesPictureBean;
 import com.wd.my_message.contract.Contract;
@@ -101,6 +101,7 @@ public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements
     @BindView(R2.id.lin8)
     LinearLayout lin8;
     private TimePickerView pvTime;
+
     @Override
     protected MyMessage_Presenter providePresenter() {
         return new MyMessage_Presenter();
@@ -152,13 +153,13 @@ public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements
                 String startte = editStarttime.getText().toString().trim();
                 String endte = editEndtime.getText().toString().trim();
                 Map<String, Object> hashMap = new HashMap<>();
-                hashMap.put("diseaseMain",main);
-                hashMap.put("diseaseNow",now);
-                hashMap.put("diseaseBefore",before);
-                hashMap.put("treatmentHospitalRecent",recent);
-                hashMap.put("treatmentProcess",process);
-                hashMap.put("treatmentStartTime",startte);
-                hashMap.put("treatmentEndTime",endte);
+                hashMap.put("diseaseMain", main);
+                hashMap.put("diseaseNow", now);
+                hashMap.put("diseaseBefore", before);
+                hashMap.put("treatmentHospitalRecent", recent);
+                hashMap.put("treatmentProcess", process);
+                hashMap.put("treatmentStartTime", startte);
+                hashMap.put("treatmentEndTime", endte);
                 mPresenter.onInsertFile(hashMap);
             }
         });
@@ -169,16 +170,16 @@ public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 startActivityForResult(intent, 10);
-
             }
         });
     }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode ==10){
-            if (resultCode== Activity.RESULT_OK){
+        if (requestCode == 10) {
+            if (resultCode == Activity.RESULT_OK) {
                 Uri dataData = data.getData();
                 //用一个工具类获取图片的绝对路径,我会粘到下方
                 String path = ImageUtil.getPath(this, dataData);
@@ -193,8 +194,6 @@ public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements
                     RequestBody requestBody1 = RequestBody.create(MediaType.parse("multipart/form-data"), file);
                     //创建表格数据
                     MultipartBody.Part part = MultipartBody.Part.createFormData("picture", file.getName(), requestBody1);
-
-
                     mPresenter.onUploadPiture(part);
                 }
             }
@@ -245,13 +244,13 @@ public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements
 
     @Override
     public void onSuccess(Object data) {
-        if (data instanceof AddArchivesBean){
-            AddArchivesBean addArchivesBean= (AddArchivesBean) data;
-            if (addArchivesBean.getStatus().equals("0000")){
+        if (data instanceof AddArchivesBean) {
+            AddArchivesBean addArchivesBean = (AddArchivesBean) data;
+            if (addArchivesBean.getStatus().equals("0000")) {
                 Toast.makeText(this, addArchivesBean.getMessage(), Toast.LENGTH_SHORT).show();
                 mPresenter.onDoTask(1004);
                 startActivity(new Intent(this, My_Home_Activity.class));
-            }else {
+            } else {
                 Toast.makeText(this, addArchivesBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }

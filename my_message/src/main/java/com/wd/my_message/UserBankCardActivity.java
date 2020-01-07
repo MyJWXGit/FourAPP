@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.wd.my_message.R;
+import com.wd.health.R;
+import com.wd.health.R2;
 
 
 public class UserBankCardActivity extends AppCompatActivity {

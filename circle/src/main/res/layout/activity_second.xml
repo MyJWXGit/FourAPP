@@ -7,7 +7,7 @@
     tools:context=".view.SecondActivity">
 
 
-    <com.wd.circle.utils.ImagesViewPager
+    <com.wd.health.utils.ImagesViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="500dp"

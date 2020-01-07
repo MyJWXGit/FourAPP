@@ -28,7 +28,8 @@ import com.wd.my_message.view.My_Task_Activity;
 import com.wd.my_message.view.My_Walk_Activity;
 import com.wd.my_message.view.RecordActivity;
 import com.wd.my_message.view.Suggest_message_Activity;
-
+import com.wd.health.R;
+import com.wd.health.R2;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

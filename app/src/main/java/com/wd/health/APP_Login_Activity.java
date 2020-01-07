@@ -84,16 +84,16 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
             ARouter.getInstance().build("/home/activity").navigation();
             result = bean.getResult();
             String userName = result.getUserName();
-            Log.d("SSSS", "userName: "+userName);
+            Log.d("SSSS", "userName: " + userName);
             String jiGuangPwd = result.getJiGuangPwd();
             try {
                 string = RsaCoder.decryptByPublicKey(jiGuangPwd);
-                Log.d("aaaa", "onSuccess: "+string);
+                Log.d("aaaa", "onSuccess: " + string);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             String s = MD5(string);
-            Log.d("ssss", "s: "+s);
+            Log.d("ssss", "s: " + s);
         }
     }
 

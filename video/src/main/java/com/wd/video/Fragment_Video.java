@@ -5,7 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
-
+import com.wd.health.R;
+import com.wd.health.R2;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;

@@ -71,7 +71,7 @@
                 android:textColor="#3287ea"
                 android:textSize="14sp" />
 
-            <com.wd.home.utils.FlowView
+            <com.wd.health.utils.FlowView
                 android:id="@+id/fl_searchHistory"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"

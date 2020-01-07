@@ -13,8 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.wd.common.base.BaseActivity;
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.Update_Message_Activity;
 import com.wd.my_message.bean.SetSexBean;
 import com.wd.my_message.contract.Contract;

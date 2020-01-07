@@ -91,7 +91,7 @@ public interface Contract {
 
         void onInsertFile(int userId, String sessionId, Map<String, Object> map, IModelCallBack iModelCallBack);
 
-        void onUploadPiture(int userId, String sessionId, Map<String, MultipartBody.Part> picture, IModelCallBack iModelCallBack);
+        void onUploadPiture(int userId, String sessionId, MultipartBody.Part picture, IModelCallBack iModelCallBack);
 
         //做任务
         void onDoTask(int userId, String sessionId, int taskId, IModelCallBack iModelCallBack);
@@ -181,7 +181,7 @@ public interface Contract {
 
         void onInsertFile(Map<String, Object> map);
 
-        void onUploadPiture(Map<String, MultipartBody.Part> picture);
+        void onUploadPiture(MultipartBody.Part picture);
 
         //做任务
         void onDoTask(int taskId);

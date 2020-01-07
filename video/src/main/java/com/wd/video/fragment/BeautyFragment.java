@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.dou361.ijkplayer.widget.IjkVideoView;
 import com.wd.common.base.BaseFragment;
-import com.wd.video.R;
+import com.wd.health.R;
 import com.wd.video.adapter.VideoAdapter;
 import com.wd.video.bean.Video_CollectionBean;
 import com.wd.video.bean.Video_PayBean;

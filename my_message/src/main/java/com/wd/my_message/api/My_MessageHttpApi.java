@@ -206,7 +206,7 @@ public interface My_MessageHttpApi {
     //http://172.17.8.100/health/user/verify/v1/uploadArchivesPicture
     @Multipart
     @POST(My_messageAPI.UploadPiture)
-    Observable<UserArchivesPictureBean> getpicture(@Header("userId") int userId, @Header("sessionId") String sessionId, @PartMap Map<String, MultipartBody.Part> picture);
+    Observable<UserArchivesPictureBean> getpicture(@Header("userId") int userId, @Header("sessionId") String sessionId, @Part MultipartBody.Part picture);
 
     //做任务
     @POST(My_messageAPI.DoTask)
@@ -243,23 +243,27 @@ public interface My_MessageHttpApi {
     //查看历史问诊
     @GET(My_messageAPI.HistoryInquiryRecord)
     Observable<HistoryBean> onHistory(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("page") int page, @Query("count") int count);
+
     @PUT(My_messageAPI.SetName)
     Observable<Set_NameBean> onSet_Name(
             @Header("userId") int userId,
             @Header("sessionId") String sessionId,
             @Query("nickName") String nickName
     );
+
     @GET(My_messageAPI.UserInfo)
     Observable<User_InfoBean> onUser_Info(
             @Header("userId") int userId,
             @Header("sessionId") String sessionId
     );
+
     @PUT(My_messageAPI.SetSex)
     Observable<SetSexBean> onSet_Sex(
             @Header("userId") int userId,
             @Header("sessionId") String sessionId,
             @Query("sex") int sex
     );
+
     @PUT(My_messageAPI.SetPwd)
     Observable<SetPwdBean> onSet_Pwd(
             @Header("userId") int userId,
@@ -267,6 +271,7 @@ public interface My_MessageHttpApi {
             @Query("oldPwd") String oldPwd,
             @Query("newPwd") String newPwd
     );
+
     @PUT(My_messageAPI.SetSign)
     Observable<SetSignBean> onSet_Sign(
             @Header("userId") int userId,

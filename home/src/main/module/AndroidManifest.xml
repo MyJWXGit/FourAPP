@@ -17,18 +17,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activity.SendMessageActivity"></activity>
-        <activity android:name=".activity.CommentActivity" />
-        <activity android:name=".activity.Doctor_detailsActivity" />
-        <activity android:name=".activity.InfoActivity" />
-        <activity android:name=".activity.Edit_SearchActivity" />
-        <activity android:name=".activity.DrugActivity" />
-        <activity android:name=".activity.DiseaseKnowledgeActivity" />
-        <activity android:name=".activity.CommonActivity" />
-        <activity android:name=".activity.FindInfoActivity" /> <!-- 屏幕适配 -->
+        <activity android:name="com.wd.health.activity.SendMessageActivity"></activity>
+        <activity android:name="com.wd.health.activity.CommentActivity" />
+        <activity android:name="com.wd.health.activity.Doctor_detailsActivity" />
+        <activity android:name="com.wd.health.activity.InfoActivity" />
+        <activity android:name="com.wd.health.activity.Edit_SearchActivity" />
+        <activity android:name="com.wd.health.activity.DrugActivity" />
+        <activity android:name="com.wd.health.activity.DiseaseKnowledgeActivity" />
+        <activity android:name="com.wd.health.activity.CommonActivity" />
+        <activity android:name="com.wd.health.activity.FindInfoActivity" /> <!-- 屏幕适配 -->
         <!-- 屏幕适配 -->
         <receiver
-            android:name=".activity.HomeActivity"
+            android:name="com.wd.health.activity.HomeActivity"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -46,7 +46,7 @@
             android:name="android.webkit.WebView.EnableSafeBrowsing"
             android:value="true" />
 
-        <activity android:name=".activity.HomeActivity">
+        <activity android:name="com.wd.health.activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

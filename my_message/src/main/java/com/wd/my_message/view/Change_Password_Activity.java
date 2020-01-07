@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.ToastUtils;
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.SettingsActivity;
 import com.wd.my_message.Update_Message_Activity;
 import com.wd.my_message.bean.SetPwdBean;
