@@ -30,9 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements Contract.IView {
-
-
-
     private static final String TAG = "VideoActivity";
     private ViewPager videoVp;
     private TabLayout videoTab;

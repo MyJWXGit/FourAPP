@@ -57,13 +57,13 @@
             android:value="640" />
         <!-- Required SDK 核心功能-->
         <!-- 这个Service要继承JCommonService -->
-        <service
-            android:name="com.wd.home.utils.Health_Service"
-            android:process=":pushcore">
-            <intent-filter>
-                <action android:name="cn.jiguang.user.service.action" />
-            </intent-filter>
-        </service>
+<!--        <service-->
+<!--            android:name="com.wd.home.utils.Health_Service"-->
+<!--            android:process=":pushcore">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="cn.jiguang.user.service.action" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
         <service
             android:name="cn.jpush.android.service.PushService"
             android:process=":multiprocess"

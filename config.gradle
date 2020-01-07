@@ -1,6 +1,5 @@
 ext {
-
-
+    
     //是否处于Module模式
     isModule = false
     //需要运行的组件，当allPackage为false的时候，此变量生效，模块名参照settings.gradle中的
@@ -81,7 +80,7 @@ ext {
             "constraint-layout"      : 'com.android.support.constraint:constraint-layout:1.1.0',//约束性布局
             "test:runner"            : 'com.android.support.test:runner:1.0.2',//测试依赖，新建项目时会默认添加，一般不建议添加
             "espresso-core"          : 'com.android.support.test.espresso:espresso-core:3.0.2',//测试依赖，新建项目时会默认添加，一般不建议添加
-            "glide"                  : 'com.github.bumptech.glide:glide:3.7.0',//测试依赖，新建项目时会默认添加，一般不建议添加''
+            "glide"                  : 'com.github.bumptech.glide:glide:4.4.0',//测试依赖，新建项目时会默认添加，一般不建议添加''
             "picker"                 : 'com.contrarywind:Android-PickerView:3.2.7',
 //            // App dependencies
 //            "ijkPlayerVersion"       : '0.8.8',

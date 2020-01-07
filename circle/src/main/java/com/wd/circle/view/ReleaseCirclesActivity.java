@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -25,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -145,17 +143,6 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
         refreshGridLayout();
         //设置在activity启动的时候输入法默认是不开启的
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        //悬赏额度的开关
-        swit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    xuanshangeduLinear.setVisibility(View.VISIBLE);
-                } else {
-                    xuanshangeduLinear.setVisibility(View.GONE);
-                }
-            }
-        });
         //开始时间
         releaseCircleIvStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -412,8 +399,8 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                     popupWindow.dismiss();
                 }
             });
-        } else if (obj instanceof DiseaseBean) {
-            DiseaseBean diseaseBean = (DiseaseBean) obj;
+        }else if (obj instanceof DiseaseBean){
+            DiseaseBean diseaseBean= (DiseaseBean) obj;
             List<DiseaseBean.ResultBean> result = diseaseBean.getResult();
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
@@ -445,20 +432,20 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
             } else {
                 Toast.makeText(this, repleaseCircleBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        } else if (obj instanceof DoTaskBean) {
-            DoTaskBean doTaskBean = (DoTaskBean) obj;
-            if (doTaskBean.getStatus().equals("0000")) {
+        }else if (obj instanceof DoTaskBean){
+            DoTaskBean doTaskBean= (DoTaskBean) obj;
+            if (doTaskBean.getStatus().equals("0000")){
                 Toast.makeText(this, "每日首发病友圈完成!快去领取奖励吧", Toast.LENGTH_SHORT).show();
                 mPresenter.onPicture(userId + "", sessionId, sickCircleId, parts);
             }
-        } else if (obj instanceof PictureBean) {
-            PictureBean pictureBean = (PictureBean) obj;
+        }else if (obj instanceof PictureBean){
+            PictureBean pictureBean= (PictureBean) obj;
             if (pictureBean.getStatus().equals("0000")) {
                 Toast.makeText(this, pictureBean.getMessage(), Toast.LENGTH_SHORT).show();
                 //做任务
                 mPresenter.onDoTask(userId + "", sessionId, 1003);
                 finish();
-            } else {
+            }else {
                 Toast.makeText(this, pictureBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }

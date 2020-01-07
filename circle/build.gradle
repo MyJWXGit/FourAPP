@@ -8,6 +8,9 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
+        if (Boolean.valueOf(rootProject.ext.isModule)) {
+            applicationId "com.wd.circle"
+        }
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -24,7 +27,7 @@ android {
         }
         ndk {
             //选择要添加的对应cpu类型的.so库。
-            abiFilters "armeabi",'arm64-v8a','x86', 'x86_64', 'mips', 'mips64'
+            abiFilters "armeabi", 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
     }
@@ -103,7 +106,7 @@ dependencies {
     implementation rootProject.ext.dependencies["tablayout"]
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
-    implementation project(':my_message')
+//    implementation project(':my_message')
     implementation 'com.google.android.material:material:1.0.0'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
     implementation 'com.ypx.yimagepicker:androidx:3.0.1'

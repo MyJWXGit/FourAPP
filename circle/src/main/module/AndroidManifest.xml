@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name=".utils.App"
+        android:name="com.wd.common.app.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,14 +19,14 @@
         <activity android:name=".view.Seach_Circle_Activity" />
         <activity android:name=".view.ReleaseCirclesActivity" />
         <activity android:name=".view.Circle_Details_Activity" />
-        <activity android:name=".view.Circle_Home_Activity" />
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".view.Circle_Home_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 屏幕适配 -->
+        </activity>
+
         <receiver
             android:name=".view.MainActivity$MyBroadcastReceiver"
             android:enabled="true"
