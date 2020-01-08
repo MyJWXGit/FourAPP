@@ -1,37 +1,43 @@
 package com.wd.my_message.model;
 
+import android.util.Log;
+
 import com.wd.common.utils.HttpUtils;
 import com.wd.my_message.api.My_MessageHttpApi;
-import com.wd.my_message.bean.EndInquiryBean;
-import com.wd.my_message.bean.HealthyCurrencyBean;
-import com.wd.my_message.bean.HistoryBean;
-import com.wd.my_message.bean.InquiryMessageBean;
-import com.wd.my_message.bean.InquiryRecordBean;
-import com.wd.my_message.bean.Message_LoginBean;
-import com.wd.my_message.bean.MyWalletBean;
-import com.wd.my_message.bean.QuerySignBean;
-import com.wd.my_message.bean.SignBean;
-import com.wd.my_message.bean.SuggestBean;
-import com.wd.my_message.bean.SystemMessageBean;
-import com.wd.my_message.bean.UserColletionBean;
-import com.wd.my_message.bean.UserSickCollectionBean;
-import com.wd.my_message.bean.VideoCollectionBean;
-import com.wd.my_message.contract.Contract;
 import com.wd.my_message.bean.AddArchivesBean;
 import com.wd.my_message.bean.AttentionDoctorListBean;
 import com.wd.my_message.bean.ConsumptionRecordBean;
+import com.wd.my_message.bean.EndInquiryBean;
 import com.wd.my_message.bean.DeleteArchivesBean;
 import com.wd.my_message.bean.DoTaskBean;
 import com.wd.my_message.bean.GetTaskBean;
+import com.wd.my_message.bean.HealthyCurrencyBean;
+import com.wd.my_message.bean.HistoryBean;
 import com.wd.my_message.bean.ImageBean;
+import com.wd.my_message.bean.InquiryMessageBean;
+import com.wd.my_message.bean.InquiryRecordBean;
 import com.wd.my_message.bean.LianxuSignBean;
 import com.wd.my_message.bean.MySickCircleCommentListBean;
 import com.wd.my_message.bean.MySickCircleListBean;
+import com.wd.my_message.bean.MyWalletBean;
+import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.QueryTaskListBean;
+import com.wd.my_message.bean.SetPwdBean;
+import com.wd.my_message.bean.SetSexBean;
+import com.wd.my_message.bean.SetSignBean;
+import com.wd.my_message.bean.Set_NameBean;
+import com.wd.my_message.bean.SignBean;
+import com.wd.my_message.bean.SuggestBean;
+import com.wd.my_message.bean.SystemMessageBean;
 import com.wd.my_message.bean.UnAttentionDoctorBean;
 import com.wd.my_message.bean.UpdateArchivesBean;
 import com.wd.my_message.bean.UserArchivesBean;
 import com.wd.my_message.bean.UserArchivesPictureBean;
+import com.wd.my_message.bean.UserColletionBean;
+import com.wd.my_message.bean.UserSickCollectionBean;
+import com.wd.my_message.bean.User_InfoBean;
+import com.wd.my_message.bean.VideoCollectionBean;
+import com.wd.my_message.contract.Contract;
 
 import java.util.Map;
 
@@ -520,37 +526,6 @@ public class MyMessage_Mode implements Contract.IModel {
     }
 
     @Override
-    public void onHistory(int userId, String sessionId, int page, int count, IModelCallBack iBallBask) {
-        //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
-                //你要跑的接口方法
-                .onHistory(userId, sessionId, page, count)
-                //切换线程
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<HistoryBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (iBallBask != null) {
-                            iBallBask.onError(e);
-                        }
-                    }
-
-                    @Override
-                    public void onNext(HistoryBean historyBean) {
-                        if (iBallBask != null) {
-                            iBallBask.onSuccess(historyBean);
-                        }
-                    }
-                });
-    }
-
-    @Override
     public void onMyFile(int userId, String sessionId, IModelCallBack iModelCallBack) {
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
                 .getarchives(userId, sessionId)
@@ -655,7 +630,7 @@ public class MyMessage_Mode implements Contract.IModel {
     }
 
     @Override
-    public void onUploadPiture(int userId, String sessionId, Map<String, MultipartBody.Part> picture, IModelCallBack iModelCallBack) {
+    public void onUploadPiture(int userId, String sessionId, MultipartBody.Part picture, IModelCallBack iModelCallBack) {
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
                 .getpicture(userId, sessionId, picture)
                 .subscribeOn(Schedulers.io())
@@ -811,12 +786,15 @@ public class MyMessage_Mode implements Contract.IModel {
     }
 
     @Override
-    public void onMessage(int userId, String sessionId, IModelCallBack iModelCallBac) {
+    public void onHistory(int userId, String sessionId, int page, int count, IModelCallBack iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
-                .onMessage(userId, sessionId)
+                //你要跑的接口方法
+                .onHistory(userId, sessionId, page, count)
+                //切换线程
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Message_LoginBean>() {
+                .subscribe(new Observer<HistoryBean>() {
                     @Override
                     public void onCompleted() {
 
@@ -824,15 +802,147 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        if (iBallBask != null) {
+                            iBallBask.onError(e);
+                        }
                     }
 
                     @Override
-                    public void onNext(Message_LoginBean message_loginBean) {
-                        if (message_loginBean != null) {
-                            iModelCallBac.onSuccess(message_loginBean);
+                    public void onNext(HistoryBean historyBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onSuccess(historyBean);
                         }
                     }
                 });
     }
+
+    public void onSet_Name(int userId, String sessionId, String nickName, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onSet_Name(userId, sessionId, nickName)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Set_NameBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("xxx", "onError: " + e);
+                    }
+
+                    @Override
+                    public void onNext(Set_NameBean set_nameBean) {
+                        if (set_nameBean != null) {
+                            iModelCallBack.onSuccess(set_nameBean);
+                        }
+                    }
+                });
+    }
+
+
+    public void onUser_Info(int userId, String sessionId, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onUser_Info(userId, sessionId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<User_InfoBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("xxx", "onError: " + e);
+                    }
+
+                    @Override
+                    public void onNext(User_InfoBean user_infoBean) {
+                        if (user_infoBean != null) {
+                            iModelCallBack.onSuccess(user_infoBean);
+                        }
+                    }
+                });
+    }
+
+
+    public void onSet_Sex(int userId, String sessionId, int sex, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onSet_Sex(userId, sessionId, sex)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<SetSexBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("xxx", "onError: " + e);
+                    }
+
+                    @Override
+                    public void onNext(SetSexBean setSexBean) {
+                        if (setSexBean != null) {
+                            iModelCallBack.onSuccess(setSexBean);
+                        }
+                    }
+                });
+    }
+
+
+    public void onSet_Pwd(int userId, String sessionId, String oldPwd, String newPwd, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onSet_Pwd(userId, sessionId, oldPwd, newPwd)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<SetPwdBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("xxx", "onError: " + e);
+                    }
+
+                    @Override
+                    public void onNext(SetPwdBean setPwdBean) {
+                        if (setPwdBean != null) {
+                            iModelCallBack.onSuccess(setPwdBean);
+                        }
+                    }
+                });
+    }
+
+
+    public void onSet_Sign(int userId, String sessionId, int age, int height, int weight, IModelCallBack iModelCallBack) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onSet_Sign(userId, sessionId, age, height, weight)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<SetSignBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.i("xxx", "onError: " + e);
+                    }
+
+                    @Override
+                    public void onNext(SetSignBean setSignBean) {
+                        if (setSignBean != null) {
+                            iModelCallBack.onSuccess(setSignBean);
+                        }
+                    }
+                });
+    }
+
 }

@@ -34,7 +34,7 @@ public class UserVideo_Fragment extends BaseFragment<MyFragmentMessage_Presenter
 
     @Override
     protected int initLayout() {
-        return R.layout.uservideo_fragment;
+        return R.layout.message_uservideo_fragment;
     }
 
     @Override

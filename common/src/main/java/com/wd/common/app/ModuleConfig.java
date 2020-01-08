@@ -12,17 +12,15 @@ package com.wd.common.app;
  */
 public interface ModuleConfig {
     static final String MODULE_PDFREADER = "com.wd.common.app.BaseApplication";
-    static final String MODULE_LAUNCHER_app = "com.wd.health.My_APP";
-    static final String MODULE_LAUNCHER_home = "com.wd.home.Home_APP";
+    static final String MODULE_LAUNCHER_app = "com.wd.health.APP";
     static final String MODULE_LAUNCHER_my_message = "com.wd.my_message.Message_APP";
-    static final String MODULE_LAUNCHER_video = "com.wd.video.api.Video_APP";
-    static final String MODULE_LAUNCHER_circle = "com.wd.circle.utils.Circle_APP";
+    static final String MODULE_LAUNCHER_video = "com.wd.video.api.APP";
+    static final String MODULE_LAUNCHER_home = "com.wd.home.APP";
 
-    public static final String[] MODULELIST  = {
+    public static final String[] MODULELIST = {
             MODULE_LAUNCHER_app,
             MODULE_LAUNCHER_my_message,
             MODULE_LAUNCHER_video,
-            MODULE_LAUNCHER_circle,
             MODULE_LAUNCHER_home,
             MODULE_PDFREADER
     };

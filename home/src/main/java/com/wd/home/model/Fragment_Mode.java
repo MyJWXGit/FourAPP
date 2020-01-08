@@ -1,22 +1,22 @@
 package com.wd.home.model;
 
 import com.wd.common.utils.HttpUtils;
-import com.wd.home.api.Home_HttpApi;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DepartmentBean;
-import com.wd.home.bean.DoctorInfoBean;
-import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
-import com.wd.home.bean.EndInquiryBean;
 import com.wd.home.bean.EvaluateListBean;
+import com.wd.home.bean.FollowBean;
 import com.wd.home.bean.IllnessBean;
 import com.wd.home.bean.CancelFllowBean;
-import com.wd.home.bean.FollowBean;
-import com.wd.home.bean.InquiryRecordBean;
+import com.wd.home.bean.DoctorInfoBean;
+import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.UserWalletBean;
+import com.wd.home.api.Home_HttpApi;
+import com.wd.home.bean.EndInquiryBean;
+import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.contract.Contract;
 
 import rx.Observer;
@@ -446,7 +446,7 @@ public class Fragment_Mode implements Contract.FModer {
                 //切换线程
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<EndInquiryBean>() {
+                .subscribe(new Observer<com.wd.home.bean.EndInquiryBean>() {
                     @Override
                     public void onCompleted() {
 
@@ -477,7 +477,7 @@ public class Fragment_Mode implements Contract.FModer {
                 //切换线程
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<InquiryRecordBean>() {
+                .subscribe(new Observer<com.wd.home.bean.InquiryRecordBean>() {
                     @Override
                     public void onCompleted() {
 

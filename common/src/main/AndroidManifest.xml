@@ -1,2 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wd.common" />
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.wd.common">
+
+    <application>
+<!--        <provider-->
+<!--            android:name="androidx.core.content.FileProvider"-->
+<!--            android:authorities="${PKG_NAME}.FileProvider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" />-->
+<!--        </provider>-->
+    </application>
+</manifest>

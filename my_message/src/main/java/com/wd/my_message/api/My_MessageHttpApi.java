@@ -1,8 +1,6 @@
 package com.wd.my_message.api;
 
-import com.wd.my_message.bean.HistoryBean;
-import com.wd.my_message.bean.Message_LoginBean;
-import com.wd.my_message.bean.UserSickCollectionBean;
+import com.wd.my_message.bean.SetSignBean;
 import com.wd.my_message.bean.AddArchivesBean;
 import com.wd.my_message.bean.AttentionDoctorListBean;
 import com.wd.my_message.bean.ConsumptionRecordBean;
@@ -12,6 +10,7 @@ import com.wd.my_message.bean.EndInquiryBean;
 import com.wd.my_message.bean.DoTaskBean;
 import com.wd.my_message.bean.GetTaskBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
+import com.wd.my_message.bean.HistoryBean;
 import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.InquiryRecordBean;
@@ -21,6 +20,9 @@ import com.wd.my_message.bean.MySickCircleListBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.QueryTaskListBean;
+import com.wd.my_message.bean.SetPwdBean;
+import com.wd.my_message.bean.SetSexBean;
+import com.wd.my_message.bean.Set_NameBean;
 import com.wd.my_message.bean.SignBean;
 import com.wd.my_message.bean.SuggestBean;
 import com.wd.my_message.bean.SystemMessageBean;
@@ -29,6 +31,8 @@ import com.wd.my_message.bean.UpdateArchivesBean;
 import com.wd.my_message.bean.UserArchivesBean;
 import com.wd.my_message.bean.UserArchivesPictureBean;
 import com.wd.my_message.bean.UserColletionBean;
+import com.wd.my_message.bean.UserSickCollectionBean;
+import com.wd.my_message.bean.User_InfoBean;
 import com.wd.my_message.bean.VideoCollectionBean;
 
 
@@ -43,7 +47,6 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -174,10 +177,6 @@ public interface My_MessageHttpApi {
     @PUT(My_messageAPI.endInquiry)
     Observable<EndInquiryBean> onEndInquiry(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("recordId") int recordId);
 
-    //查看历史问诊
-    @GET(My_messageAPI.HistoryInquiryRecord)
-    Observable<HistoryBean> onHistory(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("page") int page, @Query("count") int count);
-
     //查看自己的档案
     //http://172.17.8.100/health/user/verify/v1/findUserArchives
     @GET(My_messageAPI.MyFile)
@@ -202,7 +201,7 @@ public interface My_MessageHttpApi {
     //http://172.17.8.100/health/user/verify/v1/uploadArchivesPicture
     @Multipart
     @POST(My_messageAPI.UploadPiture)
-    Observable<UserArchivesPictureBean> getpicture(@Header("userId") int userId, @Header("sessionId") String sessionId, @PartMap Map<String, MultipartBody.Part> picture);
+    Observable<UserArchivesPictureBean> getpicture(@Header("userId") int userId, @Header("sessionId") String sessionId, @Part MultipartBody.Part picture);
 
     //做任务
     @POST(My_messageAPI.DoTask)
@@ -236,7 +235,44 @@ public interface My_MessageHttpApi {
                                                                        @Query("page") int page,
                                                                        @Query("count") int count);
 
-    //根据用户ID查询用户信息
-    @GET(My_messageAPI.UserInfoById)
-    Observable<Message_LoginBean> onMessage(@Header("userId") int userId, @Header("sessionId") String sessionId);
+    //查看历史问诊
+    @GET(My_messageAPI.HistoryInquiryRecord)
+    Observable<HistoryBean> onHistory(@Header("userId") int userId, @Header("sessionId") String sessionId, @Query("page") int page, @Query("count") int count);
+
+    @PUT(My_messageAPI.SetName)
+    Observable<Set_NameBean> onSet_Name(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("nickName") String nickName
+    );
+
+    @GET(My_messageAPI.UserInfo)
+    Observable<User_InfoBean> onUser_Info(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId
+    );
+
+    @PUT(My_messageAPI.SetSex)
+    Observable<SetSexBean> onSet_Sex(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("sex") int sex
+    );
+
+    @PUT(My_messageAPI.SetPwd)
+    Observable<SetPwdBean> onSet_Pwd(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("oldPwd") String oldPwd,
+            @Query("newPwd") String newPwd
+    );
+
+    @PUT(My_messageAPI.SetSign)
+    Observable<SetSignBean> onSet_Sign(
+            @Header("userId") int userId,
+            @Header("sessionId") String sessionId,
+            @Query("age") int age,
+            @Query("height") int height,
+            @Query("weight") int weight
+    );
 }

@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.wd.circle.utils.DateUtils;
 import com.wd.health.R;
 import com.wd.circle.bean.Circle_Comment_Bean;
+import com.wd.circle.utils.DateUtils;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ private Context context;
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.adapter_sick_circle_comment_list_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.circle_adapter_sick_circle_comment_list_item, null);
         return new Holder(inflate);
     }
 

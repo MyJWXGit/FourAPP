@@ -39,7 +39,7 @@ public class Department_Adapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.department_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.home_department_item, parent, false);
         return new MyViewHolder(view);
     }
 

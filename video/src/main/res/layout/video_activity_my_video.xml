@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wd.video.VideoActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/video_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/video_tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/permission_dp_40"
+        android:background="#ffffff"
+        app:tabIndicatorHeight="0dp"
+        app:tabSelectedTextColor="@color/tabxuan" />
+
+
+    <CheckBox
+        android:id="@+id/video_pull"
+        android:layout_width="@dimen/permission_dp_15"
+        android:layout_height="88dp"
+        android:layout_below="@id/video_tab"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/permission_dp_20"
+        android:background="@drawable/video_selector_pendant"
+        android:button="@null"
+        android:paddingLeft="@dimen/permission_dp_10"
+        android:paddingRight="@dimen/permission_dp_10"
+        android:paddingBottom="@dimen/permission_dp_10"
+        android:src="@mipmap/drop_down" />
+
+</RelativeLayout>

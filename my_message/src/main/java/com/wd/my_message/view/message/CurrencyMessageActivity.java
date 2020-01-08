@@ -15,8 +15,8 @@ import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
 import com.wd.my_message.bean.HealthyCurrencyBean;
-import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
+import com.wd.my_message.contract.Contract;
 
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class CurrencyMessageActivity extends BaseActivity<MyMessage_Presenter> i
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_currency_message;
+        return R.layout.message_activity_currency_message;
     }
 
     @Override

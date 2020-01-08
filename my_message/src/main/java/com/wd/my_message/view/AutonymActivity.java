@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -25,13 +26,13 @@ import com.baidu.ocr.ui.camera.CameraActivity;
 import com.baidu.ocr.ui.camera.CameraNativeHelper;
 import com.baidu.ocr.ui.camera.CameraView;
 import com.wd.common.base.BaseActivity;
-import com.wd.my_message.Message_APP;
-import com.wd.health.R;
 import com.wd.my_message.ConfirmActivity;
-import com.wd.health.R2;
-import com.wd.my_message.contract.Contract;
+import com.wd.my_message.Message_APP;
 import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.utils.FileUtil;
+import com.wd.health.R;
+import com.wd.health.R2;
+import com.wd.my_message.contract.Contract;
 
 import java.io.File;
 
@@ -75,7 +76,7 @@ public class AutonymActivity extends BaseActivity<MyMessage_Presenter> implement
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_autonym;
+        return R.layout.message_activity_autonym;
     }
 
     @Override

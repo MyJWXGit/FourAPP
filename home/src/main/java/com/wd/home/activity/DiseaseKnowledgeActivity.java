@@ -50,7 +50,7 @@ public class DiseaseKnowledgeActivity extends BaseActivity<Fragment_Presenter> i
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_disease_knowledge;
+        return R.layout.home_activity_disease_knowledge;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class ConsumptionRecordAdapter extends RecyclerView.Adapter<ConsumptionRe
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.my_wallet_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.message_my_wallet_item, null);
         return new Holder(inflate);
     }
 

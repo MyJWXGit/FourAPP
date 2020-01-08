@@ -2,7 +2,6 @@ package com.wd.home.model;
 
 
 import com.wd.common.utils.HttpUtils;
-import com.wd.home.api.Home_HttpApi;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.FindInfoBean;
@@ -12,6 +11,7 @@ import com.wd.home.bean.Plate_ListBean;
 import com.wd.home.bean.PopularBean;
 import com.wd.home.bean.PuMessageBean;
 import com.wd.home.bean.RecordingBean;
+import com.wd.home.api.Home_HttpApi;
 import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.contract.Contract;
 
@@ -321,7 +321,7 @@ public class Home_Dode implements Contract.IModer {
                 //切换线程
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<InquiryRecordBean>() {
+                .subscribe(new Observer<com.wd.home.bean.InquiryRecordBean>() {
                     @Override
                     public void onCompleted() {
 

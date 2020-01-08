@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
-import com.wd.health.R2;
-import com.wd.home.presenter.Fragment_Presenter;
 import com.wd.home.adapter.EvaluateList_Adapter;
 import com.wd.home.bean.EvaluateListBean;
-import com.wd.home.contract.Contract;
+import com.wd.home.presenter.Fragment_Presenter;
 
 import java.util.List;
+
+import com.wd.health.R2;
+import com.wd.home.contract.Contract;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +45,7 @@ public class CommentActivity extends BaseActivity<Fragment_Presenter> implements
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_comment;
+        return R.layout.home_activity_comment;
     }
 
     @Override

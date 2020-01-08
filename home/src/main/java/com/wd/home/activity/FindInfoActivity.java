@@ -13,12 +13,13 @@ import android.widget.TextView;
 import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
-import com.wd.health.R2;
-import com.wd.home.presenter.HomePresenter;
 import com.wd.home.bean.FindInfoBean;
-import com.wd.home.contract.Contract;
+import com.wd.home.presenter.HomePresenter;
 
 import java.text.SimpleDateFormat;
+
+import com.wd.health.R2;
+import com.wd.home.contract.Contract;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,7 +58,7 @@ public class FindInfoActivity extends BaseActivity<HomePresenter> implements Con
         Transition transition = new TransitionSet().addTransition(new Explode());
         getWindow().setEnterTransition(transition.setDuration(2000));
         getWindow().setExitTransition(new Explode().setDuration(2000));
-        return R.layout.activity_find_info;
+        return R.layout.home_activity_find_info;
     }
 
     @Override

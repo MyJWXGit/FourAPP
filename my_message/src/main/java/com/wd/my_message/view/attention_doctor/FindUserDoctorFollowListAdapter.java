@@ -39,7 +39,7 @@ public class FindUserDoctorFollowListAdapter extends RecyclerView.Adapter<FindUs
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.adapter_finduserdoctorfollowlist_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.message_adapter_finduserdoctorfollowlist_item, null);
         return new Holder(inflate);
     }
 

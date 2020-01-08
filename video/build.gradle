@@ -11,14 +11,13 @@ android {
         multiDexEnabled true
         ndk {
             //选择要添加的对应cpu类型的.so库。
-            abiFilters "armeabi",'arm64-v8a'
-            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+            abiFilters "armeabi", 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+            // 还可以添加
         }
-
         manifestPlaceholders = [
                 JPUSH_PKGNAME: "com.wd.health",
-                JPUSH_APPKEY : "564c4319e940cdd0aadeebf0", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+                JPUSH_APPKEY : "c7f6a1d56cb8da740fd18bfa",
+                JPUSH_CHANNEL: "developer - default"
         ]
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
@@ -117,9 +116,9 @@ dependencies {
     implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]
     implementation rootProject.ext.dependencies["tablayout"]
     implementation rootProject.ext.dependencies["xrecyclerview"]
-    implementation 'com.github.ctiao:DanmakuFlameMaster:0.7.3'
-    implementation 'com.github.ctiao:ndkbitmap-armv7a:0.7.3'
-    implementation 'com.yanzhenjie:permission:2.0.3'
+    implementation rootProject.ext.dependencies["DanmakuFlameMaster"]
+    implementation rootProject.ext.dependencies["ndkbitmap"]
+    implementation rootProject.ext.dependencies["permission"]
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
 }

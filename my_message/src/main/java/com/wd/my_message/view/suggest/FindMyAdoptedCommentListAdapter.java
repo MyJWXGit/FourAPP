@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.wd.health.R;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class FindMyAdoptedCommentListAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.adapter_findmyadoptedcommentlist_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.message_adapter_findmyadoptedcommentlist_item, null);
         Viewholder1 viewholder1=new Viewholder1(inflate);
         return viewholder1;
     }

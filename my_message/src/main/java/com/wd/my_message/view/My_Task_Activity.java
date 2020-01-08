@@ -13,15 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
-import com.wd.my_message.bean.QuerySignBean;
-import com.wd.my_message.contract.Contract;
-import com.wd.my_message.presenter.MyMessage_Presenter;
-import com.wd.my_message.view.task.TaskListesAdapter;
 import com.wd.my_message.bean.DoTaskBean;
 import com.wd.my_message.bean.GetTaskBean;
 import com.wd.my_message.bean.LianxuSignBean;
+import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.QueryTaskListBean;
+import com.wd.my_message.presenter.MyMessage_Presenter;
+import com.wd.my_message.contract.Contract;
 import com.wd.my_message.view.task.TaskListAdapter;
+import com.wd.my_message.view.task.TaskListesAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +105,7 @@ public class My_Task_Activity extends BaseActivity<MyMessage_Presenter> implemen
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my__task_;
+        return R.layout.message_activity_my__task_;
     }
 
     @Override

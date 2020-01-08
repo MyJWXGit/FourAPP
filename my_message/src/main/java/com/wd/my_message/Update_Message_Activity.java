@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,15 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
+import com.wd.my_message.utils.ImageUtil;
+import com.wd.my_message.bean.ImageBean;
+import com.wd.my_message.bean.User_InfoBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
-import com.wd.my_message.utils.ImageUtil;
 import com.wd.my_message.view.AutonymActivity;
-import com.wd.my_message.bean.ImageBean;
+import com.wd.my_message.view.SetNameActivity;
+import com.wd.my_message.view.SetSexActivity;
+import com.wd.my_message.view.SetSignActivity;
 
 import java.io.File;
 
@@ -88,6 +93,7 @@ public class Update_Message_Activity extends BaseActivity<MyMessage_Presenter> i
     ImageView d2;
     @BindView(com.wd.health.R2.id.my_information_Bankcard_a)
     RelativeLayout myInformationBankcardA;
+    private static final String TAG = "Update_Message_Activity";
 
     @Override
     protected MyMessage_Presenter providePresenter() {
@@ -101,15 +107,15 @@ public class Update_Message_Activity extends BaseActivity<MyMessage_Presenter> i
 
     @Override
     protected void initData() {
-
+        mPresenter.onUser_Info();
     }
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_update_message;
+        return R.layout.message_activity_update_message;
     }
 
-    @OnClick({com.wd.health.R2.id.fanhui, com.wd.health.R2.id.my_information_Avatar, R2.id.my_information_Certification_a})
+    @OnClick({com.wd.health.R2.id.fanhui, com.wd.health.R2.id.my_information_Avatar, com.wd.health.R2.id.my_information_Certification_a, com.wd.health.R2.id.my_information_name_a, com.wd.health.R2.id.my_information_gender_a, R2.id.my_information_Sign})
     public void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.fanhui) {
@@ -119,13 +125,22 @@ public class Update_Message_Activity extends BaseActivity<MyMessage_Presenter> i
         } else if (id == R.id.my_information_Certification_a) {
             Intent intent = new Intent(Update_Message_Activity.this, AutonymActivity.class);
             startActivity(intent);
+        }else if (id==R.id.my_information_name_a){
+            Intent intent = new Intent(Update_Message_Activity.this, SetNameActivity.class);
+            startActivity(intent);
+        }else if (id==R.id.my_information_gender_a){
+            Intent intent = new Intent(Update_Message_Activity.this, SetSexActivity.class);
+            startActivity(intent);
+        } else if (id==R.id.my_information_Sign){
+            Intent intent = new Intent(Update_Message_Activity.this, SetSignActivity.class);
+            startActivity(intent);
         }
     }
 
     private void initPopupWindow() {
         Button butShoot, butPhoto, butFinish;
         // 生成 View 对象
-        View view = View.inflate(this, R.layout.pic_popupwindow_xml, null);
+        View view = View.inflate(this, R.layout.message_pic_popupwindow_xml, null);
         butFinish = view.findViewById(R.id.but_finish);
         butPhoto = view.findViewById(R.id.but_photo);
         butShoot = view.findViewById(R.id.but_shoot);
@@ -210,6 +225,29 @@ public class Update_Message_Activity extends BaseActivity<MyMessage_Presenter> i
             ImageBean bean = (ImageBean) data;
             String message = bean.getMessage();
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        }else if (data instanceof User_InfoBean){
+            User_InfoBean user_infoBean = (User_InfoBean) data;
+            String nickName = user_infoBean.getResult().getNickName();
+            String headPic = user_infoBean.getResult().getHeadPic();
+            int age = user_infoBean.getResult().getAge();
+            int height = user_infoBean.getResult().getHeight();
+            int weight = user_infoBean.getResult().getWeight();
+            int sex = user_infoBean.getResult().getSex();
+            String email = user_infoBean.getResult().getEmail();
+            myInformationName.setText(nickName);
+            myInformationAvatar.setImageURI(headPic);
+            if (sex==1){
+                myInformationGender.setImageResource(R.mipmap.common_icon_boy_n);
+            }else if (sex==2){
+                myInformationGender.setImageResource(R.mipmap.common_icon_girl_n);
+            }
+            myInformationMailbox.setText(email);
+            myInformationHeight.setText(height);
+            myInformationBodyweight.setText(weight);
+            myInformationAge.setText(age);
+            Log.d(TAG, "onSuccess: "+height);
+            Log.d(TAG, "onSuccess: "+weight);
+            Log.d(TAG, "onSuccess: "+age);
         }
     }
 

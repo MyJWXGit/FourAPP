@@ -7,9 +7,9 @@ import android.content.Context;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
-import com.wd.home.presenter.HomePresenter;
 import com.wd.home.adapter.ViewPager_Adapter;
 import com.wd.home.bean.DepartmentBean;
+import com.wd.home.presenter.HomePresenter;
 import com.wd.home.contract.Contract;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class InfoActivity extends BaseActivity<HomePresenter> implements Contrac
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_info;
+        return R.layout.home_activity_info;
     }
 
     @Override

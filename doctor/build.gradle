@@ -29,12 +29,6 @@ android {
             abiFilters "armeabi",'arm64-v8a'
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
-
-        manifestPlaceholders = [
-                JPUSH_PKGNAME : "com.wd.health",
-                JPUSH_APPKEY : "564c4319e940cdd0aadeebf0", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
-        ]
     }
 
     buildTypes {

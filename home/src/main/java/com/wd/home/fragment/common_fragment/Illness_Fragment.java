@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.base.BaseFragment;
 import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.home.adapter.fragment.CategoryList_Adapter;
 import com.wd.home.adapter.fragment.Drugsknowledge_Adapter;
 import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
-import com.wd.home.contract.Contract;
 import com.wd.home.presenter.Fragment_Presenter;
+import com.wd.home.contract.Contract;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class Illness_Fragment extends BaseFragment<Fragment_Presenter> implement
 
     @Override
     protected int initLayout() {
-        return R.layout.illness_fragment;
+        return R.layout.home_illness_fragment;
     }
 
     @Override

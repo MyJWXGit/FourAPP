@@ -39,7 +39,7 @@ public class AdvisoryAdapter extends RecyclerView.Adapter<AdvisoryAdapter.Holder
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.adapter_advisorylist_item, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.message_adapter_advisorylist_item, null);
         return new Holder(inflate);
     }
 

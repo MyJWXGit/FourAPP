@@ -24,7 +24,7 @@ public class CustomCropControllerView extends SingleCropControllerView {
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.layout_custom_crop;
+        return R.layout.circle_layout_custom_crop;
     }
 
     /**

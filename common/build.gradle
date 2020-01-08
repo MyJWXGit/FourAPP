@@ -22,15 +22,9 @@ android {
         }
         ndk {
             //选择要添加的对应cpu类型的.so库。
-            abiFilters "armeabi",'arm64-v8a'
+            abiFilters "armeabi",'arm64-v8a','x86', 'x86_64', 'mips', 'mips64'
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
-
-        manifestPlaceholders = [
-                JPUSH_PKGNAME : "com.wd.health",
-                JPUSH_APPKEY : "564c4319e940cdd0aadeebf0", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
-        ]
     }
 
     buildTypes {
@@ -80,7 +74,10 @@ dependencies {
     implementation rootProject.ext.dependencies["jjdxm-ijkplayer"]
     implementation rootProject.ext.dependencies["tablayout"]
     implementation rootProject.ext.dependencies["xrecyclerview"]
-    implementation 'com.jakewharton:butterknife:10.2.1'
+    implementation rootProject.ext.dependencies["jiguang_sdk_jmessage"]
+    implementation rootProject.ext.dependencies["jiguang_sdk_jcore"]
+    implementation rootProject.ext.dependencies["jiguang_sdk_jcore"]
+    implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     //阿里巴巴路由    放入MVP依赖
     //路由器
@@ -89,6 +86,4 @@ dependencies {
     implementation rootProject.ext.dependencies["fresco"]
     //悬浮按钮
     implementation 'com.android.support:design:<version>'
-    api 'cn.jiguang.sdk:jpush:3.1.6'  // 此处以JPush 3.1.6 版本为例。
-    api 'cn.jiguang.sdk:jcore:1.2.5'  // 此处以JCore 1.2.5 版本为例。
 }

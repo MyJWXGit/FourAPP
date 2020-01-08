@@ -14,8 +14,8 @@ import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
 import com.wd.my_message.bean.SystemMessageBean;
-import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
+import com.wd.my_message.contract.Contract;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class SystemMessageActivity extends BaseActivity<MyMessage_Presenter> imp
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_system_message;
+        return R.layout.message_activity_system_message;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.wd.health.utils;
 
+import com.wd.home.utils.Base64;
+
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
@@ -34,7 +36,7 @@ public class RsaCoder {
     private static PublicKey getPublicKey(String algorithm) {
         try {
             String key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCuQd3gESx7VdIyRYUWjmjg61VIgUK6F45hClmqUMZ7xNiT5rlLM6e78osMvBF/yP7cVm7pK+NMCDWoVS1/AETpxJYqUlIC77ZAU8/MnP96IupnJL87vqhPcpdv7+VqLM38ls++yuD/F/HSoOQTv/leJh+dgE/4EYAJjOWFAbYfXwIDAQAB";
-            Base64 b64 = new Base64();
+            com.wd.home.utils.Base64 b64 = new com.wd.home.utils.Base64();
             byte[] decoded = b64.decode(key);
             KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
             X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(decoded);
@@ -59,7 +61,7 @@ public class RsaCoder {
             }
 
             byte[] key = publicKey.getEncoded();
-            byte[] datas = Base64.decode(data);
+            byte[] datas = com.wd.home.utils.Base64.decode(data);
             //实例化密钥工厂
             KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
             //初始化公钥

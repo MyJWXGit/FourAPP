@@ -38,7 +38,7 @@ public class EvaluateList_Adapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.evaluate_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.home_evaluate_item, parent, false);
         return new MyViewHolder(view);
     }
 

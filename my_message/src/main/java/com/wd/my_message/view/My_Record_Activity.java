@@ -15,11 +15,11 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
-import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
-import com.wd.my_message.view.record.Update_RecordActivity;
 import com.wd.my_message.bean.DeleteArchivesBean;
 import com.wd.my_message.bean.UserArchivesBean;
+import com.wd.my_message.contract.Contract;
+import com.wd.my_message.view.record.Update_RecordActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -85,7 +85,7 @@ public class My_Record_Activity extends BaseActivity<MyMessage_Presenter> implem
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my__record_;
+        return R.layout.message_activity_my__record_;
     }
 
     @OnClick({R2.id.message_fanhui, R2.id.button_delete, R2.id.button_bianji, R2.id.myfile_button})
@@ -95,10 +95,10 @@ public class My_Record_Activity extends BaseActivity<MyMessage_Presenter> implem
             finish();
             //shanchu 删除
         } else if (viewId == R.id.button_delete) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this, R2.style.CustomDialog);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialog);
             final AlertDialog dialog = builder.create();
             //此处设置位置窗体大小
-            View inflate = View.inflate(this, R.layout.layout_dialog, null);
+            View inflate = View.inflate(this, R.layout.message_layout_dialog, null);
             dialog.setView(inflate);
             dialog.show();//显示对话框
             Button quxiaoButton = inflate.findViewById(R.id.dialog_quxiao_button);

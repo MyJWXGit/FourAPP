@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
-import com.wd.my_message.R2;
 import com.wd.my_message.bean.HistoryBean;
 
 import java.text.SimpleDateFormat;
@@ -39,7 +38,7 @@ public class History_Adapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_history, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.message_item_history, parent, false);
         return new MyViewHolder(view);
     }
 

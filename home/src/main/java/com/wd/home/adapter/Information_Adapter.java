@@ -53,13 +53,13 @@ public class Information_Adapter extends RecyclerView.Adapter {
         View view = null;
         switch (viewType) {
             case 0:
-                view = LayoutInflater.from(context).inflate(R.layout.info_one_image, parent, false);
+                view = LayoutInflater.from(context).inflate(R.layout.home_info_one_image, parent, false);
                 return new MyOne_imageViewHolder(view);
             case 1:
-                view = LayoutInflater.from(context).inflate(R.layout.info_three_image, parent, false);
+                view = LayoutInflater.from(context).inflate(R.layout.home_info_three_image, parent, false);
                 return new MyThree_imageViewHolder(view);
             case 2:
-                view = LayoutInflater.from(context).inflate(R.layout.info_title, parent, false);
+                view = LayoutInflater.from(context).inflate(R.layout.home_info_title, parent, false);
                 return new MyTitleHolder(view);
         }
         return null;

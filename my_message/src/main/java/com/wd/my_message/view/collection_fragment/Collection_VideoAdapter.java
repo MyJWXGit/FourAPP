@@ -34,7 +34,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.collection_video_layout, parent, false);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.message_collection_video_layout, parent, false);
         return new ViewHolder(inflate);
     }
 

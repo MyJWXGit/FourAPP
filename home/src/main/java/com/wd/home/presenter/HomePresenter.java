@@ -9,16 +9,16 @@ import com.wd.common.utils.SpUtils;
 import com.wd.home.Home_APP;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
-import com.wd.home.bean.FindInfoBean;
 import com.wd.home.bean.HomeSearchBean;
 import com.wd.home.bean.Information_ListBean;
-import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.bean.Plate_ListBean;
+import com.wd.home.bean.FindInfoBean;
 import com.wd.home.bean.PopularBean;
 import com.wd.home.bean.PuMessageBean;
 import com.wd.home.bean.RecordingBean;
-import com.wd.home.contract.Contract;
 import com.wd.home.model.Home_Dode;
+import com.wd.home.bean.InquiryRecordBean;
+import com.wd.home.contract.Contract;
 
 /**
  * @name Health
@@ -30,7 +30,7 @@ import com.wd.home.model.Home_Dode;
  * @chang time
  * @class describe
  */
-public class HomePresenter extends BasePresenter<Contract.IView> implements Contract.IPresenter {
+public class HomePresenter extends BasePresenter<com.wd.home.contract.Contract.IView> implements com.wd.home.contract.Contract.IPresenter {
 
     private Home_Dode home_dode;
     private static final String TAG = "HomePresenter";
@@ -44,7 +44,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onBanner() {
-        home_dode.onBanner(new Contract.IModer.IBallBask() {
+        home_dode.onBanner(new com.wd.home.contract.Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -71,7 +71,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onDepartment() {
-        home_dode.onDepartment(new Contract.IModer.IBallBask() {
+        home_dode.onDepartment(new com.wd.home.contract.Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -98,7 +98,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onPlateList() {
-        home_dode.onPlateList(new Contract.IModer.IBallBask() {
+        home_dode.onPlateList(new com.wd.home.contract.Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -125,7 +125,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onInformationList(int plateId, int page, int count) {
-        home_dode.onInformationList(plateId, page, count, new Contract.IModer.IBallBask() {
+        home_dode.onInformationList(plateId, page, count, new com.wd.home.contract.Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -154,7 +154,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
     public void onFindInfo(int infoId) {
         int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
-        home_dode.onFindInfo(userId, sessionid, infoId, new Contract.IModer.IBallBask() {
+        home_dode.onFindInfo(userId, sessionid, infoId, new com.wd.home.contract.Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -181,7 +181,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onHomeSearch(String keyWord) {
-        home_dode.onHomeSearch(keyWord, new Contract.IModer.IBallBask() {
+        home_dode.onHomeSearch(keyWord, new com.wd.home.contract.Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -208,7 +208,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onPopular() {
-        home_dode.onPopular(new Contract.IModer.IBallBask() {
+        home_dode.onPopular(new com.wd.home.contract.Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -237,7 +237,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
     public void onPuMessage(int inquiryId, String content, int type, int doctorId) {
         int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
         String sessionId = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
-        home_dode.onPuMessage(userId, sessionId, inquiryId, content, 1, doctorId, new Contract.IModer.IBallBask() {
+        home_dode.onPuMessage(userId, sessionId, inquiryId, content, 1, doctorId, new com.wd.home.contract.Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -267,7 +267,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
     public void getRecording(int inquiryId, int page, int count) {
         int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
         String sessionId = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
-        home_dode.getRecording(userId, sessionId, inquiryId, page, count, new Contract.IModer.IBallBask() {
+        home_dode.getRecording(userId, sessionId, inquiryId, page, count, new com.wd.home.contract.Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -303,7 +303,7 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
                 //软引用
                 if (isViewAttached()) {
                     //Bean包强转  拿到Status进行判断
-                    InquiryRecordBean bean = (InquiryRecordBean) obj;
+                    com.wd.home.bean.InquiryRecordBean bean = (InquiryRecordBean) obj;
                     if (bean != null && bean.getStatus().equals("0000")) {
                         //getView是BasePresenter方法  使用getView进行调用P层
                         getView().onSuccess(bean);

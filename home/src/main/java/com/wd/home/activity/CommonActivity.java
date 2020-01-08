@@ -10,9 +10,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.base.BasePresenter;
 import com.wd.health.R;
-import com.wd.health.R2;
-import com.wd.home.fragment.common_fragment.Illness_Fragment;
 import com.wd.home.adapter.utils_adapter.MyFragment_Adapter;
+import com.wd.home.fragment.common_fragment.Illness_Fragment;
 import com.wd.home.fragment.common_fragment.dyug_Fragment;
 
 import java.util.ArrayList;
@@ -20,6 +19,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import com.wd.health.R2;
 
 public class CommonActivity extends BaseActivity {
     @BindView(R2.id.tab)
@@ -67,7 +68,7 @@ public class CommonActivity extends BaseActivity {
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_common;
+        return R.layout.home_activity_common;
     }
 
     @Override

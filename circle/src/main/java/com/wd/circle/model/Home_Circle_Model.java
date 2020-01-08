@@ -1,9 +1,9 @@
 package com.wd.circle.model;
 
+import com.wd.circle.contract.Contract;
 import com.wd.circle.api.Circle_HttpApi;
 import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.bean.SearchCircleBean;
-import com.wd.circle.contract.Contract;
 import com.wd.common.utils.HttpUtils;
 
 import rx.Observer;

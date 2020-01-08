@@ -1,6 +1,5 @@
 package com.wd.video;
 
-
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Bundle;
@@ -20,17 +19,14 @@ import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.video.bean.Video_EntryBean;
-import com.wd.video.contract.Contract;
 import com.wd.video.fragment.BeautyFragment;
 import com.wd.video.presenter.Video_EntryPresenter;
+import com.wd.video.contract.Contract;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements Contract.IView {
-
-
-
     private static final String TAG = "VideoActivity";
     private ViewPager videoVp;
     private TabLayout videoTab;
@@ -84,7 +80,7 @@ public class VideoActivity extends BaseActivity<Video_EntryPresenter> implements
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my_video;
+        return R.layout.video_activity_my_video;
     }
 
     @Override

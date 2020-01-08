@@ -34,7 +34,7 @@ public class MyGiftAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.item_gift, parent, false);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.home_item_gift, parent, false);
         return new MyHolder(inflate);
     }
 

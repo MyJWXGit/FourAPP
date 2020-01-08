@@ -15,16 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
-import com.wd.health.R2;
 import com.wd.home.adapter.DiseaseSearchVoListAdapter;
 import com.wd.home.adapter.DoctorSearchVoListAdapter;
 import com.wd.home.adapter.DrugsSearchVoListAdapter;
 import com.wd.home.bean.HomeSearchBean;
 import com.wd.home.bean.PopularBean;
 import com.wd.home.presenter.HomePresenter;
+import com.wd.home.utils.FlowView;
 import com.wd.home.utils.RecordSQLiteOpenHelper;
 import com.wd.home.contract.Contract;
-import com.wd.home.utils.FlowView;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
 import java.io.UnsupportedEncodingException;
@@ -35,6 +34,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import com.wd.health.R2;
 public class Edit_SearchActivity extends BaseActivity<HomePresenter> implements Contract.IView {
     @BindView(R2.id.iv_home_search_back)
     ImageView ivHomeSearchBack;
@@ -102,7 +102,7 @@ public class Edit_SearchActivity extends BaseActivity<HomePresenter> implements 
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_edit__search;
+        return R.layout.home_activity_edit__search;
     }
 
     @Override
@@ -130,19 +130,19 @@ public class Edit_SearchActivity extends BaseActivity<HomePresenter> implements 
                 llRelevantSearchData.setVisibility(View.GONE);
 
                 //创建适配器
-                DiseaseSearchVoListAdapter diseaseSearchVoListAdapter = new DiseaseSearchVoListAdapter(R.layout.layout_home_search_item, diseaseSearchVoList);
+                DiseaseSearchVoListAdapter diseaseSearchVoListAdapter = new DiseaseSearchVoListAdapter(R.layout.home_layout_home_search_item, diseaseSearchVoList);
                 //设置每个item的排列方式
                 rvSymptoms.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
                 //设置上适配器
                 rvSymptoms.setAdapter(diseaseSearchVoListAdapter);
                 //创建适配器
-                DoctorSearchVoListAdapter doctorSearchVoListAdapter = new DoctorSearchVoListAdapter(R.layout.layout_home_search_item, doctorSearchVoList);
+                DoctorSearchVoListAdapter doctorSearchVoListAdapter = new DoctorSearchVoListAdapter(R.layout.home_layout_home_search_item, doctorSearchVoList);
                 //设置每个item的排列方式
                 rvDoctor.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
                 //设置上适配器
                 rvDoctor.setAdapter(doctorSearchVoListAdapter);
                 //创建适配器
-                DrugsSearchVoListAdapter drugsSearchVoListAdapter = new DrugsSearchVoListAdapter(R.layout.layout_home_search_item, drugsSearchVoList);
+                DrugsSearchVoListAdapter drugsSearchVoListAdapter = new DrugsSearchVoListAdapter(R.layout.home_layout_home_search_item, drugsSearchVoList);
                 //设置每个item的排列方式
                 rvDrug.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
                 //设置上适配器

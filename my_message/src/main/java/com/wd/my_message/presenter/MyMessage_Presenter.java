@@ -5,37 +5,41 @@ import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.Logger;
 import com.wd.common.utils.SpUtils;
 import com.wd.my_message.Message_APP;
-import com.wd.my_message.bean.AddArchivesBean;
-import com.wd.my_message.bean.EndInquiryBean;
-import com.wd.my_message.bean.HealthyCurrencyBean;
 import com.wd.my_message.bean.HistoryBean;
+import com.wd.my_message.bean.SetPwdBean;
+import com.wd.my_message.bean.SetSexBean;
+import com.wd.my_message.bean.SetSignBean;
+import com.wd.my_message.bean.Set_NameBean;
+import com.wd.my_message.bean.User_InfoBean;
+import com.wd.my_message.model.MyMessage_Mode;
+import com.wd.my_message.bean.AddArchivesBean;
+import com.wd.my_message.bean.AttentionDoctorListBean;
+import com.wd.my_message.bean.ConsumptionRecordBean;
+import com.wd.my_message.bean.EndInquiryBean;
+import com.wd.my_message.bean.DeleteArchivesBean;
+import com.wd.my_message.bean.DoTaskBean;
+import com.wd.my_message.bean.GetTaskBean;
+import com.wd.my_message.bean.HealthyCurrencyBean;
+import com.wd.my_message.bean.ImageBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.InquiryRecordBean;
-import com.wd.my_message.bean.Message_LoginBean;
+import com.wd.my_message.bean.LianxuSignBean;
+import com.wd.my_message.bean.MySickCircleCommentListBean;
+import com.wd.my_message.bean.MySickCircleListBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.QuerySignBean;
+import com.wd.my_message.bean.QueryTaskListBean;
 import com.wd.my_message.bean.SignBean;
 import com.wd.my_message.bean.SuggestBean;
 import com.wd.my_message.bean.SystemMessageBean;
+import com.wd.my_message.bean.UnAttentionDoctorBean;
+import com.wd.my_message.bean.UpdateArchivesBean;
+import com.wd.my_message.bean.UserArchivesBean;
 import com.wd.my_message.bean.UserArchivesPictureBean;
 import com.wd.my_message.bean.UserColletionBean;
 import com.wd.my_message.bean.UserSickCollectionBean;
 import com.wd.my_message.bean.VideoCollectionBean;
 import com.wd.my_message.contract.Contract;
-import com.wd.my_message.model.MyMessage_Mode;
-import com.wd.my_message.bean.AttentionDoctorListBean;
-import com.wd.my_message.bean.ConsumptionRecordBean;
-import com.wd.my_message.bean.DeleteArchivesBean;
-import com.wd.my_message.bean.DoTaskBean;
-import com.wd.my_message.bean.GetTaskBean;
-import com.wd.my_message.bean.ImageBean;
-import com.wd.my_message.bean.LianxuSignBean;
-import com.wd.my_message.bean.MySickCircleCommentListBean;
-import com.wd.my_message.bean.MySickCircleListBean;
-import com.wd.my_message.bean.QueryTaskListBean;
-import com.wd.my_message.bean.UnAttentionDoctorBean;
-import com.wd.my_message.bean.UpdateArchivesBean;
-import com.wd.my_message.bean.UserArchivesBean;
 
 import java.util.Map;
 
@@ -504,30 +508,6 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
     }
 
     @Override
-    public void onHistory(int page, int count) {
-        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
-        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
-        myMessage_mode.onHistory(userId, sessionid, page, count, new Contract.IModel.IModelCallBack() {
-            @Override
-            public void onSuccess(Object data) {
-                if (isViewAttached()) {
-                    HistoryBean historyBean = (HistoryBean) data;
-                    if (historyBean != null) {
-                        getView().onSuccess(historyBean);
-                    }
-                }
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                if (isViewAttached()) {
-                    getView().onError(e);
-                }
-            }
-        });
-    }
-
-    @Override
     public void onDeleteFile(int archivesId) {
         int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
@@ -600,7 +580,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
     }
 
     @Override
-    public void onUploadPiture(Map<String, MultipartBody.Part> picture) {
+    public void onUploadPiture(MultipartBody.Part picture) {
         int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
         myMessage_mode.onUploadPiture(userId, sessionid, picture, new Contract.IModel.IModelCallBack() {
@@ -744,16 +724,135 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
     }
 
     @Override
-    public void onMessage() {
+    public void onHistory(int page, int count) {
         int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
-        myMessage_mode.onMessage(userId, sessionid, new Contract.IModel.IModelCallBack() {
+        myMessage_mode.onHistory(userId, sessionid, page, count, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
                 if (isViewAttached()) {
-                    Message_LoginBean message_loginBean = (Message_LoginBean) data;
-                    if (message_loginBean != null) {
-                        getView().onSuccess(message_loginBean);
+                    HistoryBean historyBean = (HistoryBean) data;
+                    if (historyBean != null) {
+                        getView().onSuccess(historyBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    public void onSet_Name(String nickName) {
+        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onSet_Name(userId, sessionid, nickName, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    Set_NameBean set_nameBean = (Set_NameBean) data;
+                    if (set_nameBean != null) {
+                        getView().onSuccess(set_nameBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+
+    public void onUser_Info() {
+        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onUser_Info(userId, sessionid, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    User_InfoBean user_infoBean = (User_InfoBean) data;
+                    if (user_infoBean != null) {
+                        getView().onSuccess(user_infoBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+
+    public void onSet_Sex(int sex) {
+        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onSet_Sex(userId, sessionid, sex, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    SetSexBean setSexBean = (SetSexBean) data;
+                    if (setSexBean != null) {
+                        getView().onSuccess(setSexBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+
+    public void onSet_Pwd(String oldPwd, String newPwd) {
+        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onSet_Pwd(userId, sessionid, oldPwd, newPwd, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    SetPwdBean setPwdBean = (SetPwdBean) data;
+                    if (setPwdBean != null) {
+                        getView().onSuccess(setPwdBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+
+    public void onSet_Sign(int age, int height, int weight) {
+        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onSet_Sign(userId, sessionid, age, height, weight, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    SetSignBean setSignBean = (SetSignBean) data;
+                    if (setSignBean != null) {
+                        getView().onSuccess(setSignBean);
                     }
                 }
             }

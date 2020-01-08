@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -32,15 +31,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.wd.circle.bean.Circle_list_Bean;
-import com.wd.circle.bean.PictureBean;
-import com.wd.circle.contract.Contract;
-import com.wd.circle.presenter.Circle_MainPresenter;
 import com.wd.health.R;
 import com.wd.health.R2;
+import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.DiseaseBean;
 import com.wd.circle.bean.DoTaskBean;
+import com.wd.circle.bean.PictureBean;
 import com.wd.circle.bean.RepleaseCircleBean;
+import com.wd.circle.contract.Contract;
+import com.wd.circle.presenter.Circle_MainPresenter;
 import com.wd.circle.utils.CustomImgPickerPresenter;
 import com.wd.circle.utils.WeChatPresenter;
 import com.wd.circle.view.adapter.ConsultationTwoAdapter;
@@ -142,23 +141,12 @@ public class ReleaseCirclesActivity extends BaseActivity<Circle_MainPresenter> i
         refreshGridLayout();
         //设置在activity启动的时候输入法默认是不开启的
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        //悬赏额度的开关
-        swit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    xuanshangeduLinear.setVisibility(View.VISIBLE);
-                } else {
-                    xuanshangeduLinear.setVisibility(View.GONE);
-                }
-            }
-        });
         //开始时间
         releaseCircleIvStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ReleaseCirclesActivity.this);
-                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_date, null);
+                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.circle_dialog_date, null);
                 final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
@@ -196,7 +184,7 @@ public class ReleaseCirclesActivity extends BaseActivity<Circle_MainPresenter> i
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ReleaseCirclesActivity.this);
-                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_date, null);
+                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.circle_dialog_date, null);
                 final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
@@ -249,11 +237,11 @@ public class ReleaseCirclesActivity extends BaseActivity<Circle_MainPresenter> i
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_release_circles;
+        return R.layout.circle_activity_release_circles;
     }
 
     private void initPopWindowDisease(View v) {
-        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_disease, null, false);
+        View view = LayoutInflater.from(this).inflate(R.layout.circle_item_popip_disease, null, false);
         popup_recycler_disease = view.findViewById(R.id.popup_recycler_disease);
         //1.构造一个PopupWindow，参数依次是加载的View，宽高
         popWindowDisease = new PopupWindow(view,
@@ -280,7 +268,7 @@ public class ReleaseCirclesActivity extends BaseActivity<Circle_MainPresenter> i
     }
 
     private void initPopuWindows(View v) {
-        View view = LayoutInflater.from(this).inflate(R.layout.item_popip_department, null, false);
+        View view = LayoutInflater.from(this).inflate(R.layout.circle_item_popip_department, null, false);
         popup_recycler_department = view.findViewById(R.id.popup_recycler_department);
         //1.构造一个PopupWindow，参数依次是加载的View，宽高
         popupWindow = new PopupWindow(view,
@@ -409,8 +397,8 @@ public class ReleaseCirclesActivity extends BaseActivity<Circle_MainPresenter> i
                     popupWindow.dismiss();
                 }
             });
-        } else if (obj instanceof DiseaseBean) {
-            DiseaseBean diseaseBean = (DiseaseBean) obj;
+        }else if (obj instanceof DiseaseBean){
+            DiseaseBean diseaseBean= (DiseaseBean) obj;
             List<DiseaseBean.ResultBean> result = diseaseBean.getResult();
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
             IllnessAdapter illnessAdapter = new IllnessAdapter(result, this);
@@ -442,20 +430,20 @@ public class ReleaseCirclesActivity extends BaseActivity<Circle_MainPresenter> i
             } else {
                 Toast.makeText(this, repleaseCircleBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        } else if (obj instanceof DoTaskBean) {
-            DoTaskBean doTaskBean = (DoTaskBean) obj;
-            if (doTaskBean.getStatus().equals("0000")) {
+        }else if (obj instanceof DoTaskBean){
+            DoTaskBean doTaskBean= (DoTaskBean) obj;
+            if (doTaskBean.getStatus().equals("0000")){
                 Toast.makeText(this, "每日首发病友圈完成!快去领取奖励吧", Toast.LENGTH_SHORT).show();
                 mPresenter.onPicture(userId + "", sessionId, sickCircleId, parts);
             }
-        } else if (obj instanceof PictureBean) {
-            PictureBean pictureBean = (PictureBean) obj;
+        }else if (obj instanceof PictureBean){
+            PictureBean pictureBean= (PictureBean) obj;
             if (pictureBean.getStatus().equals("0000")) {
                 Toast.makeText(this, pictureBean.getMessage(), Toast.LENGTH_SHORT).show();
                 //做任务
                 mPresenter.onDoTask(userId + "", sessionId, 1003);
                 finish();
-            } else {
+            }else {
                 Toast.makeText(this, pictureBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
@@ -479,7 +467,7 @@ public class ReleaseCirclesActivity extends BaseActivity<Circle_MainPresenter> i
         if (num >= 6) {
             mGridLayout.setVisibility(View.VISIBLE);
             for (int i = 0; i < num; i++) {
-                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.a_layout_pic_select, null);
+                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.circle_a_layout_pic_select, null);
                 view.setLayoutParams(params);
                 view.setPadding(dp(5), dp(5), dp(5), dp(5));
                 setPicItemClick(view, i);
@@ -498,7 +486,7 @@ public class ReleaseCirclesActivity extends BaseActivity<Circle_MainPresenter> i
                 }
             });
             for (int i = 0; i < num; i++) {
-                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.a_layout_pic_select, null);
+                RelativeLayout view = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.circle_a_layout_pic_select, null);
                 view.setLayoutParams(params);
                 view.setPadding(dp(5), dp(5), dp(5), dp(5));
                 setPicItemClick(view, i);
@@ -582,13 +570,14 @@ public class ReleaseCirclesActivity extends BaseActivity<Circle_MainPresenter> i
                 .pick(this, new OnImagePickCompleteListener() {
 
 
+
                     @Override
                     public void onImagePickComplete(ArrayList<ImageItem> items) {
                         //处理回调回来的图片信息，主线程
                         picList.addAll(items);
 
                         String path = items.get(0).path;
-                        if (path != null) {
+                        if (path!=null) {
                             File file = new File(path);
                             RequestBody requestBody = MultipartBody.create(MediaType.parse("image/*"), file);
                             MultipartBody.Part part = MultipartBody.Part.createFormData("picture", file.getName(), requestBody);

@@ -41,7 +41,7 @@ public class UserSickCollection_Fragment extends BaseFragment<MyFragmentMessage_
 
     @Override
     protected int initLayout() {
-        return R.layout.usersickcollection_fragment;
+        return R.layout.message_usersickcollection_fragment;
     }
 
     @Override

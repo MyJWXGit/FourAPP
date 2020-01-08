@@ -4,6 +4,10 @@
 
     <application>
         <activity android:name="com.wd.circle.view.Circle_Details_Activity"></activity>
+        <activity android:name="com.wd.circle.view.Circle_Home_Activity"></activity>
+        <activity android:name="com.wd.circle.view.ReleaseCirclesActivity"></activity>
+        <activity android:name="com.wd.circle.view.Seach_Circle_Activity"></activity>
+        <activity android:name="com.wd.circle.view.SecondActivity"></activity>
     </application>
 
 </manifest>

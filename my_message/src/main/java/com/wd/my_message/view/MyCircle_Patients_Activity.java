@@ -13,8 +13,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
-import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
+import com.wd.my_message.contract.Contract;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,7 +57,7 @@ public class MyCircle_Patients_Activity extends BaseActivity<MyMessage_Presenter
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my_circle__patients_;
+        return R.layout.message_activity_my_circle__patients_;
     }
 
     @Override

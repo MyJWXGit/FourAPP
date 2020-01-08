@@ -1,12 +1,9 @@
 package com.wd.my_message.view;
 
-import android.content.ContentResolver;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.util.ArrayMap;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,10 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigkoo.pickerview.TimePickerView;
+import com.bumptech.glide.Glide;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
@@ -27,15 +24,18 @@ import com.wd.my_message.contract.Contract;
 import com.wd.my_message.My_Home_Activity;
 import com.wd.my_message.bean.AddArchivesBean;
 import com.wd.my_message.presenter.MyMessage_Presenter;
-import com.wd.my_message.view.record.TuAdapter;
+import com.wd.my_message.utils.ImageUtil;
+import com.wd.health.R;
+import com.wd.health.R2;
+import com.wd.my_message.contract.Contract;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -45,7 +45,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements Contract.IView {
-
+    Calendar calendar = Calendar.getInstance(Locale.CHINA);
     @BindView(R2.id.back)
     ImageView back;
     @BindView(R2.id.diseaseMain)
@@ -97,8 +97,7 @@ public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements
     @BindView(R2.id.lin8)
     LinearLayout lin8;
     private TimePickerView pvTime;
-    private List<File> fileList =new ArrayList<>();
-    private Map<String,MultipartBody.Part> partList = new ArrayMap<>();
+
     @Override
     protected MyMessage_Presenter providePresenter() {
         return new MyMessage_Presenter();
@@ -150,13 +149,13 @@ public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements
                 String startte = editStarttime.getText().toString().trim();
                 String endte = editEndtime.getText().toString().trim();
                 Map<String, Object> hashMap = new HashMap<>();
-                hashMap.put("diseaseMain",main);
-                hashMap.put("diseaseNow",now);
-                hashMap.put("diseaseBefore",before);
-                hashMap.put("treatmentHospitalRecent",recent);
-                hashMap.put("treatmentProcess",process);
-                hashMap.put("treatmentStartTime",startte);
-                hashMap.put("treatmentEndTime",endte);
+                hashMap.put("diseaseMain", main);
+                hashMap.put("diseaseNow", now);
+                hashMap.put("diseaseBefore", before);
+                hashMap.put("treatmentHospitalRecent", recent);
+                hashMap.put("treatmentProcess", process);
+                hashMap.put("treatmentStartTime", startte);
+                hashMap.put("treatmentEndTime", endte);
                 mPresenter.onInsertFile(hashMap);
             }
         });
@@ -164,51 +163,36 @@ public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (fileList.size() >=6){
-                    Toast.makeText(RecordActivity.this, "最多选取6张", Toast.LENGTH_SHORT).show();
-                }else {
-                    Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    intent1.setType("image/*");
-                    startActivityForResult(intent1, 1);
-                }
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, 10);
             }
         });
     }
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode,Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode ==1 & data !=null){
-            Uri dataData = data.getData();
+        if (requestCode == 10) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri dataData = data.getData();
+                //用一个工具类获取图片的绝对路径,我会粘到下方
+                String path = ImageUtil.getPath(this, dataData);
+                Glide.with(this).load(path)
+                        .placeholder(R.mipmap.add)
+                        .error(R.mipmap.add)
+                        .into(addImage);
+                if (path != null) {
+                    File file = new File(path);
 
-            String[] str={MediaStore.Images.Media.DATA};
-            //获取内容解析器
-            ContentResolver contentResolver = getContentResolver();
-            Cursor cursor = contentResolver.query(dataData, str, null, null, null);
-            //移至第一位
-            cursor.moveToFirst();
-            //获取下标
-            int columnIndex = cursor.getColumnIndex(str[0]);
-            String cursorString = cursor.getString(columnIndex);
-            File file = new File(cursorString);
-            fileList.add(file);
-
-            //图片的布局
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(RecordActivity.this, 2);
-            boImageList.setLayoutManager(gridLayoutManager);
-            //适配器
-            TuAdapter tuAdapter = new TuAdapter(fileList,RecordActivity.this);
-            boImageList.setAdapter(tuAdapter);
-
-            //格式
-            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data;charset=utf-8"), file);
-            //创建表格数据
-            MultipartBody.Part part = MultipartBody.Part.createFormData("picture", file.getName(), requestBody);
-            partList.containsKey(part);
-
-            mPresenter.onUploadPiture(partList);
-
-
+                    //格式
+                    RequestBody requestBody1 = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                    //创建表格数据
+                    MultipartBody.Part part = MultipartBody.Part.createFormData("picture", file.getName(), requestBody1);
+                    mPresenter.onUploadPiture(part);
+                }
+            }
         }
     }
 
@@ -251,18 +235,18 @@ public class RecordActivity extends BaseActivity<MyMessage_Presenter> implements
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_record;
+        return R.layout.message_activity_record;
     }
 
     @Override
     public void onSuccess(Object data) {
-        if (data instanceof AddArchivesBean){
-            AddArchivesBean addArchivesBean= (AddArchivesBean) data;
-            if (addArchivesBean.getStatus().equals("0000")){
+        if (data instanceof AddArchivesBean) {
+            AddArchivesBean addArchivesBean = (AddArchivesBean) data;
+            if (addArchivesBean.getStatus().equals("0000")) {
                 Toast.makeText(this, addArchivesBean.getMessage(), Toast.LENGTH_SHORT).show();
                 mPresenter.onDoTask(1004);
                 startActivity(new Intent(this, My_Home_Activity.class));
-            }else {
+            } else {
                 Toast.makeText(this, addArchivesBean.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }

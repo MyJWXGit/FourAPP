@@ -1,6 +1,7 @@
 package com.wd.home.activity;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -13,12 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
-import com.wd.home.bean.PuMessageBean;
-import com.wd.home.presenter.HomePresenter;
 import com.wd.home.adapter.RecordingAdapter;
 import com.wd.home.bean.InquiryRecordBean;
+import com.wd.home.bean.PuMessageBean;
 import com.wd.home.bean.RecordingBean;
 import com.wd.home.contract.Contract;
+import com.wd.home.presenter.HomePresenter;
 
 import java.util.List;
 
@@ -36,6 +37,7 @@ import cn.jpush.im.api.BasicCallback;
 import static cn.jpush.im.android.api.model.Conversation.createSingleConversation;
 
 public class SendMessageActivity extends BaseActivity<HomePresenter> implements Contract.IView {
+
 
     @BindView(R2.id.im_recycler)
     RecyclerView imRecycler;
@@ -73,9 +75,9 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
                     Conversation con = createSingleConversation("HLo7T517701300447", "c7f6a1d56cb8da740fd18bfa");
                     MessageContent content = new TextContent(s);
                     //创建一条消息
-                    Message message = con.createSendMessage(content);
+                    Message sendMessage = con.createSendMessage(content);
                     //发送消息
-                    JMessageClient.sendMessage(message);
+                    JMessageClient.sendMessage(sendMessage);
                     imRecycler.setLayoutManager(linearLayoutManager);
                     imEdit.setText(null);
                 } else {
@@ -88,7 +90,7 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_send_message;
+        return R.layout.home_activity_send_message;
     }
 
     @Override
@@ -164,5 +166,12 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
     protected void onDestroy() {
         super.onDestroy();
         JMessageClient.unRegisterEventReceiver(this);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

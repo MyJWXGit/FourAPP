@@ -11,12 +11,12 @@ import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
-import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.view.collection_fragment.PageAdapter;
-import com.wd.my_message.view.collection_fragment.UserCollection_Fragment;
 import com.wd.my_message.view.collection_fragment.UserSickCollection_Fragment;
 import com.wd.my_message.view.collection_fragment.UserVideo_Fragment;
+import com.wd.my_message.contract.Contract;
+import com.wd.my_message.view.collection_fragment.UserCollection_Fragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class Collection_Activity extends BaseActivity<MyMessage_Presenter> imple
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my_collection;
+        return R.layout.message_activity_my_collection;
     }
 
     @Override

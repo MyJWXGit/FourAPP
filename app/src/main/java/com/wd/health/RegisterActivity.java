@@ -14,9 +14,9 @@ import android.widget.Toast;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.bean.EmailBean;
 import com.wd.health.bean.RegisterBean;
-import com.wd.health.contract.Contract;
 import com.wd.health.presenter.APP_MainPresenter;
-import com.wd.health.utils.RsaCoder;
+import com.wd.home.contract.Contract;
+import com.wd.home.utils.RsaCoder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,7 +74,7 @@ public class RegisterActivity extends BaseActivity<APP_MainPresenter> implements
         Transition transition = new TransitionSet().addTransition(new Explode());
         getWindow().setEnterTransition(transition.setDuration(2000));
         getWindow().setExitTransition(new Explode().setDuration(2000));
-        return R.layout.activity_register;
+        return R.layout.app_activity_register;
     }
 
     @Override

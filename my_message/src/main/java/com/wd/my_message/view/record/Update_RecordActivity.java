@@ -19,9 +19,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
-import com.wd.my_message.contract.Contract;
-import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.bean.UpdateArchivesBean;
+import com.wd.my_message.presenter.MyMessage_Presenter;
+import com.wd.my_message.contract.Contract;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -171,7 +171,7 @@ public class Update_RecordActivity extends BaseActivity<MyMessage_Presenter> imp
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(Update_RecordActivity.this);
-                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_date, null);
+                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.message_dialog_date, null);
                 final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
@@ -210,7 +210,7 @@ public class Update_RecordActivity extends BaseActivity<MyMessage_Presenter> imp
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(Update_RecordActivity.this);
-                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.dialog_date, null);
+                final View view = (LinearLayout) getLayoutInflater().inflate(R.layout.message_dialog_date, null);
                 final DatePicker datePicker = (DatePicker) view.findViewById(R.id.date_picker);
                 //设置日期简略显示 否则详细显示 包括:星期\周
                 datePicker.setCalendarViewShown(false);
@@ -250,7 +250,7 @@ public class Update_RecordActivity extends BaseActivity<MyMessage_Presenter> imp
     }
     @Override
     protected int initLayout() {
-        return R.layout.activity_update__record;
+        return R.layout.message_activity_update__record;
     }
 
     @Override

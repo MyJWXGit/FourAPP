@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
-import com.wd.my_message.bean.AttentionDoctorListBean;
 import com.wd.my_message.bean.UnAttentionDoctorBean;
-import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
+import com.wd.my_message.bean.AttentionDoctorListBean;
+import com.wd.my_message.contract.Contract;
 import com.wd.my_message.view.attention_doctor.FindUserDoctorFollowListAdapter;
 
 import java.util.List;
@@ -62,7 +62,7 @@ public class Attention_Doctor_Activity extends BaseActivity<MyMessage_Presenter>
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_attention__doctor_;
+        return R.layout.message_activity_attention__doctor_;
     }
 
     @Override

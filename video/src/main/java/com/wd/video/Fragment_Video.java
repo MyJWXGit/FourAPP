@@ -17,9 +17,10 @@ import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseFragment;
 import com.wd.health.R;
 import com.wd.video.bean.Video_EntryBean;
-import com.wd.video.fragment.BeautyFragment;
-import com.wd.video.contract.Contract;
 import com.wd.video.presenter.Video_EntryPresenter;
+import com.wd.video.contract.Contract;
+import com.wd.video.fragment.BeautyFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class Fragment_Video extends BaseFragment<Video_EntryPresenter> implement
 
     @Override
     protected int initLayout() {
-        return R.layout.fragment_my_video;
+        return R.layout.video_fragment_my_video;
     }
 
     @Override

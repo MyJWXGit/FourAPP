@@ -8,12 +8,12 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wd.health.R;
-import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.presenter.Home_CirclePresenter;
 import com.wd.circle.view.Circle_Details_Activity;
 import com.wd.circle.view.adapter.Circle_Lists_Adapter;
+import com.wd.health.R;
+import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.common.base.BaseFragment;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class HomeFragment extends BaseFragment<Home_CirclePresenter> implements 
 
     @Override
     protected int initLayout() {
-        return R.layout.home_fragment;
+        return R.layout.circle_home_fragment;
     }
 
     @Override

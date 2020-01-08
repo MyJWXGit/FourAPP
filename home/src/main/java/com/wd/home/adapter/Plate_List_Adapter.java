@@ -37,7 +37,7 @@ public class Plate_List_Adapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.plate_title_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.home_plate_title_item, parent, false);
         return new MyViewHolder(view);
     }
 

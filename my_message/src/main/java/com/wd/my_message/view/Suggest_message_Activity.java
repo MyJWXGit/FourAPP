@@ -13,9 +13,9 @@ import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
 import com.wd.my_message.bean.SuggestBean;
+import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.view.suggest.FindMyAdoptedCommentListAdapter;
-import com.wd.my_message.presenter.MyMessage_Presenter;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class Suggest_message_Activity extends BaseActivity<MyMessage_Presenter> 
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_suggest_message_;
+        return R.layout.message_activity_suggest_message_;
     }
 
     @Override

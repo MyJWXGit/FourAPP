@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dddddd"
+    tools:context="com.wd.circle.view.Seach_Circle_Activity">
+
+    <LinearLayout
+        android:id="@+id/aaa"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/fanhui_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/common_icon_back_black_n"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/ed_mohucha"
+            android:layout_width="360dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="3"
+            android:background="@drawable/my_buju"
+            android:hint="请输入病症名称或者标题关键字"
+            android:maxLength="10"
+            android:paddingLeft="10dp"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/but_bingquanshou"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/my_bianjiao"
+            android:text="搜索"
+            android:textColor="@color/colorAccent3" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/seach_jiankong"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/seach_tus"
+            android:layout_width="126dp"
+            android:layout_height="135dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:background="@mipmap/no_search_message" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/seach_tus"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="抱歉,没有找到“癌症”的相关病友!"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recy_modainying"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/aaa"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"></androidx.recyclerview.widget.RecyclerView>
+
+    <include
+        layout="@layout/circle_layout_include"
+        android:visibility="gone" />
+</RelativeLayout>

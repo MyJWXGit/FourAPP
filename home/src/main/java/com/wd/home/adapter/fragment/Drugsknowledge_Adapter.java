@@ -41,7 +41,7 @@ public class Drugsknowledge_Adapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.drugsknowledge_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.home_drugsknowledge_item, parent, false);
         return new MyViewHolder(view);
     }
 

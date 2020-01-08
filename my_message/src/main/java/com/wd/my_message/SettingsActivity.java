@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.health.R;
 import com.wd.health.R2;
+import com.wd.my_message.view.Change_Password_Activity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,7 +57,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.message_activity_settings);
         ButterKnife.bind(this);
         initData();
     }
@@ -81,6 +82,8 @@ public class SettingsActivity extends AppCompatActivity {
             Intent intent = new Intent(SettingsActivity.this, Update_Message_Activity.class);
             startActivity(intent);
         } else if (id == R.id.setting_image_pwd) {
+            Intent intent = new Intent(SettingsActivity.this, Change_Password_Activity.class);
+            startActivity(intent);
         } else if (id == R.id.setting_text_clear) {
         } else if (id == R.id.setting_image_clear) {
         } else if (id == R.id.setting_image_ping_lian) {

@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.dou361.ijkplayer.widget.IjkVideoView;
 import com.wd.common.base.BaseFragment;
 import com.wd.health.R;
+import com.wd.video.presenter.Video_QueryFPresenter;
+import com.wd.video.utils.OnViewPagerListener;
 import com.wd.video.adapter.VideoAdapter;
 import com.wd.video.bean.Video_CollectionBean;
 import com.wd.video.bean.Video_PayBean;
@@ -16,9 +18,7 @@ import com.wd.video.bean.Video_QueryBean;
 import com.wd.video.bean.Video_Query_BarrageBean;
 import com.wd.video.bean.Video_SendBean;
 import com.wd.video.contract.Contract;
-import com.wd.video.presenter.Video_QueryFPresenter;
 import com.wd.video.utils.AcFunDanmakuParser;
-import com.wd.video.utils.OnViewPagerListener;
 import com.wd.video.utils.PagerLayoutManager;
 
 
@@ -185,7 +185,7 @@ public class BeautyFragment extends BaseFragment<Video_QueryFPresenter> implemen
 
     @Override
     protected int initLayout() {
-        return R.layout.beauty_fragment;
+        return R.layout.video_beauty_fragment;
     }
 
     @Override

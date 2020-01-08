@@ -13,14 +13,11 @@
         <activity android:name="com.wd.home.activity.DiseaseKnowledgeActivity" />
         <activity android:name="com.wd.home.activity.CommonActivity" />
         <activity android:name="com.wd.home.activity.FindInfoActivity" /> <!-- 屏幕适配 -->
-        <activity
-            android:name="com.wd.home.activity.HomeActivity"
-            android:hardwareAccelerated="false" />
-
+        <activity android:name="com.wd.home.activity.HomeActivity" />
+        <!-- Required SDK 核心功能-->
+        <!-- 这个Service要继承JCommonService -->
         <service
-            android:name="com.wd.home.activity.XService"
-            android:enabled="true"
-            android:exported="false"
+            android:name="com.wd.home.Health_Service"
             android:process=":pushcore">
             <intent-filter>
                 <action android:name="cn.jiguang.user.service.action" />

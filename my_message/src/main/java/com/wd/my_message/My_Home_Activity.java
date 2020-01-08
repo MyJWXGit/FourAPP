@@ -15,19 +15,18 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
-import com.wd.my_message.bean.Message_LoginBean;
+import com.wd.my_message.view.Attention_Doctor_Activity;
 import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.SignBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
-import com.wd.my_message.view.Attention_Doctor_Activity;
 import com.wd.my_message.view.Collection_Activity;
 import com.wd.my_message.view.MessagesActivity;
-import com.wd.my_message.view.Suggest_message_Activity;
 import com.wd.my_message.view.My_Walk_Activity;
 import com.wd.my_message.view.MyCircle_Patients_Activity;
 import com.wd.my_message.view.My_Record_Activity;
 import com.wd.my_message.view.My_Task_Activity;
+import com.wd.my_message.view.Suggest_message_Activity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -89,13 +88,12 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
 
     @Override
     protected void initData() {
-        mPresenter.onMessage();
         mPresenter.onQueryUserSign();
     }
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_my_home;
+        return R.layout.message_activity_my_home;
     }
 
     @Override
@@ -114,9 +112,11 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
             mPresenter.onSign();
         } else if (id == R.id.linear_lay) {
         } else if (id == R.id.my_button_inquiry) {
-            startActivity(new Intent(My_Home_Activity.this, My_Present_InquiryActivity.class));
+            Intent intent = new Intent(My_Home_Activity.this, My_Present_InquiryActivity.class);
+            startActivity(intent);
         } else if (id == R.id.my_button_history) {
-            startActivity(new Intent(My_Home_Activity.this, Special_HistoryActivity.class));
+            Intent intent = new Intent(My_Home_Activity.this, Special_HistoryActivity.class);
+            startActivity(intent);
         } else if (id == R.id.re_latiview) {
         } else if (id == R.id.my_button_record) {
             startActivity(new Intent(this, My_Record_Activity.class));
@@ -144,13 +144,7 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
 
     @Override
     public void onSuccess(Object data) {
-        if (data instanceof Message_LoginBean) {
-            Message_LoginBean bean = (Message_LoginBean) data;
-            String headPic = bean.getResult().getHeadPic();
-            String userName = bean.getResult().getUserName();
-            myImageSimple.setImageURI(headPic);
-            myTextLogin.setText(userName);
-        } else if (data instanceof SignBean) {
+        if (data instanceof SignBean) {
             SignBean signBean = (SignBean) data;
             if (signBean.getStatus().equals("0000")) {
                 Toast.makeText(this, signBean.getMessage(), Toast.LENGTH_SHORT).show();

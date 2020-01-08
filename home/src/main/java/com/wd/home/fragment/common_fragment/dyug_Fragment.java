@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.base.BaseFragment;
 import com.wd.health.R;
-import com.wd.home.adapter.fragment.Category_Adapter;
 import com.wd.home.adapter.fragment.Department_Adapter;
+import com.wd.home.adapter.fragment.Category_Adapter;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.DepartmentBean;
-import com.wd.home.contract.Contract;
 import com.wd.home.presenter.Fragment_Presenter;
+import com.wd.home.contract.Contract;
 
 import java.util.List;
 
@@ -29,8 +29,8 @@ import java.util.List;
  * @class describe
  */
 public class dyug_Fragment extends BaseFragment<Fragment_Presenter> implements Contract.IView {
-    RecyclerView titleRecycler;
-    RecyclerView infoRecycler;
+    private RecyclerView titleRecycler;
+    private RecyclerView infoRecycler;
 
     @Override
     protected Fragment_Presenter providePresenter() {
@@ -39,7 +39,7 @@ public class dyug_Fragment extends BaseFragment<Fragment_Presenter> implements C
 
     @Override
     protected int initLayout() {
-        return R.layout.dyug_fragment;
+        return R.layout.home_dyug_fragment;
     }
 
     @Override

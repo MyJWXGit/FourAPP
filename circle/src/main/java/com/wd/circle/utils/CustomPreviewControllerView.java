@@ -52,7 +52,7 @@ public class CustomPreviewControllerView extends PreviewControllerView {
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.layout_custom_preview;
+        return R.layout.circle_layout_custom_preview;
     }
 
     /**

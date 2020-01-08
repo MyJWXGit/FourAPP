@@ -4,24 +4,24 @@ import com.wd.common.api.Constant;
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.Logger;
 import com.wd.common.utils.SpUtils;
-import com.wd.home.Home_APP;
-import com.wd.home.bean.DoctorListBean;
-import com.wd.home.bean.EndInquiryBean;
-import com.wd.home.bean.CancelFllowBean;
-import com.wd.home.bean.CategoryBean;
-import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DepartmentBean;
-import com.wd.home.bean.DoctorInfoBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
 import com.wd.home.bean.EvaluateListBean;
 import com.wd.home.bean.FollowBean;
+import com.wd.home.Home_APP;
+import com.wd.home.bean.CancelFllowBean;
+import com.wd.home.bean.CategoryBean;
+import com.wd.home.bean.CategoryListBean;
+import com.wd.home.bean.DoctorInfoBean;
+import com.wd.home.bean.DoctorListBean;
+import com.wd.home.bean.EndInquiryBean;
 import com.wd.home.bean.IllnessBean;
-import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.bean.UserWalletBean;
-import com.wd.home.contract.Contract;
 import com.wd.home.model.Fragment_Mode;
+import com.wd.home.bean.InquiryRecordBean;
+import com.wd.home.contract.Contract;
 
 /**
  * @name Health
@@ -33,7 +33,7 @@ import com.wd.home.model.Fragment_Mode;
  * @chang time
  * @class describe
  */
-public class Fragment_Presenter extends BasePresenter<Contract.IView> implements Contract.FPresenter {
+public class Fragment_Presenter extends BasePresenter<com.wd.home.contract.Contract.IView> implements com.wd.home.contract.Contract.FPresenter {
 
     private Fragment_Mode home_dode;
     private static final String TAG = "Fragment_Presenter";
@@ -45,7 +45,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
 
     @Override
     public void onDepartment() {
-        home_dode.onDepartment_F(new Contract.FModer.IBallBask() {
+        home_dode.onDepartment_F(new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -72,7 +72,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
 
     @Override
     public void onCategory(int departmentId) {
-        home_dode.onCategory(departmentId, new Contract.FModer.IBallBask() {
+        home_dode.onCategory(departmentId, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -99,7 +99,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
 
     @Override
     public void onDiseaseKnowledge(int id) {
-        home_dode.onDiseaseKnowledge(id, new Contract.FModer.IBallBask() {
+        home_dode.onDiseaseKnowledge(id, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -126,7 +126,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
 
     @Override
     public void onCategoryList() {
-        home_dode.onCategoryList(new Contract.FModer.IBallBask() {
+        home_dode.onCategoryList(new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -153,7 +153,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
 
     @Override
     public void onDrugsKnowledgeList(int drugsCategoryId, int page, int count) {
-        home_dode.onDrugsKnowledgeList(drugsCategoryId, page, count, new Contract.FModer.IBallBask() {
+        home_dode.onDrugsKnowledgeList(drugsCategoryId, page, count, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -180,7 +180,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
 
     @Override
     public void onIllness(int id) {
-        home_dode.onIllness(id, new Contract.FModer.IBallBask() {
+        home_dode.onIllness(id, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -207,7 +207,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
 
     @Override
     public void onDoctorList(int deptId, int condition, int page, int count) {
-        home_dode.onDoctorList(deptId, condition, page, count, new Contract.FModer.IBallBask() {
+        home_dode.onDoctorList(deptId, condition, page, count, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -236,7 +236,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
     public void onDoctorInfo(String doctorId) {
         int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
-        home_dode.onDoctorInfo(userId, sessionid, doctorId, new Contract.FModer.IBallBask() {
+        home_dode.onDoctorInfo(userId, sessionid, doctorId, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -265,7 +265,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
     public void onFollow(int doctorId) {
         int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
-        home_dode.onFollow(userId, sessionid, doctorId, new Contract.FModer.IBallBask() {
+        home_dode.onFollow(userId, sessionid, doctorId, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -294,7 +294,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
     public void onCancelFollow(int doctorId) {
         int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
-        home_dode.onCancelFollow(userId, sessionid, doctorId, new Contract.FModer.IBallBask() {
+        home_dode.onCancelFollow(userId, sessionid, doctorId, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -323,7 +323,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
     public void onUserWallet() {
         int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
-        home_dode.onUserWallet(userId, sessionid, new Contract.FModer.IBallBask() {
+        home_dode.onUserWallet(userId, sessionid, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -350,7 +350,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
 
     @Override
     public void onEvaluateList(int doctorId, int page, int count) {
-        home_dode.onEvaluateList(doctorId, page, count, new Contract.FModer.IBallBask() {
+        home_dode.onEvaluateList(doctorId, page, count, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -379,7 +379,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
     public void getConsult(int doctorId) {
         int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
         String sessionId = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
-        home_dode.getConsult(userId, sessionId, doctorId, new Contract.FModer.IBallBask() {
+        home_dode.getConsult(userId, sessionId, doctorId, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -404,7 +404,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
     public void onEndInquiry(int recordId) {
         int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
         String sessionId = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
-        home_dode.onEndInquiry(userId, sessionId, recordId, new Contract.FModer.IBallBask() {
+        home_dode.onEndInquiry(userId, sessionId, recordId, new com.wd.home.contract.Contract.FModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
                 //软引用
@@ -439,7 +439,7 @@ public class Fragment_Presenter extends BasePresenter<Contract.IView> implements
                 //软引用
                 if (isViewAttached()) {
                     //Bean包强转  拿到Status进行判断
-                    InquiryRecordBean bean = (InquiryRecordBean) obj;
+                    com.wd.home.bean.InquiryRecordBean bean = (InquiryRecordBean) obj;
                     if (bean != null && bean.getStatus().equals("0000")) {
                         //getView是BasePresenter方法  使用getView进行调用P层
                         getView().onSuccess(bean);

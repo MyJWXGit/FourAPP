@@ -27,16 +27,16 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
-import com.wd.health.R;
-import com.wd.health.R2;
-import com.wd.circle.bean.Circle_list_Bean;
-import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.presenter.Circle_MainPresenter;
 import com.wd.circle.utils.ObservableScrollView;
 import com.wd.circle.view.Circle_Details_Activity;
 import com.wd.circle.view.Seach_Circle_Activity;
 import com.wd.circle.view.adapter.Search_Circle_Adapter;
+import com.wd.health.R;
+import com.wd.health.R2;
+import com.wd.circle.bean.Circle_list_Bean;
+import com.wd.circle.bean.SearchCircleBean;
 import com.wd.common.api.Constant;
 import com.wd.common.base.BaseFragment;
 import com.wd.common.utils.SpUtils;
@@ -159,7 +159,7 @@ public class Fragmentn_circle extends BaseFragment<Circle_MainPresenter> impleme
 
     @Override
     protected int initLayout() {
-        return R.layout.fragment_circle__home_;
+        return R.layout.circle_fragment_circle__home_;
     }
 
     @Override

@@ -20,12 +20,12 @@ import com.wd.health.R;
 import com.wd.health.R2;
 import com.wd.home.adapter.CommentAdapter;
 import com.wd.home.adapter.MyGiftAdapter;
+import com.wd.home.bean.FollowBean;
 import com.wd.home.bean.CancelFllowBean;
 import com.wd.home.bean.DoctorInfoBean;
-import com.wd.home.bean.FollowBean;
+import com.wd.home.presenter.Fragment_Presenter;
 import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.contract.Contract;
-import com.wd.home.presenter.Fragment_Presenter;
 
 import java.util.List;
 
@@ -95,7 +95,7 @@ public class Doctor_detailsActivity extends BaseActivity<Fragment_Presenter> imp
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_doctor_details;
+        return R.layout.home_activity_doctor_details;
     }
 
     @Override
@@ -167,8 +167,8 @@ public class Doctor_detailsActivity extends BaseActivity<Fragment_Presenter> imp
             nolike.setVisibility(View.VISIBLE);
             like.setVisibility(View.GONE);
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        } else if (obj instanceof InquiryRecordBean) {
-            InquiryRecordBean bean = (InquiryRecordBean) obj;
+        } else if (obj instanceof com.wd.home.bean.InquiryRecordBean) {
+            com.wd.home.bean.InquiryRecordBean bean = (InquiryRecordBean) obj;
             String message = bean.getMessage();
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }

@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.wd.health.R;
-import com.wd.health.R2;
-import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.presenter.Circle_MainPresenter;
 import com.wd.circle.view.adapter.Search_Circle_Adapter;
+import com.wd.health.R;
+import com.wd.health.R2;
+import com.wd.circle.bean.SearchCircleBean;
 import com.wd.common.base.BaseActivity;
 
 import java.util.List;
@@ -54,7 +54,7 @@ public class Seach_Circle_Activity extends BaseActivity<Circle_MainPresenter> im
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_seach_circle_health;
+        return R.layout.circle_activity_seach__circle_;
     }
 
     @Override

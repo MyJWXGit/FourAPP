@@ -83,9 +83,6 @@ public interface Contract {
         //结束问诊
         void onEndInquiry(int userId, String sessionId, int recordId, IModelCallBack iBallBask);
 
-        //历史问诊
-        void onHistory(int userId, String sessionId, int page, int count, IModelCallBack iBallBask);
-
         void onMyFile(int userId, String sessionId, IModelCallBack iModelCallBack);
 
         void onDeleteFile(int userId, String sessionId, int archivesId, IModelCallBack iModelCallBack);
@@ -94,7 +91,7 @@ public interface Contract {
 
         void onInsertFile(int userId, String sessionId, Map<String, Object> map, IModelCallBack iModelCallBack);
 
-        void onUploadPiture(int userId, String sessionId, Map<String, MultipartBody.Part> picture, IModelCallBack iModelCallBack);
+        void onUploadPiture(int userId, String sessionId, MultipartBody.Part picture, IModelCallBack iModelCallBack);
 
         //做任务
         void onDoTask(int userId, String sessionId, int taskId, IModelCallBack iModelCallBack);
@@ -107,8 +104,8 @@ public interface Contract {
 
         void onMyCircleComment(int userId, String sessionId, int sickCircleId, int page, int count, IModelCallBack iModelCallBac);
 
-        //根据用户ID查询用户信息
-        void onMessage(int userId, String sessionId, IModelCallBack iModelCallBac);
+        //历史问诊
+        void onHistory(int userId, String sessionId, int page, int count, IModelCallBack iBallBask);
 
         interface IModelCallBack {
             void onSuccess(Object data);
@@ -178,16 +175,13 @@ public interface Contract {
         //我的档案
         void onMyFile();
 
-        //历史问诊
-        void onHistory(int page, int count);
-
         void onDeleteFile(int archivesId);
 
         void onUpdateFile(Map<String, Object> map);
 
         void onInsertFile(Map<String, Object> map);
 
-        void onUploadPiture(Map<String, MultipartBody.Part> picture);
+        void onUploadPiture(MultipartBody.Part picture);
 
         //做任务
         void onDoTask(int taskId);
@@ -200,8 +194,8 @@ public interface Contract {
 
         void onMyCircleComment(int sickCircleId, int page, int count);
 
-        //根据用户ID查询用户信息
-        void onMessage();
+        //历史问诊
+        void onHistory(int page, int count);
     }
 
     //Fragment   M

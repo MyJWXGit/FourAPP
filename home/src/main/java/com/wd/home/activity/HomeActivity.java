@@ -2,9 +2,12 @@ package com.wd.home.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -14,8 +17,8 @@ import com.wd.common.base.BaseActivity;
 import com.wd.common.base.BasePresenter;
 import com.wd.health.R;
 import com.wd.home.adapter.Fragment_Adapter;
-import com.wd.home.contract.Contract;
 import com.wd.home.fragment.Fragment_home;
+import com.wd.home.contract.Contract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +30,7 @@ public class HomeActivity extends BaseActivity implements Contract.IView, View.O
     private ViewPager home_viewpager;
     private List<Fragment> fragments = new ArrayList<>();
     private LinearLayout linear_my, linear_home, linear_cinema, linear_home_null, linear_my_null, linear_cinema_null, line1, line2, line3;
+    private static final String TAG = "HomeActivity";
 
     @Override
     protected void initView() {
@@ -96,7 +100,7 @@ public class HomeActivity extends BaseActivity implements Contract.IView, View.O
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_home;
+        return R.layout.home_activity_home;
     }
 
     @Override

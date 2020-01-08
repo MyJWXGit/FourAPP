@@ -29,10 +29,10 @@ public class RecordingAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == 0) {
-            View inflate = LayoutInflater.from(context).inflate(R.layout.one_recording_layout, parent, false);
+            View inflate = LayoutInflater.from(context).inflate(R.layout.home_one_recording_layout, parent, false);
             return new MyOneRecordHolder(inflate);
         } else if (viewType == 1) {
-            View inflate = LayoutInflater.from(context).inflate(R.layout.two_recording_layout, parent, false);
+            View inflate = LayoutInflater.from(context).inflate(R.layout.home_two_recording_layout, parent, false);
             return new MyTwoRecordHolder(inflate);
         }
         return null;

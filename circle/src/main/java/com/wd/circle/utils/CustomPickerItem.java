@@ -39,7 +39,7 @@ public class CustomPickerItem extends PickerItemView {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.layout_custom_item;
+        return R.layout.circle_layout_custom_item;
     }
 
     @Override

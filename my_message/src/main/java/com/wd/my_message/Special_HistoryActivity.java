@@ -1,6 +1,7 @@
 package com.wd.my_message;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class Special_HistoryActivity extends BaseActivity<MyMessage_Presenter> implements Contract.IView {
+
     @BindView(R2.id.recycler)
     RecyclerView recycler;
 
@@ -39,7 +41,7 @@ public class Special_HistoryActivity extends BaseActivity<MyMessage_Presenter> i
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_special_history;
+        return R.layout.message_activity_special_history;
     }
 
     @Override
@@ -63,5 +65,12 @@ public class Special_HistoryActivity extends BaseActivity<MyMessage_Presenter> i
     @Override
     public Context context() {
         return null;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

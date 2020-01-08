@@ -40,7 +40,7 @@ public class TuAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.tu, viewGroup, false);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.message_tu, viewGroup, false);
         holder =new TuHolder(inflate);
         return holder;
     }
