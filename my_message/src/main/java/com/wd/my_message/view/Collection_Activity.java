@@ -1,7 +1,6 @@
 package com.wd.my_message.view;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -10,8 +9,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.view.collection_fragment.PageAdapter;

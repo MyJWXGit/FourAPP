@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.wd.circle.R;
+import com.wd.health.R;
 import com.ypx.imagepicker.bean.ImageItem;
 import com.ypx.imagepicker.bean.PickerItemDisableCode;
 import com.ypx.imagepicker.bean.selectconfig.BaseSelectConfig;

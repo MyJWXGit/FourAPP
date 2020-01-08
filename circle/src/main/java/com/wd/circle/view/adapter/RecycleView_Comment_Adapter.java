@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.wd.circle.R;
-import com.wd.circle.bean.Circle_Comment_Bean;
 import com.wd.circle.utils.DateUtils;
+import com.wd.health.R;
+import com.wd.circle.bean.Circle_Comment_Bean;
 
 import java.util.List;
 

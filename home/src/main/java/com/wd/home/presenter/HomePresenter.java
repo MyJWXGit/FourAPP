@@ -3,13 +3,11 @@ package com.wd.home.presenter;
 import android.content.Context;
 
 import com.wd.common.api.Constant;
-import com.wd.common.app.BaseApplication;
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.Logger;
 import com.wd.common.utils.SpUtils;
-import com.wd.home.APP;
+import com.wd.home.Home_APP;
 import com.wd.home.bean.BannerBean;
-import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.FindInfoBean;
 import com.wd.home.bean.HomeSearchBean;
@@ -154,8 +152,8 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onFindInfo(int infoId) {
-        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
-        String sessionid = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
+        int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
         home_dode.onFindInfo(userId, sessionid, infoId, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
@@ -237,8 +235,8 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onPuMessage(int inquiryId, String content, int type, int doctorId) {
-        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
-        String sessionId = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
+        int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
+        String sessionId = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
         home_dode.onPuMessage(userId, sessionId, inquiryId, content, 1, doctorId, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
@@ -267,8 +265,8 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void getRecording(int inquiryId, int page, int count) {
-        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
-        String sessionId = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
+        int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
+        String sessionId = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
         home_dode.getRecording(userId, sessionId, inquiryId, page, count, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法
@@ -297,8 +295,8 @@ public class HomePresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onInquiryRecord() {
-        int userId = (int) SpUtils.get(APP.context, Constant.USERID, 0);
-        String sessionid = (String) SpUtils.get(APP.context, Constant.SESSIONID, "");
+        int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
         home_dode.onInquiryRecord(userId, sessionid, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {//成功的方法

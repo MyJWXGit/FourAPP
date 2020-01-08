@@ -19,11 +19,13 @@ import androidx.annotation.Nullable;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
-import com.wd.my_message.bean.ImageBean;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.utils.ImageUtil;
 import com.wd.my_message.view.AutonymActivity;
+import com.wd.my_message.bean.ImageBean;
 
 import java.io.File;
 
@@ -36,55 +38,55 @@ import okhttp3.RequestBody;
 
 public class Update_Message_Activity extends BaseActivity<MyMessage_Presenter> implements Contract.IView {
 
-    @BindView(R2.id.fanhui)
+    @BindView(com.wd.health.R2.id.fanhui)
     ImageView fanhui;
-    @BindView(R2.id.my_information_Avatar)
+    @BindView(com.wd.health.R2.id.my_information_Avatar)
     SimpleDraweeView myInformationAvatar;
-    @BindView(R2.id.my_information_Avatar_a)
+    @BindView(com.wd.health.R2.id.my_information_Avatar_a)
     RelativeLayout myInformationAvatarA;
-    @BindView(R2.id.my_information_name)
+    @BindView(com.wd.health.R2.id.my_information_name)
     TextView myInformationName;
-    @BindView(R2.id.a2)
+    @BindView(com.wd.health.R2.id.a2)
     ImageView a2;
-    @BindView(R2.id.my_information_name_a)
+    @BindView(com.wd.health.R2.id.my_information_name_a)
     RelativeLayout myInformationNameA;
-    @BindView(R2.id.my_information_gender)
+    @BindView(com.wd.health.R2.id.my_information_gender)
     ImageView myInformationGender;
-    @BindView(R2.id.b1)
+    @BindView(com.wd.health.R2.id.b1)
     ImageView b1;
-    @BindView(R2.id.my_information_gender_a)
+    @BindView(com.wd.health.R2.id.my_information_gender_a)
     RelativeLayout myInformationGenderA;
-    @BindView(R2.id.my_information_height)
+    @BindView(com.wd.health.R2.id.my_information_height)
     TextView myInformationHeight;
-    @BindView(R2.id.my_information_bodyweight)
+    @BindView(com.wd.health.R2.id.my_information_bodyweight)
     TextView myInformationBodyweight;
-    @BindView(R2.id.my_information_age)
+    @BindView(com.wd.health.R2.id.my_information_age)
     TextView myInformationAge;
-    @BindView(R2.id.b2)
+    @BindView(com.wd.health.R2.id.b2)
     ImageView b2;
-    @BindView(R2.id.my_information_Sign)
+    @BindView(com.wd.health.R2.id.my_information_Sign)
     RelativeLayout myInformationSign;
-    @BindView(R2.id.my_information_mailbox)
+    @BindView(com.wd.health.R2.id.my_information_mailbox)
     TextView myInformationMailbox;
-    @BindView(R2.id.my_information_mailbox_a)
+    @BindView(com.wd.health.R2.id.my_information_mailbox_a)
     RelativeLayout myInformationMailboxA;
-    @BindView(R2.id.my_information_weixin)
+    @BindView(com.wd.health.R2.id.my_information_weixin)
     TextView myInformationWeixin;
-    @BindView(R2.id.c2)
+    @BindView(com.wd.health.R2.id.c2)
     ImageView c2;
-    @BindView(R2.id.my_information_weixin_a)
+    @BindView(com.wd.health.R2.id.my_information_weixin_a)
     RelativeLayout myInformationWeixinA;
-    @BindView(R2.id.my_information_Certification)
+    @BindView(com.wd.health.R2.id.my_information_Certification)
     TextView myInformationCertification;
-    @BindView(R2.id.d1)
+    @BindView(com.wd.health.R2.id.d1)
     ImageView d1;
-    @BindView(R2.id.my_information_Certification_a)
+    @BindView(com.wd.health.R2.id.my_information_Certification_a)
     RelativeLayout myInformationCertificationA;
-    @BindView(R2.id.my_information_Bankcard)
+    @BindView(com.wd.health.R2.id.my_information_Bankcard)
     TextView myInformationBankcard;
-    @BindView(R2.id.d2)
+    @BindView(com.wd.health.R2.id.d2)
     ImageView d2;
-    @BindView(R2.id.my_information_Bankcard_a)
+    @BindView(com.wd.health.R2.id.my_information_Bankcard_a)
     RelativeLayout myInformationBankcardA;
 
     @Override
@@ -107,7 +109,7 @@ public class Update_Message_Activity extends BaseActivity<MyMessage_Presenter> i
         return R.layout.activity_update_message;
     }
 
-    @OnClick({R2.id.fanhui, R2.id.my_information_Avatar, R2.id.my_information_Certification_a})
+    @OnClick({com.wd.health.R2.id.fanhui, com.wd.health.R2.id.my_information_Avatar, R2.id.my_information_Certification_a})
     public void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.fanhui) {

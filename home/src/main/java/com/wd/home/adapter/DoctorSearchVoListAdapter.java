@@ -3,7 +3,7 @@ package com.wd.home.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.wd.home.R;
+import com.wd.health.R;
 import com.wd.home.bean.HomeSearchBean;
 
 import java.util.List;

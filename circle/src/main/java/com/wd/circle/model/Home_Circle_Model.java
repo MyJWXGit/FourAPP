@@ -1,9 +1,6 @@
 package com.wd.circle.model;
 
-import android.util.Log;
-
-import com.wd.circle.api.HttpApi;
-import com.wd.circle.bean.Circle_list_Bean;
+import com.wd.circle.api.Circle_HttpApi;
 import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.contract.Contract;
@@ -26,7 +23,7 @@ import rx.schedulers.Schedulers;
 public class Home_Circle_Model implements Contract.FModer {
     @Override
     public void onhomes(int departmentId, int page, int count, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onListsBean(departmentId, page, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -54,7 +51,7 @@ public class Home_Circle_Model implements Contract.FModer {
 
     @Override
     public void onSearch(String keyWord, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onSearchBean(keyWord)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

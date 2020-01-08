@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.wd.circle.R;
+import com.wd.health.R;
 import com.ypx.imagepicker.utils.PStatusBarUtil;
 import com.ypx.imagepicker.views.base.SingleCropControllerView;
 import com.ypx.imagepicker.widget.cropimage.CropImageView;

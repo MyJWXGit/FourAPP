@@ -7,10 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wd.home.R;
+import com.wd.health.R;
 import com.wd.home.bean.DepartmentBean;
 
 import java.util.List;

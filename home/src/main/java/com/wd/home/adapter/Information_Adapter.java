@@ -1,25 +1,19 @@
 package com.wd.home.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.stx.xhb.androidx.XBanner;
-import com.wd.home.R;
+import com.wd.health.R;
 import com.wd.home.bean.Information_ListBean;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 

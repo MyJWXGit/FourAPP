@@ -1,7 +1,6 @@
 package com.wd.my_message.view;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.wd.common.base.BaseActivity;
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
-import com.wd.my_message.bean.ConsumptionRecordBean;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.view.walk.ConsumptionRecordAdapter;
+import com.wd.my_message.bean.ConsumptionRecordBean;
 
 import java.util.List;
 

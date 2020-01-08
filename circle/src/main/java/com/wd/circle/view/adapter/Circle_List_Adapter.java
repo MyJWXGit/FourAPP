@@ -1,7 +1,6 @@
 package com.wd.circle.view.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wd.circle.R;
+import com.wd.health.R;
 import com.wd.circle.bean.Circle_list_Bean;
 
 import java.util.List;

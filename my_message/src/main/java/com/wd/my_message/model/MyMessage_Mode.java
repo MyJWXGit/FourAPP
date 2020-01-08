@@ -2,36 +2,37 @@ package com.wd.my_message.model;
 
 import com.wd.common.utils.HttpUtils;
 import com.wd.my_message.api.My_MessageHttpApi;
-import com.wd.my_message.bean.AddArchivesBean;
-import com.wd.my_message.bean.AttentionDoctorListBean;
-import com.wd.my_message.bean.ConsumptionRecordBean;
 import com.wd.my_message.bean.EndInquiryBean;
-import com.wd.my_message.bean.DeleteArchivesBean;
-import com.wd.my_message.bean.DoTaskBean;
-import com.wd.my_message.bean.GetTaskBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
-import com.wd.my_message.bean.ImageBean;
+import com.wd.my_message.bean.HistoryBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.InquiryRecordBean;
-import com.wd.my_message.bean.LianxuSignBean;
-import com.wd.my_message.bean.MySickCircleCommentListBean;
-import com.wd.my_message.bean.MySickCircleListBean;
+import com.wd.my_message.bean.Message_LoginBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.QuerySignBean;
-import com.wd.my_message.bean.QueryTaskListBean;
 import com.wd.my_message.bean.SignBean;
 import com.wd.my_message.bean.SuggestBean;
 import com.wd.my_message.bean.SystemMessageBean;
-import com.wd.my_message.bean.UnAttentionDoctorBean;
-import com.wd.my_message.bean.UpdateArchivesBean;
-import com.wd.my_message.bean.UserArchivesBean;
-import com.wd.my_message.bean.UserArchivesPictureBean;
 import com.wd.my_message.bean.UserColletionBean;
 import com.wd.my_message.bean.UserSickCollectionBean;
 import com.wd.my_message.bean.VideoCollectionBean;
 import com.wd.my_message.contract.Contract;
+import com.wd.my_message.bean.AddArchivesBean;
+import com.wd.my_message.bean.AttentionDoctorListBean;
+import com.wd.my_message.bean.ConsumptionRecordBean;
+import com.wd.my_message.bean.DeleteArchivesBean;
+import com.wd.my_message.bean.DoTaskBean;
+import com.wd.my_message.bean.GetTaskBean;
+import com.wd.my_message.bean.ImageBean;
+import com.wd.my_message.bean.LianxuSignBean;
+import com.wd.my_message.bean.MySickCircleCommentListBean;
+import com.wd.my_message.bean.MySickCircleListBean;
+import com.wd.my_message.bean.QueryTaskListBean;
+import com.wd.my_message.bean.UnAttentionDoctorBean;
+import com.wd.my_message.bean.UpdateArchivesBean;
+import com.wd.my_message.bean.UserArchivesBean;
+import com.wd.my_message.bean.UserArchivesPictureBean;
 
-import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -423,7 +424,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(LianxuSignBean lianxuSignBean) {
-                        if (lianxuSignBean!=null){
+                        if (lianxuSignBean != null) {
                             iModelCallBack.onSuccess(lianxuSignBean);
                         }
                     }
@@ -492,7 +493,7 @@ public class MyMessage_Mode implements Contract.IModel {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
                 //你要跑的接口方法
-                .onEndInquiry(userId, sessionId,recordId)
+                .onEndInquiry(userId, sessionId, recordId)
                 //切换线程
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -519,6 +520,37 @@ public class MyMessage_Mode implements Contract.IModel {
     }
 
     @Override
+    public void onHistory(int userId, String sessionId, int page, int count, IModelCallBack iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                //你要跑的接口方法
+                .onHistory(userId, sessionId, page, count)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<HistoryBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onError(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(HistoryBean historyBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onSuccess(historyBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
     public void onMyFile(int userId, String sessionId, IModelCallBack iModelCallBack) {
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
                 .getarchives(userId, sessionId)
@@ -537,7 +569,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(UserArchivesBean userArchivesBean) {
-                        if (userArchivesBean!=null){
+                        if (userArchivesBean != null) {
                             iModelCallBack.onSuccess(userArchivesBean);
                         }
                     }
@@ -563,7 +595,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(DeleteArchivesBean deleteArchivesBean) {
-                        if (deleteArchivesBean!=null){
+                        if (deleteArchivesBean != null) {
                             iModelCallBack.onSuccess(deleteArchivesBean);
                         }
                     }
@@ -589,7 +621,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(UpdateArchivesBean updateArchivesBean) {
-                        if (updateArchivesBean!=null){
+                        if (updateArchivesBean != null) {
                             iModelCallBack.onSuccess(updateArchivesBean);
                         }
                     }
@@ -615,7 +647,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(AddArchivesBean addArchivesBean) {
-                        if (addArchivesBean!=null){
+                        if (addArchivesBean != null) {
                             iModelCallBack.onSuccess(addArchivesBean);
                         }
                     }
@@ -623,9 +655,9 @@ public class MyMessage_Mode implements Contract.IModel {
     }
 
     @Override
-    public void onUploadPiture(int userId, String sessionId, Map<String,MultipartBody.Part> picture, IModelCallBack iModelCallBack) {
+    public void onUploadPiture(int userId, String sessionId, Map<String, MultipartBody.Part> picture, IModelCallBack iModelCallBack) {
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
-                .getpicture(userId,sessionId,picture)
+                .getpicture(userId, sessionId, picture)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<UserArchivesPictureBean>() {
@@ -641,7 +673,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(UserArchivesPictureBean userArchivesPictureBean) {
-                        if (userArchivesPictureBean!=null){
+                        if (userArchivesPictureBean != null) {
                             iModelCallBack.onSuccess(userArchivesPictureBean);
                         }
                     }
@@ -667,7 +699,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(DoTaskBean doTaskBean) {
-                        if (doTaskBean!=null){
+                        if (doTaskBean != null) {
                             iModelCallBack.onSuccess(doTaskBean);
                         }
                     }
@@ -693,7 +725,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(GetTaskBean getTaskBean) {
-                        if (getTaskBean!=null){
+                        if (getTaskBean != null) {
                             iModelCallBack.onSuccess(getTaskBean);
                         }
                     }
@@ -719,7 +751,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(QueryTaskListBean queryTaskListBean) {
-                        if (queryTaskListBean!=null){
+                        if (queryTaskListBean != null) {
                             iModelCallBack.onSuccess(queryTaskListBean);
                         }
                     }
@@ -745,7 +777,7 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(MySickCircleListBean mySickCircleListBean) {
-                        if (mySickCircleListBean!=null){
+                        if (mySickCircleListBean != null) {
                             iModelCallBack.onSuccess(mySickCircleListBean);
                         }
                     }
@@ -755,7 +787,7 @@ public class MyMessage_Mode implements Contract.IModel {
     @Override
     public void onMyCircleComment(int userId, String sessionId, int sickCircleId, int page, int count, IModelCallBack iModelCallBac) {
         HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
-                .getMySickCircleCommentList(userId,sessionId,sickCircleId,page,count)
+                .getMySickCircleCommentList(userId, sessionId, sickCircleId, page, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MySickCircleCommentListBean>() {
@@ -771,8 +803,34 @@ public class MyMessage_Mode implements Contract.IModel {
 
                     @Override
                     public void onNext(MySickCircleCommentListBean mySickCircleCommentListBean) {
-                        if (mySickCircleCommentListBean!=null){
+                        if (mySickCircleCommentListBean != null) {
                             iModelCallBac.onSuccess(mySickCircleCommentListBean);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void onMessage(int userId, String sessionId, IModelCallBack iModelCallBac) {
+        HttpUtils.getHttpUtils().getRetrofit().create(My_MessageHttpApi.class)
+                .onMessage(userId, sessionId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Message_LoginBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Message_LoginBean message_loginBean) {
+                        if (message_loginBean != null) {
+                            iModelCallBac.onSuccess(message_loginBean);
                         }
                     }
                 });

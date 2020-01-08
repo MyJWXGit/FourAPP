@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.wd.home.adapter.fragment.Info_Fragment;
 import com.wd.home.bean.DepartmentBean;
+import com.wd.home.adapter.fragment.Info_Fragment;
 
 import java.util.List;
 

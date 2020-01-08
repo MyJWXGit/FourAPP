@@ -11,13 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.wd.home.R;
+import com.wd.health.R;
 import com.wd.home.activity.InfoActivity;
 import com.wd.home.bean.DepartmentBean;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * @name Health

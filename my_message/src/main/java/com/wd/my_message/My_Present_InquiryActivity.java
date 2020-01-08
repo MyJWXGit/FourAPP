@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.bean.EndInquiryBean;
 import com.wd.my_message.bean.InquiryRecordBean;
 import com.wd.my_message.contract.Contract;
@@ -26,25 +28,25 @@ import butterknife.OnClick;
 
 public class My_Present_InquiryActivity extends BaseActivity<MyMessage_Presenter> implements Contract.IView {
 
-    @BindView(R2.id.simple)
+    @BindView(com.wd.health.R2.id.simple)
     SimpleDraweeView simple;
-    @BindView(R2.id.text_name)
+    @BindView(com.wd.health.R2.id.text_name)
     TextView textName;
-    @BindView(R2.id.text_type)
+    @BindView(com.wd.health.R2.id.text_type)
     TextView textType;
-    @BindView(R2.id.text_department)
+    @BindView(com.wd.health.R2.id.text_department)
     TextView textDepartment;
-    @BindView(R2.id.text_time)
+    @BindView(com.wd.health.R2.id.text_time)
     TextView textTime;
-    @BindView(R2.id.line1)
+    @BindView(com.wd.health.R2.id.line1)
     LinearLayout line1;
-    @BindView(R2.id.bt_go_no)
+    @BindView(com.wd.health.R2.id.bt_go_no)
     Button btGoNo;
-    @BindView(R2.id.bt_stop)
+    @BindView(com.wd.health.R2.id.bt_stop)
     Button btStop;
-    @BindView(R2.id.image)
+    @BindView(com.wd.health.R2.id.image)
     ImageView image;
-    @BindView(R2.id.re_latiview)
+    @BindView(com.wd.health.R2.id.re_latiview)
     RelativeLayout reLatiview;
     private int recordId;
 
@@ -122,7 +124,7 @@ public class My_Present_InquiryActivity extends BaseActivity<MyMessage_Presenter
         ButterKnife.bind(this);
     }
 
-    @OnClick({R2.id.bt_go_no, R2.id.bt_stop})
+    @OnClick({com.wd.health.R2.id.bt_go_no, R2.id.bt_stop})
     public void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.bt_go_no) {

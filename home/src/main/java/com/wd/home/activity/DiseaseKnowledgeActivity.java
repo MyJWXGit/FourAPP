@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
-import com.wd.home.R;
-import com.wd.home.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.home.bean.DyugBean;
 import com.wd.home.contract.Contract;
 import com.wd.home.presenter.Fragment_Presenter;

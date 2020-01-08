@@ -8,9 +8,6 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
-        if (Boolean.valueOf(rootProject.ext.isModule)) {
-            applicationId "com.wd.video"
-        }
         multiDexEnabled true
         ndk {
             //选择要添加的对应cpu类型的.so库。

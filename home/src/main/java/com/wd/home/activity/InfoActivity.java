@@ -1,18 +1,16 @@
 package com.wd.home.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
-import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
-import com.wd.home.R;
+import com.wd.health.R;
+import com.wd.home.presenter.HomePresenter;
 import com.wd.home.adapter.ViewPager_Adapter;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.contract.Contract;
-import com.wd.home.presenter.HomePresenter;
 
 import java.util.ArrayList;
 import java.util.List;

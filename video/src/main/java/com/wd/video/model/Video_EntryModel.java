@@ -3,7 +3,7 @@ package com.wd.video.model;
 import com.wd.common.utils.HttpUtils;
 import com.wd.common.utils.HttpUtils666;
 import com.wd.common.utils.Logger;
-import com.wd.video.api.HttpApi;
+import com.wd.video.api.Video_HttpApi;
 import com.wd.video.bean.Video_EntryBean;
 import com.wd.video.bean.Video_QueryBean;
 import com.wd.video.contract.Contract;
@@ -20,7 +20,7 @@ import rx.schedulers.Schedulers;
     @Override
     //查询视频类目
     public void onVideo_Entry(IModelCallBack iModelCallBack) {
-        HttpUtils666.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils666.getHttpUtils().getRetrofit().create(Video_HttpApi.class)
                 .getVideo_Entry()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -49,7 +49,7 @@ import rx.schedulers.Schedulers;
 
     @Override
     public void onVideo_Query(String userId, String sessionId, String categoryId, String page, String count, IModelCallBack iModelCallBack) {
-            HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+            HttpUtils.getHttpUtils().getRetrofit().create(Video_HttpApi.class)
                     .getViewo_Query(userId, sessionId, categoryId, page, count)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

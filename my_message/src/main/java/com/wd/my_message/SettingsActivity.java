@@ -10,10 +10,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,37 +20,37 @@ import butterknife.OnClick;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    @BindView(R2.id.head_details_back)
+    @BindView(com.wd.health.R2.id.head_details_back)
     ImageView headDetailsBack;
-    @BindView(R2.id.head_text_name)
+    @BindView(com.wd.health.R2.id.head_text_name)
     TextView headTextName;
-    @BindView(R2.id.relay_layout)
+    @BindView(com.wd.health.R2.id.relay_layout)
     RelativeLayout relayLayout;
-    @BindView(R2.id.setting_image_view)
+    @BindView(com.wd.health.R2.id.setting_image_view)
     SimpleDraweeView settingImageView;
-    @BindView(R2.id.setting_text_name)
+    @BindView(com.wd.health.R2.id.setting_text_name)
     TextView settingTextName;
-    @BindView(R2.id.setting_image_name)
+    @BindView(com.wd.health.R2.id.setting_image_name)
     LinearLayout settingImageName;
-    @BindView(R2.id.setting_image_layout)
+    @BindView(com.wd.health.R2.id.setting_image_layout)
     RelativeLayout settingImageLayout;
-    @BindView(R2.id.setting_image_pwd)
+    @BindView(com.wd.health.R2.id.setting_image_pwd)
     RelativeLayout settingImagePwd;
-    @BindView(R2.id.setting_text_clear)
+    @BindView(com.wd.health.R2.id.setting_text_clear)
     TextView settingTextClear;
-    @BindView(R2.id.setting_image_clear)
+    @BindView(com.wd.health.R2.id.setting_image_clear)
     RelativeLayout settingImageClear;
-    @BindView(R2.id.setting_image_ping_lian)
+    @BindView(com.wd.health.R2.id.setting_image_ping_lian)
     RelativeLayout settingImagePingLian;
-    @BindView(R2.id.setting_image_new_app)
+    @BindView(com.wd.health.R2.id.setting_image_new_app)
     RelativeLayout settingImageNewApp;
-    @BindView(R2.id.setting_image_ping_help)
+    @BindView(com.wd.health.R2.id.setting_image_ping_help)
     RelativeLayout settingImagePingHelp;
-    @BindView(R2.id.setting_image_my)
+    @BindView(com.wd.health.R2.id.setting_image_my)
     RelativeLayout settingImageMy;
-    @BindView(R2.id.setting_image_new_invite)
+    @BindView(com.wd.health.R2.id.setting_image_new_invite)
     RelativeLayout settingImageNewInvite;
-    @BindView(R2.id.setting_image_login)
+    @BindView(com.wd.health.R2.id.setting_image_login)
     RelativeLayout settingImageLogin;
 
     @Override
@@ -66,7 +65,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R2.id.head_details_back, R2.id.head_text_name, R2.id.relay_layout, R2.id.setting_image_view, R2.id.setting_text_name, R2.id.setting_image_name, R2.id.setting_image_layout, R2.id.setting_image_pwd, R2.id.setting_text_clear, R2.id.setting_image_clear, R2.id.setting_image_ping_lian, R2.id.setting_image_new_app, R2.id.setting_image_ping_help, R2.id.setting_image_my, R2.id.setting_image_new_invite, R2.id.setting_image_login})
+    @OnClick({com.wd.health.R2.id.head_details_back, com.wd.health.R2.id.head_text_name, com.wd.health.R2.id.relay_layout, com.wd.health.R2.id.setting_image_view, com.wd.health.R2.id.setting_text_name, com.wd.health.R2.id.setting_image_name, com.wd.health.R2.id.setting_image_layout, com.wd.health.R2.id.setting_image_pwd, com.wd.health.R2.id.setting_text_clear, com.wd.health.R2.id.setting_image_clear, com.wd.health.R2.id.setting_image_ping_lian, com.wd.health.R2.id.setting_image_new_app, com.wd.health.R2.id.setting_image_ping_help, com.wd.health.R2.id.setting_image_my, com.wd.health.R2.id.setting_image_new_invite, R2.id.setting_image_login})
     public void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.head_details_back) {

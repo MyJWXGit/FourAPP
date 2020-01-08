@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wd.my_message">
+    package="com.wd.health">
 
     <application>
-        <activity android:name=".Special_HistoryActivity"></activity>
-        <activity android:name=".My_Present_InquiryActivity" />
-        <activity android:name=".view.Suggest_message_Activity" />
-        <activity android:name=".ConfirmActivity" />
-        <activity android:name=".view.AutonymActivity" />
-        <activity android:name=".view.MyCircle_Patients_Activity"></activity>
-        <activity android:name=".view.My_Task_Activity" />
-        <activity android:name=".view.record.Update_RecordActivity" />
-        <activity android:name=".view.My_Record_Activity" />
-        <activity android:name=".view.RecordActivity" />
-        <activity android:name=".Update_Message_Activity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".UserBankCardActivity" />
-        <activity android:name=".view.Attention_Doctor_Activity" />
-        <activity android:name=".view.My_Walk_Activity" />
-        <activity android:name=".view.message.InquiryMessageActivity" />
-        <activity android:name=".view.message.CurrencyMessageActivity" />
-        <activity android:name=".view.message.SystemMessageActivity" />
-        <activity android:name=".view.MessagesActivity" />
-        <activity android:name=".view.Collection_Activity" />
-        <activity android:name=".My_Home_Activity" />
-        <activity android:name=".My_Home_Activity$My_Home_Activity" />
+        <activity android:name="com.wd.my_message.Special_HistoryActivity"></activity>
+        <activity android:name="com.wd.my_message.My_Present_InquiryActivity" />
+        <activity android:name="com.wd.my_message.view.Suggest_message_Activity" />
+        <activity android:name="com.wd.my_message.ConfirmActivity" />
+        <activity android:name="com.wd.my_message.view.AutonymActivity" />
+        <activity android:name="com.wd.my_message.view.MyCircle_Patients_Activity"></activity>
+        <activity android:name="com.wd.my_message.view.My_Task_Activity" />
+        <activity android:name="com.wd.my_message.view.record.Update_RecordActivity" />
+        <activity android:name="com.wd.my_message.view.My_Record_Activity" />
+        <activity android:name="com.wd.my_message.view.RecordActivity" />
+        <activity android:name="com.wd.my_message.Update_Message_Activity" />
+        <activity android:name="com.wd.my_message.SettingsActivity" />
+        <activity android:name="com.wd.my_message.UserBankCardActivity" />
+        <activity android:name="com.wd.my_message.view.Attention_Doctor_Activity" />
+        <activity android:name="com.wd.my_message.view.My_Walk_Activity" />
+        <activity android:name="com.wd.my_message.view.message.InquiryMessageActivity" />
+        <activity android:name="com.wd.my_message.view.message.CurrencyMessageActivity" />
+        <activity android:name="com.wd.my_message.view.message.SystemMessageActivity" />
+        <activity android:name="com.wd.my_message.view.MessagesActivity" />
+        <activity android:name="com.wd.my_message.view.Collection_Activity" />
+        <activity android:name="com.wd.my_message.My_Home_Activity" />
+        <activity android:name="com.wd.my_message.My_Home_Activity$My_Home_Activity" />
     </application>
 
 </manifest>

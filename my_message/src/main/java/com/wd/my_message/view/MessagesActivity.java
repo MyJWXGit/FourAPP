@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.view.message.CurrencyMessageActivity;
 import com.wd.my_message.view.message.InquiryMessageActivity;
 import com.wd.my_message.view.message.SystemMessageActivity;

@@ -1,8 +1,7 @@
 package com.wd.home.model;
 
 import com.wd.common.utils.HttpUtils;
-import com.wd.home.api.HttpApi;
-import com.wd.home.bean.CancelFllowBean;
+import com.wd.home.api.Home_HttpApi;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.CategoryListBean;
 import com.wd.home.bean.ConsultBean;
@@ -13,9 +12,9 @@ import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
 import com.wd.home.bean.EndInquiryBean;
 import com.wd.home.bean.EvaluateListBean;
-import com.wd.home.bean.FindInfoBean;
-import com.wd.home.bean.FollowBean;
 import com.wd.home.bean.IllnessBean;
+import com.wd.home.bean.CancelFllowBean;
+import com.wd.home.bean.FollowBean;
 import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.bean.UserWalletBean;
 import com.wd.home.contract.Contract;
@@ -38,7 +37,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onDepartment_F(IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onDepartment_F()
                 //切换线程
@@ -69,7 +68,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onCategory(int departmentId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onCategory(departmentId)
                 //切换线程
@@ -100,7 +99,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onDiseaseKnowledge(int id, IBallBask iBallBask) {
 //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onDiseaseKnowledge(id)
                 //切换线程
@@ -131,7 +130,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onCategoryList(IBallBask iBallBask) {
 //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onCategoryList()
                 //切换线程
@@ -162,7 +161,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onDrugsKnowledgeList(int drugsCategoryId, int page, int count, IBallBask iBallBask) {
 //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onDrugsKnowledgeList(drugsCategoryId, page, count)
                 //切换线程
@@ -193,7 +192,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onIllness(int id, IBallBask iBallBask) {
 //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onIllness(id)
                 //切换线程
@@ -224,7 +223,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onDoctorList(int deptId, int condition, int page, int count, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onDoctorList(deptId, condition, page, count)
                 //切换线程
@@ -255,7 +254,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onDoctorInfo(int userId, String sessionId, String doctorId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onDoctorInfo(userId, sessionId, doctorId)
                 //切换线程
@@ -286,7 +285,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onFollow(int userId, String sessionId, int doctorId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onFollow(userId, sessionId, doctorId)
                 //切换线程
@@ -317,7 +316,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onCancelFollow(int userId, String sessionId, int doctorId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onCancelFollow(userId, sessionId, doctorId)
                 //切换线程
@@ -348,7 +347,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onUserWallet(int userId, String sessionId, IBallBask iBallBask) {
 //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onUserWallet(userId, sessionId)
                 //切换线程
@@ -379,7 +378,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onEvaluateList(int doctorId, int page, int count, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onEvaluateList(doctorId, page, count)
                 //切换线程
@@ -410,7 +409,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void getConsult(int userId, String sessionId, int doctorId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .getConsult(userId, sessionId, doctorId)
                 //切换线程
@@ -441,7 +440,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onEndInquiry(int userId, String sessionId, int recordId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onEndInquiry(userId, sessionId, recordId)
                 //切换线程
@@ -472,7 +471,7 @@ public class Fragment_Mode implements Contract.FModer {
     @Override
     public void onInquiryRecord(int userId, String sessionId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onInquiryRecord(userId, sessionId)
                 //切换线程

@@ -21,4 +21,5 @@ public interface Constant {
     String Sp_touxiang="touxiang";
     String WX_CODE="WX_CODE";
     String doctorId="doctorId";
+    String LOGIN_Bean="LOGIN_Bean";
 }

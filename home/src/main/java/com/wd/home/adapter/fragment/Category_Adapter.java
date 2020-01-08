@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.api.Constant;
-import com.wd.home.R;
+import com.wd.health.R;
 import com.wd.home.activity.DiseaseKnowledgeActivity;
 import com.wd.home.bean.CategoryBean;
 

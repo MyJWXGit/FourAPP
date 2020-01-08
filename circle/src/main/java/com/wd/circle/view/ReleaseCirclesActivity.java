@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -33,17 +32,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.wd.circle.R;
-import com.wd.circle.R2;
 import com.wd.circle.bean.Circle_list_Bean;
+import com.wd.circle.bean.PictureBean;
+import com.wd.circle.contract.Contract;
+import com.wd.circle.presenter.Circle_MainPresenter;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.circle.bean.DiseaseBean;
 import com.wd.circle.bean.DoTaskBean;
-import com.wd.circle.bean.PictureBean;
 import com.wd.circle.bean.RepleaseCircleBean;
-import com.wd.circle.contract.Contract;
-import com.wd.circle.presenter.MainPresenter;
 import com.wd.circle.utils.CustomImgPickerPresenter;
-import com.wd.circle.utils.ImageUtil;
 import com.wd.circle.utils.WeChatPresenter;
 import com.wd.circle.view.adapter.ConsultationTwoAdapter;
 import com.wd.circle.view.adapter.IllnessAdapter;
@@ -56,7 +54,6 @@ import com.ypx.imagepicker.data.OnImagePickCompleteListener;
 import com.ypx.imagepicker.presenter.IPickerPresenter;
 
 ;
-import org.devio.takephoto.app.TakePhotoActivity;
 
 
 import java.io.File;
@@ -76,7 +73,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 
-public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implements Contract.IView {
+public class ReleaseCirclesActivity extends BaseActivity<Circle_MainPresenter> implements Contract.IView {
 
     Calendar calendar = Calendar.getInstance(Locale.CHINA);
     @BindView(R2.id.xuanshangedu_linear)
@@ -129,8 +126,8 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
     private List<String> list;
 
     @Override
-    protected MainPresenter providePresenter() {
-        return new MainPresenter();
+    protected Circle_MainPresenter providePresenter() {
+        return new Circle_MainPresenter();
     }
 
     @Override
@@ -585,14 +582,13 @@ public class ReleaseCirclesActivity extends BaseActivity<MainPresenter> implemen
                 .pick(this, new OnImagePickCompleteListener() {
 
 
-
                     @Override
                     public void onImagePickComplete(ArrayList<ImageItem> items) {
                         //处理回调回来的图片信息，主线程
                         picList.addAll(items);
 
                         String path = items.get(0).path;
-                        if (path!=null) {
+                        if (path != null) {
                             File file = new File(path);
                             RequestBody requestBody = MultipartBody.create(MediaType.parse("image/*"), file);
                             MultipartBody.Part part = MultipartBody.Part.createFormData("picture", file.getName(), requestBody);

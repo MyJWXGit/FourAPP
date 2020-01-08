@@ -2,16 +2,13 @@ package com.wd.video.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.dou361.ijkplayer.widget.IjkVideoView;
 import com.wd.common.base.BaseFragment;
-import com.wd.video.R;
+import com.wd.health.R;
 import com.wd.video.adapter.VideoAdapter;
 import com.wd.video.bean.Video_CollectionBean;
 import com.wd.video.bean.Video_PayBean;
@@ -21,14 +18,10 @@ import com.wd.video.bean.Video_SendBean;
 import com.wd.video.contract.Contract;
 import com.wd.video.presenter.Video_QueryFPresenter;
 import com.wd.video.utils.AcFunDanmakuParser;
-import com.wd.video.utils.Fragment_Utils;
 import com.wd.video.utils.OnViewPagerListener;
 import com.wd.video.utils.PagerLayoutManager;
 
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 

@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wd.my_message.R;
+
+import com.wd.health.R;
 
 import java.util.List;
 

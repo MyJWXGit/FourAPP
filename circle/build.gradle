@@ -108,7 +108,7 @@ dependencies {
     implementation rootProject.ext.dependencies["tablayout"]
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':common')
-    implementation project(':my_message')
+//    implementation project(':my_message')
     implementation 'com.google.android.material:material:1.0.0'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
     implementation 'com.ypx.yimagepicker:androidx:3.0.1'

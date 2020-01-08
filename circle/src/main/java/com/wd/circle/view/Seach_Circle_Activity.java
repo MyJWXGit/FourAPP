@@ -2,7 +2,6 @@ package com.wd.circle.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,11 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.wd.circle.R;
-import com.wd.circle.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.contract.Contract;
-import com.wd.circle.presenter.MainPresenter;
+import com.wd.circle.presenter.Circle_MainPresenter;
 import com.wd.circle.view.adapter.Search_Circle_Adapter;
 import com.wd.common.base.BaseActivity;
 
@@ -28,7 +27,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class Seach_Circle_Activity extends BaseActivity<MainPresenter> implements Contract.IView {
+public class Seach_Circle_Activity extends BaseActivity<Circle_MainPresenter> implements Contract.IView {
 
 
     @BindView(R2.id.fanhui_text)
@@ -55,12 +54,12 @@ public class Seach_Circle_Activity extends BaseActivity<MainPresenter> implement
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_seach__circle_;
+        return R.layout.activity_seach_circle_health;
     }
 
     @Override
-    protected MainPresenter providePresenter() {
-        return new MainPresenter();
+    protected Circle_MainPresenter providePresenter() {
+        return new Circle_MainPresenter();
     }
 
     @Override

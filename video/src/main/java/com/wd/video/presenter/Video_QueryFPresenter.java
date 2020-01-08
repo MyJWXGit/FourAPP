@@ -2,13 +2,13 @@ package com.wd.video.presenter;
 
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.Logger;
-import com.wd.video.bean.Video_CollectionBean;
 import com.wd.video.bean.Video_PayBean;
 import com.wd.video.bean.Video_QueryBean;
-import com.wd.video.bean.Video_Query_BarrageBean;
 import com.wd.video.bean.Video_SendBean;
 import com.wd.video.contract.Contract;
 import com.wd.video.model.Video_QueryFModel;
+import com.wd.video.bean.Video_CollectionBean;
+import com.wd.video.bean.Video_Query_BarrageBean;
 
 /*
  *author:郭昊坤

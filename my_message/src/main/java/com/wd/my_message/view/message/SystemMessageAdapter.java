@@ -16,7 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wd.my_message.R;
+import com.wd.health.R;
 import com.wd.my_message.bean.SystemMessageBean;
 
 import java.text.SimpleDateFormat;

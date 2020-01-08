@@ -28,10 +28,10 @@
             android:src="@mipmap/common_icon_back_white_n" />
 
         <ImageView
+            android:id="@+id/messages"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentRight="true"
-            android:id="@+id/messages"
             android:layout_centerVertical="true"
             android:src="@mipmap/common_nav_message_white_n" />
     </RelativeLayout>

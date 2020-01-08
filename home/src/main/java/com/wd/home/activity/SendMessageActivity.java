@@ -1,7 +1,6 @@
 package com.wd.home.activity;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -11,22 +10,20 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.wd.common.base.BaseActivity;
-import com.wd.home.R;
-import com.wd.home.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
+import com.wd.home.bean.PuMessageBean;
+import com.wd.home.presenter.HomePresenter;
 import com.wd.home.adapter.RecordingAdapter;
 import com.wd.home.bean.InquiryRecordBean;
-import com.wd.home.bean.PuMessageBean;
 import com.wd.home.bean.RecordingBean;
 import com.wd.home.contract.Contract;
-import com.wd.home.presenter.HomePresenter;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.content.MessageContent;
 import cn.jpush.im.android.api.content.TextContent;
@@ -36,6 +33,8 @@ import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.api.BasicCallback;
 
+import static cn.jpush.im.android.api.model.Conversation.createSingleConversation;
+
 public class SendMessageActivity extends BaseActivity<HomePresenter> implements Contract.IView {
 
     @BindView(R2.id.im_recycler)
@@ -44,7 +43,7 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
     EditText imEdit;
     @BindView(R2.id.im_fs_tv)
     TextView imFsTv;
-    private RecordingAdapter recordingAdapter = null;
+    private RecordingAdapter recordingAdapter;
 
     @Override
     protected HomePresenter providePresenter() {
@@ -59,17 +58,24 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
     @Override
     protected void initData() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        mPresenter.onInquiryRecord();
         mPresenter.getRecording(3853, 1, 10);
         imFsTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String s = imEdit.getText().toString();
                 if (s != null) {
-                    mPresenter.onPuMessage(3853, s, 1, 157);
-                    mPresenter.onInquiryRecord();
+                    mPresenter.onPuMessage(3853, s, 1, 156);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(SendMessageActivity.this);
                     linearLayoutManager.setReverseLayout(true);//布局反向
                     linearLayoutManager.setStackFromEnd(true);//数据反向
+                    //创建跨应用会话
+                    Conversation con = createSingleConversation("HLo7T517701300447", "c7f6a1d56cb8da740fd18bfa");
+                    MessageContent content = new TextContent(s);
+                    //创建一条消息
+                    Message message = con.createSendMessage(content);
+                    //发送消息
+                    JMessageClient.sendMessage(message);
                     imRecycler.setLayoutManager(linearLayoutManager);
                     imEdit.setText(null);
                 } else {
@@ -121,10 +127,16 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
             PuMessageBean bean = (PuMessageBean) obj;
             if (bean.getStatus().equals("0000")) {
                 if (recordingAdapter != null) {
+                    mPresenter.getRecording(3853, 1, 10);
                     recordingAdapter.notifyDataSetChanged();
                 }
             }
         }
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
     }
 
     public void onEventMainThread(MessageEvent event) {
@@ -134,7 +146,6 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
                 // 处理文字消息
                 TextContent textContent = (TextContent) msg.getContent();
                 textContent.getText();
-                recordingAdapter.notifyDataSetChanged();
                 mPresenter.onInquiryRecord();
                 break;
         }
@@ -142,11 +153,6 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
 
     public void onEvent(NotificationClickEvent event) {
         mPresenter.onInquiryRecord();
-    }
-
-    @Override
-    public void onError(Throwable e) {
-
     }
 
     @Override

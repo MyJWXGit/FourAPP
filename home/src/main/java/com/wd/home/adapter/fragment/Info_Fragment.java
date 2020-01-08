@@ -1,6 +1,5 @@
 package com.wd.home.adapter.fragment;
 
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.view.Gravity;
@@ -19,18 +18,17 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.common.api.Constant;
 import com.wd.common.base.BaseFragment;
-import com.wd.home.R;
-import com.wd.home.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.home.activity.Doctor_detailsActivity;
 import com.wd.home.activity.SendMessageActivity;
 import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.EndInquiryBean;
+import com.wd.home.presenter.Fragment_Presenter;
 import com.wd.home.bean.InquiryRecordBean;
-import com.wd.home.bean.RecordingBean;
 import com.wd.home.bean.UserWalletBean;
 import com.wd.home.contract.Contract;
-import com.wd.home.presenter.Fragment_Presenter;
 
 import java.util.List;
 
@@ -149,8 +147,8 @@ public class Info_Fragment extends BaseFragment<Fragment_Presenter> implements C
         btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SendMessageActivity.class);
-                startActivity(intent);
+                int id = Integer.parseInt(doctorId);
+                mPresenter.getConsult(156);
             }
         });
     }

@@ -2,19 +2,17 @@ package com.wd.home.model;
 
 
 import com.wd.common.utils.HttpUtils;
-import com.wd.home.api.HttpApi;
+import com.wd.home.api.Home_HttpApi;
 import com.wd.home.bean.BannerBean;
-import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.FindInfoBean;
 import com.wd.home.bean.HomeSearchBean;
 import com.wd.home.bean.Information_ListBean;
-import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.bean.Plate_ListBean;
 import com.wd.home.bean.PopularBean;
 import com.wd.home.bean.PuMessageBean;
 import com.wd.home.bean.RecordingBean;
-import com.wd.home.bean.UserWalletBean;
+import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.contract.Contract;
 
 import rx.Observer;
@@ -36,7 +34,7 @@ public class Home_Dode implements Contract.IModer {
     @Override
     public void onBanner(IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onBanner()
                 //切换线程
@@ -67,7 +65,7 @@ public class Home_Dode implements Contract.IModer {
     @Override
     public void onDepartment(IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onDepartment()
                 //切换线程
@@ -98,7 +96,7 @@ public class Home_Dode implements Contract.IModer {
     @Override
     public void onPlateList(IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onPlate_list()
                 //切换线程
@@ -129,7 +127,7 @@ public class Home_Dode implements Contract.IModer {
     @Override
     public void onInformationList(int plateId, int page, int count, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onInformation_list(plateId, page, count)
                 //切换线程
@@ -160,7 +158,7 @@ public class Home_Dode implements Contract.IModer {
     @Override
     public void onFindInfo(int userId, String sessionId, int infoId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onFindInfo(userId, sessionId, infoId)
                 //切换线程
@@ -191,7 +189,7 @@ public class Home_Dode implements Contract.IModer {
     @Override
     public void onHomeSearch(String keyWord, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onHomeSearch(keyWord)
                 //切换线程
@@ -222,7 +220,7 @@ public class Home_Dode implements Contract.IModer {
     @Override
     public void onPopular(IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onPopular()
                 //切换线程
@@ -253,7 +251,7 @@ public class Home_Dode implements Contract.IModer {
     @Override
     public void onPuMessage(int userId, String sessionId, int inquiryId, String content, int type, int doctorId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onPuMessage(userId, sessionId, inquiryId, content, type, doctorId)
                 //切换线程
@@ -285,7 +283,7 @@ public class Home_Dode implements Contract.IModer {
     @Override
     public void getRecording(int userId, String sessionId, int inquiryId, int page, int count, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .getRecording(userId, sessionId, inquiryId, page, count)
                 //切换线程
@@ -317,7 +315,7 @@ public class Home_Dode implements Contract.IModer {
     @Override
     public void onInquiryRecord(int userId, String sessionId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
                 //你要跑的接口方法
                 .onInquiryRecord(userId, sessionId)
                 //切换线程

@@ -16,7 +16,7 @@ import com.wd.circle.bean.RepleaseCircleBean;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.bean.UserTaskListBean;
 import com.wd.circle.contract.Contract;
-import com.wd.circle.model.MainModel;
+import com.wd.circle.model.Circle_MainModel;
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.ToastUtils;
 
@@ -36,13 +36,13 @@ import okhttp3.MultipartBody;
  * @chang time
  * @class describe
  */
-public class MainPresenter extends BasePresenter<Contract.IView> implements Contract.IPresenter {
+public class Circle_MainPresenter extends BasePresenter<Contract.IView> implements Contract.IPresenter {
 
-    private MainModel mainModel;
+    private Circle_MainModel circleMainModel;
 
     @Override
     protected void initModel() {
-        mainModel = new MainModel();
+        circleMainModel = new Circle_MainModel();
     }
 
     @Override
@@ -53,7 +53,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onLogin(String email, String pwd) {
-        mainModel.onLogin(email, pwd, new Contract.IModer.IBallBask() {
+        circleMainModel.onLogin(email, pwd, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()) {
@@ -77,7 +77,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onHome() {
-        mainModel.onhome(new Contract.IModer.IBallBask() {
+        circleMainModel.onhome(new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){
@@ -101,7 +101,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onHomes(int departmentId, int page, int count) {
-        mainModel.onhomes(departmentId, page, count, new Contract.IModer.IBallBask() {
+        circleMainModel.onhomes(departmentId, page, count, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){
@@ -123,7 +123,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onSearch(String keyWord) {
-        mainModel.onSearch(keyWord, new Contract.IModer.IBallBask() {
+        circleMainModel.onSearch(keyWord, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){
@@ -145,7 +145,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onDetails(int sickCircleId, String userId, String sessionId) {
-        mainModel.onDetails(sickCircleId, userId, sessionId, new Contract.IModer.IBallBask() {
+        circleMainModel.onDetails(sickCircleId, userId, sessionId, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){
@@ -167,7 +167,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onComment(int sickCircleId, String userId, String sessionId, String content) {
-        mainModel.onComment(sickCircleId, userId, sessionId, content, new Contract.IModer.IBallBask() {
+        circleMainModel.onComment(sickCircleId, userId, sessionId, content, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){
@@ -189,7 +189,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onCircleComment(int sickCircleId, String userId, String sessionId, int count, int page) {
-        mainModel.onCircleComment(sickCircleId, userId, sessionId, count, page, new Contract.IModer.IBallBask() {
+        circleMainModel.onCircleComment(sickCircleId, userId, sessionId, count, page, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){
@@ -211,7 +211,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onDoTask(String userId, String sessionId, int taskId) {
-        mainModel.onDoTask(userId, sessionId, taskId, new Contract.IModer.IBallBask() {
+        circleMainModel.onDoTask(userId, sessionId, taskId, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){
@@ -233,7 +233,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onUserTaskList(String userId, String sessionId) {
-        mainModel.onUserTaskList(userId, sessionId, new Contract.IModer.IBallBask() {
+        circleMainModel.onUserTaskList(userId, sessionId, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){
@@ -255,7 +255,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onDisease(int departmentId) {
-        mainModel.onDisease(departmentId, new Contract.IModer.IBallBask() {
+        circleMainModel.onDisease(departmentId, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){
@@ -277,7 +277,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onReplease(String userId, String sessionId, Map<String, Object> map) {
-        mainModel.onReplease(userId, sessionId, map, new Contract.IModer.IBallBask() {
+        circleMainModel.onReplease(userId, sessionId, map, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){
@@ -299,7 +299,7 @@ public class MainPresenter extends BasePresenter<Contract.IView> implements Cont
 
     @Override
     public void onPicture(String userId, String sessionId, int sickCircleId, List<MultipartBody.Part> part) {
-        mainModel.onPicture(userId, sessionId, sickCircleId, part, new Contract.IModer.IBallBask() {
+        circleMainModel.onPicture(userId, sessionId, sickCircleId, part, new Contract.IModer.IBallBask() {
             @Override
             public void onHttpOK(Object obj) {
                 if (isViewAttached()){

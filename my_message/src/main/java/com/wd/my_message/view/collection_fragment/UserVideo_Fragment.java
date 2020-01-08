@@ -7,16 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.base.BaseFragment;
-import com.wd.my_message.R;
+import com.wd.health.R;
 import com.wd.my_message.bean.VideoCollectionBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyFragmentMessage_Presenter;
-import com.wd.my_message.view.collection_fragment.Collection_VideoAdapter;
 
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * @name Health

@@ -1,27 +1,20 @@
 package com.wd.my_message.view.collection_fragment;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.base.BaseFragment;
-import com.wd.my_message.R;
+import com.wd.health.R;
 import com.wd.my_message.bean.DeleteCollectionBean;
 import com.wd.my_message.bean.UserSickCollectionBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyFragmentMessage_Presenter;
-import com.wd.my_message.view.collection_fragment.FindUserSickCollectionListAdapter;
 
 import java.util.List;
 
@@ -35,7 +28,7 @@ import java.util.List;
  * @chang time
  * @class describe
  */
-public class UserSickCollection_Fragment extends BaseFragment<MyFragmentMessage_Presenter> implements Contract.IView  {
+public class UserSickCollection_Fragment extends BaseFragment<MyFragmentMessage_Presenter> implements Contract.IView {
     private RelativeLayout bingyoukong;
     private RecyclerView circle_recy;
     private ImageView quxiao;

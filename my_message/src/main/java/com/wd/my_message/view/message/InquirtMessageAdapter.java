@@ -1,7 +1,6 @@
 package com.wd.my_message.view.message;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.wd.my_message.R;
+import com.wd.health.R;
 import com.wd.my_message.bean.InquiryMessageBean;
 
 import java.text.SimpleDateFormat;

@@ -1,7 +1,6 @@
 package com.wd.my_message.view.message;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -13,12 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.bean.HealthyCurrencyBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
-import com.wd.my_message.view.message.CurrencyAdapter;
 
 import java.util.List;
 

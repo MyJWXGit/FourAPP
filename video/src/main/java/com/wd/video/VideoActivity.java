@@ -4,7 +4,6 @@ package com.wd.video;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
@@ -13,14 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
 
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseActivity;
+import com.wd.health.R;
 import com.wd.video.bean.Video_EntryBean;
 import com.wd.video.contract.Contract;
 import com.wd.video.fragment.BeautyFragment;

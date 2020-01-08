@@ -2,19 +2,18 @@ package com.wd.home.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.api.Constant;
 import com.wd.common.base.BaseActivity;
-import com.wd.home.R;
-import com.wd.home.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
+import com.wd.home.presenter.Fragment_Presenter;
 import com.wd.home.adapter.EvaluateList_Adapter;
 import com.wd.home.bean.EvaluateListBean;
 import com.wd.home.contract.Contract;
-import com.wd.home.presenter.Fragment_Presenter;
 
 import java.util.List;
 

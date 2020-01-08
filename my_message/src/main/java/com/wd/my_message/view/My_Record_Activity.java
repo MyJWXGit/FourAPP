@@ -3,11 +3,9 @@ package com.wd.my_message.view;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,13 +13,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
-import com.wd.my_message.bean.DeleteArchivesBean;
-import com.wd.my_message.bean.UserArchivesBean;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.view.record.Update_RecordActivity;
+import com.wd.my_message.bean.DeleteArchivesBean;
+import com.wd.my_message.bean.UserArchivesBean;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -97,7 +95,7 @@ public class My_Record_Activity extends BaseActivity<MyMessage_Presenter> implem
             finish();
             //shanchu 删除
         } else if (viewId == R.id.button_delete) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.CustomDialog);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R2.style.CustomDialog);
             final AlertDialog dialog = builder.create();
             //此处设置位置窗体大小
             View inflate = View.inflate(this, R.layout.layout_dialog, null);

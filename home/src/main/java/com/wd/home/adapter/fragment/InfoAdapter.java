@@ -4,15 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.wd.home.R;
+import com.wd.health.R;
 import com.wd.home.bean.DoctorListBean;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

@@ -21,11 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.wd.common.base.BaseActivity;
-import com.wd.my_message.My_Home_Activity;
-import com.wd.my_message.R;
-import com.wd.my_message.R2;
-import com.wd.my_message.bean.AddArchivesBean;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.my_message.contract.Contract;
+import com.wd.my_message.My_Home_Activity;
+import com.wd.my_message.bean.AddArchivesBean;
 import com.wd.my_message.presenter.MyMessage_Presenter;
 import com.wd.my_message.view.record.TuAdapter;
 

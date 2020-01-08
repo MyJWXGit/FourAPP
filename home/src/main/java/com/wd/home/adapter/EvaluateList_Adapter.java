@@ -10,12 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.wd.home.R;
-import com.wd.home.activity.CommentActivity;
+import com.wd.health.R;
 import com.wd.home.bean.EvaluateListBean;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -21,20 +21,20 @@ import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.entity.SimpleBannerInfo;
 import com.wd.common.api.Constant;
 import com.wd.common.base.BaseFragment;
-import com.wd.home.R;
-import com.wd.home.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.home.activity.CommonActivity;
 import com.wd.home.activity.Edit_SearchActivity;
 import com.wd.home.activity.FindInfoActivity;
-import com.wd.home.adapter.Department_Adapter;
-import com.wd.home.adapter.Information_Adapter;
-import com.wd.home.adapter.Plate_List_Adapter;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.Information_ListBean;
 import com.wd.home.bean.Plate_ListBean;
 import com.wd.home.contract.Contract;
 import com.wd.home.presenter.HomePresenter;
+import com.wd.home.adapter.Department_Adapter;
+import com.wd.home.adapter.Information_Adapter;
+import com.wd.home.adapter.Plate_List_Adapter;
 
 import java.util.AbstractList;
 import java.util.List;
@@ -143,6 +143,7 @@ public class Fragment_home extends BaseFragment<HomePresenter> implements Contra
             Department_Adapter department_adapter = new Department_Adapter(result, getContext());
             recycler.setLayoutManager(gridLayoutManager);
             recycler.setAdapter(department_adapter);
+            recycler.setNestedScrollingEnabled(false);
         } else if (obj instanceof Plate_ListBean) {
             Plate_ListBean bean = (Plate_ListBean) obj;
             List<Plate_ListBean.ResultBean> result = bean.getResult();
@@ -151,7 +152,7 @@ public class Fragment_home extends BaseFragment<HomePresenter> implements Contra
             titleRecycler.setLayoutManager(linearLayoutManager);
             Plate_List_Adapter list_adapter = new Plate_List_Adapter(result, getContext());
             titleRecycler.setAdapter(list_adapter);
-
+            titleRecycler.setNestedScrollingEnabled(false);
 
             list_adapter.setOnId(new Plate_List_Adapter.onPosition() {
                 @Override
@@ -169,7 +170,7 @@ public class Fragment_home extends BaseFragment<HomePresenter> implements Contra
             advisoryRecycler.setLayoutManager(linearLayoutManager);
             Information_Adapter information_adapter = new Information_Adapter(result, getContext());
             advisoryRecycler.setAdapter(information_adapter);
-
+            advisoryRecycler.setNestedScrollingEnabled(false);
             information_adapter.setOnItemInfoId(new Information_Adapter.onItemInfoId() {
                 @Override
                 public void onInfoId(int infoId) {

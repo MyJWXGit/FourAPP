@@ -8,7 +8,7 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wd.circle.R;
+import com.wd.health.R;
 import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.presenter.Home_CirclePresenter;

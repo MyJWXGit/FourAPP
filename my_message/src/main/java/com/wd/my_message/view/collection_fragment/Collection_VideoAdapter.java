@@ -8,10 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wd.my_message.R;
+import com.wd.health.R;
 import com.wd.my_message.bean.VideoCollectionBean;
 
 import java.text.SimpleDateFormat;

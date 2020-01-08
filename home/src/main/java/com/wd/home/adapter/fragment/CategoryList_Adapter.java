@@ -9,8 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wd.home.R;
-import com.wd.home.bean.CategoryBean;
+import com.wd.health.R;
 import com.wd.home.bean.CategoryListBean;
 
 import java.util.List;

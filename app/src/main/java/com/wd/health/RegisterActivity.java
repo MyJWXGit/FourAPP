@@ -7,24 +7,22 @@ import android.transition.Transition;
 import android.transition.TransitionSet;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 
 import com.wd.common.base.BaseActivity;
 import com.wd.health.bean.EmailBean;
 import com.wd.health.bean.RegisterBean;
 import com.wd.health.contract.Contract;
-import com.wd.health.presenter.MainPresenter;
+import com.wd.health.presenter.APP_MainPresenter;
 import com.wd.health.utils.RsaCoder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegisterActivity extends BaseActivity<MainPresenter> implements Contract.IView {
+public class RegisterActivity extends BaseActivity<APP_MainPresenter> implements Contract.IView {
 
     @BindView(R.id.registered_icon_logo)
     ImageView registeredIconLogo;
@@ -58,8 +56,8 @@ public class RegisterActivity extends BaseActivity<MainPresenter> implements Con
     Button registeredBtZhuce;
 
     @Override
-    protected MainPresenter providePresenter() {
-        return new MainPresenter();
+    protected APP_MainPresenter providePresenter() {
+        return new APP_MainPresenter();
     }
 
     @Override
@@ -130,5 +128,12 @@ public class RegisterActivity extends BaseActivity<MainPresenter> implements Con
                 break;
 
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

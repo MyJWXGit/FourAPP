@@ -9,12 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wd.common.base.BaseActivity;
-import com.wd.health.presenter.MainPresenter;
+import com.wd.health.presenter.APP_MainPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class IntentActivity extends BaseActivity<MainPresenter> {
+public class IntentActivity extends BaseActivity<APP_MainPresenter> {
 
     @BindView(R.id.image_guide)
     ImageView imageGuide;
@@ -42,8 +42,8 @@ public class IntentActivity extends BaseActivity<MainPresenter> {
     };
 
     @Override
-    protected MainPresenter providePresenter() {
-        return null;
+    protected APP_MainPresenter providePresenter() {
+        return new APP_MainPresenter();
     }
 
     @Override

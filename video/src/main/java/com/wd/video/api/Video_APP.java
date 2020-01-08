@@ -9,7 +9,7 @@ import com.wd.common.app.BaseApplication;
 /*
  *author:郭昊坤
  *date:2019/12/13
- *function:*/public class APP extends BaseApplication {
+ *function:*/public class Video_APP extends BaseApplication {
     private static Context context;
 
     @Override

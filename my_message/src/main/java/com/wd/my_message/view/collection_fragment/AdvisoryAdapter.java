@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.wd.my_message.R;
+import com.wd.health.R;
 import com.wd.my_message.bean.UserColletionBean;
 
 import java.text.SimpleDateFormat;

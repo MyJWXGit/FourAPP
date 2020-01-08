@@ -1,14 +1,13 @@
 package com.wd.video.model;
 
-import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.HttpUtils;
-import com.wd.video.api.HttpApi;
-import com.wd.video.bean.Video_CollectionBean;
+import com.wd.video.api.Video_HttpApi;
 import com.wd.video.bean.Video_PayBean;
 import com.wd.video.bean.Video_QueryBean;
-import com.wd.video.bean.Video_Query_BarrageBean;
 import com.wd.video.bean.Video_SendBean;
 import com.wd.video.contract.Contract;
+import com.wd.video.bean.Video_CollectionBean;
+import com.wd.video.bean.Video_Query_BarrageBean;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -19,7 +18,7 @@ import rx.schedulers.Schedulers;
  *date:2019/12/17
  *function:*/public class Video_QueryFModel implements Contract.FModel {
     public void onVideo_Query(String userId, String sessionId, String categoryId, String page, String count, FModelCallBack iModelCallBack) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Video_HttpApi.class)
                 .getViewo_Query(userId, sessionId, categoryId, page, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -48,7 +47,7 @@ import rx.schedulers.Schedulers;
 
     @Override
     public void onVideo_Send(String userId, String sessionId, String videoId, String content, FModelCallBack fModelCallBack) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Video_HttpApi.class)
                 .getVideo_Send(userId, sessionId, videoId, content)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -76,7 +75,7 @@ import rx.schedulers.Schedulers;
 
     @Override
     public void onVideo_Pay(String userId, String sessionId, String videoId, String price, FModelCallBack fModelCallBack) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Video_HttpApi.class)
                 .getVideo_Pay(userId, sessionId,videoId,price)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -105,7 +104,7 @@ import rx.schedulers.Schedulers;
 
     @Override
     public void onVideo_Query_Barrage(String videoId, FModelCallBack iModelCallBack) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Video_HttpApi.class)
                 .getVideo_Query_Barrage(videoId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -133,7 +132,7 @@ import rx.schedulers.Schedulers;
 
     @Override
     public void onVideo_Collection(String userId, String sessionId, String videoId, FModelCallBack iModelCallBack) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Video_HttpApi.class)
                 .getVideo_Collection(userId, sessionId, videoId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

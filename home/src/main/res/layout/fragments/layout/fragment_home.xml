@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
+    android:nestedScrollingEnabled="false"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -122,7 +123,8 @@
             android:layout_below="@id/line3"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:scrollbars="none" />
 
         <LinearLayout
             android:id="@+id/line4"
@@ -194,14 +196,16 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/title_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="30dp"
+                android:scrollbars="none" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/advisory_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp" />
+                android:layout_marginRight="12dp"
+                android:scrollbars="none" />
         </LinearLayout>
 
         <LinearLayout
@@ -215,8 +219,7 @@
                 android:layout_height="35dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="12dp"
-                android:src="@mipmap/dermatology" />
+                android:layout_marginRight="12dp" />
 
             <EditText
                 android:id="@+id/edit_query"
@@ -225,7 +228,9 @@
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/image_Avatar"
                 android:layout_weight="1"
-                android:background="@drawable/edit_gb" />
+                android:background="@drawable/edit_gb"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
 
             <ImageView
                 android:layout_width="35dp"

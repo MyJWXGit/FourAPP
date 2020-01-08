@@ -13,7 +13,7 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.wd.common.api.Constant;
-import com.wd.health.APP;
+import com.wd.health.My_APP;
 import com.wd.health.APP_Login_Activity;
 
 /**
@@ -34,7 +34,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //接收到分享以及登录的intent传递handleIntent方法，处理结果
-        APP.api.handleIntent(getIntent(), this);
+        My_APP.api.handleIntent(getIntent(), this);
     }
 
     @Override

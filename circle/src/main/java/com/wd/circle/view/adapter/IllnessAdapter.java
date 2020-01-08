@@ -9,8 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.wd.circle.R;
 import com.wd.circle.bean.DiseaseBean;
+import com.wd.health.R;
 
 import java.util.List;
 

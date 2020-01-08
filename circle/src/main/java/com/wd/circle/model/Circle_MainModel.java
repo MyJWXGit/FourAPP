@@ -3,7 +3,8 @@ package com.wd.circle.model;
 
 import android.util.Log;
 
-import com.wd.circle.api.HttpApi;
+import com.wd.circle.contract.Contract;
+import com.wd.circle.api.Circle_HttpApi;
 import com.wd.circle.bean.Circle_Comment_Bean;
 import com.wd.circle.bean.Circle_Details_Bean;
 import com.wd.circle.bean.Circle_list_Bean;
@@ -16,7 +17,6 @@ import com.wd.circle.bean.PictureBean;
 import com.wd.circle.bean.RepleaseCircleBean;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.bean.UserTaskListBean;
-import com.wd.circle.contract.Contract;
 import com.wd.common.utils.HttpUtils;
 
 import java.util.List;
@@ -37,11 +37,11 @@ import rx.schedulers.Schedulers;
  * @chang time
  * @class describe
  */
-public class MainModel implements Contract.IModer {
+public class Circle_MainModel implements Contract.IModer {
 
     @Override
     public void onLogin(String email, String pwd, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onLogin(email, pwd)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -67,7 +67,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onhome(IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onListBean()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -93,7 +93,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onhomes(int departmentId, int page, int count, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onListsBean(departmentId,page,count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -119,7 +119,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onSearch(String keyWord, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onSearchBean(keyWord)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -145,7 +145,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onDetails(int sickCircleId, String userId, String sessionId, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onDetailsBean(sickCircleId, userId, sessionId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -171,7 +171,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onComment(int sickCircleId, String userId, String sessionId, String content, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onCommentBean(userId, sessionId, sickCircleId, content)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -197,7 +197,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onCircleComment(int sickCircleId, String userId, String sessionId, int count, int page, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onCircleCommentBean(userId, sessionId, sickCircleId, count, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -223,7 +223,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onDoTask(String userId, String sessionId, int taskId, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onDoTaskBean(userId, sessionId, taskId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -249,7 +249,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onUserTaskList(String userId, String sessionId, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onUserTaskListBean(userId, sessionId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -275,7 +275,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onDisease(int departmentId, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onDiseaseBean(departmentId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -301,7 +301,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onReplease(String userId, String sessionId, Map<String, Object> map, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onRepleaseCircleBean(userId, sessionId, map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -327,7 +327,7 @@ public class MainModel implements Contract.IModer {
 
     @Override
     public void onPicture(String userId, String sessionId, int sickCircleId, List<MultipartBody.Part> part, IBallBask iBallBask) {
-        HttpUtils.getHttpUtils().getRetrofit().create(HttpApi.class)
+        HttpUtils.getHttpUtils().getRetrofit().create(Circle_HttpApi.class)
                 .onPictureBean(userId, sessionId, sickCircleId, part)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -14,14 +14,14 @@ import cn.jpush.android.api.JPushInterface;
 /**
  * @name Health
  * @class name：com.wd.health
- * @class describe
+ * @class describe84
  * @anthor 24673
  * @time 2019/12/12 13:50
  * @change
  * @chang time
  * @class describe
  */
-public class APP implements BaseApplicationImp {
+public class My_APP implements BaseApplicationImp {
     public static Context context;
     // APP_ID 替换为你的应用从官方网站申请到的合法appID
     private static final String APP_ID = "wxe3fcbe8a55cd33ff";
@@ -33,7 +33,7 @@ public class APP implements BaseApplicationImp {
     public void onCreate(Application application) {
         context = application;
         // 通过WXAPIFactory工厂，获取IWXAPI的实例
-        api = WXAPIFactory.createWXAPI(APP.context, APP_ID, true);
+        api = WXAPIFactory.createWXAPI(My_APP.context, APP_ID, true);
 
         // 将应用的appId注册到微信
         api.registerApp(APP_ID);

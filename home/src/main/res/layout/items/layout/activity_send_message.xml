@@ -29,19 +29,19 @@
 
         <EditText
             android:id="@+id/im_edit"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/im_fs_tv"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:background="#3084ea"
             android:gravity="center"
             android:padding="10dp"
             android:text="发送"
-            android:textColor="@color/hei"
             android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

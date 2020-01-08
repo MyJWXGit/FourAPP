@@ -19,10 +19,10 @@ import com.wd.health.mode.APPHome;
  * @chang time
  * @class describe
  */
-public class MainPresenter extends BasePresenter<Contract.IView> implements Contract.IPresenter {
+public class APP_MainPresenter extends BasePresenter<Contract.IView> implements Contract.IPresenter {
 
     private APPHome APPHome;
-    private static final String TAG = "MainPresenter";
+    private static final String TAG = "APP_MainPresenter";
 
     @Override
     protected void initModel() {

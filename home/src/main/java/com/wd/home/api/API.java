@@ -1,11 +1,5 @@
 package com.wd.home.api;
 
-import retrofit2.http.DELETE;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
-
 /**
  * @name Health
  * @class name：com.wd.home.api

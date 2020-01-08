@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wd.common.base.BaseFragment;
-import com.wd.home.R;
+import com.wd.health.R;
 import com.wd.home.adapter.fragment.Category_Adapter;
 import com.wd.home.adapter.fragment.Department_Adapter;
 import com.wd.home.bean.CategoryBean;
@@ -17,8 +17,6 @@ import com.wd.home.contract.Contract;
 import com.wd.home.presenter.Fragment_Presenter;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * @name Health

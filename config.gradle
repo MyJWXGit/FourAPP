@@ -1,22 +1,22 @@
 ext {
-
-
     //是否处于Module模式
     isModule = false
     //需要运行的组件，当allPackage为false的时候，此变量生效，模块名参照settings.gradle中的
-    needPackage = ['circle',"doctor","home","my_message","video"]
+    needPackage = ['circle', "home", "my_message", "video"]
     //有重用的地方写在这里面，保证代码一致
-    android = [compileSdkVersion       : 28,
-               buildToolsVersion       : "29.0.0",
-               minSdkVersion           : 22,
-               targetSdkVersion        : 26,
-               versionCode             : 100000,
-               versionName             : "1.0.0",
-               androidSupportSdkVersion: "26.0.2",
-               retrofitSdkVersion      : "2.0.0",
-               dagger2SdkVersion       : "2.6",
-               rxlifecycleSdkVersion   : "0.6.1",
-               espressoSdkVersion      : "2.2.2"
+    android = [
+            applicationId           : "com.wd.health",
+            compileSdkVersion       : 28,
+            buildToolsVersion       : "29.0.0",
+            minSdkVersion           : 22,
+            targetSdkVersion        : 26,
+            versionCode             : 100000,
+            versionName             : "1.0.0",
+            androidSupportSdkVersion: "26.0.2",
+            retrofitSdkVersion      : "2.0.0",
+            dagger2SdkVersion       : "2.6",
+            rxlifecycleSdkVersion   : "0.6.1",
+            espressoSdkVersion      : "2.2.2"
     ]
     dependencies = [
             "javax.annotation"       : 'javax.annotation:jsr250-api:1.0',

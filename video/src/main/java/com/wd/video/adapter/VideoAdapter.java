@@ -1,7 +1,6 @@
 package com.wd.video.adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,17 +14,14 @@ import android.widget.Toast;
 
 
 import com.dou361.ijkplayer.widget.IjkVideoView;
-import com.wd.video.R;
+import com.wd.health.R;
 import com.wd.video.bean.Video_QueryBean;
-import com.wd.video.contract.Contract;
 
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import tv.danmaku.ijk.media.exo.IjkExoMediaPlayer;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.Holder> {
     private List<Video_QueryBean.ResultBean> list;

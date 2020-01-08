@@ -13,21 +13,21 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
-import com.wd.my_message.view.Attention_Doctor_Activity;
+import com.wd.health.R;
+import com.wd.health.R2;
+import com.wd.my_message.bean.Message_LoginBean;
 import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.SignBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.presenter.MyMessage_Presenter;
-import com.wd.my_message.view.AutonymActivity;
+import com.wd.my_message.view.Attention_Doctor_Activity;
 import com.wd.my_message.view.Collection_Activity;
 import com.wd.my_message.view.MessagesActivity;
+import com.wd.my_message.view.Suggest_message_Activity;
 import com.wd.my_message.view.My_Walk_Activity;
 import com.wd.my_message.view.MyCircle_Patients_Activity;
 import com.wd.my_message.view.My_Record_Activity;
 import com.wd.my_message.view.My_Task_Activity;
-import com.wd.my_message.view.My_Walk_Activity;
-import com.wd.my_message.view.RecordActivity;
-import com.wd.my_message.view.Suggest_message_Activity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,45 +36,45 @@ import butterknife.OnClick;
 @Route(path = "/health/activity")
 public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implements Contract.IView {
 
-    @BindView(R2.id.head_details_back)
+    @BindView(com.wd.health.R2.id.head_details_back)
     ImageView headDetailsBack;
-    @BindView(R2.id.messages)
+    @BindView(com.wd.health.R2.id.messages)
     ImageView messages;
-    @BindView(R2.id.my_image_simple)
+    @BindView(com.wd.health.R2.id.my_image_simple)
     SimpleDraweeView myImageSimple;
-    @BindView(R2.id.my_text_login)
+    @BindView(com.wd.health.R2.id.my_text_login)
     TextView myTextLogin;
-    @BindView(R2.id.my_button_sing_in)
+    @BindView(com.wd.health.R2.id.my_button_sing_in)
     Button myButtonSingIn;
-    @BindView(R2.id.linear_lay)
+    @BindView(com.wd.health.R2.id.linear_lay)
     LinearLayout linearLay;
-    @BindView(R2.id.my_button_inquiry)
+    @BindView(com.wd.health.R2.id.my_button_inquiry)
     RelativeLayout myButtonInquiry;
-    @BindView(R2.id.my_button_history)
+    @BindView(com.wd.health.R2.id.my_button_history)
     RelativeLayout myButtonHistory;
-    @BindView(R2.id.re_latiview)
+    @BindView(com.wd.health.R2.id.re_latiview)
     RelativeLayout reLatiview;
-    @BindView(R2.id.my_button_record)
+    @BindView(com.wd.health.R2.id.my_button_record)
     LinearLayout myButtonRecord;
-    @BindView(R2.id.my_button_wallet)
+    @BindView(com.wd.health.R2.id.my_button_wallet)
     LinearLayout myButtonWallet;
-    @BindView(R2.id.my_button_collect)
+    @BindView(com.wd.health.R2.id.my_button_collect)
     LinearLayout myButtonCollect;
-    @BindView(R2.id.my_button_suggest)
+    @BindView(com.wd.health.R2.id.my_button_suggest)
     LinearLayout myButtonSuggest;
-    @BindView(R2.id.my_button_video)
+    @BindView(com.wd.health.R2.id.my_button_video)
     LinearLayout myButtonVideo;
-    @BindView(R2.id.my_button_patients_circle)
+    @BindView(com.wd.health.R2.id.my_button_patients_circle)
     LinearLayout myButtonPatientsCircle;
-    @BindView(R2.id.my_button_attention)
+    @BindView(com.wd.health.R2.id.my_button_attention)
     LinearLayout myButtonAttention;
-    @BindView(R2.id.my_button_task)
+    @BindView(com.wd.health.R2.id.my_button_task)
     LinearLayout myButtonTask;
-    @BindView(R2.id.my_button_set)
+    @BindView(com.wd.health.R2.id.my_button_set)
     LinearLayout myButtonSet;
-    @BindView(R2.id.linear_my)
+    @BindView(com.wd.health.R2.id.linear_my)
     LinearLayout linearMy;
-    @BindView(R2.id.my_text_title)
+    @BindView(com.wd.health.R2.id.my_text_title)
     TextView myTextTitle;
 
     @Override
@@ -89,6 +89,7 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
 
     @Override
     protected void initData() {
+        mPresenter.onMessage();
         mPresenter.onQueryUserSign();
     }
 
@@ -102,7 +103,7 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
         return null;
     }
 
-    @OnClick({R2.id.head_details_back, R2.id.messages, R2.id.my_image_simple, R2.id.my_text_login, R2.id.my_button_sing_in, R2.id.linear_lay, R2.id.my_button_inquiry, R2.id.my_button_history, R2.id.re_latiview, R2.id.my_button_record, R2.id.my_button_wallet, R2.id.my_button_collect, R2.id.my_button_suggest, R2.id.my_button_video, R2.id.my_button_patients_circle, R2.id.my_button_attention, R2.id.my_button_task, R2.id.my_button_set, R2.id.linear_my, R2.id.my_text_title})
+    @OnClick({com.wd.health.R2.id.head_details_back, com.wd.health.R2.id.messages, com.wd.health.R2.id.my_image_simple, com.wd.health.R2.id.my_text_login, com.wd.health.R2.id.my_button_sing_in, com.wd.health.R2.id.linear_lay, com.wd.health.R2.id.my_button_inquiry, com.wd.health.R2.id.my_button_history, com.wd.health.R2.id.re_latiview, com.wd.health.R2.id.my_button_record, com.wd.health.R2.id.my_button_wallet, com.wd.health.R2.id.my_button_collect, com.wd.health.R2.id.my_button_suggest, com.wd.health.R2.id.my_button_video, com.wd.health.R2.id.my_button_patients_circle, com.wd.health.R2.id.my_button_attention, com.wd.health.R2.id.my_button_task, com.wd.health.R2.id.my_button_set, com.wd.health.R2.id.linear_my, R2.id.my_text_title})
     public void onViewClicked(View view) {
         int id = view.getId();
         if (id == R.id.head_details_back) {
@@ -113,7 +114,9 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
             mPresenter.onSign();
         } else if (id == R.id.linear_lay) {
         } else if (id == R.id.my_button_inquiry) {
+            startActivity(new Intent(My_Home_Activity.this, My_Present_InquiryActivity.class));
         } else if (id == R.id.my_button_history) {
+            startActivity(new Intent(My_Home_Activity.this, Special_HistoryActivity.class));
         } else if (id == R.id.re_latiview) {
         } else if (id == R.id.my_button_record) {
             startActivity(new Intent(this, My_Record_Activity.class));
@@ -141,7 +144,13 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
 
     @Override
     public void onSuccess(Object data) {
-        if (data instanceof SignBean) {
+        if (data instanceof Message_LoginBean) {
+            Message_LoginBean bean = (Message_LoginBean) data;
+            String headPic = bean.getResult().getHeadPic();
+            String userName = bean.getResult().getUserName();
+            myImageSimple.setImageURI(headPic);
+            myTextLogin.setText(userName);
+        } else if (data instanceof SignBean) {
             SignBean signBean = (SignBean) data;
             if (signBean.getStatus().equals("0000")) {
                 Toast.makeText(this, signBean.getMessage(), Toast.LENGTH_SHORT).show();

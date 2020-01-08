@@ -1,36 +1,31 @@
-package com.wd.circle.utils;
+package com.wd.home;
 
 import android.app.Application;
 import android.content.Context;
-
-import androidx.multidex.MultiDex;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wd.common.app.BaseApplication;
 import com.wd.common.app.BaseApplicationImp;
 
+import cn.jpush.im.android.api.JMessageClient;
+
 /**
  * @name Health
- * @class name：${妙国青}
+ * @class name：com.wd.home
  * @class describe
- * @anthor dell
- * @time 2019/12/13 14:46
+ * @anthor 24673
+ * @time 2019/12/12 17:43
  * @change
  * @chang time
  * @class describe
  */
-public class App extends BaseApplication implements BaseApplicationImp {
+public class Home_APP extends BaseApplication implements BaseApplicationImp {
     public static Context context;
 
     @Override
     public void onCreate(Application application) {
         context = application;
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        context=this;
-        MultiDex.install(this);
+        JMessageClient.setDebugMode(true);
+        JMessageClient.init(context);
     }
 }

@@ -1,28 +1,27 @@
 package com.wd.home.api;
 
-import com.wd.home.api.API;
+import com.wd.home.bean.ConsultBean;
+import com.wd.home.bean.DoctorInfoBean;
+import com.wd.home.bean.DoctorListBean;
+import com.wd.home.bean.EndInquiryBean;
+import com.wd.home.bean.HomeSearchBean;
+import com.wd.home.bean.PopularBean;
+import com.wd.home.bean.PuMessageBean;
+import com.wd.home.bean.RecordingBean;
 import com.wd.home.bean.BannerBean;
 import com.wd.home.bean.CancelFllowBean;
 import com.wd.home.bean.CategoryBean;
 import com.wd.home.bean.CategoryListBean;
-import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DepartmentBean;
-import com.wd.home.bean.DoctorInfoBean;
-import com.wd.home.bean.DoctorListBean;
 import com.wd.home.bean.DrugsKnowledgeListBean;
 import com.wd.home.bean.DyugBean;
-import com.wd.home.bean.EndInquiryBean;
 import com.wd.home.bean.EvaluateListBean;
 import com.wd.home.bean.FindInfoBean;
 import com.wd.home.bean.FollowBean;
-import com.wd.home.bean.HomeSearchBean;
 import com.wd.home.bean.IllnessBean;
 import com.wd.home.bean.Information_ListBean;
 import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.bean.Plate_ListBean;
-import com.wd.home.bean.PopularBean;
-import com.wd.home.bean.PuMessageBean;
-import com.wd.home.bean.RecordingBean;
 import com.wd.home.bean.UserWalletBean;
 
 import retrofit2.http.DELETE;
@@ -45,7 +44,7 @@ import rx.Observable;
  * @chang time
  * @class describe
  */
-public interface HttpApi {
+public interface Home_HttpApi {
     //首页banner板块数据展示
     @GET(API.BANNER)
     Observable<BannerBean> onBanner();

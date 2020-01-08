@@ -15,12 +15,11 @@ import androidx.viewpager.widget.ViewPager;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.tabs.TabLayout;
 import com.wd.common.base.BaseFragment;
-import com.wd.common.base.BasePresenter;
+import com.wd.health.R;
 import com.wd.video.bean.Video_EntryBean;
-import com.wd.video.contract.Contract;
 import com.wd.video.fragment.BeautyFragment;
+import com.wd.video.contract.Contract;
 import com.wd.video.presenter.Video_EntryPresenter;
-
 import java.util.ArrayList;
 import java.util.List;
 

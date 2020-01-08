@@ -27,12 +27,12 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.tabs.TabLayout;
-import com.wd.circle.R;
-import com.wd.circle.R2;
+import com.wd.health.R;
+import com.wd.health.R2;
 import com.wd.circle.bean.Circle_list_Bean;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.contract.Contract;
-import com.wd.circle.presenter.MainPresenter;
+import com.wd.circle.presenter.Circle_MainPresenter;
 import com.wd.circle.utils.ObservableScrollView;
 import com.wd.circle.view.Circle_Details_Activity;
 import com.wd.circle.view.Seach_Circle_Activity;
@@ -60,7 +60,7 @@ import butterknife.Unbinder;
  * @class describe
  */
 @Route(path = "/fragment_circle/fragment")
-public class Fragmentn_circle extends BaseFragment<MainPresenter> implements Contract.IView, ObservableScrollView.ScrollViewListener {
+public class Fragmentn_circle extends BaseFragment<Circle_MainPresenter> implements Contract.IView, ObservableScrollView.ScrollViewListener {
     @BindView(R2.id.circle_touxiang)
     SimpleDraweeView circleTouxiang;
     @BindView(R2.id.circle_message)
@@ -153,8 +153,8 @@ public class Fragmentn_circle extends BaseFragment<MainPresenter> implements Con
     }
 
     @Override
-    protected MainPresenter providePresenter() {
-        return new MainPresenter();
+    protected Circle_MainPresenter providePresenter() {
+        return new Circle_MainPresenter();
     }
 
     @Override

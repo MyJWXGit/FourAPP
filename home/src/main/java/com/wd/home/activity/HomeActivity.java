@@ -1,13 +1,9 @@
 package com.wd.home.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -16,18 +12,14 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.wd.common.base.BaseActivity;
 import com.wd.common.base.BasePresenter;
-import com.wd.home.R;
-import com.wd.home.R2;
+import com.wd.health.R;
 import com.wd.home.adapter.Fragment_Adapter;
-import com.wd.home.adapter.utils_adapter.MyFragment_Adapter;
 import com.wd.home.contract.Contract;
 import com.wd.home.fragment.Fragment_home;
-import com.wd.home.presenter.HomePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 @Route(path = "/home/activity")

@@ -6,36 +6,37 @@ import com.wd.common.utils.Logger;
 import com.wd.common.utils.SpUtils;
 import com.wd.my_message.Message_APP;
 import com.wd.my_message.bean.AddArchivesBean;
-import com.wd.my_message.bean.AttentionDoctorListBean;
-import com.wd.my_message.bean.ConsumptionRecordBean;
 import com.wd.my_message.bean.EndInquiryBean;
-import com.wd.my_message.bean.DeleteArchivesBean;
-import com.wd.my_message.bean.DoTaskBean;
-import com.wd.my_message.bean.GetTaskBean;
 import com.wd.my_message.bean.HealthyCurrencyBean;
-import com.wd.my_message.bean.ImageBean;
+import com.wd.my_message.bean.HistoryBean;
 import com.wd.my_message.bean.InquiryMessageBean;
 import com.wd.my_message.bean.InquiryRecordBean;
-import com.wd.my_message.bean.LianxuSignBean;
-import com.wd.my_message.bean.MySickCircleCommentListBean;
-import com.wd.my_message.bean.MySickCircleListBean;
+import com.wd.my_message.bean.Message_LoginBean;
 import com.wd.my_message.bean.MyWalletBean;
 import com.wd.my_message.bean.QuerySignBean;
-import com.wd.my_message.bean.QueryTaskListBean;
 import com.wd.my_message.bean.SignBean;
 import com.wd.my_message.bean.SuggestBean;
 import com.wd.my_message.bean.SystemMessageBean;
-import com.wd.my_message.bean.UnAttentionDoctorBean;
-import com.wd.my_message.bean.UpdateArchivesBean;
-import com.wd.my_message.bean.UserArchivesBean;
 import com.wd.my_message.bean.UserArchivesPictureBean;
 import com.wd.my_message.bean.UserColletionBean;
 import com.wd.my_message.bean.UserSickCollectionBean;
 import com.wd.my_message.bean.VideoCollectionBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.model.MyMessage_Mode;
+import com.wd.my_message.bean.AttentionDoctorListBean;
+import com.wd.my_message.bean.ConsumptionRecordBean;
+import com.wd.my_message.bean.DeleteArchivesBean;
+import com.wd.my_message.bean.DoTaskBean;
+import com.wd.my_message.bean.GetTaskBean;
+import com.wd.my_message.bean.ImageBean;
+import com.wd.my_message.bean.LianxuSignBean;
+import com.wd.my_message.bean.MySickCircleCommentListBean;
+import com.wd.my_message.bean.MySickCircleListBean;
+import com.wd.my_message.bean.QueryTaskListBean;
+import com.wd.my_message.bean.UnAttentionDoctorBean;
+import com.wd.my_message.bean.UpdateArchivesBean;
+import com.wd.my_message.bean.UserArchivesBean;
 
-import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -375,7 +376,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
 
             @Override
             public void onError(Throwable e) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     getView().onError(e);
                 }
             }
@@ -389,9 +390,9 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
         myMessage_mode.onLianxuSign(userId, sessionid, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
-                    LianxuSignBean lianxuSignBean= (LianxuSignBean) data;
-                    if (lianxuSignBean!=null){
+                if (isViewAttached()) {
+                    LianxuSignBean lianxuSignBean = (LianxuSignBean) data;
+                    if (lianxuSignBean != null) {
                         getView().onSuccess(lianxuSignBean);
                     }
                 }
@@ -485,9 +486,9 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
         myMessage_mode.onMyFile(userId, sessionid, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
-                    UserArchivesBean userArchivesBean= (UserArchivesBean) data;
-                    if (userArchivesBean!=null){
+                if (isViewAttached()) {
+                    UserArchivesBean userArchivesBean = (UserArchivesBean) data;
+                    if (userArchivesBean != null) {
                         getView().onSuccess(userArchivesBean);
                     }
                 }
@@ -495,7 +496,31 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
 
             @Override
             public void onError(Throwable e) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onHistory(int page, int count) {
+        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onHistory(userId, sessionid, page, count, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    HistoryBean historyBean = (HistoryBean) data;
+                    if (historyBean != null) {
+                        getView().onSuccess(historyBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
                     getView().onError(e);
                 }
             }
@@ -509,9 +534,9 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
         myMessage_mode.onDeleteFile(userId, sessionid, archivesId, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
-                    DeleteArchivesBean deleteArchivesBean= (DeleteArchivesBean) data;
-                    if (deleteArchivesBean!=null){
+                if (isViewAttached()) {
+                    DeleteArchivesBean deleteArchivesBean = (DeleteArchivesBean) data;
+                    if (deleteArchivesBean != null) {
                         getView().onSuccess(deleteArchivesBean);
                     }
                 }
@@ -519,7 +544,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
 
             @Override
             public void onError(Throwable e) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     getView().onError(e);
                 }
             }
@@ -533,9 +558,9 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
         myMessage_mode.onUpdateFile(userId, sessionid, map, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
-                    UpdateArchivesBean updateArchivesBean= (UpdateArchivesBean) data;
-                    if (updateArchivesBean!=null){
+                if (isViewAttached()) {
+                    UpdateArchivesBean updateArchivesBean = (UpdateArchivesBean) data;
+                    if (updateArchivesBean != null) {
                         getView().onSuccess(updateArchivesBean);
                     }
                 }
@@ -543,7 +568,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
 
             @Override
             public void onError(Throwable e) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     getView().onError(e);
                 }
             }
@@ -557,9 +582,9 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
         myMessage_mode.onInsertFile(userId, sessionid, map, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
-                    AddArchivesBean addArchivesBean= (AddArchivesBean) data;
-                    if (addArchivesBean!=null){
+                if (isViewAttached()) {
+                    AddArchivesBean addArchivesBean = (AddArchivesBean) data;
+                    if (addArchivesBean != null) {
                         getView().onSuccess(addArchivesBean);
                     }
                 }
@@ -567,7 +592,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
 
             @Override
             public void onError(Throwable e) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     getView().onError(e);
                 }
             }
@@ -575,15 +600,15 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
     }
 
     @Override
-    public void onUploadPiture(Map<String,MultipartBody.Part> picture) {
+    public void onUploadPiture(Map<String, MultipartBody.Part> picture) {
         int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
         myMessage_mode.onUploadPiture(userId, sessionid, picture, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
-                    UserArchivesPictureBean userArchivesPictureBean= (UserArchivesPictureBean) data;
-                    if (userArchivesPictureBean!=null){
+                if (isViewAttached()) {
+                    UserArchivesPictureBean userArchivesPictureBean = (UserArchivesPictureBean) data;
+                    if (userArchivesPictureBean != null) {
                         getView().onSuccess(userArchivesPictureBean);
                     }
                 }
@@ -591,7 +616,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
 
             @Override
             public void onError(Throwable e) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     getView().onError(e);
                 }
             }
@@ -605,9 +630,9 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
         myMessage_mode.onDoTask(userId, sessionid, taskId, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
-                    DoTaskBean doTaskBean= (DoTaskBean) data;
-                    if (doTaskBean!=null){
+                if (isViewAttached()) {
+                    DoTaskBean doTaskBean = (DoTaskBean) data;
+                    if (doTaskBean != null) {
                         getView().onSuccess(doTaskBean);
                     }
                 }
@@ -615,7 +640,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
 
             @Override
             public void onError(Throwable e) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     getView().onError(e);
                 }
             }
@@ -630,8 +655,8 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
             @Override
             public void onSuccess(Object data) {
                 if (isViewAttached()) {
-                    GetTaskBean getTaskBean= (GetTaskBean) data;
-                    if (getTaskBean!=null){
+                    GetTaskBean getTaskBean = (GetTaskBean) data;
+                    if (getTaskBean != null) {
                         getView().onSuccess(getTaskBean);
                     }
                 }
@@ -639,7 +664,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
 
             @Override
             public void onError(Throwable e) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     getView().onError(e);
                 }
             }
@@ -653,9 +678,9 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
         myMessage_mode.onQueryTaskList(userId, sessionid, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
-                    QueryTaskListBean queryTaskListBean= (QueryTaskListBean) data;
-                    if (queryTaskListBean!=null){
+                if (isViewAttached()) {
+                    QueryTaskListBean queryTaskListBean = (QueryTaskListBean) data;
+                    if (queryTaskListBean != null) {
                         getView().onSuccess(queryTaskListBean);
                     }
                 }
@@ -663,7 +688,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
 
             @Override
             public void onError(Throwable e) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     getView().onError(e);
                 }
             }
@@ -677,9 +702,9 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
         myMessage_mode.onMyCircle(userId, sessionid, page, count, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
-                    MySickCircleListBean mySickCircleListBean= (MySickCircleListBean) data;
-                    if (mySickCircleListBean!=null){
+                if (isViewAttached()) {
+                    MySickCircleListBean mySickCircleListBean = (MySickCircleListBean) data;
+                    if (mySickCircleListBean != null) {
                         getView().onSuccess(mySickCircleListBean);
                     }
                 }
@@ -687,7 +712,7 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
 
             @Override
             public void onError(Throwable e) {
-                if (isViewAttached()){
+                if (isViewAttached()) {
                     getView().onError(e);
                 }
             }
@@ -695,16 +720,40 @@ public class MyMessage_Presenter extends BasePresenter<Contract.IView> implement
     }
 
     @Override
-    public void onMyCircleComment(int sickCircleId,int page,int count) {
+    public void onMyCircleComment(int sickCircleId, int page, int count) {
         int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
         String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
         myMessage_mode.onMyCircleComment(userId, sessionid, sickCircleId, page, count, new Contract.IModel.IModelCallBack() {
             @Override
             public void onSuccess(Object data) {
-                if (isViewAttached()){
-                    MySickCircleCommentListBean mySickCircleCommentListBean= (MySickCircleCommentListBean) data;
-                    if (mySickCircleCommentListBean!=null){
+                if (isViewAttached()) {
+                    MySickCircleCommentListBean mySickCircleCommentListBean = (MySickCircleCommentListBean) data;
+                    if (mySickCircleCommentListBean != null) {
                         getView().onSuccess(mySickCircleCommentListBean);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                if (isViewAttached()) {
+                    getView().onError(e);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onMessage() {
+        int userId = (int) SpUtils.get(Message_APP.context, Constant.USERID, 0);
+        String sessionid = (String) SpUtils.get(Message_APP.context, Constant.SESSIONID, "");
+        myMessage_mode.onMessage(userId, sessionid, new Contract.IModel.IModelCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                if (isViewAttached()) {
+                    Message_LoginBean message_loginBean = (Message_LoginBean) data;
+                    if (message_loginBean != null) {
+                        getView().onSuccess(message_loginBean);
                     }
                 }
             }

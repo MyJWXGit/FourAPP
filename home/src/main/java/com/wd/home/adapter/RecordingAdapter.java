@@ -1,7 +1,6 @@
 package com.wd.home.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.wd.home.R;
+import com.wd.health.R;
 import com.wd.home.bean.RecordingBean;
 
 import java.util.List;

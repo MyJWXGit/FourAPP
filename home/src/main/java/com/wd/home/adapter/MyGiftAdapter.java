@@ -8,10 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.wd.home.R;
+import com.wd.health.R;
 import com.wd.home.bean.DoctorInfoBean;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

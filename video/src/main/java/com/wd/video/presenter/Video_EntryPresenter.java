@@ -1,7 +1,5 @@
 package com.wd.video.presenter;
 
-import android.content.Context;
-
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.Logger;
 import com.wd.video.bean.Video_EntryBean;

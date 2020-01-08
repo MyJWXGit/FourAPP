@@ -21,7 +21,7 @@ import com.wd.common.base.BaseActivity;
 import com.wd.common.utils.SpUtils;
 import com.wd.health.bean.LoginBean;
 import com.wd.health.contract.Contract;
-import com.wd.health.presenter.MainPresenter;
+import com.wd.health.presenter.APP_MainPresenter;
 import com.wd.health.utils.RsaCoder;
 
 import java.security.MessageDigest;
@@ -31,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class APP_Login_Activity extends BaseActivity<MainPresenter> implements Contract.IView {
+public class APP_Login_Activity extends BaseActivity<APP_MainPresenter> implements Contract.IView {
     @BindView(R.id.i1)
     ImageView i1;
     @BindView(R.id.email)
@@ -53,10 +53,6 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
     private LoginBean.ResultBean result;
     private String string;
 
-    @Override
-    protected MainPresenter providePresenter() {
-        return new MainPresenter();
-    }
 
     @Override
     protected void initView() {
@@ -84,16 +80,16 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
             ARouter.getInstance().build("/home/activity").navigation();
             result = bean.getResult();
             String userName = result.getUserName();
-            Log.d("SSSS", "userName: "+userName);
+            Log.d("SSSS", "userName: " + userName);
             String jiGuangPwd = result.getJiGuangPwd();
             try {
                 string = RsaCoder.decryptByPublicKey(jiGuangPwd);
-                Log.d("aaaa", "onSuccess: "+string);
+                Log.d("aaaa", "onSuccess: " + string);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             String s = MD5(string);
-            Log.d("ssss", "s: "+s);
+            Log.d("ssss", "s: " + s);
         }
     }
 
@@ -130,7 +126,7 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
                 break;
             case R.id.login_wx:
                 // send oauth request
-                if (!APP.api.isWXAppInstalled()) {
+                if (!My_APP.api.isWXAppInstalled()) {
                     Toast.makeText(APP_Login_Activity.this, "您的设备未安装微信客户端", Toast.LENGTH_SHORT).show();
                 } else {
                     final SendAuth.Req req = new SendAuth.Req();
@@ -138,7 +134,7 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
                     req.state = "wechat_sdk_demo_test";
                     String packageName = getPackageName();
                     Log.i("xxx", "onViewClicked: " + packageName);
-                    APP.api.sendReq(req);
+                    My_APP.api.sendReq(req);
                 }
                 break;
         }
@@ -178,5 +174,10 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected APP_MainPresenter providePresenter() {
+        return new APP_MainPresenter();
     }
 }

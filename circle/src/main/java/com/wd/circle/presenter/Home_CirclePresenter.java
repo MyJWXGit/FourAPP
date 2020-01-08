@@ -6,7 +6,6 @@ import com.wd.circle.bean.Circle_lists_Bean;
 import com.wd.circle.bean.SearchCircleBean;
 import com.wd.circle.contract.Contract;
 import com.wd.circle.model.Home_Circle_Model;
-import com.wd.circle.model.MainModel;
 import com.wd.common.base.BasePresenter;
 
 /**

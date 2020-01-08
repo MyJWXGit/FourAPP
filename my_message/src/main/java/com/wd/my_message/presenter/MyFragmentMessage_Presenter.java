@@ -3,11 +3,11 @@ package com.wd.my_message.presenter;
 import com.wd.common.api.Constant;
 import com.wd.common.base.BasePresenter;
 import com.wd.common.utils.SpUtils;
-import com.wd.my_message.Message_APP;
 import com.wd.my_message.bean.DeleteCollectionBean;
-import com.wd.my_message.bean.UserColletionBean;
 import com.wd.my_message.bean.UserSickCollectionBean;
 import com.wd.my_message.bean.VideoCollectionBean;
+import com.wd.my_message.Message_APP;
+import com.wd.my_message.bean.UserColletionBean;
 import com.wd.my_message.contract.Contract;
 import com.wd.my_message.model.MyFragmentMessage_Model;
 
