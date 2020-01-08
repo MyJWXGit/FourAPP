@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.SetSexActivity">
+    tools:context="com.wd.my_message.view.SetSexActivity">
     <RelativeLayout
         android:id="@+id/biaoti"
         android:background="#fff"

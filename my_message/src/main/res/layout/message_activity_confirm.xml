@@ -6,7 +6,7 @@
     android:layout_height="667dp"
     android:background="#FFFFFF"
     android:orientation="vertical"
-    tools:context=".ConfirmActivity">
+    tools:context="com.wd.my_message.ConfirmActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

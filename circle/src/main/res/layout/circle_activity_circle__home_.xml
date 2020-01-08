@@ -75,7 +75,7 @@
 
     </RelativeLayout>
 
-    <com.wd.health.utils.ObservableScrollView
+    <com.wd.circle.utils.ObservableScrollView
         android:id="@+id/patient_scorll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -129,5 +129,5 @@
                 android:layout_below="@id/bbb"
                 android:visibility="gone" />
         </LinearLayout>
-    </com.wd.health.utils.ObservableScrollView>
+    </com.wd.circle.utils.ObservableScrollView>
 </LinearLayout>

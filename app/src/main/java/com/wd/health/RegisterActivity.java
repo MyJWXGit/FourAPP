@@ -1,13 +1,11 @@
 package com.wd.health;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.transition.Explode;
 import android.transition.Transition;
 import android.transition.TransitionSet;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -16,9 +14,9 @@ import android.widget.Toast;
 import com.wd.common.base.BaseActivity;
 import com.wd.health.bean.EmailBean;
 import com.wd.health.bean.RegisterBean;
-import com.wd.health.contract.Contract;
+import com.wd.home.contract.Contract;
 import com.wd.health.presenter.MainPresenter;
-import com.wd.health.utils.RsaCoder;
+import com.wd.home.utils.RsaCoder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,7 +74,7 @@ public class RegisterActivity extends BaseActivity<MainPresenter> implements Con
         Transition transition = new TransitionSet().addTransition(new Explode());
         getWindow().setEnterTransition(transition.setDuration(2000));
         getWindow().setExitTransition(new Explode().setDuration(2000));
-        return R.layout.activity_register;
+        return R.layout.app_activity_register;
     }
 
     @Override

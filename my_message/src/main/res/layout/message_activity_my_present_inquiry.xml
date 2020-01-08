@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".My_Present_InquiryActivity">
+    tools:context="com.wd.my_message.My_Present_InquiryActivity">
 
     <RelativeLayout
         android:id="@+id/re_latiview"

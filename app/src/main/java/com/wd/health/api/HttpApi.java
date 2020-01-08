@@ -1,7 +1,5 @@
 package com.wd.health.api;
 
-import android.database.Observable;
-
 
 import com.wd.health.bean.EmailBean;
 import com.wd.health.bean.LoginBean;

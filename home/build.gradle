@@ -34,7 +34,7 @@ android {
         manifestPlaceholders = [
                 JPUSH_PKGNAME: "com.wd.health",
                 JPUSH_APPKEY : "c7f6a1d56cb8da740fd18bfa",
-                JPUSH_CHANNEL: "developer - default"
+                JPUSH_CHANNEL: "developer-default"
         ]
     }
 
@@ -135,8 +135,6 @@ dependencies {
     implementation rootProject.ext.dependencies["glide"]
     implementation rootProject.ext.dependencies["butterknife"]
     implementation rootProject.ext.dependencies["fresco"]
-    implementation rootProject.ext.dependencies["jiguang_sdk_jmessage"]
-    implementation rootProject.ext.dependencies["jiguang_sdk_jcore"]
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["SmartRefreshHeader"]
     implementation rootProject.ext.dependencies["appcompat"]
@@ -146,4 +144,6 @@ dependencies {
     implementation project(':my_message')
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
     annotationProcessor 'com.alibaba:arouter-compiler:+' //流失布局
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 }

@@ -58,7 +58,7 @@ public class IntentActivity extends BaseActivity<MainPresenter> {
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_intent;
+        return R.layout.app_activity_intent;
     }
 
     @Override

@@ -33,7 +33,7 @@ android {
         manifestPlaceholders = [
                 JPUSH_PKGNAME: "com.wd.health",
                 JPUSH_APPKEY : "c7f6a1d56cb8da740fd18bfa",
-                JPUSH_CHANNEL: "developer - default"
+                JPUSH_CHANNEL: "developer-default"
         ]
     }
     buildTypes {
@@ -92,11 +92,9 @@ dependencies {
     implementation rootProject.ext.dependencies["fresco"]
     implementation rootProject.ext.dependencies["butterknife"]
     implementation rootProject.ext.dependencies["PickerView"]
-    implementation rootProject.ext.dependencies["wx_sdk"]
+    api rootProject.ext.dependencies["wx_sdk"]
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["StickyListHeaders"]
-    implementation rootProject.ext.dependencies["jpush"]
-    implementation rootProject.ext.dependencies["jpushcore"]
     implementation rootProject.ext.dependencies["multidex"]
     implementation rootProject.ext.dependencies["eventbus"]
     implementation rootProject.ext.dependencies["permission"]
@@ -105,4 +103,6 @@ dependencies {
     implementation project(':common')
     implementation project(':home')
     implementation project(':my_message')
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 }

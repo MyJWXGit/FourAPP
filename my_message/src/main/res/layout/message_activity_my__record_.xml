@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context=".view.My_Record_Activity">
+    tools:context="com.wd.my_message.view.My_Record_Activity">
     <RelativeLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

@@ -3,7 +3,7 @@
     package="com.wd.health">
 
     <application>
-        <activity android:name=".view.Circle_Details_Activity"></activity>
+        <activity android:name="com.wd.circle.view.Circle_Details_Activity"></activity>
     </application>
 
 </manifest>

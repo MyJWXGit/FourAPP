@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
+    android:nestedScrollingEnabled="false"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -156,7 +157,7 @@
             android:layout_height="160dp"
             android:layout_below="@id/line4"
             android:scaleType="fitXY"
-            android:src="@mipmap/common_disease" />
+            android:src="@mipmap/health_assessment" />
 
         <LinearLayout
             android:id="@+id/line5"

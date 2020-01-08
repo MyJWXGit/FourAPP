@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Attention_Doctor_Activity">
+    tools:context="com.wd.my_message.view.Attention_Doctor_Activity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"

@@ -22,7 +22,7 @@ import com.wd.common.utils.SpUtils;
 import com.wd.health.bean.LoginBean;
 import com.wd.health.contract.Contract;
 import com.wd.health.presenter.MainPresenter;
-import com.wd.health.utils.RsaCoder;
+import com.wd.my_message.utils.RsaCoder;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -72,7 +72,7 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
 
     @Override
     protected int initLayout() {
-        return R.layout.activity_login_app;
+        return R.layout.app_activity_login_app;
     }
 
     @Override
@@ -171,12 +171,5 @@ public class APP_Login_Activity extends BaseActivity<MainPresenter> implements C
             System.out.println(e);
         }
         return result;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

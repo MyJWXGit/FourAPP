@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.wd.health">
 
     <application>
-        <activity android:name=".activity.SendMessageActivity"></activity>
-        <activity android:name=".activity.CommentActivity" />
-        <activity android:name=".activity.Doctor_detailsActivity" />
-        <activity android:name=".activity.InfoActivity" />
-        <activity android:name=".activity.Edit_SearchActivity" />
-        <activity android:name=".activity.DrugActivity" />
-        <activity android:name=".activity.DiseaseKnowledgeActivity" />
-        <activity android:name=".activity.CommonActivity" />
-        <activity android:name=".activity.FindInfoActivity" /> <!-- 屏幕适配 -->
-        <activity android:name=".activity.HomeActivity" />
+        <activity android:name="com.wd.home.activity.SendMessageActivity"></activity>
+        <activity android:name="com.wd.home.activity.CommentActivity" />
+        <activity android:name="com.wd.home.activity.Doctor_detailsActivity" />
+        <activity android:name="com.wd.home.activity.InfoActivity" />
+        <activity android:name="com.wd.home.activity.Edit_SearchActivity" />
+        <activity android:name="com.wd.home.activity.DrugActivity" />
+        <activity android:name="com.wd.home.activity.DiseaseKnowledgeActivity" />
+        <activity android:name="com.wd.home.activity.CommonActivity" />
+        <activity android:name="com.wd.home.activity.FindInfoActivity" /> <!-- 屏幕适配 -->
+        <activity android:name="com.wd.home.activity.HomeActivity" />
+        <!-- Required SDK 核心功能-->
+        <!-- 这个Service要继承JCommonService -->
         <service
-            android:name=".activity.XService"
+            android:name="com.wd.home.Health_Service"
             android:process=":pushcore">
             <intent-filter>
                 <action android:name="cn.jiguang.user.service.action" />
             </intent-filter>
         </service>
-        <provider
-            android:name="cn.jpush.android.service.DataProvider"
-            android:authorities="${JPUSH_PKGNAME}.DataProvider"
-            android:exported="false" />
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:process=":multiprocess"
+            tools:node="replace"></service>
     </application>
 
 </manifest>
