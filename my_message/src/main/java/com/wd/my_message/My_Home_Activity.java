@@ -13,8 +13,10 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wd.common.base.BaseActivity;
+import com.wd.common.utils.SpUtils;
 import com.wd.health.R;
 import com.wd.health.R2;
+import com.wd.my_message.bean.LoginBean;
 import com.wd.my_message.view.Attention_Doctor_Activity;
 import com.wd.my_message.bean.QuerySignBean;
 import com.wd.my_message.bean.SignBean;
@@ -88,6 +90,10 @@ public class My_Home_Activity extends BaseActivity<MyMessage_Presenter> implemen
 
     @Override
     protected void initData() {
+        String beanPic = (String) SpUtils.get(Message_APP.context, "BeanPic", "");
+        String beanName = (String) SpUtils.get(Message_APP.context, "BeanName", "");
+        myImageSimple.setImageURI(beanPic);
+        myTextLogin.setText(beanName);
         mPresenter.onQueryUserSign();
     }
 

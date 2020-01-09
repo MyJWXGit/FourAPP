@@ -86,6 +86,8 @@ public class APP_Login_Activity extends BaseActivity<APP_MainPresenter> implemen
             String userName = result.getUserName();
             Log.d("SSSS", "userName: " + userName);
             String jiGuangPwd = result.getJiGuangPwd();
+            SpUtils.put(My_APP.context, "BeanPic", bean.getResult().getHeadPic());
+            SpUtils.put(My_APP.context, "BeanName", bean.getResult().getNickName());
             try {
                 string = RsaCoder.decryptByPublicKey(jiGuangPwd);
                 Log.d("aaaa", "onSuccess: " + string);

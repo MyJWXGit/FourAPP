@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.wd.common.utils.CleanDateUtils;
 import com.wd.health.R;
 import com.wd.health.R2;
 import com.wd.my_message.view.Change_Password_Activity;
@@ -63,7 +64,12 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void initData() {
-
+        try {
+            String totalCacheSize = CleanDateUtils.getTotalCacheSize(Message_APP.context);
+            settingTextClear.setText(totalCacheSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @OnClick({com.wd.health.R2.id.head_details_back, com.wd.health.R2.id.head_text_name, com.wd.health.R2.id.relay_layout, com.wd.health.R2.id.setting_image_view, com.wd.health.R2.id.setting_text_name, com.wd.health.R2.id.setting_image_name, com.wd.health.R2.id.setting_image_layout, com.wd.health.R2.id.setting_image_pwd, com.wd.health.R2.id.setting_text_clear, com.wd.health.R2.id.setting_image_clear, com.wd.health.R2.id.setting_image_ping_lian, com.wd.health.R2.id.setting_image_new_app, com.wd.health.R2.id.setting_image_ping_help, com.wd.health.R2.id.setting_image_my, com.wd.health.R2.id.setting_image_new_invite, R2.id.setting_image_login})

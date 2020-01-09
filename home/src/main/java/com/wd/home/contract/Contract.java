@@ -40,6 +40,8 @@ public interface Contract {
         //查询历史问诊聊天记录
         void getRecording(int inquiryId, int page, int count);
 
+        //咨询医生
+        void getConsult(int doctorId);
 
         //用户查看当前问诊
         void onInquiryRecord();
@@ -74,9 +76,11 @@ public interface Contract {
         //查询历史问诊聊天记录
         void getRecording(int userId, String sessionId, int inquiryId, int page, int count, IBallBask iBallBask);
 
-
         //用户查看当前问诊
         void onInquiryRecord(int userId, String sessionId, IBallBask iBallBask);
+
+        //咨询医生
+        void getConsult(int userId, String sessionId, int doctorId, IBallBask iBallBask);
 
         interface IBallBask {
             void onHttpOK(Object obj);
@@ -123,15 +127,11 @@ public interface Contract {
         //查询医生评价列表
         void onEvaluateList(int doctorId, int page, int count);
 
-        //咨询医生
-        void getConsult(int doctorId);
-
         //结束问诊
         void onEndInquiry(int recordId);
 
         //用户查看当前问诊
         void onInquiryRecord();
-
     }
 
     //Fragment  M层
@@ -172,8 +172,6 @@ public interface Contract {
         //查询医生评价列表
         void onEvaluateList(int doctorId, int page, int count, IBallBask iBallBask);
 
-        //咨询医生
-        void getConsult(int userId, String sessionId, int doctorId, IBallBask iBallBask);
 
         //结束问诊
         void onEndInquiry(int userId, String sessionId, int recordId, IBallBask iBallBask);

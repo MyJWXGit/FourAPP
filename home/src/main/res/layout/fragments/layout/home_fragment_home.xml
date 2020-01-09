@@ -219,7 +219,8 @@
                 android:layout_height="35dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="12dp" />
+                android:layout_marginRight="12dp"
+                android:src="@mipmap/dermatology" />
 
             <EditText
                 android:id="@+id/edit_query"

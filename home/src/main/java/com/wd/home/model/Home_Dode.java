@@ -3,6 +3,7 @@ package com.wd.home.model;
 
 import com.wd.common.utils.HttpUtils;
 import com.wd.home.bean.BannerBean;
+import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.FindInfoBean;
 import com.wd.home.bean.HomeSearchBean;
@@ -311,7 +312,6 @@ public class Home_Dode implements Contract.IModer {
                 });
     }
 
-
     @Override
     public void onInquiryRecord(int userId, String sessionId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
@@ -342,5 +342,36 @@ public class Home_Dode implements Contract.IModer {
                     }
                 });
 
+    }
+
+    @Override
+    public void getConsult(int userId, String sessionId, int doctorId, IBallBask iBallBask) {
+        //HttpUtil是网络封装类                        HttpApi是写注解的接口
+        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
+                //你要跑的接口方法
+                .getConsult(userId, sessionId, doctorId)
+                //切换线程
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ConsultBean>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpNO(e);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(ConsultBean consultBean) {
+                        if (iBallBask != null) {
+                            iBallBask.onHttpOK(consultBean);
+                        }
+                    }
+                });
     }
 }

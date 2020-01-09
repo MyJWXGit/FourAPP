@@ -15,6 +15,7 @@ import com.wd.common.base.BaseActivity;
 import com.wd.health.R;
 import com.wd.health.R2;
 import com.wd.home.adapter.RecordingAdapter;
+import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.InquiryRecordBean;
 import com.wd.home.bean.PuMessageBean;
 import com.wd.home.bean.RecordingBean;
@@ -60,7 +61,7 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
     @Override
     protected void initData() {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        mPresenter.onInquiryRecord();
+        mPresenter.getConsult(156);
         mPresenter.getRecording(3853, 1, 10);
         imFsTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +96,12 @@ public class SendMessageActivity extends BaseActivity<HomePresenter> implements 
 
     @Override
     public void onSuccess(Object obj) {
+        if (obj instanceof ConsultBean) {
+            ConsultBean bean = (ConsultBean) obj;
+            if (bean.getStatus().equals("0000")) {
+                mPresenter.onInquiryRecord();
+            }
+        }
         if (obj instanceof InquiryRecordBean) {
             InquiryRecordBean currentBean = (InquiryRecordBean) obj;
             InquiryRecordBean.ResultBean result = currentBean.getResult();

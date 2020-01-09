@@ -407,37 +407,6 @@ public class Fragment_Mode implements Contract.FModer {
     }
 
     @Override
-    public void getConsult(int userId, String sessionId, int doctorId, IBallBask iBallBask) {
-        //HttpUtil是网络封装类                        HttpApi是写注解的接口
-        HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)
-                //你要跑的接口方法
-                .getConsult(userId, sessionId, doctorId)
-                //切换线程
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ConsultBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (iBallBask != null) {
-                            iBallBask.onHttpNO(e);
-                        }
-                    }
-
-                    @Override
-                    public void onNext(ConsultBean consultBean) {
-                        if (iBallBask != null) {
-                            iBallBask.onHttpOK(consultBean);
-                        }
-                    }
-                });
-    }
-
-    @Override
     public void onEndInquiry(int userId, String sessionId, int recordId, IBallBask iBallBask) {
         //HttpUtil是网络封装类                        HttpApi是写注解的接口
         HttpUtils.getHttpUtils().getRetrofit().create(Home_HttpApi.class)

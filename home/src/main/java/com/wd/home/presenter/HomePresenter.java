@@ -8,6 +8,7 @@ import com.wd.common.utils.Logger;
 import com.wd.common.utils.SpUtils;
 import com.wd.home.Home_APP;
 import com.wd.home.bean.BannerBean;
+import com.wd.home.bean.ConsultBean;
 import com.wd.home.bean.DepartmentBean;
 import com.wd.home.bean.HomeSearchBean;
 import com.wd.home.bean.Information_ListBean;
@@ -262,6 +263,30 @@ public class HomePresenter extends BasePresenter<com.wd.home.contract.Contract.I
         });
     }
 
+    @Override
+    public void getConsult(int doctorId) {
+        int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
+        String sessionId = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
+        home_dode.getConsult(userId, sessionId, doctorId, new Contract.IModer.IBallBask() {
+            @Override
+            public void onHttpOK(Object obj) {//成功的方法
+                //软引用
+                if (isViewAttached()) {
+                    //Bean包强转  拿到Status进行判断
+                    ConsultBean bean = (ConsultBean) obj;
+                    //getView是BasePresenter方法  使用getView进行调用P层
+                    getView().onSuccess(bean);
+                }
+            }
+
+            @Override
+            public void onHttpNO(Throwable e) {//失败的方法
+                if (isViewAttached()) {
+                    Logger.d(TAG, e.getMessage() + "");
+                }
+            }
+        });
+    }
 
     @Override
     public void getRecording(int inquiryId, int page, int count) {

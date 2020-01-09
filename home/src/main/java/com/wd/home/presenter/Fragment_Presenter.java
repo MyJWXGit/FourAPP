@@ -33,7 +33,7 @@ import com.wd.home.contract.Contract;
  * @chang time
  * @class describe
  */
-public class Fragment_Presenter extends BasePresenter<com.wd.home.contract.Contract.IView> implements com.wd.home.contract.Contract.FPresenter {
+public class Fragment_Presenter extends BasePresenter<Contract.IView> implements Contract.FPresenter {
 
     private Fragment_Mode home_dode;
     private static final String TAG = "Fragment_Presenter";
@@ -375,30 +375,6 @@ public class Fragment_Presenter extends BasePresenter<com.wd.home.contract.Contr
         });
     }
 
-    @Override
-    public void getConsult(int doctorId) {
-        int userId = (int) SpUtils.get(Home_APP.context, Constant.USERID, 0);
-        String sessionId = (String) SpUtils.get(Home_APP.context, Constant.SESSIONID, "");
-        home_dode.getConsult(userId, sessionId, doctorId, new com.wd.home.contract.Contract.FModer.IBallBask() {
-            @Override
-            public void onHttpOK(Object obj) {//成功的方法
-                //软引用
-                if (isViewAttached()) {
-                    //Bean包强转  拿到Status进行判断
-                    ConsultBean bean = (ConsultBean) obj;
-                    //getView是BasePresenter方法  使用getView进行调用P层
-                    getView().onSuccess(bean);
-                }
-            }
-
-            @Override
-            public void onHttpNO(Throwable e) {//失败的方法
-                if (isViewAttached()) {
-                    Logger.d(TAG, e.getMessage() + "");
-                }
-            }
-        });
-    }
 
     @Override
     public void onEndInquiry(int recordId) {
